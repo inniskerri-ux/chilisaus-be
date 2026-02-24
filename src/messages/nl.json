@@ -97,5 +97,16 @@
       "clearFilters": "Filters wissen",
       "loadMore": "Meer laden"
     }
+  },
+  "ProductPage": {
+    "breadcrumbShop": "Winkel",
+    "by": "van",
+    "heatLevel": "Heetheid",
+    "inStock": "Op voorraad",
+    "outOfStock": "Uitverkocht",
+    "addToCart": "In winkelwagen",
+    "description": "Beschrijving",
+    "ingredients": "Ingrediënten",
+    "peppers": "Pepers"
   }
 }

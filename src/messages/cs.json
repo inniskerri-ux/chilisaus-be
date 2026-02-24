@@ -70,5 +70,16 @@
       "saved": "Saved successfully.",
       "notSet": "Not set"
     }
+  },
+  "ProductPage": {
+    "breadcrumbShop": "Obchod",
+    "by": "od",
+    "heatLevel": "Úroveň pálivosti",
+    "inStock": "Skladem",
+    "outOfStock": "Vyprodáno",
+    "addToCart": "Přidat do košíku",
+    "description": "Popis",
+    "ingredients": "Ingredience",
+    "peppers": "Papriky"
   }
 }

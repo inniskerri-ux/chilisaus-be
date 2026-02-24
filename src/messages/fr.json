@@ -70,5 +70,16 @@
       "saved": "Saved successfully.",
       "notSet": "Not set"
     }
+  },
+  "ProductPage": {
+    "breadcrumbShop": "Boutique",
+    "by": "par",
+    "heatLevel": "Niveau de chaleur",
+    "inStock": "En stock",
+    "outOfStock": "Épuisé",
+    "addToCart": "Ajouter au panier",
+    "description": "Description",
+    "ingredients": "Ingrédients",
+    "peppers": "Piments"
   }
 }

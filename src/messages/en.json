@@ -97,5 +97,16 @@
       "clearFilters": "Clear filters",
       "loadMore": "Load more"
     }
+  },
+  "ProductPage": {
+    "breadcrumbShop": "Shop",
+    "by": "by",
+    "heatLevel": "Heat Level",
+    "inStock": "In stock",
+    "outOfStock": "Out of stock",
+    "addToCart": "Add to cart",
+    "description": "Description",
+    "ingredients": "Ingredients",
+    "peppers": "Peppers"
   }
 }

@@ -97,5 +97,16 @@
       "clearFilters": "Wyczyść filtry",
       "loadMore": "Załaduj więcej"
     }
+  },
+  "ProductPage": {
+    "breadcrumbShop": "Sklep",
+    "by": "przez",
+    "heatLevel": "Poziom ostrości",
+    "inStock": "Dostępny",
+    "outOfStock": "Wyprzedany",
+    "addToCart": "Dodaj do koszyka",
+    "description": "Opis",
+    "ingredients": "Składniki",
+    "peppers": "Papryki"
   }
 }

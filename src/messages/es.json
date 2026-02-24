@@ -97,5 +97,16 @@
       "clearFilters": "Limpiar filtros",
       "loadMore": "Cargar más"
     }
+  },
+  "ProductPage": {
+    "breadcrumbShop": "Tienda",
+    "by": "por",
+    "heatLevel": "Nivel de picante",
+    "inStock": "En stock",
+    "outOfStock": "Agotado",
+    "addToCart": "Añadir al carrito",
+    "description": "Descripción",
+    "ingredients": "Ingredientes",
+    "peppers": "Pimientos"
   }
 }

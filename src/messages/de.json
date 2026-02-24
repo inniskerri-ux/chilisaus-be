@@ -97,5 +97,16 @@
       "clearFilters": "Filter löschen",
       "loadMore": "Mehr laden"
     }
+  },
+  "ProductPage": {
+    "breadcrumbShop": "Shop",
+    "by": "von",
+    "heatLevel": "Schärfegrad",
+    "inStock": "Auf Lager",
+    "outOfStock": "Ausverkauft",
+    "addToCart": "In den Warenkorb",
+    "description": "Beschreibung",
+    "ingredients": "Zutaten",
+    "peppers": "Paprika"
   }
 }
