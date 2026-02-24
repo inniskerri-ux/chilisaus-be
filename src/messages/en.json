@@ -123,5 +123,11 @@
     "description": "Description",
     "ingredients": "Ingredients",
     "peppers": "Peppers"
+  },
+  "Legal": {
+    "notice": "Legal Notice",
+    "shipping": "Shipping & Returns",
+    "terms": "Terms of Service",
+    "privacy": "Privacy Policy"
   }
 }

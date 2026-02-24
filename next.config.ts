@@ -14,6 +14,10 @@ const nextConfig: NextConfig = {
         protocol: 'https',
         hostname: 'chilisaus.be',
       },
+      {
+        protocol: 'https',
+        hostname: 'hkflfhbzfsentkkwzqnd.supabase.co',
+      },
     ],
   },
 };

@@ -67,10 +67,10 @@ The client wants a clean, professional, "human" website focused on the product (
 ## 3. Implementation Plan
 
 ### Phase 1: Visuals & Core Navigation (High Impact)
-- [ ] Update Theme Colors (Tailwind config: Black/White/Red).
-- [ ] Refine Home Page Hero (Logo, Tagline, Intro).
-- [ ] Enhance Shop Filtering (Add "Producers" dropdown, Fix Heat Level sort logic).
-- [ ] Add WhatsApp & Social Links.
+- [x] Update Theme Colors (Tailwind config: Black/White/Red).
+- [x] Refine Home Page Hero (Logo, Tagline, Intro).
+- [x] Enhance Shop Filtering (Add "Producers" dropdown, Fix Heat Level sort logic).
+- [x] Add WhatsApp & Social Links (WhatsApp uses `NEXT_PUBLIC_WHATSAPP_NUMBER`).
 - [ ] Create "Technical Info" / Legal page.
 
 ### Phase 2: Content Expansion

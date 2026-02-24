@@ -41,7 +41,7 @@ export default async function Header({ locale }: { locale: string }) {
               <Instagram size={20} />
             </a>
             <a 
-              href="https://wa.me/yournumber" 
+              href={`https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER}`} 
               target="_blank" 
               rel="noopener noreferrer"
               className="p-2 text-zinc-400 hover:text-brand-red transition-colors"
