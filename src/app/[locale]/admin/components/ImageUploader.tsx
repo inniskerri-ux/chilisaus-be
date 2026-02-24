@@ -3,7 +3,7 @@
 import { useState, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
-import { createClient } from '@/lib/supabase/client';
+import { supabase } from '@/lib/supabase/client';
 import { Upload, X, Loader2, ImageIcon } from 'lucide-react';
 import Image from 'next/image';
 
@@ -22,8 +22,6 @@ export function ImageUploader({
 }: ImageUploaderProps) {
   const [uploading, setUploading] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
-  const supabase = createClient();
-
   const convertToWebP = async (file: File): Promise<Blob> => {
     return new Promise((resolve, reject) => {
       const img = document.createElement('img');

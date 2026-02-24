@@ -2,15 +2,13 @@
 
 import { useState } from 'react';
 import { supabase } from '@/lib/supabase/client';
-import { useRouter, useParams } from 'next/navigation';
 
 export default function SignUpPage() {
-  const { locale } = useParams() as { locale: string };
-  const router = useRouter();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirm, setConfirm] = useState('');
   const [err, setErr] = useState<string | null>(null);
+  const [done, setDone] = useState(false);
 
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -19,9 +17,22 @@ export default function SignUpPage() {
       setErr('Passwords do not match');
       return;
     }
-    const { error } = await supabase.auth.signUp({ email, password });
+    const { error } = await supabase.auth.signUp({
+      email,
+      password,
+      options: { emailRedirectTo: `${window.location.origin}/auth/callback` },
+    });
     if (error) setErr(error.message);
-    else router.push(`/${locale}`);
+    else setDone(true);
+  }
+
+  if (done) {
+    return (
+      <main className="mx-auto max-w-sm p-6">
+        <h1 className="text-2xl font-bold mb-2">Check your email</h1>
+        <p className="text-gray-600">We sent a confirmation link to <strong>{email}</strong>. Click it to activate your account.</p>
+      </main>
+    );
   }
 
   return (

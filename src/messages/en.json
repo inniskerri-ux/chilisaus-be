@@ -70,5 +70,32 @@
       "saved": "Saved successfully.",
       "notSet": "Not set"
     }
+  },
+  "SauceArchive": {
+    "heading": "Our Hot Sauces",
+    "search": {
+      "placeholder": "Search sauces…",
+      "filters": {
+        "heatLevel": "Heat Level",
+        "pepper": "Pepper",
+        "allChilliTypes": "All peppers",
+        "sauceType": "Type",
+        "allCategories": "All types",
+        "sort": "Sort by",
+        "sortNewest": "Newest",
+        "sortPopular": "Most popular",
+        "sortMildToHot": "Mild → Hot",
+        "sortHotToMild": "Hot → Mild"
+      }
+    },
+    "results": {
+      "showing": "Showing",
+      "of": "of",
+      "sauces": "sauces",
+      "noResults": "No sauces found",
+      "adjustSearch": "Try adjusting your search or filters.",
+      "clearFilters": "Clear filters",
+      "loadMore": "Load more"
+    }
   }
 }

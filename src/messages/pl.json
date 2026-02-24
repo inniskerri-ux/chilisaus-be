@@ -1,17 +1,17 @@
 {
   "Auth": {
-    "SignIn": "Anmelden",
-    "SignUp": "Registrieren",
-    "Email": "E-Mail",
-    "Password": "Passwort",
-    "ConfirmPassword": "Passwort bestätigen",
-    "ResetPassword": "Passwort zurücksetzen"
+    "SignIn": "Sign in",
+    "SignUp": "Sign up",
+    "Email": "Email",
+    "Password": "Password",
+    "ConfirmPassword": "Confirm password",
+    "ResetPassword": "Reset password"
   },
   "Nav": {
     "Shop": "Shop",
-    "Cart": "Warenkorb",
-    "Checkout": "Kasse",
-    "Account": "Konto"
+    "Cart": "Cart",
+    "Checkout": "Checkout",
+    "Account": "Account"
   },
   "Admin": {
     "title": "Store admin",
@@ -72,30 +72,30 @@
     }
   },
   "SauceArchive": {
-    "heading": "Unsere scharfen Saucen",
+    "heading": "Nasze ostre sosy",
     "search": {
-      "placeholder": "Saucen suchen…",
+      "placeholder": "Szukaj sosów…",
       "filters": {
-        "heatLevel": "Schärfegrad",
-        "pepper": "Pfeffer",
-        "allChilliTypes": "Alle Paprika",
+        "heatLevel": "Poziom ostrości",
+        "pepper": "Pieprz",
+        "allChilliTypes": "Wszystkie papryki",
         "sauceType": "Typ",
-        "allCategories": "Alle Typen",
-        "sort": "Sortieren nach",
-        "sortNewest": "Neueste",
-        "sortPopular": "Beliebteste",
-        "sortMildToHot": "Mild → Scharf",
-        "sortHotToMild": "Scharf → Mild"
+        "allCategories": "Wszystkie typy",
+        "sort": "Sortuj według",
+        "sortNewest": "Najnowsze",
+        "sortPopular": "Najpopularniejsze",
+        "sortMildToHot": "Łagodne → Ostre",
+        "sortHotToMild": "Ostre → Łagodne"
       }
     },
     "results": {
-      "showing": "Zeige",
-      "of": "von",
-      "sauces": "Saucen",
-      "noResults": "Keine Saucen gefunden",
-      "adjustSearch": "Passen Sie Ihre Suche oder Filter an.",
-      "clearFilters": "Filter löschen",
-      "loadMore": "Mehr laden"
+      "showing": "Wyświetlanie",
+      "of": "z",
+      "sauces": "sosów",
+      "noResults": "Nie znaleziono sosów",
+      "adjustSearch": "Spróbuj dostosować wyszukiwanie lub filtry.",
+      "clearFilters": "Wyczyść filtry",
+      "loadMore": "Załaduj więcej"
     }
   }
 }

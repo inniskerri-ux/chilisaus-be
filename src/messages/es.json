@@ -1,17 +1,17 @@
 {
   "Auth": {
-    "SignIn": "Anmelden",
-    "SignUp": "Registrieren",
-    "Email": "E-Mail",
-    "Password": "Passwort",
-    "ConfirmPassword": "Passwort bestätigen",
-    "ResetPassword": "Passwort zurücksetzen"
+    "SignIn": "Sign in",
+    "SignUp": "Sign up",
+    "Email": "Email",
+    "Password": "Password",
+    "ConfirmPassword": "Confirm password",
+    "ResetPassword": "Reset password"
   },
   "Nav": {
     "Shop": "Shop",
-    "Cart": "Warenkorb",
-    "Checkout": "Kasse",
-    "Account": "Konto"
+    "Cart": "Cart",
+    "Checkout": "Checkout",
+    "Account": "Account"
   },
   "Admin": {
     "title": "Store admin",
@@ -72,30 +72,30 @@
     }
   },
   "SauceArchive": {
-    "heading": "Unsere scharfen Saucen",
+    "heading": "Nuestras salsas picantes",
     "search": {
-      "placeholder": "Saucen suchen…",
+      "placeholder": "Buscar salsas…",
       "filters": {
-        "heatLevel": "Schärfegrad",
-        "pepper": "Pfeffer",
-        "allChilliTypes": "Alle Paprika",
-        "sauceType": "Typ",
-        "allCategories": "Alle Typen",
-        "sort": "Sortieren nach",
-        "sortNewest": "Neueste",
-        "sortPopular": "Beliebteste",
-        "sortMildToHot": "Mild → Scharf",
-        "sortHotToMild": "Scharf → Mild"
+        "heatLevel": "Nivel de picante",
+        "pepper": "Pimienta",
+        "allChilliTypes": "Todas las pimientas",
+        "sauceType": "Tipo",
+        "allCategories": "Todos los tipos",
+        "sort": "Ordenar por",
+        "sortNewest": "Más reciente",
+        "sortPopular": "Más popular",
+        "sortMildToHot": "Suave → Picante",
+        "sortHotToMild": "Picante → Suave"
       }
     },
     "results": {
-      "showing": "Zeige",
-      "of": "von",
-      "sauces": "Saucen",
-      "noResults": "Keine Saucen gefunden",
-      "adjustSearch": "Passen Sie Ihre Suche oder Filter an.",
-      "clearFilters": "Filter löschen",
-      "loadMore": "Mehr laden"
+      "showing": "Mostrando",
+      "of": "de",
+      "sauces": "salsas",
+      "noResults": "No se encontraron salsas",
+      "adjustSearch": "Intenta ajustar tu búsqueda o filtros.",
+      "clearFilters": "Limpiar filtros",
+      "loadMore": "Cargar más"
     }
   }
 }

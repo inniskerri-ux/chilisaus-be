@@ -15,21 +15,40 @@ import {
 } from '@/components/ui/select';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { ImageUploader } from './ImageUploader';
-import type { Database } from '@/types/supabase';
+interface Product {
+  id: string;
+  name: string;
+  slug: string;
+  description?: string | null;
+  details?: string | null;
+  price_cents: number;
+  currency: string;
+  category_id?: string | null;
+  brand_id?: string | null;
+  capacity_ml?: number | null;
+  heat_level?: string | null;
+  image_url?: string | null;
+  ingredients?: string | null;
+  nutrition_info?: Record<string, number> | null;
+  is_active?: boolean;
+  size_options?: string[] | null;
+  color_options?: string[] | null;
+}
 
-type Product = Database['public']['Tables']['products']['Row'];
-type Category = Database['public']['Tables']['categories']['Row'];
-type Brand = Database['public']['Tables']['brands']['Row'];
+interface Category { id: string; name: string; slug: string; }
+interface Brand { id: string; name: string; slug?: string; }
 
 interface ProductFormProps {
   product?: Product;
   categories: Category[];
   brands: Brand[];
+  chilliTypes?: { id: string; name: string }[];
   onSubmit: (data: any) => Promise<void>;
   onDelete?: () => Promise<void>;
+  successRedirectPath?: string;
 }
 
-export function ProductForm({
+export default function ProductForm({
   product,
   categories,
   brands,

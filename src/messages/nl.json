@@ -1,17 +1,17 @@
 {
   "Auth": {
-    "SignIn": "Anmelden",
-    "SignUp": "Registrieren",
-    "Email": "E-Mail",
-    "Password": "Passwort",
-    "ConfirmPassword": "Passwort bestätigen",
-    "ResetPassword": "Passwort zurücksetzen"
+    "SignIn": "Sign in",
+    "SignUp": "Sign up",
+    "Email": "Email",
+    "Password": "Password",
+    "ConfirmPassword": "Confirm password",
+    "ResetPassword": "Reset password"
   },
   "Nav": {
     "Shop": "Shop",
-    "Cart": "Warenkorb",
-    "Checkout": "Kasse",
-    "Account": "Konto"
+    "Cart": "Cart",
+    "Checkout": "Checkout",
+    "Account": "Account"
   },
   "Admin": {
     "title": "Store admin",
@@ -72,30 +72,30 @@
     }
   },
   "SauceArchive": {
-    "heading": "Unsere scharfen Saucen",
+    "heading": "Onze hete sauzen",
     "search": {
-      "placeholder": "Saucen suchen…",
+      "placeholder": "Zoek sauzen…",
       "filters": {
-        "heatLevel": "Schärfegrad",
-        "pepper": "Pfeffer",
-        "allChilliTypes": "Alle Paprika",
-        "sauceType": "Typ",
-        "allCategories": "Alle Typen",
-        "sort": "Sortieren nach",
-        "sortNewest": "Neueste",
-        "sortPopular": "Beliebteste",
-        "sortMildToHot": "Mild → Scharf",
-        "sortHotToMild": "Scharf → Mild"
+        "heatLevel": "Heetheid",
+        "pepper": "Peper",
+        "allChilliTypes": "Alle pepers",
+        "sauceType": "Type",
+        "allCategories": "Alle types",
+        "sort": "Sorteren op",
+        "sortNewest": "Nieuwste",
+        "sortPopular": "Meest populair",
+        "sortMildToHot": "Mild → Heet",
+        "sortHotToMild": "Heet → Mild"
       }
     },
     "results": {
-      "showing": "Zeige",
-      "of": "von",
-      "sauces": "Saucen",
-      "noResults": "Keine Saucen gefunden",
-      "adjustSearch": "Passen Sie Ihre Suche oder Filter an.",
-      "clearFilters": "Filter löschen",
-      "loadMore": "Mehr laden"
+      "showing": "Toont",
+      "of": "van",
+      "sauces": "sauzen",
+      "noResults": "Geen sauzen gevonden",
+      "adjustSearch": "Pas uw zoekopdracht of filters aan.",
+      "clearFilters": "Filters wissen",
+      "loadMore": "Meer laden"
     }
   }
 }
