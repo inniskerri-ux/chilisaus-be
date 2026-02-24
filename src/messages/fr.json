@@ -71,6 +71,44 @@
       "notSet": "Not set"
     }
   },
+  "SauceArchive": {
+    "heading": "Nos Sauces Piquantes",
+    "search": {
+      "placeholder": "Rechercher des sauces…",
+      "filters": {
+        "heatLevel": "Niveau de chaleur",
+        "pepper": "Piment",
+        "allChilliTypes": "Tous les piments",
+        "sauceType": "Type",
+        "allCategories": "Tous les types",
+        "sort": "Trier par",
+        "sortNewest": "Plus récents",
+        "sortPopular": "Les plus populaires",
+        "sortMildToHot": "Doux → Fort",
+        "sortHotToMild": "Fort → Doux"
+      }
+    },
+    "results": {
+      "showing": "Affichage de",
+      "of": "sur",
+      "sauces": "sauces",
+      "noResults": "Aucune sauce trouvée",
+      "adjustSearch": "Essayez d'ajuster votre recherche ou vos filtres.",
+      "clearFilters": "Effacer les filtres",
+      "loadMore": "Charger plus"
+    }
+  },
+  "Landing": {
+    "hero": {
+      "title": "Découvrez Votre Chaleur Idéale",
+      "subtitle": "Des sauces de table douces aux extraits les plus extrêmes du monde. Sélectionnées pour leur saveur et leur feu.",
+      "cta": "Explorer la Collection"
+    },
+    "categories": {
+      "title": "Acheter par Catégorie",
+      "subtitle": "Trouvez la sauce parfaite pour votre prochain repas."
+    }
+  },
   "ProductPage": {
     "breadcrumbShop": "Boutique",
     "by": "par",

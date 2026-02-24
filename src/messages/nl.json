@@ -98,6 +98,17 @@
       "loadMore": "Meer laden"
     }
   },
+  "Landing": {
+    "hero": {
+      "title": "Ontdek Jouw Perfecte Smaak",
+      "subtitle": "Van milde tafel sauzen voor elke dag tot 's werelds meest extreme extracten. Handgeplukt voor smaak en vuur.",
+      "cta": "Ontdek de Collectie"
+    },
+    "categories": {
+      "title": "Winkel per Categorie",
+      "subtitle": "Vind de perfecte saus voor je volgende maaltijd."
+    }
+  },
   "ProductPage": {
     "breadcrumbShop": "Winkel",
     "by": "van",

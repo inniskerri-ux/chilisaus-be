@@ -1,7 +1,8 @@
 'use client';
 
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect, Suspense } from 'react';
 import { useTranslations } from 'next-intl';
+import { useSearchParams } from 'next/navigation';
 import type { StoreProduct, ChilliType, Category } from './types';
 import ProductCard from './ProductCard';
 import Chip from './Chip';
@@ -31,19 +32,29 @@ const resolveHeatRank = (value?: string | number | null): number | null => {
   return HEAT_ORDER[normalized] ?? null;
 };
 
-export default function ProductArchive({
+function ProductArchiveContent({
   products,
   chilliTypes,
   categories,
   locale
 }: ProductArchiveProps) {
   const t = useTranslations('SauceArchive');
+  const searchParams = useSearchParams();
+  const initialCategory = searchParams.get('category');
+
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedHeatLevel, setSelectedHeatLevel] = useState('');
   const [selectedChilliType, setSelectedChilliType] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState(initialCategory || '');
   const [sortBy, setSortBy] = useState<SortOption>('recent');
   const [displayCount, setDisplayCount] = useState(12);
+
+  // Sync state if URL changes (e.g. back button)
+  useEffect(() => {
+    if (initialCategory !== null) {
+      setSelectedCategory(initialCategory);
+    }
+  }, [initialCategory]);
 
   const filteredAndSortedProducts = useMemo(() => {
     let filtered = products.filter(product => {
@@ -106,7 +117,8 @@ export default function ProductArchive({
       });
     }
     if (selectedCategory) {
-      const catName = categories.find(cat => cat.id.toString() === selectedCategory)?.name || selectedCategory;
+      const cat = categories.find(cat => cat.id.toString() === selectedCategory || cat.slug === selectedCategory);
+      const catName = cat?.name || selectedCategory;
       filters.push({
         label: `Type: ${catName}`,
         value: selectedCategory,
@@ -201,7 +213,7 @@ export default function ProductArchive({
               >
                 <option value="">{t('search.filters.allCategories')}</option>
                 {categories.map(category => (
-                  <option key={category.id} value={category.id}>
+                  <option key={category.slug} value={category.slug}>
                     {category.name}
                   </option>
                 ))}
@@ -297,3 +309,12 @@ export default function ProductArchive({
     </div>
   );
 }
+
+export default function ProductArchive(props: ProductArchiveProps) {
+  return (
+    <Suspense fallback={<div className="p-12 text-center">Loading catalogue...</div>}>
+      <ProductArchiveContent {...props} />
+    </Suspense>
+  );
+}
+

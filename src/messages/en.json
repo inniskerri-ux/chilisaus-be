@@ -98,6 +98,17 @@
       "loadMore": "Load more"
     }
   },
+  "Landing": {
+    "hero": {
+      "title": "Discover Your Perfect Heat",
+      "subtitle": "From mild everyday table sauces to the world's most extreme extracts. Hand-picked for flavor and fire.",
+      "cta": "Explore the Collection"
+    },
+    "categories": {
+      "title": "Shop by Category",
+      "subtitle": "Find the perfect sauce for your next meal."
+    }
+  },
   "ProductPage": {
     "breadcrumbShop": "Shop",
     "by": "by",
