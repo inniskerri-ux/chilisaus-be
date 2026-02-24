@@ -3,7 +3,7 @@
 import { useState, useMemo, useEffect, Suspense } from 'react';
 import { useTranslations } from 'next-intl';
 import { useSearchParams } from 'next/navigation';
-import type { StoreProduct, ChilliType, Category } from './types';
+import type { StoreProduct, ChilliType, Category, StoreBrand } from './types';
 import ProductCard from './ProductCard';
 import Chip from './Chip';
 
@@ -11,10 +11,11 @@ interface ProductArchiveProps {
   products: StoreProduct[];
   chilliTypes: ChilliType[];
   categories: Category[];
+  brands: StoreBrand[];
   locale: string;
 }
 
-type SortOption = 'recent' | 'popular' | 'mild-first' | 'hot-first';
+type SortOption = 'recent' | 'popular' | 'mild-first' | 'hot-first' | 'price-asc';
 
 const HEAT_ORDER: Record<string, number> = {
   mild: 1,
@@ -36,6 +37,7 @@ function ProductArchiveContent({
   products,
   chilliTypes,
   categories,
+  brands,
   locale
 }: ProductArchiveProps) {
   const t = useTranslations('SauceArchive');
@@ -46,7 +48,8 @@ function ProductArchiveContent({
   const [selectedHeatLevel, setSelectedHeatLevel] = useState('');
   const [selectedChilliType, setSelectedChilliType] = useState('');
   const [selectedCategory, setSelectedCategory] = useState(initialCategory || '');
-  const [sortBy, setSortBy] = useState<SortOption>('recent');
+  const [selectedBrand, setSelectedBrand] = useState('');
+  const [sortBy, setSortBy] = useState<SortOption>('popular');
   const [displayCount, setDisplayCount] = useState(12);
 
   // Sync state if URL changes (e.g. back button)
@@ -83,7 +86,12 @@ function ProductArchiveContent({
         product.category?.id?.toString() === selectedCategory ||
         product.category?.slug === selectedCategory;
 
-      return matchesSearch && matchesHeatLevel && matchesChilliType && matchesCategory;
+      const matchesBrand =
+        !selectedBrand ||
+        product.brand?.id?.toString() === selectedBrand ||
+        product.brand?.slug === selectedBrand;
+
+      return matchesSearch && matchesHeatLevel && matchesChilliType && matchesCategory && matchesBrand;
     });
 
     if (sortBy === 'mild-first') {
@@ -98,6 +106,8 @@ function ProductArchiveContent({
         const bLevel = resolveHeatRank(b.heatLevel);
         return (bLevel ?? -1) - (aLevel ?? -1);
       });
+    } else if (sortBy === 'price-asc') {
+      filtered = [...filtered].sort((a, b) => a.price_cents - b.price_cents);
     } else if (sortBy === 'popular') {
       filtered = [...filtered];
     } else {
@@ -105,7 +115,7 @@ function ProductArchiveContent({
     }
 
     return filtered;
-  }, [products, searchTerm, selectedHeatLevel, selectedChilliType, selectedCategory, sortBy]);
+  }, [products, searchTerm, selectedHeatLevel, selectedChilliType, selectedCategory, selectedBrand, sortBy]);
 
   const activeFilters = useMemo(() => {
     const filters: Array<{label: string; value: string; clear: () => void}> = [];
@@ -125,8 +135,17 @@ function ProductArchiveContent({
         clear: () => setSelectedCategory('')
       });
     }
+    if (selectedBrand) {
+      const brand = brands.find(b => b.id.toString() === selectedBrand || b.slug === selectedBrand);
+      const brandName = brand?.name || selectedBrand;
+      filters.push({
+        label: `Producer: ${brandName}`,
+        value: selectedBrand,
+        clear: () => setSelectedBrand('')
+      });
+    }
     return filters;
-  }, [selectedHeatLevel, selectedCategory, categories]);
+  }, [selectedHeatLevel, selectedCategory, selectedBrand, categories, brands]);
 
   const selectedPepper = useMemo(() => {
     if (!selectedChilliType) return null;
@@ -138,6 +157,7 @@ function ProductArchiveContent({
     setSelectedHeatLevel('');
     setSelectedChilliType('');
     setSelectedCategory('');
+    setSelectedBrand('');
   };
 
   const displayedProducts = filteredAndSortedProducts.slice(0, displayCount);
@@ -148,7 +168,7 @@ function ProductArchiveContent({
       <div className="max-w-7xl mx-auto">
         {/* Filter Section */}
         <section className="border-b border-border pb-5 mb-8">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-3">
             {/* Search */}
             <label className="block text-sm font-medium text-foreground">
               {t('search.placeholder')}
@@ -158,45 +178,39 @@ function ProductArchiveContent({
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 className="mt-1 w-full rounded-lg border border-border bg-card px-3 py-2 text-foreground
-                         focus:outline-none focus:ring-2 focus:ring-roh-flag-green"
+                         focus:outline-none focus:ring-2 focus:ring-brand-red"
               />
             </label>
 
-            {/* Heat Level - Button Chips */}
-            <fieldset>
-              <legend className="block text-sm font-medium text-foreground">
-                {t('search.filters.heatLevel')}
-              </legend>
-              <div className="mt-1 flex flex-wrap gap-2 items-center">
-                {['Mild', 'Medium', 'Hot'].map((level) => (
-                  <button
-                    key={level}
-                    onClick={() => setSelectedHeatLevel(selectedHeatLevel === level ? '' : level)}
-                    className={`rounded-full border px-3 py-1.5 text-xs font-semibold transition-colors
-                      ${selectedHeatLevel === level
-                        ? 'bg-roh-flag-green text-roh-dust-white border-roh-flag-green'
-                        : 'border-border bg-card text-foreground hover:border-roh-flag-green hover:bg-roh-flag-green/10'
-                      }`}
-                  >
-                    {level}
-                  </button>
-                ))}
-              </div>
-            </fieldset>
-
-            {/* Pepper */}
+            {/* Heat Level - Select */}
             <label className="block text-sm font-medium text-foreground">
-              {t('search.filters.pepper')}
+              {t('search.filters.heatLevel')}
               <select
-                value={selectedChilliType}
-                onChange={(e) => setSelectedChilliType(e.target.value)}
+                value={selectedHeatLevel}
+                onChange={(e) => setSelectedHeatLevel(e.target.value)}
                 className="mt-1 w-full rounded-lg border border-border bg-card px-3 py-2 text-foreground
-                         focus:outline-none focus:ring-2 focus:ring-roh-flag-green"
+                         focus:outline-none focus:ring-2 focus:ring-brand-red"
               >
-                <option value="">{t('search.filters.allChilliTypes')}</option>
-                {chilliTypes.map(chilliType => (
-                  <option key={chilliType.id} value={chilliType.id}>
-                    {chilliType.name}
+                <option value="">All Heat Levels</option>
+                {['Mild', 'Medium', 'Hot'].map((level) => (
+                  <option key={level} value={level}>{level}</option>
+                ))}
+              </select>
+            </label>
+
+            {/* Producer / Brand */}
+            <label className="block text-sm font-medium text-foreground">
+              Producer
+              <select
+                value={selectedBrand}
+                onChange={(e) => setSelectedBrand(e.target.value)}
+                className="mt-1 w-full rounded-lg border border-border bg-card px-3 py-2 text-foreground
+                         focus:outline-none focus:ring-2 focus:ring-brand-red"
+              >
+                <option value="">All Producers</option>
+                {brands.map(brand => (
+                  <option key={brand.id} value={brand.id}>
+                    {brand.name}
                   </option>
                 ))}
               </select>
@@ -209,7 +223,7 @@ function ProductArchiveContent({
                 value={selectedCategory}
                 onChange={(e) => setSelectedCategory(e.target.value)}
                 className="mt-1 w-full rounded-lg border border-border bg-card px-3 py-2 text-foreground
-                         focus:outline-none focus:ring-2 focus:ring-roh-flag-green"
+                         focus:outline-none focus:ring-2 focus:ring-brand-red"
               >
                 <option value="">{t('search.filters.allCategories')}</option>
                 {categories.map(category => (
@@ -227,12 +241,31 @@ function ProductArchiveContent({
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value as SortOption)}
                 className="mt-1 w-full rounded-lg border border-border bg-card px-3 py-2 text-foreground
-                         focus:outline-none focus:ring-2 focus:ring-roh-flag-green"
+                         focus:outline-none focus:ring-2 focus:ring-brand-red"
               >
-                <option value="recent">{t('search.filters.sortNewest')}</option>
                 <option value="popular">{t('search.filters.sortPopular')}</option>
+                <option value="recent">{t('search.filters.sortNewest')}</option>
                 <option value="mild-first">{t('search.filters.sortMildToHot')}</option>
                 <option value="hot-first">{t('search.filters.sortHotToMild')}</option>
+                <option value="price-asc">Price: Low to High</option>
+              </select>
+            </label>
+
+            {/* Pepper */}
+            <label className="block text-sm font-medium text-foreground">
+              {t('search.filters.pepper')}
+              <select
+                value={selectedChilliType}
+                onChange={(e) => setSelectedChilliType(e.target.value)}
+                className="mt-1 w-full rounded-lg border border-border bg-card px-3 py-2 text-foreground
+                         focus:outline-none focus:ring-2 focus:ring-brand-red"
+              >
+                <option value="">{t('search.filters.allChilliTypes')}</option>
+                {chilliTypes.map(chilliType => (
+                  <option key={chilliType.id} value={chilliType.id}>
+                    {chilliType.name}
+                  </option>
+                ))}
               </select>
             </label>
           </div>

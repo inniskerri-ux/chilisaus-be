@@ -100,9 +100,13 @@
   },
   "Landing": {
     "hero": {
-      "title": "Discover Your Perfect Heat",
-      "subtitle": "From mild everyday table sauces to the world's most extreme extracts. Hand-picked for flavor and fire.",
-      "cta": "Explore the Collection"
+      "title": "You Can Never Have Too Much Hot Sauce",
+      "subtitle": "Discover a hand-picked collection of the world's finest chili sauces. From mild everyday flavors to extreme heat.",
+      "cta": "Shop All Sauces"
+    },
+    "maker": {
+      "title": "Meet the Maker",
+      "content": "A lot of you have met me at events across the country. I'm passionate about bringing the best sauces directly to you, keeping it personal and simple. It's all about the sauce."
     },
     "categories": {
       "title": "Shop by Category",

@@ -1,14 +1,14 @@
 import { createClient } from '@/lib/supabase/server';
 import { getTranslations } from 'next-intl/server';
 import ProductArchive from '@/components/store/ProductArchive';
-import type { StoreProduct, ChilliType, Category } from '@/components/store/types';
+import type { StoreProduct, ChilliType, Category, StoreBrand } from '@/components/store/types';
 
 export default async function ShopPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'SauceArchive' });
   const supabase = await createClient();
 
-  const [productsRes, categoriesRes, chilliTypesRes] = await Promise.all([
+  const [productsRes, categoriesRes, chilliTypesRes, brandsRes] = await Promise.all([
     supabase
       .from('products')
       .select(`
@@ -29,6 +29,11 @@ export default async function ShopPage({ params }: { params: Promise<{ locale: s
     supabase
       .from('chilli_types')
       .select('id, name, slug, heat_level')
+      .order('name'),
+
+    supabase
+      .from('brands')
+      .select('id, name, slug')
       .order('name'),
   ]);
 
@@ -65,6 +70,12 @@ export default async function ShopPage({ params }: { params: Promise<{ locale: s
     heatLevel: ct.heat_level,
   }));
 
+  const brands: StoreBrand[] = (brandsRes.data ?? []).map((b: any) => ({
+    id: b.id,
+    name: b.name,
+    slug: b.slug,
+  }));
+
   return (
     <main>
       <div className="px-4 pt-8 sm:px-6 lg:px-8">
@@ -76,6 +87,7 @@ export default async function ShopPage({ params }: { params: Promise<{ locale: s
         products={products}
         categories={categories}
         chilliTypes={chilliTypes}
+        brands={brands}
         locale={locale}
       />
     </main>
