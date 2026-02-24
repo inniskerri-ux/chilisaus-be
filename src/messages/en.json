@@ -1,0 +1,74 @@
+{
+  "Auth": {
+    "SignIn": "Sign in",
+    "SignUp": "Sign up",
+    "Email": "Email",
+    "Password": "Password",
+    "ConfirmPassword": "Confirm password",
+    "ResetPassword": "Reset password"
+  },
+  "Nav": {
+    "Shop": "Shop",
+    "Cart": "Cart",
+    "Checkout": "Checkout",
+    "Account": "Account"
+  },
+  "Admin": {
+    "title": "Store admin",
+    "dashboardHeading": "Manage your catalogue",
+    "dashboardWelcomeHeading": "You're in control",
+    "dashboardWelcomeCopy": "Use the admin panel to add new sauces, edit listings, and keep imagery fresh.",
+    "nav": {
+      "dashboard": "Dashboard",
+      "products": "Products",
+      "newProduct": "New product"
+    },
+    "stats": {
+      "products": "Products",
+      "brands": "Brands",
+      "categories": "Categories"
+    },
+    "products": {
+      "heading": "Product catalogue",
+      "subheading": "Review and edit every sauce in your shop.",
+      "newProduct": "New product",
+      "editProduct": "Edit product",
+      "name": "Name",
+      "category": "Category",
+      "brand": "Brand",
+      "heat": "Heat",
+      "price": "Price",
+      "actions": "Actions",
+      "edit": "Edit",
+      "empty": "No products yet."
+    },
+    "form": {
+      "name": "Name",
+      "slug": "Slug",
+      "price": "Price (cents)",
+      "currency": "Currency",
+      "description": "Description",
+      "heatLevel": "Heat level",
+      "selectHeat": "Select heat level",
+      "category": "Category",
+      "selectCategory": "Select category",
+      "brand": "Brand",
+      "selectBrand": "Select brand",
+      "chilliTypes": "Chilli types",
+      "multiSelectHint": "Hold Cmd/Ctrl to select multiple peppers.",
+      "images": "Images",
+      "imageAlt": "Product image",
+      "noImage": "No image uploaded",
+      "uploadImage": "Upload image",
+      "uploading": "Uploading...",
+      "removeImage": "Remove image",
+      "createProduct": "Create product",
+      "updateProduct": "Update product",
+      "deleteProduct": "Delete product",
+      "deleteConfirm": "Delete this product?",
+      "createDescription": "Add every detail about the sauce, then publish when you're ready.",
+      "saved": "Saved successfully.",
+      "notSet": "Not set"
+    }
+  }
+}
