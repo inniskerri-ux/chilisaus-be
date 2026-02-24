@@ -74,10 +74,14 @@ The client wants a clean, professional, "human" website focused on the product (
 - [x] Create "Technical Info" / Legal page (BE/EU Compliant Legal Notice & Shipping/Returns).
 - [x] Image Optimization (Migrated all external product images to optimized WebP in Supabase Storage).
 
-### Phase 2: Content Expansion
+### Phase 2: Content Expansion & Localization
 - [ ] Build Recipes Page (CMS/Table).
 - [ ] Build Video Gallery Page.
 - [ ] Implement Newsletter Signup (10% code logic).
+- [ ] **Database Translation Migration:**
+    - Refactor `products` table to support multi-lang fields (Name, Description, Ingredients).
+    - Run AI-powered bulk translation script for all 13+ languages to pre-fill the database.
+    - Update Admin Product Form to manage translations.
 
 ### Phase 3: Operations & Shipping
 - [ ] Implement Bpost/PostNL shipping calculator.
