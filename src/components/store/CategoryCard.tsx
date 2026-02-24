@@ -11,32 +11,30 @@ export default function CategoryCard({ category, locale }: CategoryCardProps) {
   return (
     <Link
       href={`/${locale}/shop?category=${category.slug}`}
-      className="group relative overflow-hidden rounded-2xl bg-zinc-100 transition-all hover:ring-2 hover:ring-orange-500 active:scale-95"
+      className="group flex flex-col gap-4"
     >
-      <div className="aspect-[4/5] w-full overflow-hidden">
+      <div className="relative aspect-square w-full overflow-hidden rounded-2xl bg-zinc-100 transition-all group-hover:ring-2 group-hover:ring-orange-500 active:scale-[0.98]">
         {category.image_url ? (
           <Image
             src={category.image_url}
             alt={category.name}
             fill
             className="object-cover transition-transform duration-500 group-hover:scale-110"
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
           />
         ) : (
           <div className="flex h-full w-full items-center justify-center bg-zinc-200">
-            <span className="text-4xl">🌶️</span>
+            <span className="text-6xl">🌶️</span>
           </div>
         )}
-        {/* Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
       </div>
 
-      <div className="absolute bottom-0 left-0 right-0 p-6">
-        <h3 className="text-xl font-bold text-white transition-colors group-hover:text-orange-400">
+      <div className="text-center">
+        <h3 className="text-xl font-bold text-zinc-900 transition-colors group-hover:text-orange-600">
           {category.name}
         </h3>
-        <p className="mt-2 text-sm text-zinc-300 opacity-0 transition-all duration-300 group-hover:opacity-100">
-          Explore all products &rarr;
+        <p className="mt-1 text-sm font-medium text-zinc-500">
+          Explore collection &rarr;
         </p>
       </div>
     </Link>
