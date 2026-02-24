@@ -83,13 +83,13 @@ export default async function ProductPage({
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
         {/* Image */}
-        <div className="relative aspect-square w-full overflow-hidden rounded-2xl bg-zinc-100">
+        <div className="relative aspect-square w-full overflow-hidden rounded-2xl bg-zinc-50 border border-zinc-100 p-8">
           {product.image_url ? (
             <Image
               src={product.image_url}
               alt={product.name}
               fill
-              className="object-cover"
+              className="object-contain"
               sizes="(max-width: 768px) 100vw, 50vw"
               priority
             />

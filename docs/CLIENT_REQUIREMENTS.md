@@ -69,9 +69,10 @@ The client wants a clean, professional, "human" website focused on the product (
 ### Phase 1: Visuals & Core Navigation (High Impact)
 - [x] Update Theme Colors (Tailwind config: Black/White/Red).
 - [x] Refine Home Page Hero (Logo, Tagline, Intro).
-- [x] Enhance Shop Filtering (Add "Producers" dropdown, Fix Heat Level sort logic).
+- [x] Enhance Shop Filtering (Added Producers/Brands dropdown, fixed category syncing).
 - [x] Add WhatsApp & Social Links (WhatsApp uses `NEXT_PUBLIC_WHATSAPP_NUMBER`).
-- [ ] Create "Technical Info" / Legal page.
+- [x] Create "Technical Info" / Legal page (BE/EU Compliant Legal Notice & Shipping/Returns).
+- [x] Image Optimization (Migrated all external product images to optimized WebP in Supabase Storage).
 
 ### Phase 2: Content Expansion
 - [ ] Build Recipes Page (CMS/Table).
@@ -86,6 +87,7 @@ The client wants a clean, professional, "human" website focused on the product (
 ### Phase 4: Localization & Integrations
 - [ ] Add remaining 6+ languages.
 - [ ] Integrate `cusrev.com` reviews.
+- [x] Payment Setup (Stripe fully integrated and configured).
 - [ ] Mailchimp Integration (Sync & Automation).
 
 ---
