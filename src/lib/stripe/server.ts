@@ -12,7 +12,7 @@ export function getStripeServerClient() {
 
     stripe = new Stripe(secretKey, {
       typescript: true,
-      apiVersion: '2025-01-27.acacia', // Or latest
+      apiVersion: '2025-09-30.clover',
     });
   }
 

@@ -12,7 +12,9 @@ interface BrandCardProps {
   websiteUrl?: string;
 }
 
-const heatColor = (heatLevel?: string) => {
+const heatColor = (heatLevel?: string | number | null) => {
+  if (heatLevel === null || heatLevel === undefined) return 'bg-red-500';
+  heatLevel = String(heatLevel);
   if (!heatLevel) return 'bg-red-500';
   const normalized = heatLevel.toLowerCase();
   if (normalized.includes('mild')) return 'bg-green-400';

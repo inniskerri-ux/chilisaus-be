@@ -35,16 +35,16 @@ interface Product {
   color_options?: string[] | null;
 }
 
-interface Category { id: string; name: string; slug: string; }
-interface Brand { id: string; name: string; slug?: string; }
+interface Category { id: string | number; name: string; slug: string; }
+interface Brand { id: string | number; name: string; slug?: string; }
 
 interface ProductFormProps {
   product?: Product;
   categories: Category[];
   brands: Brand[];
-  chilliTypes?: { id: string; name: string }[];
-  onSubmit: (data: any) => Promise<void>;
-  onDelete?: () => Promise<void>;
+  chilliTypes?: { id: string | number; name: string }[];
+  onSubmit: (data: any) => Promise<any>;
+  onDelete?: (...args: any[]) => Promise<any>;
   successRedirectPath?: string;
 }
 
@@ -271,7 +271,7 @@ export default function ProductForm({
                     <SelectContent>
                       <SelectItem value="none">No Category</SelectItem>
                       {categories.map((cat) => (
-                        <SelectItem key={cat.id} value={cat.id}>
+                        <SelectItem key={cat.id} value={String(cat.id)}>
                           {cat.name}
                         </SelectItem>
                       ))}
@@ -291,7 +291,7 @@ export default function ProductForm({
                     <SelectContent>
                       <SelectItem value="none">No Brand</SelectItem>
                       {brands.map((brand) => (
-                        <SelectItem key={brand.id} value={brand.id}>
+                        <SelectItem key={brand.id} value={String(brand.id)}>
                           {brand.name}
                         </SelectItem>
                       ))}

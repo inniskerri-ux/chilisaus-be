@@ -70,31 +70,32 @@ export default async function EditProductPage({ params }: ProductPageProps) {
       slug: brand.slug
     })) ?? [];
 
+  const row = productRow as any;
   const product: StoreProduct & { id: string } = {
-    id: productRow.id,
-    name: productRow.name,
-    slug: productRow.slug,
-    price_cents: productRow.price_cents,
-    currency: productRow.currency,
-    description: productRow.description,
-    image_url: productRow.image_url,
-    heatLevel: productRow.heat_level,
-    brand: productRow.brand
+    id: row.id,
+    name: row.name,
+    slug: row.slug,
+    price_cents: row.price_cents,
+    currency: row.currency,
+    description: row.description,
+    image_url: row.image_url,
+    heatLevel: row.heat_level,
+    brand: row.brand
       ? {
-          id: productRow.brand.id,
-          name: productRow.brand.name,
-          slug: productRow.brand.slug || ''
+          id: row.brand.id,
+          name: row.brand.name,
+          slug: row.brand.slug || ''
         }
       : null,
-    category: productRow.category
+    category: row.category
       ? {
-          id: productRow.category.id,
-          name: productRow.category.name,
-          slug: productRow.category.slug || ''
+          id: row.category.id,
+          name: row.category.name,
+          slug: row.category.slug || ''
         }
       : null,
     chilliTypes:
-      productRow.products_chilli_types?.map((ct: any) => ({
+      row.products_chilli_types?.map((ct: any) => ({
         id: ct.chilli_type_id,
         name: ct.chilli_types?.name || '',
         slug: ct.chilli_types?.slug || '',
