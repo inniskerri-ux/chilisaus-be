@@ -24,7 +24,7 @@ export default async function Footer({ locale }: { locale: string }) {
             <ul className="mt-4 space-y-2 text-sm text-zinc-600">
               <li><Link href={`/${locale}/shop`} className="hover:text-brand-red transition-colors">All Sauces</Link></li>
               <li><Link href={`/${locale}/shop?category=classic-hot-sauce`} className="hover:text-brand-red transition-colors">Classic Sauces</Link></li>
-              <li><Link href={`/${locale}/shop?category=extreme-heat`} className="hover:text-brand-red transition-colors">Extreme Heat</Link></li>
+              <li><Link href={`/${locale}/shop?heat=extreme`} className="hover:text-brand-red transition-colors">Extreme Heat</Link></li>
             </ul>
           </div>
 
@@ -41,7 +41,9 @@ export default async function Footer({ locale }: { locale: string }) {
           <div>
             <h3 className="text-sm font-bold uppercase tracking-widest text-zinc-900">Support</h3>
             <ul className="mt-4 space-y-2 text-sm text-zinc-600">
-              <li><a href={`https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER}`} className="hover:text-brand-red transition-colors">Contact via WhatsApp</a></li>
+              <li><a href="mailto:sales@chilisaus.be" className="hover:text-brand-red transition-colors">sales@chilisaus.be</a></li>
+              <li><a href={`https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER}`} className="hover:text-brand-red transition-colors">WhatsApp Support</a></li>
+              <li><a href="https://www.instagram.com/chilisaus.be" target="_blank" rel="noopener noreferrer" className="hover:text-brand-red transition-colors">Instagram</a></li>
               <li><Link href={`/${locale}/auth/sign-in`} className="hover:text-brand-red transition-colors">My Account</Link></li>
             </ul>
           </div>

@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { createClient } from '@/lib/supabase/server';
 import { Instagram, MessageCircle } from 'lucide-react';
 
@@ -19,21 +20,28 @@ export default async function Header({ locale }: { locale: string }) {
   return (
     <header className="sticky top-0 z-50 border-b border-zinc-100 bg-white/80 backdrop-blur-md">
       <div className="mx-auto max-w-7xl flex items-center justify-between px-6 py-4">
-        <Link href={`/${locale}`} className="flex items-center gap-2 font-black text-2xl tracking-tighter uppercase">
-          <span className="text-brand-red">🌶️</span>
-          <span>ChiliSaus</span>
+        <Link href={`/${locale}`} className="flex items-center">
+          <Image 
+            src="/images/logo.jpg" 
+            alt="ChiliSaus Logo" 
+            width={123} 
+            height={48} 
+            quality={100}
+            className="h-12 w-auto object-contain"
+            priority
+          />
         </Link>
 
         <nav className="hidden md:flex items-center gap-8 text-sm font-bold uppercase tracking-widest">
           <Link href={`/${locale}/shop`} className="text-zinc-600 hover:text-brand-red transition-colors">Shop</Link>
-          <Link href={`#`} className="text-zinc-600 hover:text-brand-red transition-colors">Recipes</Link>
+          <Link href={`/${locale}/scoville-scale`} className="text-zinc-600 hover:text-brand-red transition-colors">Scoville</Link>
           <Link href={`#`} className="text-zinc-600 hover:text-brand-red transition-colors">Videos</Link>
         </nav>
 
         <div className="flex items-center gap-4">
           <div className="flex items-center gap-2 border-r border-zinc-100 pr-4 mr-2">
             <a 
-              href="https://instagram.com" 
+              href="https://www.instagram.com/chilisaus.be" 
               target="_blank" 
               rel="noopener noreferrer"
               className="p-2 text-zinc-400 hover:text-brand-red transition-colors"

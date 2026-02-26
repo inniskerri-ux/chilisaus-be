@@ -77,6 +77,12 @@
       "placeholder": "Zoek sauzen…",
       "filters": {
         "heatLevel": "Heetheid",
+        "heatLevels": {
+          "mild": "Mild",
+          "medium": "Medium",
+          "hot": "Heet",
+          "extreme": "Extreem Heet"
+        },
         "pepper": "Peper",
         "allChilliTypes": "Alle pepers",
         "sauceType": "Type",
@@ -119,5 +125,35 @@
     "description": "Beschrijving",
     "ingredients": "Ingrediënten",
     "peppers": "Pepers"
+  },
+  "Scoville": {
+    "title": "De Scovilleschaal",
+    "intro": "De Scovilleschaal meet de heetheid (scherpte) van chilipepers in Scoville Heat Units (SHU). Vernoemd naar Wilbur Scoville, helpt deze schaal je de wereld van pepers te ontdekken zonder je mond te verbranden—behalve als je dat natuurlijk zelf wilt!",
+    "levels": {
+      "mild": {
+        "title": "Mild (0 - 2.500 SHU)",
+        "description": "Perfect voor elke dag. De klassieke blokpaprika staat op nul, terwijl de licht pikante Banana Pepper of milde Pimento een vleugje warmte toevoegt."
+      },
+      "medium": {
+        "title": "Medium (2.500 - 10.000 SHU)",
+        "description": "De 'instap' voor chili-liefhebbers. Dit is het domein van de Jalapeño en de rokerige Chipotle. Verwacht een merkbare tinteling die de smaak aanvult."
+      },
+      "hot": {
+        "title": "Heet (10.000 - 50.000 SHU)",
+        "description": "Nu begint het echte werk. De Serrano- en Cayennepepers wonen hier. Deze pepers geven een scherpe, heldere hitte die lang op de tong blijft hangen."
+      },
+      "extraHot": {
+        "title": "Extra Heet (50.000 - 100.000 SHU)",
+        "description": "Met voorzichtigheid benaderen. De Thaise Bird's Eye-peper en de Malagueta bieden een flinke kick waar de meeste mensen van gaan zweten."
+      },
+      "volcanic": {
+        "title": "Vulkanisch (100.000 - 350.000 SHU)",
+        "description": "Serieuze hitte voor de dapperen. De legendarische Habanero en Scotch Bonnet pepers zijn hier te vinden, vaak met fruitige of bloemige tonen onder het vuur."
+      },
+      "superhot": {
+        "title": "Superheet (350.000 - 2.200.000+ SHU)",
+        "description": "De gevarenzone. Van de Ghost Pepper (Bhut Jolokia) tot de wereldrecordhouder Carolina Reaper; deze pepers bevatten enorme hoeveelheden capsaïcine."
+      }
+    }
   }
 }

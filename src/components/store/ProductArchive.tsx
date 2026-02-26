@@ -19,18 +19,34 @@ type SortOption = 'recent' | 'popular' | 'mild-first' | 'hot-first' | 'price-asc
 
 const HEAT_ORDER: Record<string, number> = {
   mild: 1,
-  medium: 2,
-  hot: 3,
-  extreme: 4
+  medium: 5,
+  hot: 8,
+  extreme: 12
 };
 
 const resolveHeatRank = (value?: string | number | null): number | null => {
   if (value === null || value === undefined) return null;
   if (typeof value === 'number') return value;
+  
+  // Handle ranges like "7 - 10" or "8, 10, 10" by taking the maximum
+  if (typeof value === 'string' && (value.includes('-') || value.includes(','))) {
+    const parts = value.split(/[- ,]+/).map(p => Number(p.trim())).filter(n => !Number.isNaN(n));
+    if (parts.length > 0) return Math.max(...parts);
+  }
+
   const numeric = Number(value);
   if (!Number.isNaN(numeric)) return numeric;
+  
   const normalized = value.toLowerCase();
   return HEAT_ORDER[normalized] ?? null;
+};
+
+const resolveHeatCategory = (rank: number | null): string | null => {
+  if (rank === null) return null;
+  if (rank <= 3) return 'mild';
+  if (rank <= 6) return 'medium';
+  if (rank <= 10) return 'hot';
+  return 'extreme';
 };
 
 function ProductArchiveContent({
@@ -43,9 +59,10 @@ function ProductArchiveContent({
   const t = useTranslations('SauceArchive');
   const searchParams = useSearchParams();
   const initialCategory = searchParams.get('category');
+  const initialHeat = searchParams.get('heat');
 
   const [searchTerm, setSearchTerm] = useState('');
-  const [selectedHeatLevel, setSelectedHeatLevel] = useState('');
+  const [selectedHeatLevel, setSelectedHeatLevel] = useState(initialHeat || '');
   const [selectedChilliType, setSelectedChilliType] = useState('');
   const [selectedCategory, setSelectedCategory] = useState(initialCategory || '');
   const [selectedBrand, setSelectedBrand] = useState('');
@@ -57,7 +74,10 @@ function ProductArchiveContent({
     if (initialCategory !== null) {
       setSelectedCategory(initialCategory);
     }
-  }, [initialCategory]);
+    if (initialHeat !== null) {
+      setSelectedHeatLevel(initialHeat);
+    }
+  }, [initialCategory, initialHeat]);
 
   const filteredAndSortedProducts = useMemo(() => {
     let filtered = products.filter(product => {
@@ -66,15 +86,12 @@ function ProductArchiveContent({
         product.description?.toLowerCase().includes(searchTerm.toLowerCase()) ||
         product.brand?.name?.toLowerCase().includes(searchTerm.toLowerCase());
 
-      const productHeatLabel =
-        typeof product.heatLevel === 'string'
-          ? product.heatLevel
-          : product.heatLevel !== null && product.heatLevel !== undefined
-            ? String(product.heatLevel)
-            : '';
+      const productHeatRank = resolveHeatRank(product.heatLevel);
+      const productHeatCategory = resolveHeatCategory(productHeatRank);
+      
       const matchesHeatLevel =
         !selectedHeatLevel ||
-        (productHeatLabel && productHeatLabel.toLowerCase() === selectedHeatLevel.toLowerCase());
+        (productHeatCategory === selectedHeatLevel.toLowerCase());
 
       const matchesChilliType = !selectedChilliType || (
         Array.isArray(product.chilliTypes) &&
@@ -192,8 +209,10 @@ function ProductArchiveContent({
                          focus:outline-none focus:ring-2 focus:ring-brand-red"
               >
                 <option value="">All Heat Levels</option>
-                {['Mild', 'Medium', 'Hot'].map((level) => (
-                  <option key={level} value={level}>{level}</option>
+                {['mild', 'medium', 'hot', 'extreme'].map((level) => (
+                  <option key={level} value={level}>
+                    {t(`search.filters.heatLevels.${level}`)}
+                  </option>
                 ))}
               </select>
             </label>

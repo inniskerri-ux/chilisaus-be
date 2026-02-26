@@ -97,7 +97,7 @@ The client wants a clean, professional, "human" website focused on the product (
 ---
 
 ## 4. Open Questions / Next Steps
-1.  **Heat Scale:** Current DB uses 0-10. Do we need to migrate to 1-20?
-2.  **Logo:** Do we have the high-res file?
+1.  **Heat Scale:** Current DB uses 0-10. Do we need to migrate to 1-20? yes
+2.  **Logo:** Do we have the high-res file? 
 3.  **Review Widget:** Does `cusrev.com` provide an embed code or API?
 4.  **Mailchimp:** Do we have the API key?

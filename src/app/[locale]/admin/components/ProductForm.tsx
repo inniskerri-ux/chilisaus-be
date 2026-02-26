@@ -33,6 +33,7 @@ interface Product {
   is_active?: boolean;
   size_options?: string[] | null;
   color_options?: string[] | null;
+  chilliTypes?: { chilli_type: { id: string; name: string } }[];
 }
 
 interface Category { id: string | number; name: string; slug: string; }
@@ -42,7 +43,7 @@ interface ProductFormProps {
   product?: Product;
   categories: Category[];
   brands: Brand[];
-  chilliTypes?: { id: string | number; name: string }[];
+  chilliTypes: { id: string; name: string }[];
   onSubmit: (data: any) => Promise<any>;
   onDelete?: (...args: any[]) => Promise<any>;
   successRedirectPath?: string;
@@ -52,6 +53,7 @@ export default function ProductForm({
   product,
   categories,
   brands,
+  chilliTypes,
   onSubmit,
   onDelete,
 }: ProductFormProps) {
@@ -66,6 +68,9 @@ export default function ProductForm({
   const [imageUrl, setImageUrl] = useState<string | null>(
     product?.image_url || null
   );
+  const [selectedChilliTypes, setSelectedChilliTypes] = useState<string[]>(
+    (product?.chilliTypes ?? []).map(ct => ct.chilli_type.id)
+  );
 
   const selectedCategory = categories.find(
     (cat) => cat.id === categoryValue
@@ -79,7 +84,7 @@ export default function ProductForm({
 
     const formData = new FormData(e.currentTarget);
 
-    // Parse nutrition info from individual fields
+    // Parse nutrition info from individual fields and store as JSON string
     const nutritionInfo = {
       energy_kj: parseFloat(formData.get('energy_kj') as string) || undefined,
       energy_kcal: parseFloat(formData.get('energy_kcal') as string) || undefined,
@@ -91,49 +96,29 @@ export default function ProductForm({
       salt_g: parseFloat(formData.get('salt_g') as string) || undefined,
     };
 
-    // Remove undefined values
     const cleanedNutrition = Object.fromEntries(
       Object.entries(nutritionInfo).filter(([, value]) => value !== undefined)
     );
 
-    const sizeOptionsRaw = (formData.get('size_options') as string) || '';
-    const colorOptionsRaw = (formData.get('color_options') as string) || '';
+    // Append additional data to FormData
+    formData.set('category_id', categoryValue === 'none' ? '' : String(categoryValue));
+    formData.set('brand_id', brandValue === 'none' ? '' : String(brandValue));
+    if (imageUrl) formData.set('image_url', imageUrl);
+    if (Object.keys(cleanedNutrition).length > 0) {
+      formData.set('nutrition_info', JSON.stringify(cleanedNutrition));
+    }
 
-    const sizeOptions = sizeOptionsRaw
-      .split(',')
-      .map((option) => option.trim())
-      .filter(Boolean);
-    const colorOptions = colorOptionsRaw
-      .split(',')
-      .map((option) => option.trim())
-      .filter(Boolean);
-
-    const capacityMl = formData.get('capacity_ml') as string;
-    const heatLevel = formData.get('heat_level') as string;
-
-    const data = {
-      name: formData.get('name') as string,
-      slug: formData.get('slug') as string,
-      description: formData.get('description') as string || null,
-      details: formData.get('details') as string || null,
-      price_cents: parseInt(formData.get('price_cents') as string),
-      currency: formData.get('currency') as string,
-      category_id: categoryValue === 'none' ? null : categoryValue,
-      brand_id: brandValue === 'none' ? null : brandValue,
-      capacity_ml: capacityMl ? parseInt(capacityMl) : null,
-      heat_level: heatLevel === 'none' ? null : heatLevel,
-      image_url: imageUrl,
-      ingredients: formData.get('ingredients') as string || null,
-      nutrition_info: Object.keys(cleanedNutrition).length > 0 ? cleanedNutrition : null,
-      is_active: formData.get('is_active') === 'true',
-      size_options:
-        sizeOptions.length > 0 ? sizeOptions : null,
-      color_options:
-        colorOptions.length > 0 ? colorOptions : null,
-    };
+    // Append multi-select chilli types
+    selectedChilliTypes.forEach(id => {
+      formData.append('chilliTypeIds', id);
+    });
 
     try {
-      await onSubmit(data);
+      const result = await onSubmit(formData);
+      if (result?.success && successRedirectPath) {
+        router.push(successRedirectPath);
+        router.refresh();
+      }
     } finally {
       setLoading(false);
     }
@@ -309,13 +294,13 @@ export default function ProductForm({
             <CardContent className="space-y-4">
               <div className="grid gap-4 sm:grid-cols-2">
                 <div className="space-y-2">
-                  <Label htmlFor="heat_level">Heat Level (0-10)</Label>
+                  <Label htmlFor="heat_level">Heat Level (0-20+)</Label>
                   <Input
                     id="heat_level"
                     name="heat_level"
                     type="number"
                     min="0"
-                    max="10"
+                    max="100"
                     defaultValue={product?.heat_level || ''}
                   />
                 </div>
@@ -338,6 +323,37 @@ export default function ProductForm({
                   defaultValue={product?.ingredients || ''}
                   rows={3}
                 />
+              </div>
+
+              <div className="space-y-2">
+                <Label>Peppers / Chilli Types</Label>
+                <div className="grid grid-cols-2 gap-2 max-h-48 overflow-y-auto p-2 border rounded-md bg-zinc-50/50">
+                  {chilliTypes.map((ct) => (
+                    <div 
+                      key={ct.id} 
+                      className={`flex items-center gap-2 p-1.5 rounded-md cursor-pointer transition-colors ${
+                        selectedChilliTypes.includes(ct.id) 
+                          ? 'bg-orange-100 border-orange-200' 
+                          : 'hover:bg-zinc-100'
+                      }`}
+                      onClick={() => {
+                        setSelectedChilliTypes(prev => 
+                          prev.includes(ct.id) 
+                            ? prev.filter(id => id !== ct.id) 
+                            : [...prev, ct.id]
+                        );
+                      }}
+                    >
+                      <div className={`w-4 h-4 border rounded flex items-center justify-center ${
+                        selectedChilliTypes.includes(ct.id) ? 'bg-orange-600 border-orange-600 text-white' : 'bg-white'
+                      }`}>
+                        {selectedChilliTypes.includes(ct.id) && <span className="text-[10px]">✓</span>}
+                      </div>
+                      <span className="text-xs truncate">{ct.name}</span>
+                    </div>
+                  ))}
+                </div>
+                <p className="text-[10px] text-muted-foreground">Select all peppers mentioned in ingredients</p>
               </div>
             </CardContent>
           </Card>

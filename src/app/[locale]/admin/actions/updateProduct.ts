@@ -34,6 +34,18 @@ export async function updateProduct(
     formData.get('brand_id')?.toString() ||
     (context.defaultBrandId ? String(context.defaultBrandId) : null);
   const imageUrl = formData.get('image_url')?.toString() || null;
+  const ingredients = formData.get('ingredients')?.toString() || null;
+  const capacityMl = formData.get('capacity_ml') ? Number(formData.get('capacity_ml')) : null;
+  const stock = formData.get('stock') ? Number(formData.get('stock')) : 0;
+  const isActive = formData.get('is_active') === 'true';
+  const nutritionInfoRaw = formData.get('nutrition_info')?.toString();
+  const nutritionInfo = nutritionInfoRaw ? JSON.parse(nutritionInfoRaw) : null;
+
+  const sizeOptionsRaw = formData.get('size_options')?.toString() || '';
+  const colorOptionsRaw = formData.get('color_options')?.toString() || '';
+  const sizeOptions = sizeOptionsRaw.split(',').map(s => s.trim()).filter(Boolean);
+  const colorOptions = colorOptionsRaw.split(',').map(s => s.trim()).filter(Boolean);
+
   const chilliTypeIds = formData.getAll('chilliTypeIds').map((id) => id.toString()).filter(Boolean);
 
   if (!name || !slug || Number.isNaN(priceCents)) {
@@ -55,7 +67,14 @@ export async function updateProduct(
       image_url: imageUrl,
       heat_level: heatLevel,
       category_id: categoryId,
-      brand_id: brandId
+      brand_id: brandId,
+      ingredients,
+      capacity_ml: capacityMl,
+      stock,
+      is_active: isActive,
+      nutrition_info: nutritionInfo,
+      size_options: sizeOptions.length > 0 ? sizeOptions : null,
+      color_options: colorOptions.length > 0 ? colorOptions : null
     })
     .eq('id', productId);
 

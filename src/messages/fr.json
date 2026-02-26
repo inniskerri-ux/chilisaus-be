@@ -77,6 +77,12 @@
       "placeholder": "Rechercher des sauces…",
       "filters": {
         "heatLevel": "Niveau de chaleur",
+        "heatLevels": {
+          "mild": "Doux",
+          "medium": "Moyen",
+          "hot": "Fort",
+          "extreme": "Extrême"
+        },
         "pepper": "Piment",
         "allChilliTypes": "Tous les piments",
         "sauceType": "Type",
