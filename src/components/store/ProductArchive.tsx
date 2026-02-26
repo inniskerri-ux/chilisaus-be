@@ -25,26 +25,17 @@ const HEAT_ORDER: Record<string, number> = {
 };
 
 const resolveHeatRank = (value?: string | number | null): number | null => {
-  if (value === null || value === undefined) return null;
+  if (value === null || value === undefined || value === '') return null;
   if (typeof value === 'number') return value;
   
-  // Handle ranges like "7 - 10" or "8, 10, 10" by taking the maximum
-  if (typeof value === 'string' && (value.includes('-') || value.includes(','))) {
-    const parts = value.split(/[- ,]+/).map(p => Number(p.trim())).filter(n => !Number.isNaN(n));
-    if (parts.length > 0) return Math.max(...parts);
-  }
-
   const numeric = Number(value);
-  if (!Number.isNaN(numeric)) return numeric;
-  
-  const normalized = value.toLowerCase();
-  return HEAT_ORDER[normalized] ?? null;
+  return !Number.isNaN(numeric) ? numeric : null;
 };
 
 const resolveHeatCategory = (rank: number | null): string | null => {
   if (rank === null) return null;
   if (rank <= 3) return 'mild';
-  if (rank <= 6) return 'medium';
+  if (rank <= 7) return 'medium';
   if (rank <= 10) return 'hot';
   return 'extreme';
 };

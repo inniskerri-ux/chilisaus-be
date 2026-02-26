@@ -6,6 +6,7 @@ import { createClient } from '@/lib/supabase/server';
 import { formatPrice } from '@/lib/format';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
+import AddToCartButton from '@/components/store/AddToCartButton';
 
 export async function generateMetadata({
   params,
@@ -133,12 +134,12 @@ export default async function ProductPage({
           </p>
 
           {/* Add to Cart */}
-          <Button
+          <AddToCartButton
+            productId={product.id}
             disabled={!inStock}
+            label={t('addToCart')}
             className="w-full sm:w-auto bg-roh-flag-green hover:bg-roh-flag-green/90 text-white"
-          >
-            {t('addToCart')}
-          </Button>
+          />
 
           {/* Description */}
           {product.description && (

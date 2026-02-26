@@ -31,6 +31,7 @@ export async function createProduct(
   const imageUrl = formData.get('image_url')?.toString() || null;
   const ingredients = formData.get('ingredients')?.toString() || null;
   const capacityMl = formData.get('capacity_ml') ? Number(formData.get('capacity_ml')) : null;
+  const weightGrams = formData.get('weight_grams') ? Number(formData.get('weight_grams')) : 0;
   const stock = formData.get('stock') ? Number(formData.get('stock')) : 0;
   const isActive = formData.get('is_active') === 'true';
   const nutritionInfoRaw = formData.get('nutrition_info')?.toString();
@@ -81,6 +82,7 @@ export async function createProduct(
       brand_id: brandId,
       ingredients,
       capacity_ml: capacityMl,
+      weight_grams: weightGrams,
       stock,
       is_active: isActive,
       nutrition_info: nutritionInfo,

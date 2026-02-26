@@ -4,7 +4,7 @@ export interface ChilliType {
   id: DbId;
   name: string;
   slug: string;
-  heatLevel?: string | number | null;
+  heatLevel?: number | null;
 }
 
 export interface Category {
@@ -30,7 +30,7 @@ export interface StoreProduct {
   currency: string;
   description?: string | null;
   image_url?: string | null;
-  heatLevel?: string | number | null;
+  heatLevel?: number | null;
   chilliTypes?: ChilliType[];
   category?: Category | null;
   brandId?: DbId;

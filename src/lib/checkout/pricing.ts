@@ -4,7 +4,12 @@
  * Calculate shipping costs based on destination and weight
  */
 
-export const SHIPPING_RATE_LABEL = 'DHL Shipping';
+export const SHIPPING_RATE_LABEL = 'Shipping';
+
+/**
+ * Standard tax rate for products (6% for food products in Belgium)
+ */
+export const STANDARD_TAX_RATE = 0.06;
 
 // ==================== SHIPPING RATES ====================
 
@@ -69,4 +74,20 @@ export function calculateShippingCost(
 
   const cost = rate.basePriceCents + Math.ceil(weightKg) * rate.perKgCents;
   return cost;
+}
+
+/**
+ * Calculate the tax portion from a VAT-inclusive total
+ * (e.g. 10.00 EUR total inc 6% VAT -> Tax = 10.00 - (10.00 / 1.06))
+ */
+export function calculateTaxFromTotal(totalCents: number, taxRate: number = STANDARD_TAX_RATE): number {
+  const netAmount = totalCents / (1 + taxRate);
+  return Math.round(totalCents - netAmount);
+}
+
+/**
+ * Calculate the net amount (before tax) from a VAT-inclusive total
+ */
+export function calculateNetAmount(totalCents: number, taxRate: number = STANDARD_TAX_RATE): number {
+  return Math.round(totalCents / (1 + taxRate));
 }

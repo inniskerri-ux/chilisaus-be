@@ -1,7 +1,7 @@
 /**
  * Shipping Configuration
  *
- * Box dimensions and product weights for DHL shipping calculations
+ * Box dimensions and product weights for shipping calculations
  */
 
 // ==================== BOX CONFIGURATION ====================
@@ -47,6 +47,7 @@ export interface OrderItem {
   quantity: number;
   capacityMl?: number | null;
   selectedSize?: string | null;
+  weightGrams?: number | null;
 }
 
 /**
@@ -73,6 +74,12 @@ function getProductType(productName: string): 'bottle' | 'tshirt' | 'hoodie' | '
  * Get weight for a single product item in grams
  */
 export function getProductWeight(item: OrderItem): number {
+  // 1. Priority: Explicit weight from database
+  if (item.weightGrams && item.weightGrams > 0) {
+    return item.weightGrams;
+  }
+
+  // 2. Fallback: Estimate based on product type
   const productType = getProductType(item.productName);
 
   switch (productType) {
@@ -104,7 +111,7 @@ export function getProductWeight(item: OrderItem): number {
 
 /**
  * Calculate total package weight for an order
- * Returns weight in kilograms (as required by DHL API)
+ * Returns weight in kilograms
  */
 export function calculatePackageWeight(items: OrderItem[]): number {
   let totalGrams = BOX_CONFIG.weightGrams; // Start with box weight
@@ -117,13 +124,13 @@ export function calculatePackageWeight(items: OrderItem[]): number {
   // Convert to kg and round to 2 decimal places
   const weightKg = Math.round(totalGrams) / 1000;
 
-  // DHL minimum weight is 0.01 kg
+  // Minimum weight is 0.01 kg
   return Math.max(0.01, weightKg);
 }
 
 /**
- * Get box dimensions for DHL API
- * Returns dimensions in centimeters (as required by DHL API)
+ * Get box dimensions for shipping calculations
+ * Returns dimensions in centimeters
  */
 export function getBoxDimensions() {
   return {

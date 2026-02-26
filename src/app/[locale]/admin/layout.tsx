@@ -2,6 +2,8 @@ import type { ReactNode } from 'react';
 import Link from 'next/link';
 import { getTranslations } from 'next-intl/server';
 import { requireShopOwner } from './lib/auth';
+import { createClient } from '@/lib/supabase/server';
+import NotificationsBell from './components/NotificationsBell';
 
 interface AdminLayoutProps {
   children: ReactNode;
@@ -20,6 +22,9 @@ export default async function AdminLayout({ children, params }: AdminLayoutProps
   await requireShopOwner(locale);
   const t = await getTranslations({ locale, namespace: 'Admin' });
 
+  const supabase = await createClient();
+  const { data: { user } } = await supabase.auth.getUser();
+
   return (
     <div className="min-h-screen bg-roh-dust-white">
       <header className="border-b border-border bg-white">
@@ -30,17 +35,20 @@ export default async function AdminLayout({ children, params }: AdminLayoutProps
             </p>
             <h1 className="text-2xl font-bold text-foreground">{t('dashboardHeading')}</h1>
           </div>
-          <nav className="flex flex-wrap items-center gap-3 text-sm">
-            {NAV_ITEMS.map((item) => (
-              <Link
-                key={item.key}
-                href={`/${locale}/admin${item.path}`}
-                className="rounded-full border border-border px-4 py-1.5 hover:border-roh-flag-green hover:text-roh-flag-green transition-colors"
-              >
-                {t(`nav.${item.key}`)}
-              </Link>
-            ))}
-          </nav>
+          <div className="flex items-center gap-4">
+            <nav className="flex flex-wrap items-center gap-3 text-sm">
+              {NAV_ITEMS.map((item) => (
+                <Link
+                  key={item.key}
+                  href={`/${locale}/admin${item.path}`}
+                  className="rounded-full border border-border px-4 py-1.5 hover:border-roh-flag-green hover:text-roh-flag-green transition-colors"
+                >
+                  {t(`nav.${item.key}`)}
+                </Link>
+              ))}
+            </nav>
+            {user && <NotificationsBell userId={user.id} />}
+          </div>
         </div>
       </header>
       <main className="max-w-6xl mx-auto px-4 py-8">{children}</main>

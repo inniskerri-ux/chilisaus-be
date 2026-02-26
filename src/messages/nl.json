@@ -13,6 +13,20 @@
     "Checkout": "Checkout",
     "Account": "Account"
   },
+  "Cart": {
+    "title": "Je Winkelwagen",
+    "empty": "Je winkelwagen is leeg",
+    "continueShopping": "Verder winkelen",
+    "checkout": "Afrekenen",
+    "items": "producten",
+    "item": "product",
+    "summary": "Bestelling Overzicht",
+    "subtotal": "Subtotaal",
+    "shipping": "Verzending",
+    "shippingNote": "Verzendkosten worden berekend bij het afrekenen.",
+    "total": "Totaal",
+    "remove": "Verwijder"
+  },
   "Admin": {
     "title": "Store admin",
     "dashboardHeading": "Manage your catalogue",
@@ -126,6 +140,40 @@
     "description": "Beschrijving",
     "ingredients": "Ingrediënten",
     "peppers": "Pepers"
+  },
+  "Legal": {
+    "notice": "Colofon",
+    "shipping": "Verzending & Retourneren",
+    "terms": "Algemene Voorwaarden",
+    "privacy": "Privacybeleid"
+  },
+  "Checkout": {
+    "title": "Afrekenen",
+    "shipping": "Bezorgadres",
+    "payment": "Betaling",
+    "summary": "Bestelling Overzicht",
+    "email": "E-mailadres",
+    "fullName": "Volledige Naam",
+    "street": "Straat en huisnummer",
+    "city": "Stad",
+    "zip": "Postcode",
+    "country": "Land",
+    "payNow": "Betalen met Stripe",
+    "freeShipping": "Gratis verzending toegepast",
+    "Success": {
+      "title": "Bestelling Bevestigd!",
+      "description": "We hebben een bevestigingsmail gestuurd naar {email}. Je pittige pakket wordt klaargemaakt.",
+      "orderNumber": "Bestelnummer",
+      "subtotal": "Subtotaal",
+      "shipping": "Verzending",
+      "total": "Totaal",
+      "shippingInfo": "Binnenkort verzonden",
+      "shippingDescription": "Bestellingen worden doorgaans binnen 24-48 uur verzonden.",
+      "support": "Hulp nodig?",
+      "continueShopping": "Verder winkelen",
+      "backToShop": "Terug naar winkel",
+      "invalidSession": "Ongeldige afrekensessie"
+    }
   },
   "Scoville": {
     "title": "De Scovilleschaal",

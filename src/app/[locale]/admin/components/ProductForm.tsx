@@ -27,6 +27,7 @@ interface Product {
   category_id?: string | null;
   brand_id?: string | null;
   capacity_ml?: number | null;
+  weight_grams?: number | null;
   heat_level?: string | null;
   image_url?: string | null;
   ingredients?: string | null;
@@ -292,7 +293,7 @@ export default function ProductForm({
               <CardTitle>Chilli Specifics</CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
-              <div className="grid gap-4 sm:grid-cols-2">
+              <div className="grid gap-4 sm:grid-cols-3">
                 <div className="space-y-2">
                   <Label htmlFor="heat_level">Heat Level (0-20+)</Label>
                   <Input
@@ -312,6 +313,27 @@ export default function ProductForm({
                     type="number"
                     defaultValue={product?.capacity_ml || ''}
                     placeholder="e.g. 100"
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="weight_grams">Weight (grams)</Label>
+                  <Input
+                    id="weight_grams"
+                    name="weight_grams"
+                    type="number"
+                    defaultValue={product?.weight_grams || ''}
+                    placeholder="e.g. 280"
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="stock">Stock *</Label>
+                  <Input
+                    id="stock"
+                    name="stock"
+                    type="number"
+                    min="0"
+                    defaultValue={product?.stock ?? 0}
+                    required
                   />
                 </div>
               </div>

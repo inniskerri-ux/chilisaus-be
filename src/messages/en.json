@@ -13,6 +13,20 @@
     "Checkout": "Checkout",
     "Account": "Account"
   },
+  "Cart": {
+    "title": "Your Shopping Cart",
+    "empty": "Your cart is empty",
+    "continueShopping": "Continue Shopping",
+    "checkout": "Proceed to Checkout",
+    "items": "items",
+    "item": "item",
+    "summary": "Order Summary",
+    "subtotal": "Subtotal",
+    "shipping": "Shipping",
+    "shippingNote": "Shipping is calculated at checkout.",
+    "total": "Total",
+    "remove": "Remove"
+  },
   "Admin": {
     "title": "Store admin",
     "dashboardHeading": "Manage your catalogue",
@@ -136,6 +150,34 @@
     "shipping": "Shipping & Returns",
     "terms": "Terms of Service",
     "privacy": "Privacy Policy"
+  },
+  "Checkout": {
+    "title": "Checkout",
+    "shipping": "Shipping Address",
+    "payment": "Payment",
+    "summary": "Order Summary",
+    "email": "Email Address",
+    "fullName": "Full Name",
+    "street": "Street Address",
+    "city": "City",
+    "zip": "ZIP / Postal Code",
+    "country": "Country",
+    "payNow": "Pay with Stripe",
+    "freeShipping": "Free shipping applied",
+    "Success": {
+      "title": "Order Confirmed!",
+      "description": "We've sent a confirmation email to {email}. Your spicy delivery is being prepared.",
+      "orderNumber": "Order Number",
+      "subtotal": "Subtotal",
+      "shipping": "Shipping",
+      "total": "Total",
+      "shippingInfo": "Shipping soon",
+      "shippingDescription": "Orders are typically dispatched within 24-48 hours.",
+      "support": "Need help?",
+      "continueShopping": "Continue Shopping",
+      "backToShop": "Back to Shop",
+      "invalidSession": "Invalid checkout session"
+    }
   },
   "Scoville": {
     "title": "The Scoville Scale",
