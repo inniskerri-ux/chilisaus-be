@@ -24,7 +24,7 @@ export async function updateProduct(
   }
 
   const name = formData.get('name')?.toString().trim();
-  const slug = formData.get('slug')?.toString().trim();
+  let slug = formData.get('slug')?.toString().trim();
   const priceCents = Number(formData.get('price_cents'));
   const currency = formData.get('currency')?.toString() || 'GBP';
   const description = formData.get('description')?.toString() || '';
@@ -51,6 +51,23 @@ export async function updateProduct(
   if (!name || !slug || Number.isNaN(priceCents)) {
     return { error: 'Missing required fields' };
   }
+
+  // Ensure unique slug (excluding current product)
+  let uniqueSlug = slug;
+  let counter = 1;
+  while (true) {
+    const { data: existing } = await supabase
+      .from('products')
+      .select('id')
+      .eq('slug', uniqueSlug)
+      .neq('id', productId)
+      .maybeSingle();
+    
+    if (!existing) break;
+    uniqueSlug = `${slug}-${counter}`;
+    counter++;
+  }
+  slug = uniqueSlug;
 
   if (storeMode === 'multi' && !brandId) {
     return { error: 'Brand is required in multi-store mode' };

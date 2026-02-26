@@ -19,9 +19,10 @@
     "dashboardWelcomeHeading": "You're in control",
     "dashboardWelcomeCopy": "Use the admin panel to add new sauces, edit listings, and keep imagery fresh.",
     "nav": {
-      "dashboard": "Dashboard",
-      "products": "Products",
-      "newProduct": "New product"
+      "dashboard": "Přehled",
+      "products": "Produkty",
+      "brands": "Značky",
+      "newProduct": "Nový produkt"
     },
     "stats": {
       "products": "Products",

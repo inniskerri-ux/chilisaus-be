@@ -15,6 +15,7 @@ import {
 } from '@/components/ui/select';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { ImageUploader } from './ImageUploader';
+import { slugify } from '@/lib/utils';
 interface Product {
   id: string;
   name: string;
@@ -33,7 +34,7 @@ interface Product {
   is_active?: boolean;
   size_options?: string[] | null;
   color_options?: string[] | null;
-  chilliTypes?: { chilli_type: { id: string; name: string } }[];
+  chilliTypes?: { id: string; name: string }[];
 }
 
 interface Category { id: string | number; name: string; slug: string; }
@@ -69,8 +70,15 @@ export default function ProductForm({
     product?.image_url || null
   );
   const [selectedChilliTypes, setSelectedChilliTypes] = useState<string[]>(
-    (product?.chilliTypes ?? []).map(ct => ct.chilli_type.id)
+    (product?.chilliTypes ?? []).map(ct => ct.id)
   );
+  const [slug, setSlug] = useState(product?.slug || '');
+
+  const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!product) {
+      setSlug(slugify(e.target.value));
+    }
+  };
 
   const selectedCategory = categories.find(
     (cat) => cat.id === categoryValue
@@ -131,6 +139,7 @@ export default function ProductForm({
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
+      {product?.id && <input type="hidden" name="product_id" value={product.id} />}
       <div className="flex items-center justify-between">
         <h1 className="text-2xl font-bold tracking-tight">
           {product ? 'Edit Product' : 'New Product'}
@@ -159,7 +168,8 @@ export default function ProductForm({
               <CardTitle>Basic Information</CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
-              <div className="grid gap-4 sm:grid-cols-2">
+              <input type="hidden" name="slug" value={slug} />
+              <div className="grid gap-4 sm:grid-cols-1">
                 <div className="space-y-2">
                   <Label htmlFor="name">Name *</Label>
                   <Input
@@ -167,17 +177,7 @@ export default function ProductForm({
                     name="name"
                     defaultValue={product?.name}
                     required
-                  />
-                </div>
-
-                <div className="space-y-2">
-                  <Label htmlFor="slug">Slug *</Label>
-                  <Input
-                    id="slug"
-                    name="slug"
-                    defaultValue={product?.slug}
-                    required
-                    placeholder="product-name"
+                    onChange={handleNameChange}
                   />
                 </div>
               </div>

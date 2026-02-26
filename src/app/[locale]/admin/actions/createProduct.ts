@@ -19,7 +19,7 @@ export async function createProduct(
 
   const storeMode = process.env.NEXT_PUBLIC_STORE_MODE === 'multi' ? 'multi' : 'single';
   const name = formData.get('name')?.toString().trim();
-  const slug = formData.get('slug')?.toString().trim();
+  let slug = formData.get('slug')?.toString().trim();
   const priceCents = Number(formData.get('price_cents'));
   const currency = formData.get('currency')?.toString() || 'GBP';
   const description = formData.get('description')?.toString() || '';
@@ -46,6 +46,22 @@ export async function createProduct(
   if (!name || !slug || Number.isNaN(priceCents)) {
     return { error: 'Missing required fields' };
   }
+
+  // Ensure unique slug
+  let uniqueSlug = slug;
+  let counter = 1;
+  while (true) {
+    const { data: existing } = await supabase
+      .from('products')
+      .select('id')
+      .eq('slug', uniqueSlug)
+      .maybeSingle();
+    
+    if (!existing) break;
+    uniqueSlug = `${slug}-${counter}`;
+    counter++;
+  }
+  slug = uniqueSlug;
 
   if (storeMode === 'multi' && !brandId) {
     return { error: 'Brand is required in multi-store mode' };

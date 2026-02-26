@@ -20,8 +20,9 @@
     "dashboardWelcomeCopy": "Use the admin panel to add new sauces, edit listings, and keep imagery fresh.",
     "nav": {
       "dashboard": "Dashboard",
-      "products": "Products",
-      "newProduct": "New product"
+      "products": "Produkte",
+      "brands": "Marken",
+      "newProduct": "Neues Produkt"
     },
     "stats": {
       "products": "Products",

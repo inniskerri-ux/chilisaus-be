@@ -21,6 +21,7 @@
     "nav": {
       "dashboard": "Dashboard",
       "products": "Products",
+      "brands": "Brands",
       "newProduct": "New product"
     },
     "stats": {
