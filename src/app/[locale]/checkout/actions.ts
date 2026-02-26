@@ -67,6 +67,8 @@ export async function createCheckoutSession(formData: FormData) {
         currency: 'eur',
         product_data: {
           name: 'Shipping',
+          description: '',
+          images: [],
         },
         unit_amount: shippingCents,
       },

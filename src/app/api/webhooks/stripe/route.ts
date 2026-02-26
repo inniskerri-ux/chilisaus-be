@@ -117,12 +117,10 @@ async function handleOrderCompleted(session: any) {
   if (itemsError) throw itemsError;
 
   // 6. Update Inventory and Check for Low Stock
-  for (const item of lineItems) {
-    if (item.price.product.name === 'Shipping') continue;
+  for (const item of lineItems as any[]) {
+    const productName = item.price?.product?.name;
+    if (!productName || productName === 'Shipping') continue;
     
-    // We use the product metadata or name to find the product
-    // Note: Stripe product name is usually reliable if we don't have ID in metadata
-    const productName = item.price.product.name;
     const quantitySold = item.quantity;
 
     // Use a transaction-like update with RPC or separate calls

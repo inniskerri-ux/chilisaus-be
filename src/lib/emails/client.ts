@@ -1,6 +1,6 @@
 import { Resend } from 'resend';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;
 
 export async function sendEmail({
   to,
@@ -11,6 +11,11 @@ export async function sendEmail({
   subject: string;
   html: string;
 }) {
+  if (!resend) {
+    console.error('[Emails] Resend is not configured (RESEND_API_KEY missing)');
+    return { success: false, error: 'Not configured' };
+  }
+
   try {
     const data = await resend.emails.send({
       from: 'Chilisaus.be <noreply@chilisaus.be>', // Assuming verified domain

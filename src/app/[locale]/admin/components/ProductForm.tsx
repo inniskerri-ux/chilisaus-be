@@ -16,6 +16,8 @@ import {
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { ImageUploader } from './ImageUploader';
 import { slugify } from '@/lib/utils';
+import type { ChilliType } from '@/components/store/types';
+
 interface Product {
   id: string;
   name: string;
@@ -35,7 +37,8 @@ interface Product {
   is_active?: boolean;
   size_options?: string[] | null;
   color_options?: string[] | null;
-  chilliTypes?: { id: string; name: string }[];
+  stock?: number | null;
+  chilliTypes?: ChilliType[];
 }
 
 interface Category { id: string | number; name: string; slug: string; }
@@ -45,7 +48,7 @@ interface ProductFormProps {
   product?: Product;
   categories: Category[];
   brands: Brand[];
-  chilliTypes: { id: string; name: string }[];
+  chilliTypes: ChilliType[];
   onSubmit: (data: any) => Promise<any>;
   onDelete?: (...args: any[]) => Promise<any>;
   successRedirectPath?: string;
@@ -58,6 +61,7 @@ export default function ProductForm({
   chilliTypes,
   onSubmit,
   onDelete,
+  successRedirectPath,
 }: ProductFormProps) {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
@@ -71,7 +75,7 @@ export default function ProductForm({
     product?.image_url || null
   );
   const [selectedChilliTypes, setSelectedChilliTypes] = useState<string[]>(
-    (product?.chilliTypes ?? []).map(ct => ct.id)
+    (product?.chilliTypes ?? []).map(ct => String(ct.id))
   );
   const [slug, setSlug] = useState(product?.slug || '');
 
@@ -352,24 +356,25 @@ export default function ProductForm({
                 <div className="grid grid-cols-2 gap-2 max-h-48 overflow-y-auto p-2 border rounded-md bg-zinc-50/50">
                   {chilliTypes.map((ct) => (
                     <div 
-                      key={ct.id} 
+                      key={String(ct.id)} 
                       className={`flex items-center gap-2 p-1.5 rounded-md cursor-pointer transition-colors ${
-                        selectedChilliTypes.includes(ct.id) 
+                        selectedChilliTypes.includes(String(ct.id)) 
                           ? 'bg-orange-100 border-orange-200' 
                           : 'hover:bg-zinc-100'
                       }`}
                       onClick={() => {
+                        const id = String(ct.id);
                         setSelectedChilliTypes(prev => 
-                          prev.includes(ct.id) 
-                            ? prev.filter(id => id !== ct.id) 
-                            : [...prev, ct.id]
+                          prev.includes(id) 
+                            ? prev.filter(item => item !== id) 
+                            : [...prev, id]
                         );
                       }}
                     >
                       <div className={`w-4 h-4 border rounded flex items-center justify-center ${
-                        selectedChilliTypes.includes(ct.id) ? 'bg-orange-600 border-orange-600 text-white' : 'bg-white'
+                        selectedChilliTypes.includes(String(ct.id)) ? 'bg-orange-600 border-orange-600 text-white' : 'bg-white'
                       }`}>
-                        {selectedChilliTypes.includes(ct.id) && <span className="text-[10px]">✓</span>}
+                        {selectedChilliTypes.includes(String(ct.id)) && <span className="text-[10px]">✓</span>}
                       </div>
                       <span className="text-xs truncate">{ct.name}</span>
                     </div>
