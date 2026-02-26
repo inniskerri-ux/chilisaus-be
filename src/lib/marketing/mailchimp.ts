@@ -58,3 +58,75 @@ export async function addOrderToMailchimp(orderData: any) {
     tags: ['customer', 'purchaser'],
   });
 }
+
+/**
+ * List recent campaigns
+ */
+export async function listCampaigns(count = 10) {
+  try {
+    const response = await (mailchimp as any).campaigns.list({
+      count,
+      sort_field: 'create_time',
+      sort_dir: 'DESC'
+    });
+    return { success: true, campaigns: response.campaigns };
+  } catch (error) {
+    console.error('[Mailchimp] List campaigns failed:', error);
+    return { success: false, error };
+  }
+}
+
+/**
+ * Create a new campaign
+ */
+export async function createCampaign({
+  subject,
+  previewText,
+  title,
+  fromName,
+  replyTo,
+}: {
+  subject: string;
+  previewText?: string;
+  title: string;
+  fromName: string;
+  replyTo: string;
+}) {
+  if (!AUDIENCE_ID) return { success: false, error: 'Audience ID not configured' };
+
+  try {
+    const campaign = await (mailchimp as any).campaigns.create({
+      type: 'regular',
+      recipients: {
+        list_id: AUDIENCE_ID,
+      },
+      settings: {
+        subject_line: subject,
+        preview_text: previewText || '',
+        title: title,
+        from_name: fromName,
+        reply_to: replyTo,
+      },
+    });
+
+    return { success: true, campaign };
+  } catch (error) {
+    console.error('[Mailchimp] Create campaign failed:', error);
+    return { success: false, error };
+  }
+}
+
+/**
+ * Set campaign content
+ */
+export async function setCampaignContent(campaignId: string, html: string) {
+  try {
+    await (mailchimp as any).campaigns.setContent(campaignId, {
+      html: html,
+    });
+    return { success: true };
+  } catch (error) {
+    console.error('[Mailchimp] Set content failed:', error);
+    return { success: false, error };
+  }
+}

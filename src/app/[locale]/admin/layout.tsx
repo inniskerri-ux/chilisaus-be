@@ -14,6 +14,8 @@ const NAV_ITEMS = [
   { key: 'dashboard', path: '' },
   { key: 'products', path: '/products' },
   { key: 'brands', path: '/brands' },
+  { key: 'marketing', path: '/marketing' },
+  { key: 'vouchers', path: '/vouchers' },
   { key: 'newProduct', path: '/products/new' }
 ];
 

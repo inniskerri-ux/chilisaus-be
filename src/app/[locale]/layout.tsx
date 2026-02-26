@@ -6,6 +6,8 @@ import type { ReactNode } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { MessageCircle } from 'lucide-react';
+import NewsletterPopup from '@/components/store/NewsletterPopup';
+import CookieConsent from '@/components/store/CookieConsent';
 
 const fontSans = Montserrat({
   variable: "--font-montserrat",
@@ -33,6 +35,8 @@ export default async function LocaleLayout({
           <Header locale={locale} />
           <main className="flex-grow">{children}</main>
           <Footer locale={locale} />
+          <NewsletterPopup locale={locale} />
+          <CookieConsent />
           
           {/* Floating WhatsApp Button */}
           <a

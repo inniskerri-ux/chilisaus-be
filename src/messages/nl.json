@@ -27,6 +27,38 @@
     "total": "Totaal",
     "remove": "Verwijder"
   },
+  "Newsletter": {
+    "title": "Ontvang 10% Korting!",
+    "description": "Meld je aan voor onze pittige nieuwsbrief en ontvang direct een kortingscode van 10% voor je eerste bestelling.",
+    "placeholder": "Je e-mailadres",
+    "cta": "Claim Mijn Korting",
+    "noSpam": "Geen spam, alleen vuur. Altijd opzegbaar.",
+    "successTitle": "Check Je Inbox!",
+    "successDescription": "We hebben een verificatielink naar je e-mail gestuurd.",
+    "successAction": "Bevestig je e-mail om de code te ontvangen."
+  },
+  "CookieConsent": {
+    "title": "Wij waarderen je privacy",
+    "description": "We gebruiken cookies om je surfervaring te verbeteren, gepersonaliseerde inhoud te tonen en ons verkeer te analyseren. Kies welke cookies je accepteert.",
+    "acceptAll": "Alles Accepteren",
+    "declineAll": "Alleen Noodzakelijk",
+    "customize": "Aanpassen",
+    "save": "Voorkeuren Opslaan",
+    "categories": {
+      "necessary": {
+        "title": "Strikt Noodzakelijk",
+        "description": "Vereist voor het functioneren van de website (Auth, Winkelwagen, Beveiliging). Kan niet worden uitgeschakeld."
+      },
+      "functional": {
+        "title": "Functioneel",
+        "description": "Onthoudt voorkeuren, zoals het verbergen van de nieuwsbrief popup."
+      },
+      "marketing": {
+        "title": "Marketing & Analyse",
+        "description": "Helpt ons te begrijpen hoe je de site gebruikt en om relevante aanbiedingen te tonen."
+      }
+    }
+  },
   "Admin": {
     "title": "Store admin",
     "dashboardHeading": "Manage your catalogue",
@@ -36,6 +68,8 @@
       "dashboard": "Dashboard",
       "products": "Producten",
       "brands": "Merken",
+      "marketing": "Marketing",
+      "vouchers": "Kortingscodes",
       "newProduct": "Nieuw product"
     },
     "stats": {

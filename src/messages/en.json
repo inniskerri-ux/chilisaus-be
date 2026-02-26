@@ -27,6 +27,38 @@
     "total": "Total",
     "remove": "Remove"
   },
+  "Newsletter": {
+    "title": "Get 10% Off!",
+    "description": "Sign up for our spicy newsletter and receive a 10% discount voucher for your first order.",
+    "placeholder": "Your email address",
+    "cta": "Claim My Discount",
+    "noSpam": "No spam, just heat. Unsubscribe anytime.",
+    "successTitle": "Check Your Inbox!",
+    "successDescription": "We've sent a verification link to your email.",
+    "successAction": "Confirm your email to get the code."
+  },
+  "CookieConsent": {
+    "title": "We value your privacy",
+    "description": "We use cookies to enhance your browsing experience, serve personalized content, and analyze our traffic. Please choose which cookies you're okay with.",
+    "acceptAll": "Accept All",
+    "declineAll": "Only Necessary",
+    "customize": "Customize",
+    "save": "Save Preferences",
+    "categories": {
+      "necessary": {
+        "title": "Strictly Necessary",
+        "description": "Required for the website to function (Auth, Cart, Security). Cannot be disabled."
+      },
+      "functional": {
+        "title": "Functional",
+        "description": "Remembering your preferences, such as the newsletter popup dismissal."
+      },
+      "marketing": {
+        "title": "Marketing & Analytics",
+        "description": "Helps us understand how you use the site and show relevant offers."
+      }
+    }
+  },
   "Admin": {
     "title": "Store admin",
     "dashboardHeading": "Manage your catalogue",
@@ -36,6 +68,8 @@
       "dashboard": "Dashboard",
       "products": "Products",
       "brands": "Brands",
+      "marketing": "Marketing",
+      "vouchers": "Vouchers",
       "newProduct": "New product"
     },
     "stats": {

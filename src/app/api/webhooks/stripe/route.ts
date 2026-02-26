@@ -51,10 +51,18 @@ export async function POST(req: NextRequest) {
 }
 
 async function handleOrderCompleted(session: any) {
-  const { customer_details, shipping_details, metadata, amount_total, amount_subtotal, shipping_cost } = session;
+  const { customer_details, shipping_details, metadata, amount_total, amount_subtotal, shipping_cost, total_details } = session;
 
   const cartSessionId = metadata?.cart_session_id;
   const userId = metadata?.user_id;
+
+  // Check if a promotion code was used
+  const promoCodeId = total_details?.breakdown?.discounts?.[0]?.discount?.promotion_code;
+  if (promoCodeId) {
+    // Increment redemption count in Supabase
+    await supabaseAdmin
+      .rpc('increment_voucher_redemption', { p_promo_code_id: promoCodeId });
+  }
 
   // 2. Fetch full session with line items
   const fullSession = await stripe.checkout.sessions.retrieve(session.id, {

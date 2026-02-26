@@ -158,3 +158,56 @@ export function getLowStockEmailHtml(productName: string, currentStock: number):
     </div>
   `;
 }
+
+/**
+ * Newsletter Double Opt-In Verification
+ */
+export function getNewsletterVerificationHtml(confirmUrl: string): string {
+  return `
+    <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; color: #333; text-align: center;">
+      <h1 style="color: #000;">Confirm your subscription</h1>
+      <p>Thanks for signing up for the Chilisaus.be newsletter!</p>
+      <p>Please click the button below to confirm your email and receive your <strong>10% discount code</strong>.</p>
+      
+      <div style="margin: 40px 0;">
+        <a href="${confirmUrl}" style="background: #d32f2f; color: #fff; padding: 16px 32px; text-decoration: none; border-radius: 8px; font-weight: bold; font-size: 1.1em;">
+          Confirm My Email
+        </a>
+      </div>
+
+      <p style="font-size: 0.8em; color: #999;">
+        If you didn't request this, you can safely ignore this email.
+      </p>
+    </div>
+  `;
+}
+
+/**
+ * Newsletter Welcome Email with Voucher
+ */
+export function getNewsletterWelcomeHtml(voucherCode: string): string {
+  return `
+    <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; color: #333; text-align: center;">
+      <h1 style="color: #000;">Welcome to the family! 🌶️</h1>
+      <p>Your email has been confirmed. As promised, here is your spicy discount:</p>
+      
+      <div style="background: #f9f9f9; border: 2px dashed #d32f2f; padding: 30px; margin: 30px 0; border-radius: 12px;">
+        <p style="text-transform: uppercase; font-size: 0.9em; letter-spacing: 1px; margin-bottom: 10px; color: #666;">Use this code at checkout:</p>
+        <span style="font-family: monospace; font-size: 2.5em; font-bold; color: #d32f2f; letter-spacing: 2px;">${voucherCode}</span>
+        <p style="margin-top: 15px; font-size: 1.1em; font-weight: bold;">10% OFF YOUR NEXT ORDER</p>
+      </div>
+
+      <p>Get ready for recipes, new arrivals, and limited edition drops.</p>
+      
+      <div style="margin-top: 40px;">
+        <a href="https://chilisaus.be/shop" style="background: #000; color: #fff; padding: 12px 24px; text-decoration: none; border-radius: 4px; font-weight: bold;">
+          Start Shopping
+        </a>
+      </div>
+
+      <p style="margin-top: 60px; font-size: 0.8em; color: #999;">
+        Chilisaus.be - You Can Never Have Too Much Hot Sauce
+      </p>
+    </div>
+  `;
+}

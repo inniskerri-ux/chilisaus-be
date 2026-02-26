@@ -78,6 +78,7 @@ export async function createCheckoutSession(formData: FormData) {
     payment_method_types: ['card', 'ideal', 'bancontact'],
     line_items: lineItems,
     mode: 'payment',
+    allow_promotion_codes: true,
     success_url: `${origin}/${locale}/checkout/success?session_id={CHECKOUT_SESSION_ID}`,
     cancel_url: `${origin}/${locale}/cart`,
     customer_email: session?.user?.email,
