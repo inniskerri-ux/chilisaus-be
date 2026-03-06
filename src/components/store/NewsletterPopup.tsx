@@ -16,7 +16,7 @@ export default function NewsletterPopup({ locale }: { locale: string }) {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    // Show after 5 seconds
+    // Show after 30 seconds
     const timer = setTimeout(() => {
       const dismissedUntil = localStorage.getItem("newsletter_dismissed_until");
       const hasSignedUp = document.cookie.includes("newsletter_signed_up=true");
@@ -33,7 +33,7 @@ export default function NewsletterPopup({ locale }: { locale: string }) {
       if (!isDismissed && !hasSignedUp && (!consent || consent.functional)) {
         setIsOpen(true);
       }
-    }, 5000);
+    }, 30000);
 
     return () => clearTimeout(timer);
   }, []);
