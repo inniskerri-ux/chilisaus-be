@@ -7,12 +7,12 @@
  */
 export function formatPrice(
   priceCents: number,
-  currency: string = 'EUR',
-  locale: string = 'en'
+  currency: string = "EUR",
+  locale: string = "en",
 ): string {
   try {
     return (priceCents / 100).toLocaleString(locale, {
-      style: 'currency',
+      style: "currency",
       currency: currency,
     });
   } catch (error) {
@@ -25,6 +25,6 @@ export function formatPrice(
  * Capitalize first letter of a string
  */
 export function capitalize(str: string): string {
-  if (!str) return '';
+  if (!str) return "";
   return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
 }

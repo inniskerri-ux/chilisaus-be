@@ -1,9 +1,9 @@
-import type { ReactNode } from 'react';
-import Link from 'next/link';
-import { getTranslations } from 'next-intl/server';
-import { requireShopOwner } from './lib/auth';
-import { createClient } from '@/lib/supabase/server';
-import NotificationsBell from './components/NotificationsBell';
+import type { ReactNode } from "react";
+import Link from "next/link";
+import { getTranslations } from "next-intl/server";
+import { requireShopOwner } from "./lib/auth";
+import { createClient } from "@/lib/supabase/server";
+import NotificationsBell from "./components/NotificationsBell";
 
 interface AdminLayoutProps {
   children: ReactNode;
@@ -11,21 +11,26 @@ interface AdminLayoutProps {
 }
 
 const NAV_ITEMS = [
-  { key: 'dashboard', path: '' },
-  { key: 'products', path: '/products' },
-  { key: 'brands', path: '/brands' },
-  { key: 'marketing', path: '/marketing' },
-  { key: 'vouchers', path: '/vouchers' },
-  { key: 'newProduct', path: '/products/new' }
+  { key: "dashboard", path: "" },
+  { key: "products", path: "/products" },
+  { key: "brands", path: "/brands" },
+  { key: "marketing", path: "/marketing" },
+  { key: "vouchers", path: "/vouchers" },
+  { key: "newProduct", path: "/products/new" },
 ];
 
-export default async function AdminLayout({ children, params }: AdminLayoutProps) {
+export default async function AdminLayout({
+  children,
+  params,
+}: AdminLayoutProps) {
   const { locale } = await params;
   await requireShopOwner(locale);
-  const t = await getTranslations({ locale, namespace: 'Admin' });
+  const t = await getTranslations({ locale, namespace: "Admin" });
 
   const supabase = await createClient();
-  const { data: { user } } = await supabase.auth.getUser();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
 
   return (
     <div className="min-h-screen bg-roh-dust-white">
@@ -33,9 +38,11 @@ export default async function AdminLayout({ children, params }: AdminLayoutProps
         <div className="max-w-6xl mx-auto flex flex-col gap-4 px-4 py-6 md:flex-row md:items-center md:justify-between">
           <div>
             <p className="text-xs uppercase tracking-wide text-roh-military-olive font-semibold">
-              {t('title')}
+              {t("title")}
             </p>
-            <h1 className="text-2xl font-bold text-foreground">{t('dashboardHeading')}</h1>
+            <h1 className="text-2xl font-bold text-foreground">
+              {t("dashboardHeading")}
+            </h1>
           </div>
           <div className="flex items-center gap-4">
             <nav className="flex flex-wrap items-center gap-3 text-sm">

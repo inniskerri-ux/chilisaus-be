@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import { useState, useEffect } from 'react';
-import { useTranslations } from 'next-intl';
-import { Shield, Settings, X, Check } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { useState, useEffect } from "react";
+import { useTranslations } from "next-intl";
+import { Shield, Settings, X, Check } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 export type CookiePreferences = {
   necessary: boolean;
@@ -12,7 +12,7 @@ export type CookiePreferences = {
 };
 
 export default function CookieConsent() {
-  const t = useTranslations('CookieConsent');
+  const t = useTranslations("CookieConsent");
   const [isVisible, setIsOpen] = useState(false);
   const [showCustomize, setShowCustomize] = useState(false);
   const [preferences, setPreferences] = useState<CookiePreferences>({
@@ -22,7 +22,7 @@ export default function CookieConsent() {
   });
 
   useEffect(() => {
-    const consent = localStorage.getItem('cookie_consent');
+    const consent = localStorage.getItem("cookie_consent");
     if (!consent) {
       setIsOpen(true);
     }
@@ -33,19 +33,25 @@ export default function CookieConsent() {
     savePreferences(allAccepted);
   };
 
-  const handleDeclineAll = () => {
-    const onlyNecessary = { necessary: true, functional: false, marketing: false };
+  const handleRejectAll = () => {
+    const onlyNecessary = {
+      necessary: true,
+      functional: false,
+      marketing: false,
+    };
     savePreferences(onlyNecessary);
   };
 
   const savePreferences = (prefs: CookiePreferences) => {
-    localStorage.setItem('cookie_consent', JSON.stringify(prefs));
+    localStorage.setItem("cookie_consent", JSON.stringify(prefs));
     // Also set as actual cookie for server-side if needed
     document.cookie = `cookie_consent=${JSON.stringify(prefs)}; path=/; max-age=${60 * 60 * 24 * 365}; SameSite=Lax`;
     setIsOpen(false);
-    
+
     // Dispatch custom event for other components to react
-    window.dispatchEvent(new CustomEvent('cookie_consent_updated', { detail: prefs }));
+    window.dispatchEvent(
+      new CustomEvent("cookie_consent_updated", { detail: prefs }),
+    );
   };
 
   if (!isVisible) return null;
@@ -60,20 +66,31 @@ export default function CookieConsent() {
                 <Shield size={32} />
               </div>
               <div className="flex-grow text-center md:text-left">
-                <h2 className="text-xl font-bold mb-2">{t('title')}</h2>
+                <h2 className="text-xl font-bold mb-2">{t("title")}</h2>
                 <p className="text-zinc-600 text-sm leading-relaxed max-w-2xl">
-                  {t('description')}
+                  {t("description")}
                 </p>
               </div>
               <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
-                <Button variant="outline" onClick={() => setShowCustomize(true)} className="rounded-xl border-zinc-200">
-                  {t('customize')}
+                <Button
+                  variant="outline"
+                  onClick={() => setShowCustomize(true)}
+                  className="rounded-xl border-zinc-200"
+                >
+                  {t("customize")}
                 </Button>
-                <Button variant="outline" onClick={handleDeclineAll} className="rounded-xl border-zinc-200">
-                  {t('declineAll')}
+                <Button
+                  variant="outline"
+                  onClick={handleRejectAll}
+                  className="rounded-xl border-zinc-200"
+                >
+                  {t("rejectAll")}
                 </Button>
-                <Button onClick={handleAcceptAll} className="bg-black text-white hover:bg-zinc-800 rounded-xl px-8">
-                  {t('acceptAll')}
+                <Button
+                  onClick={handleAcceptAll}
+                  className="bg-black text-white hover:bg-zinc-800 rounded-xl px-8"
+                >
+                  {t("acceptAll")}
                 </Button>
               </div>
             </div>
@@ -82,9 +99,12 @@ export default function CookieConsent() {
               <div className="flex items-center justify-between">
                 <h2 className="text-xl font-bold flex items-center gap-2">
                   <Settings className="w-5 h-5" />
-                  {t('customize')}
+                  {t("customize")}
                 </h2>
-                <button onClick={() => setShowCustomize(false)} className="text-zinc-400 hover:text-zinc-600">
+                <button
+                  onClick={() => setShowCustomize(false)}
+                  className="text-zinc-400 hover:text-zinc-600"
+                >
                   <X size={20} />
                 </button>
               </div>
@@ -98,49 +118,78 @@ export default function CookieConsent() {
                     </div>
                   </div>
                   <div className="flex-grow">
-                    <h3 className="font-bold text-sm">{t('categories.necessary.title')}</h3>
-                    <p className="text-xs text-zinc-500">{t('categories.necessary.description')}</p>
+                    <h3 className="font-bold text-sm">
+                      {t("categories.necessary.title")}
+                    </h3>
+                    <p className="text-xs text-zinc-500">
+                      {t("categories.necessary.description")}
+                    </p>
                   </div>
-                  <span className="text-[10px] font-bold uppercase text-zinc-400 mt-1">Required</span>
+                  <span className="text-[10px] font-bold uppercase text-zinc-400 mt-1">
+                    Required
+                  </span>
                 </div>
 
                 {/* Functional */}
                 <label className="flex items-start gap-4 p-4 rounded-xl border hover:bg-zinc-50 cursor-pointer transition-colors">
                   <div className="mt-1">
-                    <input 
-                      type="checkbox" 
+                    <input
+                      type="checkbox"
                       checked={preferences.functional}
-                      onChange={(e) => setPreferences({...preferences, functional: e.target.checked})}
+                      onChange={(e) =>
+                        setPreferences({
+                          ...preferences,
+                          functional: e.target.checked,
+                        })
+                      }
                       className="w-5 h-5 rounded border-zinc-300 text-black focus:ring-black"
                     />
                   </div>
                   <div className="flex-grow">
-                    <h3 className="font-bold text-sm">{t('categories.functional.title')}</h3>
-                    <p className="text-xs text-zinc-500">{t('categories.functional.description')}</p>
+                    <h3 className="font-bold text-sm">
+                      {t("categories.functional.title")}
+                    </h3>
+                    <p className="text-xs text-zinc-500">
+                      {t("categories.functional.description")}
+                    </p>
                   </div>
                 </label>
 
                 {/* Marketing */}
                 <label className="flex items-start gap-4 p-4 rounded-xl border hover:bg-zinc-50 cursor-pointer transition-colors">
                   <div className="mt-1">
-                    <input 
-                      type="checkbox" 
+                    <input
+                      type="checkbox"
                       checked={preferences.marketing}
-                      onChange={(e) => setPreferences({...preferences, marketing: e.target.checked})}
+                      onChange={(e) =>
+                        setPreferences({
+                          ...preferences,
+                          marketing: e.target.checked,
+                        })
+                      }
                       className="w-5 h-5 rounded border-zinc-300 text-black focus:ring-black"
                     />
                   </div>
                   <div className="flex-grow">
-                    <h3 className="font-bold text-sm">{t('categories.marketing.title')}</h3>
-                    <p className="text-xs text-zinc-500">{t('categories.marketing.description')}</p>
+                    <h3 className="font-bold text-sm">
+                      {t("categories.marketing.title")}
+                    </h3>
+                    <p className="text-xs text-zinc-500">
+                      {t("categories.marketing.description")}
+                    </p>
                   </div>
                 </label>
               </div>
 
               <div className="flex justify-end gap-3 pt-2">
-                <Button variant="ghost" onClick={() => setShowCustomize(false)}>Back</Button>
-                <Button onClick={() => savePreferences(preferences)} className="bg-black text-white rounded-xl px-8">
-                  {t('save')}
+                <Button variant="ghost" onClick={() => setShowCustomize(false)}>
+                  Back
+                </Button>
+                <Button
+                  onClick={() => savePreferences(preferences)}
+                  className="bg-black text-white rounded-xl px-8"
+                >
+                  {t("save")}
                 </Button>
               </div>
             </div>

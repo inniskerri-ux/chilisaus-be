@@ -1,17 +1,21 @@
 {
   "Auth": {
-    "SignIn": "Sign in",
-    "SignUp": "Sign up",
-    "Email": "Email",
-    "Password": "Password",
-    "ConfirmPassword": "Confirm password",
-    "ResetPassword": "Reset password"
+    "SignIn": "Inloggen",
+    "SignUp": "Registreren",
+    "Email": "E-mail",
+    "Password": "Wachtwoord",
+    "ConfirmPassword": "Bevestig wachtwoord",
+    "ResetPassword": "Wachtwoord resetten",
+    "SignOut": "Uitloggen"
   },
   "Nav": {
     "Shop": "Shop",
-    "Cart": "Cart",
-    "Checkout": "Checkout",
-    "Account": "Account"
+    "Cart": "Winkelwagen",
+    "Checkout": "Afrekenen",
+    "Account": "Account",
+    "Dashboard": "Dashboard",
+    "Scoville": "Scoville",
+    "Videos": "Video's"
   },
   "Cart": {
     "title": "Je Winkelwagen",
@@ -41,7 +45,7 @@
     "title": "Wij waarderen je privacy",
     "description": "We gebruiken cookies om je surfervaring te verbeteren, gepersonaliseerde inhoud te tonen en ons verkeer te analyseren. Kies welke cookies je accepteert.",
     "acceptAll": "Alles Accepteren",
-    "declineAll": "Alleen Noodzakelijk",
+    "rejectAll": "Alleen Noodzakelijk",
     "customize": "Aanpassen",
     "save": "Voorkeuren Opslaan",
     "categories": {
@@ -155,9 +159,14 @@
   },
   "Landing": {
     "hero": {
+      "welcome": "Welkom bij Chilisaus.be/eu",
       "title": "Ontdek Jouw Perfecte Smaak",
       "subtitle": "Van milde tafel sauzen voor elke dag tot 's werelds meest extreme extracten. Handgeplukt voor smaak en vuur.",
       "cta": "Ontdek de Collectie"
+    },
+    "maker": {
+      "title": "Ontmoet de Maker",
+      "content": "Velen van jullie hebben me ontmoet op evenementen door het hele land. Ik ben gepassioneerd over het rechtstreeks naar jou brengen van de beste sauzen, op een persoonlijke en eenvoudige manier. Ik wil die persoonlijke band behouden, geen gezichtsloos bedrijf zijn. Het draait allemaal om de saus en de mensen die ervan houden."
     },
     "categories": {
       "title": "Winkel per Categorie",

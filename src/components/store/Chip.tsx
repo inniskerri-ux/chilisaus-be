@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
 interface ChipProps {
   children: React.ReactNode;
-  variant?: 'filter';
+  variant?: "filter";
   onRemove?: () => void;
 }
 

@@ -1,22 +1,22 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { Textarea } from '@/components/ui/textarea';
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '@/components/ui/select';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { ImageUploader } from './ImageUploader';
-import { slugify } from '@/lib/utils';
-import type { ChilliType } from '@/components/store/types';
+} from "@/components/ui/select";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { ImageUploader } from "./ImageUploader";
+import { slugify } from "@/lib/utils";
+import type { ChilliType } from "@/components/store/types";
 
 interface Product {
   id: string;
@@ -41,8 +41,16 @@ interface Product {
   chilliTypes?: ChilliType[];
 }
 
-interface Category { id: string | number; name: string; slug: string; }
-interface Brand { id: string | number; name: string; slug?: string; }
+interface Category {
+  id: string | number;
+  name: string;
+  slug: string;
+}
+interface Brand {
+  id: string | number;
+  name: string;
+  slug?: string;
+}
 
 interface ProductFormProps {
   product?: Product;
@@ -66,18 +74,16 @@ export default function ProductForm({
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [categoryValue, setCategoryValue] = useState(
-    product?.category_id || 'none'
+    product?.category_id || "none",
   );
-  const [brandValue, setBrandValue] = useState(
-    product?.brand_id || 'none'
-  );
+  const [brandValue, setBrandValue] = useState(product?.brand_id || "none");
   const [imageUrl, setImageUrl] = useState<string | null>(
-    product?.image_url || null
+    product?.image_url || null,
   );
   const [selectedChilliTypes, setSelectedChilliTypes] = useState<string[]>(
-    (product?.chilliTypes ?? []).map(ct => String(ct.id))
+    (product?.chilliTypes ?? []).map((ct) => String(ct.id)),
   );
-  const [slug, setSlug] = useState(product?.slug || '');
+  const [slug, setSlug] = useState(product?.slug || "");
 
   const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!product) {
@@ -85,11 +91,11 @@ export default function ProductForm({
     }
   };
 
-  const selectedCategory = categories.find(
-    (cat) => cat.id === categoryValue
-  );
+  const selectedCategory = categories.find((cat) => cat.id === categoryValue);
   // Example logic for variants (adjust as needed for specific store)
-  const isMerchCategory = selectedCategory?.slug === 'merch' || selectedCategory?.slug?.includes('clothing');
+  const isMerchCategory =
+    selectedCategory?.slug === "merch" ||
+    selectedCategory?.slug?.includes("clothing");
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -99,31 +105,37 @@ export default function ProductForm({
 
     // Parse nutrition info from individual fields and store as JSON string
     const nutritionInfo = {
-      energy_kj: parseFloat(formData.get('energy_kj') as string) || undefined,
-      energy_kcal: parseFloat(formData.get('energy_kcal') as string) || undefined,
-      fat_g: parseFloat(formData.get('fat_g') as string) || undefined,
-      saturated_fat_g: parseFloat(formData.get('saturated_fat_g') as string) || undefined,
-      carbohydrate_g: parseFloat(formData.get('carbohydrate_g') as string) || undefined,
-      sugar_g: parseFloat(formData.get('sugar_g') as string) || undefined,
-      protein_g: parseFloat(formData.get('protein_g') as string) || undefined,
-      salt_g: parseFloat(formData.get('salt_g') as string) || undefined,
+      energy_kj: parseFloat(formData.get("energy_kj") as string) || undefined,
+      energy_kcal:
+        parseFloat(formData.get("energy_kcal") as string) || undefined,
+      fat_g: parseFloat(formData.get("fat_g") as string) || undefined,
+      saturated_fat_g:
+        parseFloat(formData.get("saturated_fat_g") as string) || undefined,
+      carbohydrate_g:
+        parseFloat(formData.get("carbohydrate_g") as string) || undefined,
+      sugar_g: parseFloat(formData.get("sugar_g") as string) || undefined,
+      protein_g: parseFloat(formData.get("protein_g") as string) || undefined,
+      salt_g: parseFloat(formData.get("salt_g") as string) || undefined,
     };
 
     const cleanedNutrition = Object.fromEntries(
-      Object.entries(nutritionInfo).filter(([, value]) => value !== undefined)
+      Object.entries(nutritionInfo).filter(([, value]) => value !== undefined),
     );
 
     // Append additional data to FormData
-    formData.set('category_id', categoryValue === 'none' ? '' : String(categoryValue));
-    formData.set('brand_id', brandValue === 'none' ? '' : String(brandValue));
-    if (imageUrl) formData.set('image_url', imageUrl);
+    formData.set(
+      "category_id",
+      categoryValue === "none" ? "" : String(categoryValue),
+    );
+    formData.set("brand_id", brandValue === "none" ? "" : String(brandValue));
+    if (imageUrl) formData.set("image_url", imageUrl);
     if (Object.keys(cleanedNutrition).length > 0) {
-      formData.set('nutrition_info', JSON.stringify(cleanedNutrition));
+      formData.set("nutrition_info", JSON.stringify(cleanedNutrition));
     }
 
     // Append multi-select chilli types
-    selectedChilliTypes.forEach(id => {
-      formData.append('chilliTypeIds', id);
+    selectedChilliTypes.forEach((id) => {
+      formData.append("chilliTypeIds", id);
     });
 
     try {
@@ -144,10 +156,12 @@ export default function ProductForm({
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
-      {product?.id && <input type="hidden" name="product_id" value={product.id} />}
+      {product?.id && (
+        <input type="hidden" name="product_id" value={product.id} />
+      )}
       <div className="flex items-center justify-between">
         <h1 className="text-2xl font-bold tracking-tight">
-          {product ? 'Edit Product' : 'New Product'}
+          {product ? "Edit Product" : "New Product"}
         </h1>
         <div className="flex gap-2">
           {onDelete && (
@@ -161,7 +175,7 @@ export default function ProductForm({
             </Button>
           )}
           <Button type="submit" disabled={loading}>
-            {loading ? 'Saving...' : 'Save Product'}
+            {loading ? "Saving..." : "Save Product"}
           </Button>
         </div>
       </div>
@@ -192,7 +206,7 @@ export default function ProductForm({
                 <Textarea
                   id="description"
                   name="description"
-                  defaultValue={product?.description || ''}
+                  defaultValue={product?.description || ""}
                   rows={2}
                   placeholder="Short tagline shown below product name"
                 />
@@ -203,7 +217,7 @@ export default function ProductForm({
                 <Textarea
                   id="details"
                   name="details"
-                  defaultValue={product?.details || ''}
+                  defaultValue={product?.details || ""}
                   rows={4}
                   placeholder="Detailed product information for the Details tab"
                 />
@@ -226,7 +240,7 @@ export default function ProductForm({
                   <Input
                     id="currency"
                     name="currency"
-                    defaultValue={product?.currency || 'EUR'}
+                    defaultValue={product?.currency || "EUR"}
                     required
                   />
                 </div>
@@ -235,7 +249,9 @@ export default function ProductForm({
                   <Label htmlFor="is_active">Status *</Label>
                   <Select
                     name="is_active"
-                    defaultValue={product?.is_active === false ? 'false' : 'true'}
+                    defaultValue={
+                      product?.is_active === false ? "false" : "true"
+                    }
                   >
                     <SelectTrigger>
                       <SelectValue />
@@ -271,10 +287,7 @@ export default function ProductForm({
 
                 <div className="space-y-2">
                   <Label>Brand</Label>
-                  <Select
-                    value={brandValue}
-                    onValueChange={setBrandValue}
-                  >
+                  <Select value={brandValue} onValueChange={setBrandValue}>
                     <SelectTrigger>
                       <SelectValue placeholder="Select brand" />
                     </SelectTrigger>
@@ -306,7 +319,7 @@ export default function ProductForm({
                     type="number"
                     min="0"
                     max="100"
-                    defaultValue={product?.heat_level || ''}
+                    defaultValue={product?.heat_level || ""}
                   />
                 </div>
                 <div className="space-y-2">
@@ -315,7 +328,7 @@ export default function ProductForm({
                     id="capacity_ml"
                     name="capacity_ml"
                     type="number"
-                    defaultValue={product?.capacity_ml || ''}
+                    defaultValue={product?.capacity_ml || ""}
                     placeholder="e.g. 100"
                   />
                 </div>
@@ -325,7 +338,7 @@ export default function ProductForm({
                     id="weight_grams"
                     name="weight_grams"
                     type="number"
-                    defaultValue={product?.weight_grams || ''}
+                    defaultValue={product?.weight_grams || ""}
                     placeholder="e.g. 280"
                   />
                 </div>
@@ -346,7 +359,7 @@ export default function ProductForm({
                 <Textarea
                   id="ingredients"
                   name="ingredients"
-                  defaultValue={product?.ingredients || ''}
+                  defaultValue={product?.ingredients || ""}
                   rows={3}
                 />
               </div>
@@ -355,32 +368,40 @@ export default function ProductForm({
                 <Label>Peppers / Chilli Types</Label>
                 <div className="grid grid-cols-2 gap-2 max-h-48 overflow-y-auto p-2 border rounded-md bg-zinc-50/50">
                   {chilliTypes.map((ct) => (
-                    <div 
-                      key={String(ct.id)} 
+                    <div
+                      key={String(ct.id)}
                       className={`flex items-center gap-2 p-1.5 rounded-md cursor-pointer transition-colors ${
-                        selectedChilliTypes.includes(String(ct.id)) 
-                          ? 'bg-orange-100 border-orange-200' 
-                          : 'hover:bg-zinc-100'
+                        selectedChilliTypes.includes(String(ct.id))
+                          ? "bg-orange-100 border-orange-200"
+                          : "hover:bg-zinc-100"
                       }`}
                       onClick={() => {
                         const id = String(ct.id);
-                        setSelectedChilliTypes(prev => 
-                          prev.includes(id) 
-                            ? prev.filter(item => item !== id) 
-                            : [...prev, id]
+                        setSelectedChilliTypes((prev) =>
+                          prev.includes(id)
+                            ? prev.filter((item) => item !== id)
+                            : [...prev, id],
                         );
                       }}
                     >
-                      <div className={`w-4 h-4 border rounded flex items-center justify-center ${
-                        selectedChilliTypes.includes(String(ct.id)) ? 'bg-orange-600 border-orange-600 text-white' : 'bg-white'
-                      }`}>
-                        {selectedChilliTypes.includes(String(ct.id)) && <span className="text-[10px]">✓</span>}
+                      <div
+                        className={`w-4 h-4 border rounded flex items-center justify-center ${
+                          selectedChilliTypes.includes(String(ct.id))
+                            ? "bg-orange-600 border-orange-600 text-white"
+                            : "bg-white"
+                        }`}
+                      >
+                        {selectedChilliTypes.includes(String(ct.id)) && (
+                          <span className="text-[10px]">✓</span>
+                        )}
                       </div>
                       <span className="text-xs truncate">{ct.name}</span>
                     </div>
                   ))}
                 </div>
-                <p className="text-[10px] text-muted-foreground">Select all peppers mentioned in ingredients</p>
+                <p className="text-[10px] text-muted-foreground">
+                  Select all peppers mentioned in ingredients
+                </p>
               </div>
             </CardContent>
           </Card>
@@ -406,20 +427,24 @@ export default function ProductForm({
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="space-y-2">
-                <Label htmlFor="size_options">Size Options (comma separated)</Label>
+                <Label htmlFor="size_options">
+                  Size Options (comma separated)
+                </Label>
                 <Input
                   id="size_options"
                   name="size_options"
-                  defaultValue={product?.size_options?.join(', ') || ''}
+                  defaultValue={product?.size_options?.join(", ") || ""}
                   placeholder="S, M, L, XL"
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="color_options">Color Options (comma separated)</Label>
+                <Label htmlFor="color_options">
+                  Color Options (comma separated)
+                </Label>
                 <Input
                   id="color_options"
                   name="color_options"
-                  defaultValue={product?.color_options?.join(', ') || ''}
+                  defaultValue={product?.color_options?.join(", ") || ""}
                   placeholder="Red, Blue, Black"
                 />
               </div>

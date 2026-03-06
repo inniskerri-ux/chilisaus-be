@@ -5,13 +5,17 @@
     "Email": "Email",
     "Password": "Password",
     "ConfirmPassword": "Confirm password",
-    "ResetPassword": "Reset password"
+    "ResetPassword": "Reset password",
+    "SignOut": "Sign out"
   },
   "Nav": {
     "Shop": "Shop",
     "Cart": "Cart",
     "Checkout": "Checkout",
-    "Account": "Account"
+    "Account": "Account",
+    "Dashboard": "Dashboard",
+    "Scoville": "Scoville",
+    "Videos": "Videos"
   },
   "Cart": {
     "title": "Your Shopping Cart",
@@ -41,7 +45,7 @@
     "title": "We value your privacy",
     "description": "We use cookies to enhance your browsing experience, serve personalized content, and analyze our traffic. Please choose which cookies you're okay with.",
     "acceptAll": "Accept All",
-    "declineAll": "Only Necessary",
+    "rejectAll": "Only Necessary",
     "customize": "Customize",
     "save": "Save Preferences",
     "categories": {
@@ -155,13 +159,14 @@
   },
   "Landing": {
     "hero": {
+      "welcome": "Welcome to Chilisaus.be/eu",
       "title": "You Can Never Have Too Much Hot Sauce",
       "subtitle": "Discover a hand-picked collection of the world's finest chili sauces. From mild everyday flavors to extreme heat.",
       "cta": "Shop All Sauces"
     },
     "maker": {
       "title": "Meet the Maker",
-      "content": "A lot of you have met me at events across the country. I'm passionate about bringing the best sauces directly to you, keeping it personal and simple. It's all about the sauce."
+      "content": "A lot of you have met me at events across the country. I'm passionate about bringing the best sauces directly to you, keeping it personal and simple. I want to keep it a personal connection, not a faceless corporation. It's all about the sauce and the people who love it."
     },
     "categories": {
       "title": "Shop by Category",

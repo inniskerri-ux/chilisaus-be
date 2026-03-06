@@ -2,14 +2,12 @@
  * Simple HTML templates for transactional emails
  */
 
-import { formatPrice } from '@/lib/format';
-import { STANDARD_TAX_RATE } from '@/lib/checkout/pricing';
+import { formatPrice } from "@/lib/format";
 
 interface OrderItem {
   name: string;
   quantity: number;
   priceCents: number;
-  taxCents: number;
 }
 
 interface OrderDetails {
@@ -22,9 +20,9 @@ interface OrderDetails {
   shippingCountry: string;
   subtotalCents: number;
   shippingCents: number;
-  taxCents: number;
   totalCents: number;
   items: OrderItem[];
+  paymentMethod?: string;
 }
 
 /**
@@ -39,9 +37,9 @@ export function getPackingSlipHtml(order: OrderDetails): string {
       <td style="padding: 10px; border-bottom: 1px solid #eee; text-align: center;">${item.quantity}</td>
       <td style="padding: 10px; border-bottom: 1px solid #eee; text-align: right;">${formatPrice(item.priceCents)}</td>
     </tr>
-  `
+  `,
     )
-    .join('');
+    .join("");
 
   return `
     <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; color: #333;">
@@ -82,54 +80,123 @@ export function getPackingSlipHtml(order: OrderDetails): string {
 
 /**
  * Order Confirmation for Purchaser
+ * Styled to match the client's request based on Gmail PDF
  */
 export function getOrderConfirmationHtml(order: OrderDetails): string {
   const itemsList = order.items
     .map(
       (item) => `
     <tr>
-      <td style="padding: 10px; border-bottom: 1px solid #eee;">${item.name} x ${item.quantity}</td>
-      <td style="padding: 10px; border-bottom: 1px solid #eee; text-align: right;">${formatPrice(item.priceCents)}</td>
+      <td style="padding: 10px 0; border-bottom: 1px solid #f0f0f0;">
+        <div style="font-weight: bold; color: #000;">${item.name}</div>
+      </td>
+      <td style="padding: 10px 0; border-bottom: 1px solid #f0f0f0; text-align: center; color: #666;">
+        &times;${item.quantity}
+      </td>
+      <td style="padding: 10px 0; border-bottom: 1px solid #f0f0f0; text-align: right; font-weight: bold;">
+        ${formatPrice(item.priceCents)}
+      </td>
     </tr>
-  `
+  `,
     )
-    .join('');
+    .join("");
 
   return `
-    <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; color: #333; line-height: 1.6;">
-      <h1 style="color: #000;">Thank you for your order!</h1>
-      <p>Hi ${order.shippingName},</p>
-      <p>Your order <strong>${order.id}</strong> has been received and is being processed.</p>
-      
-      <h3>Order Details:</h3>
-      <table style="width: 100%; border-collapse: collapse;">
-        <tbody>
-          ${itemsList}
-        </tbody>
-      </table>
-
-      <hr style="border: 0; border-top: 1px solid #eee; margin: 20px 0;">
-
-      <div style="text-align: right;">
-        <p>Subtotal (inc. VAT): ${formatPrice(order.subtotalCents)}</p>
-        <p>Shipping: ${formatPrice(order.shippingCents)}</p>
-        <p style="font-size: 0.9em; color: #666;">Including ${STANDARD_TAX_RATE * 100}% VAT: ${formatPrice(order.taxCents)}</p>
-        <p style="font-weight: bold; font-size: 1.2em; color: #d32f2f;">Total Paid: ${formatPrice(order.totalCents)}</p>
+    <div style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; max-width: 600px; margin: 0 auto; color: #333; line-height: 1.6; padding: 20px;">
+      <div style="margin-bottom: 40px; font-size: 1.2em; font-weight: bold; color: #000;">
+        Chilisaus.be / eu
       </div>
 
-      <h3>Shipping to:</h3>
-      <p style="background: #f9f9f9; padding: 15px; border-radius: 4px;">
-        ${order.shippingName}<br>
-        ${order.shippingStreet}<br>
-        ${order.shippingPostalCode} ${order.shippingCity}<br>
-        ${order.shippingCountry}
+      <h1 style="font-size: 2.5em; font-weight: 800; color: #000; margin-bottom: 20px; letter-spacing: -1px;">
+        Thank you for your order
+      </h1>
+      
+      <p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">
+        Hi ${order.shippingName.split(" ")[0]},<br><br>
+        Just to let you know &mdash; we've received your order, and it is now being processed.
       </p>
 
-      <p>We'll send you another email once your spicy package is on its way!</p>
-      
-      <p style="margin-top: 40px; font-size: 0.8em; color: #999;">
-        Chilisaus.be - You Can Never Have Too Much Hot Sauce
-      </p>
+      <div style="margin-bottom: 40px;">
+        <h2 style="font-size: 1.5em; font-weight: bold; color: #000; border-bottom: 2px solid #000; padding-bottom: 10px; margin-bottom: 20px;">
+          Order summary
+        </h2>
+        <p style="color: #666; margin-bottom: 20px;">Order #${order.id}</p>
+        
+        <table style="width: 100%; border-collapse: collapse; margin-bottom: 30px;">
+          <thead>
+            <tr style="text-align: left; color: #999; font-size: 0.8em; text-transform: uppercase; letter-spacing: 1px;">
+              <th style="padding-bottom: 10px;">Product</th>
+              <th style="padding-bottom: 10px; text-align: center;">Quantity</th>
+              <th style="padding-bottom: 10px; text-align: right;">Price</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${itemsList}
+          </tbody>
+        </table>
+
+        <div style="width: 100%; max-width: 300px; margin-left: auto;">
+          <div style="display: flex; justify-content: space-between; padding: 5px 0; color: #666;">
+            <span>Subtotal:</span>
+            <span>${formatPrice(order.subtotalCents)}</span>
+          </div>
+          <div style="display: flex; justify-content: space-between; padding: 5px 0; color: #666;">
+            <span>Shipping:</span>
+            <span>${formatPrice(order.shippingCents)}</span>
+          </div>
+          <div style="display: flex; justify-content: space-between; padding: 15px 0; border-top: 2px solid #000; margin-top: 10px; font-size: 1.3em; font-weight: bold; color: #000;">
+            <span>Total:</span>
+            <span>${formatPrice(order.totalCents)}</span>
+          </div>
+        </div>
+      </div>
+
+      ${
+        order.paymentMethod
+          ? `
+      <div style="margin-bottom: 40px; text-align: right;">
+        <span style="color: #999; font-size: 0.9em;">Payment method:</span>
+        <span style="font-weight: bold; margin-left: 10px;">${order.paymentMethod}</span>
+      </div>
+      `
+          : ""
+      }
+
+      <div style="display: grid; grid-template-cols: 1fr 1fr; gap: 40px; margin-bottom: 40px;">
+        <div style="width: 45%; display: inline-block; vertical-align: top;">
+          <h3 style="font-size: 0.9em; text-transform: uppercase; color: #999; margin-bottom: 15px;">Billing address</h3>
+          <p style="font-size: 0.9em; color: #555; margin: 0;">
+            ${order.shippingName}<br>
+            ${order.shippingStreet}<br>
+            ${order.shippingPostalCode} ${order.shippingCity}<br>
+            ${order.customerEmail}
+          </p>
+        </div>
+        <div style="width: 45%; display: inline-block; vertical-align: top;">
+          <h3 style="font-size: 0.9em; text-transform: uppercase; color: #999; margin-bottom: 15px;">Shipping address</h3>
+          <p style="font-size: 0.9em; color: #555; margin: 0;">
+            ${order.shippingName}<br>
+            ${order.shippingStreet}<br>
+            ${order.shippingPostalCode} ${order.shippingCity}
+          </p>
+        </div>
+      </div>
+
+      <div style="text-align: center; border-top: 1px solid #eee; padding-top: 40px; margin-top: 40px;">
+        <p style="font-weight: bold; margin-bottom: 5px;">Thankyou for choosing chilisaus.be!</p>
+        <p style="font-size: 0.9em; color: #666; margin-bottom: 25px;">
+          You will shortly receive your shipping information from the carrier of your choice<br>
+          (please check your spam folder)
+        </p>
+        
+        <p style="font-size: 0.9em; color: #666; margin-bottom: 20px;">
+          Don't forget to follow us on Instagram<br>
+          <a href="https://www.instagram.com/chilisaus.be" style="color: #000; font-weight: bold; text-decoration: none;">#chilisaus.be</a><br>
+          <span style="font-size: 0.8em;">#youcanneverhavetoomuchhotsauce</span>
+        </p>
+
+        <a href="https://www.chilisaus.be" style="color: #666; font-size: 0.8em; text-decoration: none;">www.chilisaus.be</a>
+      </div>
     </div>
   `;
 }
@@ -137,7 +204,10 @@ export function getOrderConfirmationHtml(order: OrderDetails): string {
 /**
  * Low Stock Notification for Seller
  */
-export function getLowStockEmailHtml(productName: string, currentStock: number): string {
+export function getLowStockEmailHtml(
+  productName: string,
+  currentStock: number,
+): string {
   return `
     <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; color: #333;">
       <h1 style="color: #d32f2f;">⚠️ Low Stock Alert</h1>

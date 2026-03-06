@@ -1,32 +1,32 @@
-import { setRequestLocale, getTranslations } from 'next-intl/server';
-import Image from 'next/image';
-import { Flame, AlertTriangle, Info } from 'lucide-react';
+import { setRequestLocale, getTranslations } from "next-intl/server";
+import Image from "next/image";
+import { Flame, AlertTriangle, Info } from "lucide-react";
 
 export default async function ScovilleScalePage({
   params,
-}: { params: Promise<{ locale: string }> }) {
+}: {
+  params: Promise<{ locale: string }>;
+}) {
   const { locale } = await params;
   setRequestLocale(locale);
-  const t = await getTranslations('Scoville');
+  const t = await getTranslations("Scoville");
 
   const heatLevels = [
-    { key: 'mild', color: 'bg-green-100 text-green-800 border-green-200' },
-    { key: 'medium', color: 'bg-yellow-100 text-yellow-800 border-yellow-200' },
-    { key: 'hot', color: 'bg-orange-100 text-orange-800 border-orange-200' },
-    { key: 'extraHot', color: 'bg-red-100 text-red-800 border-red-200' },
-    { key: 'volcanic', color: 'bg-red-200 text-red-900 border-red-300' },
-    { key: 'superhot', color: 'bg-black text-white border-zinc-800' },
+    { key: "mild", color: "bg-green-100 text-green-800 border-green-200" },
+    { key: "medium", color: "bg-yellow-100 text-yellow-800 border-yellow-200" },
+    { key: "hot", color: "bg-orange-100 text-orange-800 border-orange-200" },
+    { key: "extraHot", color: "bg-red-100 text-red-800 border-red-200" },
+    { key: "volcanic", color: "bg-red-200 text-red-900 border-red-300" },
+    { key: "superhot", color: "bg-black text-white border-zinc-800" },
   ];
 
   return (
     <div className="mx-auto max-w-5xl px-6 py-12 md:py-20">
       <div className="mb-12 text-center">
         <h1 className="mb-4 text-4xl font-black uppercase tracking-tight md:text-6xl">
-          {t('title')}
+          {t("title")}
         </h1>
-        <p className="mx-auto max-w-2xl text-lg text-zinc-600">
-          {t('intro')}
-        </p>
+        <p className="mx-auto max-w-2xl text-lg text-zinc-600">{t("intro")}</p>
       </div>
 
       {/* Main Scoville Image */}
@@ -53,7 +53,9 @@ export default async function ScovilleScalePage({
             key={level.key}
             className="group flex flex-col rounded-2xl border border-zinc-100 bg-white p-8 transition-all hover:shadow-xl hover:-translate-y-1"
           >
-            <div className={`mb-4 inline-flex w-fit items-center gap-2 rounded-full px-3 py-1 text-xs font-black uppercase tracking-widest border ${level.color}`}>
+            <div
+              className={`mb-4 inline-flex w-fit items-center gap-2 rounded-full px-3 py-1 text-xs font-black uppercase tracking-widest border ${level.color}`}
+            >
               <Flame size={14} />
               {t(`levels.${level.key}.title`)}
             </div>
@@ -70,7 +72,9 @@ export default async function ScovilleScalePage({
           Handle with Care
         </h2>
         <p className="max-w-2xl text-zinc-400">
-          When dealing with superhot peppers and sauces, remember that capsaicin is an oil. Always wear gloves, avoid touching your eyes, and keep some milk or bread handy to tame the fire!
+          When dealing with superhot peppers and sauces, remember that capsaicin
+          is an oil. Always wear gloves, avoid touching your eyes, and keep some
+          milk or bread handy to tame the fire!
         </p>
         <div className="mt-4 flex flex-wrap justify-center gap-4">
           <div className="rounded-lg bg-zinc-800 px-4 py-2 text-xs font-bold uppercase tracking-widest text-zinc-400">

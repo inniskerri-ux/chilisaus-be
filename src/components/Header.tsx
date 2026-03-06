@@ -1,31 +1,36 @@
-import Link from 'next/link';
-import Image from 'next/image';
-import { createClient } from '@/lib/supabase/server';
-import { Instagram, MessageCircle } from 'lucide-react';
+import Link from "next/link";
+import Image from "next/image";
+import { createClient } from "@/lib/supabase/server";
+import { Instagram, MessageCircle, Search } from "lucide-react";
+import { getTranslations } from "next-intl/server";
 
 export default async function Header({ locale }: { locale: string }) {
   const supabase = await createClient();
-  const { data: { user } } = await supabase.auth.getUser();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+  const tAuth = await getTranslations("Auth");
+  const tNav = await getTranslations("Nav");
 
   let isShopOwner = false;
   if (user) {
     const { data: profile } = await supabase
-      .from('profiles')
-      .select('role')
-      .eq('id', user.id)
+      .from("profiles")
+      .select("role")
+      .eq("id", user.id)
       .single();
-    isShopOwner = profile?.role === 'shop_owner';
+    isShopOwner = profile?.role === "shop_owner";
   }
 
   return (
     <header className="sticky top-0 z-50 border-b border-zinc-100 bg-white/80 backdrop-blur-md">
       <div className="mx-auto max-w-7xl flex items-center justify-between px-6 py-4">
         <Link href={`/${locale}`} className="flex items-center">
-          <Image 
-            src="/images/logo.jpg" 
-            alt="ChiliSaus Logo" 
-            width={123} 
-            height={48} 
+          <Image
+            src="/images/logo.png"
+            alt="Chilisaus.be / eu Logo"
+            width={123}
+            height={48}
             quality={100}
             className="h-12 w-auto object-contain"
             priority
@@ -33,61 +38,93 @@ export default async function Header({ locale }: { locale: string }) {
         </Link>
 
         <nav className="hidden md:flex items-center gap-8 text-sm font-bold uppercase tracking-widest">
-          <Link href={`/${locale}/shop`} className="text-zinc-600 hover:text-brand-red transition-colors">Shop</Link>
-          <Link href={`/${locale}/scoville-scale`} className="text-zinc-600 hover:text-brand-red transition-colors">Scoville</Link>
-          <Link href={`#`} className="text-zinc-600 hover:text-brand-red transition-colors">Videos</Link>
+          <Link
+            href={`/${locale}/shop`}
+            className="text-zinc-600 hover:text-brand-red transition-colors"
+          >
+            {tNav("Shop")}
+          </Link>
+          <Link
+            href={`/${locale}/scoville-scale`}
+            className="text-zinc-600 hover:text-brand-red transition-colors"
+          >
+            {tNav("Scoville")}
+          </Link>
+          <Link
+            href={`#`}
+            className="text-zinc-600 hover:text-brand-red transition-colors"
+          >
+            {tNav("Videos")}
+          </Link>
         </nav>
 
         <div className="flex items-center gap-4">
           <div className="flex items-center gap-2 border-r border-zinc-100 pr-4 mr-2">
-            <a 
-              href="https://www.instagram.com/chilisaus.be" 
-              target="_blank" 
-              rel="noopener noreferrer"
+            <Link
+              href={`/${locale}/shop`}
               className="p-2 text-zinc-400 hover:text-brand-red transition-colors"
+              aria-label="Search"
             >
-              <Instagram size={20} />
+              <Search size={20} />
+            </Link>
+            <a
+              href="https://www.instagram.com/chilisaus.be"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-2 transition-colors"
+              style={{ color: "#E1306C" }}
+            >
+              <Instagram
+                size={20}
+                className="hover:opacity-80 transition-opacity"
+              />
             </a>
-            <a 
-              href={`https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER}`} 
-              target="_blank" 
+            <a
+              href={`https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER}`}
+              target="_blank"
               rel="noopener noreferrer"
-              className="p-2 text-zinc-400 hover:text-brand-red transition-colors"
+              className="p-2 transition-colors"
+              style={{ color: "#25D366" }}
             >
-              <MessageCircle size={20} />
+              <MessageCircle
+                size={20}
+                className="hover:opacity-80 transition-opacity"
+              />
             </a>
           </div>
 
           <nav className="flex items-center gap-4 text-sm font-bold uppercase tracking-wider">
-            {isShopOwner && (
+            {user ? (
+              <>
+                <Link
+                  href={isShopOwner ? `/${locale}/admin` : `/${locale}/account`}
+                  className="text-zinc-900 hover:text-brand-red transition-colors"
+                >
+                  {isShopOwner ? tNav("Dashboard") : tNav("Account")}
+                </Link>
+                <form action={`/api/auth/sign-out`} method="POST">
+                  <button
+                    type="submit"
+                    className="text-zinc-500 hover:text-brand-red transition-colors"
+                  >
+                    {tAuth("SignOut")}
+                  </button>
+                </form>
+              </>
+            ) : (
               <Link
-                href={`/${locale}/admin`}
-                className="hidden sm:block rounded-full bg-zinc-100 px-4 py-2 text-zinc-900 hover:bg-zinc-200 transition-colors"
+                href={`/${locale}/auth/sign-in`}
+                className="text-zinc-900 hover:text-brand-red transition-colors"
               >
-                Admin
+                {tAuth("SignIn")}
               </Link>
             )}
 
-            {user ? (
-              <form action={`/api/auth/sign-out`} method="POST">
-                <button
-                  type="submit"
-                  className="text-zinc-500 hover:text-brand-red transition-colors"
-                >
-                  Sign out
-                </button>
-              </form>
-            ) : (
-              <Link href={`/${locale}/auth/sign-in`} className="text-zinc-900 hover:text-brand-red transition-colors">
-                Sign in
-              </Link>
-            )}
-            
-            <Link 
-              href={`/${locale}/cart`} 
+            <Link
+              href={`/${locale}/cart`}
               className="rounded-full bg-brand-black px-5 py-2 text-white hover:bg-brand-red transition-all"
             >
-              Cart
+              {tNav("Cart")}
             </Link>
           </nav>
         </div>

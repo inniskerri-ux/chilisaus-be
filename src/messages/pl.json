@@ -1,17 +1,21 @@
 {
   "Auth": {
-    "SignIn": "Sign in",
+    "SignIn": "Zaloguj się",
     "SignUp": "Sign up",
     "Email": "Email",
     "Password": "Password",
     "ConfirmPassword": "Confirm password",
-    "ResetPassword": "Reset password"
+    "ResetPassword": "Reset password",
+    "SignOut": "Wyloguj się"
   },
   "Nav": {
     "Shop": "Shop",
     "Cart": "Cart",
     "Checkout": "Checkout",
-    "Account": "Account"
+    "Account": "Account",
+    "Dashboard": "Panel",
+    "Scoville": "Scoville",
+    "Videos": "Filmy"
   },
   "Admin": {
     "title": "Store admin",

@@ -1,11 +1,11 @@
-'use client';
+"use client";
 
-import { useState, useRef } from 'react';
-import { Button } from '@/components/ui/button';
-import { Label } from '@/components/ui/label';
-import { supabase } from '@/lib/supabase/client';
-import { Upload, X, Loader2, ImageIcon } from 'lucide-react';
-import Image from 'next/image';
+import { useState, useRef } from "react";
+import { Button } from "@/components/ui/button";
+import { Label } from "@/components/ui/label";
+import { supabase } from "@/lib/supabase/client";
+import { Upload, X, Loader2, ImageIcon } from "lucide-react";
+import Image from "next/image";
 
 interface ImageUploaderProps {
   imageUrl?: string | null;
@@ -24,9 +24,9 @@ export function ImageUploader({
   const fileInputRef = useRef<HTMLInputElement>(null);
   const convertToWebP = async (file: File): Promise<Blob> => {
     return new Promise((resolve, reject) => {
-      const img = document.createElement('img');
-      const canvas = document.createElement('canvas');
-      const ctx = canvas.getContext('2d');
+      const img = document.createElement("img");
+      const canvas = document.createElement("canvas");
+      const ctx = canvas.getContext("2d");
 
       img.onload = () => {
         canvas.width = img.width;
@@ -35,14 +35,14 @@ export function ImageUploader({
         canvas.toBlob(
           (blob) => {
             if (blob) resolve(blob);
-            else reject(new Error('Failed to convert image to WebP'));
+            else reject(new Error("Failed to convert image to WebP"));
           },
-          'image/webp',
-          0.85
+          "image/webp",
+          0.85,
         );
       };
 
-      img.onerror = () => reject(new Error('Failed to load image'));
+      img.onerror = () => reject(new Error("Failed to load image"));
       img.src = URL.createObjectURL(file);
     });
   };
@@ -59,30 +59,30 @@ export function ImageUploader({
 
       // Generate filename
       const timestamp = Date.now();
-      const filename = productSlug 
-        ? `${productSlug}-${timestamp}.webp` 
+      const filename = productSlug
+        ? `${productSlug}-${timestamp}.webp`
         : `prod-${timestamp}.webp`;
 
       const { data, error } = await supabase.storage
-        .from('product-images')
+        .from("product-images")
         .upload(filename, webpBlob, {
-          contentType: 'image/webp',
-          upsert: true
+          contentType: "image/webp",
+          upsert: true,
         });
 
       if (error) throw error;
 
-      const { data: { publicUrl } } = supabase.storage
-        .from('product-images')
-        .getPublicUrl(data.path);
+      const {
+        data: { publicUrl },
+      } = supabase.storage.from("product-images").getPublicUrl(data.path);
 
       onUpload(publicUrl);
     } catch (error) {
-      console.error('Error uploading image:', error);
-      alert('Failed to upload image');
+      console.error("Error uploading image:", error);
+      alert("Failed to upload image");
     } finally {
       setUploading(false);
-      if (fileInputRef.current) fileInputRef.current.value = '';
+      if (fileInputRef.current) fileInputRef.current.value = "";
     }
   };
 
@@ -108,7 +108,7 @@ export function ImageUploader({
           </Button>
         </div>
       ) : (
-        <div 
+        <div
           className="flex aspect-square w-full max-w-[200px] cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-dashed border-zinc-200 bg-zinc-50 transition-colors hover:bg-zinc-100"
           onClick={() => fileInputRef.current?.click()}
         >

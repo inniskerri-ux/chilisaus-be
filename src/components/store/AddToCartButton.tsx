@@ -1,16 +1,22 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { Button } from '@/components/ui/button';
-import { addToCart } from '@/app/[locale]/cart/actions';
-import { Loader2, Check, ShoppingCart } from 'lucide-react';
-import { useRouter } from 'next/navigation';
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { addToCart } from "@/app/[locale]/cart/actions";
+import { Loader2, Check, ShoppingCart } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 interface AddToCartButtonProps {
   productId: string;
   disabled?: boolean;
   label: string;
-  variant?: "default" | "destructive" | "outline" | "secondary" | "ghost" | "link";
+  variant?:
+    | "default"
+    | "destructive"
+    | "outline"
+    | "secondary"
+    | "ghost"
+    | "link";
   size?: "default" | "sm" | "lg" | "icon";
   className?: string;
   redirectToCart?: boolean;
@@ -34,15 +40,15 @@ export default function AddToCartButton({
     try {
       await addToCart(productId, 1);
       setIsSuccess(true);
-      
+
       if (redirectToCart) {
-        router.push('/cart');
+        router.push("/cart");
       } else {
         // Reset success state after 2 seconds
         setTimeout(() => setIsSuccess(false), 2000);
       }
     } catch (error) {
-      console.error('Failed to add to cart:', error);
+      console.error("Failed to add to cart:", error);
     } finally {
       setIsPending(false);
     }
@@ -63,7 +69,7 @@ export default function AddToCartButton({
       ) : (
         <ShoppingCart className="mr-2 h-4 w-4" />
       )}
-      {isSuccess ? 'Added!' : label}
+      {isSuccess ? "Added!" : label}
     </Button>
   );
 }

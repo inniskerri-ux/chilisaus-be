@@ -1,6 +1,8 @@
-import { Resend } from 'resend';
+import { Resend } from "resend";
 
-const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;
+const resend = process.env.RESEND_API_KEY
+  ? new Resend(process.env.RESEND_API_KEY)
+  : null;
 
 export async function sendEmail({
   to,
@@ -12,13 +14,13 @@ export async function sendEmail({
   html: string;
 }) {
   if (!resend) {
-    console.error('[Emails] Resend is not configured (RESEND_API_KEY missing)');
-    return { success: false, error: 'Not configured' };
+    console.error("[Emails] Resend is not configured (RESEND_API_KEY missing)");
+    return { success: false, error: "Not configured" };
   }
 
   try {
     const data = await resend.emails.send({
-      from: 'Chilisaus.be <noreply@chilisaus.be>', // Assuming verified domain
+      from: "Chilisaus.be / eu <sales@chilisaus.be>", // Updated based on client request
       to,
       subject,
       html,
@@ -26,9 +28,9 @@ export async function sendEmail({
 
     return { success: true, data };
   } catch (error) {
-    console.error('[Emails] Failed to send email:', error);
+    console.error("[Emails] Failed to send email:", error);
     return { success: false, error };
   }
 }
 
-export const SELLER_EMAIL = process.env.SELLER_EMAIL || 'sales@chilisaus.be';
+export const SELLER_EMAIL = process.env.SELLER_EMAIL || "sales@chilisaus.be";

@@ -1,6 +1,6 @@
-import Link from 'next/link';
-import Image from 'next/image';
-import type { Category } from './types';
+import Link from "next/link";
+import Image from "next/image";
+import type { Category } from "./types";
 
 interface CategoryCardProps {
   category: Category & { image_url?: string | null };

@@ -1,17 +1,21 @@
 {
   "Auth": {
-    "SignIn": "Sign in",
+    "SignIn": "Přihlásit se",
     "SignUp": "Sign up",
     "Email": "Email",
     "Password": "Password",
     "ConfirmPassword": "Confirm password",
-    "ResetPassword": "Reset password"
+    "ResetPassword": "Reset password",
+    "SignOut": "Odhlásit se"
   },
   "Nav": {
     "Shop": "Shop",
     "Cart": "Cart",
     "Checkout": "Checkout",
-    "Account": "Account"
+    "Account": "Account",
+    "Dashboard": "Přehled",
+    "Scoville": "Scoville",
+    "Videos": "Videa"
   },
   "Admin": {
     "title": "Store admin",

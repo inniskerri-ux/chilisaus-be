@@ -1,73 +1,83 @@
-import { getTranslations } from 'next-intl/server';
-import { requireShopOwner } from './lib/auth';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { 
-  Package, 
-  Tag, 
-  Briefcase, 
-  TrendingUp, 
-  ShoppingBag, 
-  AlertTriangle, 
-  Clock, 
+import { getTranslations } from "next-intl/server";
+import { requireShopOwner } from "./lib/auth";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Package,
+  Tag,
+  Briefcase,
+  TrendingUp,
+  ShoppingBag,
+  AlertTriangle,
+  Clock,
   ArrowRight,
-  ExternalLink
-} from 'lucide-react';
-import { formatPrice } from '@/lib/format';
-import Link from 'next/link';
-import { Button } from '@/components/ui/button';
+  ExternalLink,
+} from "lucide-react";
+import { formatPrice } from "@/lib/format";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
-export default async function AdminDashboard({ params }: { params: Promise<{ locale: string }> }) {
+export default async function AdminDashboard({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
   const { locale } = await params;
   const { supabase } = await requireShopOwner(locale);
-  const t = await getTranslations({ locale, namespace: 'Admin' });
+  const t = await getTranslations({ locale, namespace: "Admin" });
 
   // Fetch all stats in parallel
   const [
-    { count: productCount }, 
-    { count: brandCount }, 
+    { count: productCount },
+    { count: brandCount },
     { count: categoryCount },
     { data: salesData },
     { data: recentOrders },
-    { data: lowStockProducts }
+    { data: lowStockProducts },
   ] = await Promise.all([
-    supabase.from('products').select('id', { count: 'exact', head: true }),
-    supabase.from('brands').select('id', { count: 'exact', head: true }),
-    supabase.from('categories').select('id', { count: 'exact', head: true }),
+    supabase.from("products").select("id", { count: "exact", head: true }),
+    supabase.from("brands").select("id", { count: "exact", head: true }),
+    supabase.from("categories").select("id", { count: "exact", head: true }),
     // Total Sales Sum
-    supabase.from('orders').select('total_cents').eq('status', 'paid'),
+    supabase.from("orders").select("total_cents").eq("status", "paid"),
     // Recent Orders
-    supabase.from('orders').select('*').order('created_at', { ascending: false }).limit(5),
+    supabase
+      .from("orders")
+      .select("*")
+      .order("created_at", { ascending: false })
+      .limit(5),
     // Low Stock Products
-    supabase.from('products')
-      .select('name, stock, low_stock_threshold')
-      .lte('stock', 2) // We can use the column eventually, but 2 is the default
-      .order('stock', { ascending: true })
+    supabase
+      .from("products")
+      .select("name, stock, low_stock_threshold")
+      .lte("stock", 2) // We can use the column eventually, but 2 is the default
+      .order("stock", { ascending: true }),
   ]);
 
-  const totalRevenueCents = salesData?.reduce((acc, curr) => acc + curr.total_cents, 0) || 0;
+  const totalRevenueCents =
+    salesData?.reduce((acc, curr) => acc + curr.total_cents, 0) || 0;
   const totalOrders = salesData?.length || 0;
 
   const statsCards = [
-    { 
-      label: 'Total Revenue', 
-      value: formatPrice(totalRevenueCents), 
-      icon: TrendingUp, 
-      color: 'text-green-600',
-      bgColor: 'bg-green-50'
+    {
+      label: "Total Revenue",
+      value: formatPrice(totalRevenueCents),
+      icon: TrendingUp,
+      color: "text-green-600",
+      bgColor: "bg-green-50",
     },
-    { 
-      label: 'Total Orders', 
-      value: totalOrders, 
-      icon: ShoppingBag, 
-      color: 'text-red-600',
-      bgColor: 'bg-red-50'
+    {
+      label: "Total Orders",
+      value: totalOrders,
+      icon: ShoppingBag,
+      color: "text-red-600",
+      bgColor: "bg-red-50",
     },
-    { 
-      label: t('stats.products'), 
-      value: productCount ?? 0, 
-      icon: Package, 
-      color: 'text-blue-600',
-      bgColor: 'bg-blue-50'
+    {
+      label: t("stats.products"),
+      value: productCount ?? 0,
+      icon: Package,
+      color: "text-blue-600",
+      bgColor: "bg-blue-50",
     },
   ];
 
@@ -106,7 +116,7 @@ export default async function AdminDashboard({ params }: { params: Promise<{ loc
               </span>
             )}
           </div>
-          
+
           <Card>
             <CardContent className="p-0">
               {!lowStockProducts || lowStockProducts.length === 0 ? (
@@ -116,13 +126,22 @@ export default async function AdminDashboard({ params }: { params: Promise<{ loc
               ) : (
                 <div className="divide-y">
                   {lowStockProducts.map((product, idx) => (
-                    <div key={idx} className="p-4 flex items-center justify-between">
+                    <div
+                      key={idx}
+                      className="p-4 flex items-center justify-between"
+                    >
                       <div>
-                        <p className="font-bold text-sm text-zinc-900">{product.name}</p>
-                        <p className="text-xs text-zinc-500">Threshold: {product.low_stock_threshold || 2}</p>
+                        <p className="font-bold text-sm text-zinc-900">
+                          {product.name}
+                        </p>
+                        <p className="text-xs text-zinc-500">
+                          Threshold: {product.low_stock_threshold || 2}
+                        </p>
                       </div>
                       <div className="text-right">
-                        <span className={`text-sm font-bold ${product.stock === 0 ? 'text-red-600' : 'text-orange-600'}`}>
+                        <span
+                          className={`text-sm font-bold ${product.stock === 0 ? "text-red-600" : "text-orange-600"}`}
+                        >
                           {product.stock} left
                         </span>
                       </div>
@@ -133,8 +152,15 @@ export default async function AdminDashboard({ params }: { params: Promise<{ loc
             </CardContent>
             {lowStockProducts && lowStockProducts.length > 0 && (
               <div className="p-3 bg-zinc-50 border-t text-center">
-                <Button variant="link" size="sm" asChild className="text-xs font-bold">
-                  <Link href={`/${locale}/admin/products`}>Manage Inventory <ArrowRight className="ml-1 h-3 w-3" /></Link>
+                <Button
+                  variant="link"
+                  size="sm"
+                  asChild
+                  className="text-xs font-bold"
+                >
+                  <Link href={`/${locale}/admin/products`}>
+                    Manage Inventory <ArrowRight className="ml-1 h-3 w-3" />
+                  </Link>
                 </Button>
               </div>
             )}
@@ -156,21 +182,34 @@ export default async function AdminDashboard({ params }: { params: Promise<{ loc
               ) : (
                 <div className="divide-y">
                   {recentOrders.map((order) => (
-                    <div key={order.id} className="p-4 flex items-center justify-between hover:bg-zinc-50/50 transition-colors">
+                    <div
+                      key={order.id}
+                      className="p-4 flex items-center justify-between hover:bg-zinc-50/50 transition-colors"
+                    >
                       <div className="flex items-center gap-3">
                         <div className="bg-zinc-100 p-2 rounded text-zinc-500">
                           <ShoppingBag size={16} />
                         </div>
                         <div>
-                          <p className="font-bold text-sm text-zinc-900">#{order.id.slice(0, 8).toUpperCase()}</p>
-                          <p className="text-xs text-zinc-500">{order.customer_email}</p>
+                          <p className="font-bold text-sm text-zinc-900">
+                            #{order.id.slice(0, 8).toUpperCase()}
+                          </p>
+                          <p className="text-xs text-zinc-500">
+                            {order.customer_email}
+                          </p>
                         </div>
                       </div>
                       <div className="text-right">
-                        <p className="font-bold text-sm">{formatPrice(order.total_cents)}</p>
-                        <span className={`text-[10px] font-bold uppercase px-1.5 py-0.5 rounded border ${
-                          order.status === 'paid' ? 'bg-green-50 text-green-700 border-green-100' : 'bg-zinc-50 text-zinc-500'
-                        }`}>
+                        <p className="font-bold text-sm">
+                          {formatPrice(order.total_cents)}
+                        </p>
+                        <span
+                          className={`text-[10px] font-bold uppercase px-1.5 py-0.5 rounded border ${
+                            order.status === "paid"
+                              ? "bg-green-50 text-green-700 border-green-100"
+                              : "bg-zinc-50 text-zinc-500"
+                          }`}
+                        >
                           {order.status}
                         </span>
                       </div>
@@ -180,8 +219,13 @@ export default async function AdminDashboard({ params }: { params: Promise<{ loc
               )}
             </CardContent>
             <div className="p-3 bg-zinc-50 border-t text-center">
-              <Button variant="link" size="sm" className="text-xs font-bold text-zinc-500">
-                View All Orders (Coming Soon) <ArrowRight className="ml-1 h-3 w-3" />
+              <Button
+                variant="link"
+                size="sm"
+                className="text-xs font-bold text-zinc-500"
+              >
+                View All Orders (Coming Soon){" "}
+                <ArrowRight className="ml-1 h-3 w-3" />
               </Button>
             </div>
           </Card>
@@ -198,11 +242,15 @@ export default async function AdminDashboard({ params }: { params: Promise<{ loc
           </CardHeader>
           <CardContent className="flex gap-8">
             <div>
-              <p className="text-zinc-400 text-xs uppercase font-bold mb-1">{t('stats.brands')}</p>
+              <p className="text-zinc-400 text-xs uppercase font-bold mb-1">
+                {t("stats.brands")}
+              </p>
               <p className="text-2xl font-bold">{brandCount}</p>
             </div>
             <div>
-              <p className="text-zinc-400 text-xs uppercase font-bold mb-1">{t('stats.categories')}</p>
+              <p className="text-zinc-400 text-xs uppercase font-bold mb-1">
+                {t("stats.categories")}
+              </p>
               <p className="text-2xl font-bold">{categoryCount}</p>
             </div>
           </CardContent>
@@ -216,9 +264,18 @@ export default async function AdminDashboard({ params }: { params: Promise<{ loc
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-green-100 text-sm">Create and manage your newsletters in the Marketing Hub.</p>
-            <Button asChild variant="secondary" size="sm" className="mt-4 bg-white text-roh-flag-green hover:bg-green-50 border-none font-bold">
-              <Link href={`/${locale}/admin/marketing`}>Go to Marketing Hub</Link>
+            <p className="text-green-100 text-sm">
+              Create and manage your newsletters in the Marketing Hub.
+            </p>
+            <Button
+              asChild
+              variant="secondary"
+              size="sm"
+              className="mt-4 bg-white text-roh-flag-green hover:bg-green-50 border-none font-bold"
+            >
+              <Link href={`/${locale}/admin/marketing`}>
+                Go to Marketing Hub
+              </Link>
             </Button>
           </CardContent>
         </Card>
@@ -228,4 +285,4 @@ export default async function AdminDashboard({ params }: { params: Promise<{ loc
 }
 
 // Helper icons missing from previous imports
-import { Mail } from 'lucide-react';
+import { Mail } from "lucide-react";

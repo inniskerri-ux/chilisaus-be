@@ -5,13 +5,17 @@
     "Email": "E-Mail",
     "Password": "Passwort",
     "ConfirmPassword": "Passwort bestätigen",
-    "ResetPassword": "Passwort zurücksetzen"
+    "ResetPassword": "Passwort zurücksetzen",
+    "SignOut": "Abmelden"
   },
   "Nav": {
     "Shop": "Shop",
     "Cart": "Warenkorb",
     "Checkout": "Kasse",
-    "Account": "Konto"
+    "Account": "Konto",
+    "Dashboard": "Dashboard",
+    "Scoville": "Scoville",
+    "Videos": "Videos"
   },
   "Admin": {
     "title": "Store admin",

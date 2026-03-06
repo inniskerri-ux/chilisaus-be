@@ -1,15 +1,21 @@
-import Image from 'next/image';
-import Link from 'next/link';
-import { getTranslations } from 'next-intl/server';
-import type { StoreBrand } from './types';
+import Image from "next/image";
+import Link from "next/link";
+import { getTranslations } from "next-intl/server";
+import type { StoreBrand } from "./types";
 
 interface BrandShowcaseProps {
   locale: string;
   brands: StoreBrand[];
 }
 
-export default async function BrandShowcase({ locale, brands }: BrandShowcaseProps) {
-  const t = await getTranslations({ locale, namespace: 'homepage.producerShowcase' });
+export default async function BrandShowcase({
+  locale,
+  brands,
+}: BrandShowcaseProps) {
+  const t = await getTranslations({
+    locale,
+    namespace: "homepage.producerShowcase",
+  });
 
   return (
     <section id="brands" className="border-t border-border">
@@ -17,18 +23,18 @@ export default async function BrandShowcase({ locale, brands }: BrandShowcasePro
         <div className="flex items-end justify-between mb-6">
           <div>
             <div className="text-xs font-bold uppercase tracking-wider text-roh-military-olive mb-2">
-              {t('eyebrow')}
+              {t("eyebrow")}
             </div>
             <h2 className="font-display text-3xl font-bold text-foreground">
-              {t('title')}
+              {t("title")}
             </h2>
           </div>
           <Link
             href={`/${locale}/brands`}
             className="hidden sm:inline-flex items-center justify-center h-12 px-6 rounded-full border border-border bg-background text-foreground font-semibold hover:bg-card transition-colors"
-            aria-label={t('viewAll')}
+            aria-label={t("viewAll")}
           >
-            {t('viewAll')}
+            {t("viewAll")}
           </Link>
         </div>
 
@@ -64,13 +70,15 @@ export default async function BrandShowcase({ locale, brands }: BrandShowcasePro
                       {brand.name}
                     </div>
                   )}
-                  <h3 className="font-bold text-sm text-foreground">{brand.name}</h3>
+                  <h3 className="font-bold text-sm text-foreground">
+                    {brand.name}
+                  </h3>
                   <Link
                     href={`/${locale}/brands/${brand.slug}`}
                     className="text-xs text-roh-flag-green underline hover:no-underline"
-                    aria-label={`${t('seeMore')} ${brand.name}`}
+                    aria-label={`${t("seeMore")} ${brand.name}`}
                   >
-                    {t('seeMore')}
+                    {t("seeMore")}
                   </Link>
                 </article>
               ))}
@@ -80,9 +88,9 @@ export default async function BrandShowcase({ locale, brands }: BrandShowcasePro
           <Link
             href={`/${locale}/brands`}
             className="inline-flex items-center justify-center h-12 px-6 rounded-full border border-border bg-background text-foreground font-semibold"
-            aria-label={t('viewAll')}
+            aria-label={t("viewAll")}
           >
-            {t('viewAll')}
+            {t("viewAll")}
           </Link>
         </div>
       </div>

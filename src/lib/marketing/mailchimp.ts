@@ -1,5 +1,5 @@
-import mailchimp from '@mailchimp/mailchimp_marketing';
-import crypto from 'crypto';
+import mailchimp from "@mailchimp/mailchimp_marketing";
+import crypto from "crypto";
 
 mailchimp.setConfig({
   apiKey: process.env.MAILCHIMP_API_KEY,
@@ -20,31 +20,34 @@ export async function subscribeUser({
   tags?: string[];
 }) {
   if (!AUDIENCE_ID) {
-    console.warn('[Mailchimp] Audience ID not configured');
-    return { success: false, error: 'Not configured' };
+    console.warn("[Mailchimp] Audience ID not configured");
+    return { success: false, error: "Not configured" };
   }
 
   try {
-    const subscriberHash = crypto.createHash('md5').update(email.toLowerCase()).digest('hex');
+    const subscriberHash = crypto
+      .createHash("md5")
+      .update(email.toLowerCase())
+      .digest("hex");
 
     await mailchimp.lists.setListMember(AUDIENCE_ID, subscriberHash, {
       email_address: email,
-      status_if_new: 'subscribed',
+      status_if_new: "subscribed",
       merge_fields: {
-        FNAME: firstName || '',
-        LNAME: lastName || '',
+        FNAME: firstName || "",
+        LNAME: lastName || "",
       },
     });
 
     if (tags.length > 0) {
       await mailchimp.lists.updateListMemberTags(AUDIENCE_ID, subscriberHash, {
-        tags: tags.map(tag => ({ name: tag, status: 'active' })),
+        tags: tags.map((tag) => ({ name: tag, status: "active" })),
       });
     }
 
     return { success: true };
   } catch (error) {
-    console.error('[Mailchimp] Subscription failed:', error);
+    console.error("[Mailchimp] Subscription failed:", error);
     return { success: false, error };
   }
 }
@@ -54,8 +57,8 @@ export async function addOrderToMailchimp(orderData: any) {
   // For now, we just tag them as 'customer'
   return subscribeUser({
     email: orderData.customerEmail,
-    firstName: orderData.shippingName.split(' ')[0],
-    tags: ['customer', 'purchaser'],
+    firstName: orderData.shippingName.split(" ")[0],
+    tags: ["customer", "purchaser"],
   });
 }
 
@@ -66,12 +69,12 @@ export async function listCampaigns(count = 10) {
   try {
     const response = await (mailchimp as any).campaigns.list({
       count,
-      sort_field: 'create_time',
-      sort_dir: 'DESC'
+      sort_field: "create_time",
+      sort_dir: "DESC",
     });
     return { success: true, campaigns: response.campaigns };
   } catch (error) {
-    console.error('[Mailchimp] List campaigns failed:', error);
+    console.error("[Mailchimp] List campaigns failed:", error);
     return { success: false, error };
   }
 }
@@ -92,17 +95,18 @@ export async function createCampaign({
   fromName: string;
   replyTo: string;
 }) {
-  if (!AUDIENCE_ID) return { success: false, error: 'Audience ID not configured' };
+  if (!AUDIENCE_ID)
+    return { success: false, error: "Audience ID not configured" };
 
   try {
     const campaign = await (mailchimp as any).campaigns.create({
-      type: 'regular',
+      type: "regular",
       recipients: {
         list_id: AUDIENCE_ID,
       },
       settings: {
         subject_line: subject,
-        preview_text: previewText || '',
+        preview_text: previewText || "",
         title: title,
         from_name: fromName,
         reply_to: replyTo,
@@ -111,7 +115,7 @@ export async function createCampaign({
 
     return { success: true, campaign };
   } catch (error) {
-    console.error('[Mailchimp] Create campaign failed:', error);
+    console.error("[Mailchimp] Create campaign failed:", error);
     return { success: false, error };
   }
 }
@@ -126,7 +130,7 @@ export async function setCampaignContent(campaignId: string, html: string) {
     });
     return { success: true };
   } catch (error) {
-    console.error('[Mailchimp] Set content failed:', error);
+    console.error("[Mailchimp] Set content failed:", error);
     return { success: false, error };
   }
 }

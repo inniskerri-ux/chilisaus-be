@@ -1,25 +1,29 @@
-import { NextRequest, NextResponse } from 'next/server';
-import { getStripeServerClient } from '@/lib/stripe/server';
-import { createClient } from '@supabase/supabase-js';
-import { sendEmail, SELLER_EMAIL } from '@/lib/emails/client';
-import { getPackingSlipHtml, getOrderConfirmationHtml, getLowStockEmailHtml } from '@/lib/emails/templates';
-import { subscribeUser } from '@/lib/marketing/mailchimp';
-import { calculateTaxFromTotal } from '@/lib/checkout/pricing';
+import { NextRequest, NextResponse } from "next/server";
+import { getStripeServerClient } from "@/lib/stripe/server";
+import { createClient } from "@supabase/supabase-js";
+import { sendEmail, SELLER_EMAIL } from "@/lib/emails/client";
+import {
+  getPackingSlipHtml,
+  getOrderConfirmationHtml,
+  getLowStockEmailHtml,
+} from "@/lib/emails/templates";
+import { subscribeUser } from "@/lib/marketing/mailchimp";
+import { calculateTaxFromTotal } from "@/lib/checkout/pricing";
 
 const stripe = getStripeServerClient();
 
 // Use service role key to bypass RLS for webhook
 const supabaseAdmin = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!
+  process.env.SUPABASE_SERVICE_ROLE_KEY!,
 );
 
 export async function POST(req: NextRequest) {
   const body = await req.text();
-  const signature = req.headers.get('stripe-signature');
+  const signature = req.headers.get("stripe-signature");
 
   if (!signature) {
-    return NextResponse.json({ error: 'No signature' }, { status: 400 });
+    return NextResponse.json({ error: "No signature" }, { status: 400 });
   }
 
   let event;
@@ -27,14 +31,17 @@ export async function POST(req: NextRequest) {
     event = stripe.webhooks.constructEvent(
       body,
       signature,
-      process.env.STRIPE_WEBHOOK_SECRET!
+      process.env.STRIPE_WEBHOOK_SECRET!,
     );
   } catch (err: any) {
     console.error(`[Stripe Webhook] Error: ${err.message}`);
-    return NextResponse.json({ error: `Webhook Error: ${err.message}` }, { status: 400 });
+    return NextResponse.json(
+      { error: `Webhook Error: ${err.message}` },
+      { status: 400 },
+    );
   }
 
-  if (event.type === 'checkout.session.completed') {
+  if (event.type === "checkout.session.completed") {
     const session = event.data.object as any;
 
     try {
@@ -42,8 +49,11 @@ export async function POST(req: NextRequest) {
       await handleOrderCompleted(session);
       return NextResponse.json({ received: true });
     } catch (error) {
-      console.error('[Stripe Webhook] Error processing order:', error);
-      return NextResponse.json({ error: 'Order processing failed' }, { status: 500 });
+      console.error("[Stripe Webhook] Error processing order:", error);
+      return NextResponse.json(
+        { error: "Order processing failed" },
+        { status: 500 },
+      );
     }
   }
 
@@ -51,22 +61,32 @@ export async function POST(req: NextRequest) {
 }
 
 async function handleOrderCompleted(session: any) {
-  const { customer_details, shipping_details, metadata, amount_total, amount_subtotal, shipping_cost, total_details } = session;
+  const {
+    customer_details,
+    shipping_details,
+    metadata,
+    amount_total,
+    amount_subtotal,
+    shipping_cost,
+    total_details,
+  } = session;
 
   const cartSessionId = metadata?.cart_session_id;
   const userId = metadata?.user_id;
 
   // Check if a promotion code was used
-  const promoCodeId = total_details?.breakdown?.discounts?.[0]?.discount?.promotion_code;
+  const promoCodeId =
+    total_details?.breakdown?.discounts?.[0]?.discount?.promotion_code;
   if (promoCodeId) {
     // Increment redemption count in Supabase
-    await supabaseAdmin
-      .rpc('increment_voucher_redemption', { p_promo_code_id: promoCodeId });
+    await supabaseAdmin.rpc("increment_voucher_redemption", {
+      p_promo_code_id: promoCodeId,
+    });
   }
 
   // 2. Fetch full session with line items
   const fullSession = await stripe.checkout.sessions.retrieve(session.id, {
-    expand: ['line_items.data.price.product'],
+    expand: ["line_items.data.price.product"],
   });
 
   const lineItems = fullSession.line_items?.data || [];
@@ -79,12 +99,12 @@ async function handleOrderCompleted(session: any) {
 
   // 4. Store order in database
   const { data: order, error: orderError } = await supabaseAdmin
-    .from('orders')
+    .from("orders")
     .insert({
       user_id: userId,
       stripe_session_id: session.id,
       stripe_payment_intent_id: session.payment_intent,
-      status: 'paid',
+      status: "paid",
       subtotal_cents: subtotalCents,
       shipping_cents: shippingCents,
       tax_cents: taxCents,
@@ -104,7 +124,7 @@ async function handleOrderCompleted(session: any) {
 
   // 5. Store order items
   const orderItems = lineItems
-    .filter((item: any) => item.price.product.name !== 'Shipping')
+    .filter((item: any) => item.price.product.name !== "Shipping")
     .map((item: any) => ({
       order_id: order.id,
       product_name: item.price.product.name,
@@ -113,21 +133,26 @@ async function handleOrderCompleted(session: any) {
       tax_cents: calculateTaxFromTotal(item.amount_total),
     }));
 
-  const { error: itemsError } = await supabaseAdmin.from('order_items').insert(orderItems);
+  const { error: itemsError } = await supabaseAdmin
+    .from("order_items")
+    .insert(orderItems);
   if (itemsError) throw itemsError;
 
   // 6. Update Inventory and Check for Low Stock
   for (const item of lineItems as any[]) {
     const productName = item.price?.product?.name;
-    if (!productName || productName === 'Shipping') continue;
-    
+    if (!productName || productName === "Shipping") continue;
+
     const quantitySold = item.quantity;
 
     // Use a transaction-like update with RPC or separate calls
-    const { data: updatedProduct, error: stockError } = await supabaseAdmin.rpc('reduce_stock', {
-      p_name: productName,
-      p_quantity: quantitySold
-    });
+    const { data: updatedProduct, error: stockError } = await supabaseAdmin.rpc(
+      "reduce_stock",
+      {
+        p_name: productName,
+        p_quantity: quantitySold,
+      },
+    );
 
     if (!stockError && updatedProduct) {
       // Check for low stock alert
@@ -142,18 +167,18 @@ async function handleOrderCompleted(session: any) {
         // 6b. Create In-App Notification
         // First find the shop owner(s)
         const { data: owners } = await supabaseAdmin
-          .from('profiles')
-          .select('id')
-          .eq('role', 'shop_owner');
+          .from("profiles")
+          .select("id")
+          .eq("role", "shop_owner");
 
         if (owners) {
-          const notifications = owners.map(owner => ({
+          const notifications = owners.map((owner) => ({
             user_id: owner.id,
-            title: 'Low Stock Alert',
+            title: "Low Stock Alert",
             message: `Product "${productName}" is running low (${updatedProduct.stock} left).`,
-            type: 'warning'
+            type: "warning",
           }));
-          await supabaseAdmin.from('notifications').insert(notifications);
+          await supabaseAdmin.from("notifications").insert(notifications);
         }
       }
     }
@@ -197,12 +222,15 @@ async function handleOrderCompleted(session: any) {
   // 7. Sync to Mailchimp
   await subscribeUser({
     email: order.customer_email,
-    firstName: order.shipping_name.split(' ')[0],
-    tags: ['customer', 'purchaser'],
+    firstName: order.shipping_name.split(" ")[0],
+    tags: ["customer", "purchaser"],
   });
 
   // 8. Clean up cart (optional but recommended)
   if (cartSessionId) {
-    await supabaseAdmin.from('cart_items').delete().eq('cart_session_id', cartSessionId);
+    await supabaseAdmin
+      .from("cart_items")
+      .delete()
+      .eq("cart_session_id", cartSessionId);
   }
 }

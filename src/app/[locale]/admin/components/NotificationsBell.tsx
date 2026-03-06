@@ -1,17 +1,24 @@
-'use client';
+"use client";
 
-import { useState, useEffect } from 'react';
-import { Bell, Check, Info, AlertTriangle, AlertCircle, CheckCircle } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { supabase } from '@/lib/supabase/client';
-import { formatDistanceToNow } from 'date-fns';
-import { useRouter } from 'next/navigation';
+import { useState, useEffect } from "react";
+import {
+  Bell,
+  Check,
+  Info,
+  AlertTriangle,
+  AlertCircle,
+  CheckCircle,
+} from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { supabase } from "@/lib/supabase/client";
+import { formatDistanceToNow } from "date-fns";
+import { useRouter } from "next/navigation";
 
 interface Notification {
   id: string;
   title: string;
   message: string;
-  type: 'info' | 'warning' | 'error' | 'success';
+  type: "info" | "warning" | "error" | "success";
   is_read: boolean;
   created_at: string;
 }
@@ -21,22 +28,26 @@ export default function NotificationsBell({ userId }: { userId: string }) {
   const [isOpen, setIsOpen] = useState(false);
   const router = useRouter();
 
-  const unreadCount = notifications.filter(n => !n.is_read).length;
+  const unreadCount = notifications.filter((n) => !n.is_read).length;
 
   useEffect(() => {
     fetchNotifications();
 
     // Subscribe to new notifications
     const channel = supabase
-      .channel('notifications')
-      .on('postgres_changes', {
-        event: 'INSERT',
-        schema: 'public',
-        table: 'notifications',
-        filter: `user_id=eq.${userId}`
-      }, (payload) => {
-        setNotifications(prev => [payload.new as Notification, ...prev]);
-      })
+      .channel("notifications")
+      .on(
+        "postgres_changes",
+        {
+          event: "INSERT",
+          schema: "public",
+          table: "notifications",
+          filter: `user_id=eq.${userId}`,
+        },
+        (payload) => {
+          setNotifications((prev) => [payload.new as Notification, ...prev]);
+        },
+      )
       .subscribe();
 
     return () => {
@@ -46,46 +57,50 @@ export default function NotificationsBell({ userId }: { userId: string }) {
 
   async function fetchNotifications() {
     const { data } = await supabase
-      .from('notifications')
-      .select('*')
-      .eq('user_id', userId)
-      .order('created_at', { ascending: false })
+      .from("notifications")
+      .select("*")
+      .eq("user_id", userId)
+      .order("created_at", { ascending: false })
       .limit(5);
-    
+
     if (data) setNotifications(data);
   }
 
   async function markAsRead(id: string) {
     const { error } = await supabase
-      .from('notifications')
+      .from("notifications")
       .update({ is_read: true })
-      .eq('id', id);
-    
+      .eq("id", id);
+
     if (!error) {
-      setNotifications(prev => 
-        prev.map(n => n.id === id ? { ...n, is_read: true } : n)
+      setNotifications((prev) =>
+        prev.map((n) => (n.id === id ? { ...n, is_read: true } : n)),
       );
     }
   }
 
   async function markAllAsRead() {
     const { error } = await supabase
-      .from('notifications')
+      .from("notifications")
       .update({ is_read: true })
-      .eq('user_id', userId)
-      .eq('is_read', false);
-    
+      .eq("user_id", userId)
+      .eq("is_read", false);
+
     if (!error) {
-      setNotifications(prev => prev.map(n => ({ ...n, is_read: true })));
+      setNotifications((prev) => prev.map((n) => ({ ...n, is_read: true })));
     }
   }
 
   const getTypeIcon = (type: string) => {
     switch (type) {
-      case 'warning': return <AlertTriangle className="w-4 h-4 text-orange-500" />;
-      case 'error': return <AlertCircle className="w-4 h-4 text-red-500" />;
-      case 'success': return <CheckCircle className="w-4 h-4 text-green-500" />;
-      default: return <Info className="w-4 h-4 text-blue-500" />;
+      case "warning":
+        return <AlertTriangle className="w-4 h-4 text-orange-500" />;
+      case "error":
+        return <AlertCircle className="w-4 h-4 text-red-500" />;
+      case "success":
+        return <CheckCircle className="w-4 h-4 text-green-500" />;
+      default:
+        return <Info className="w-4 h-4 text-blue-500" />;
     }
   };
 
@@ -111,7 +126,7 @@ export default function NotificationsBell({ userId }: { userId: string }) {
           <div className="flex items-center justify-between p-4 border-b bg-zinc-50/50">
             <h3 className="font-bold text-sm">Notifications</h3>
             {unreadCount > 0 && (
-              <button 
+              <button
                 onClick={markAllAsRead}
                 className="text-[10px] uppercase tracking-wider font-bold text-zinc-400 hover:text-zinc-800 transition-colors"
               >
@@ -127,26 +142,32 @@ export default function NotificationsBell({ userId }: { userId: string }) {
               </div>
             ) : (
               notifications.map((notification) => (
-                <div 
-                  key={notification.id} 
+                <div
+                  key={notification.id}
                   className={`p-4 border-b last:border-0 transition-colors flex gap-3 ${
-                    notification.is_read ? 'bg-white opacity-60' : 'bg-roh-flag-green/5'
+                    notification.is_read
+                      ? "bg-white opacity-60"
+                      : "bg-roh-flag-green/5"
                   }`}
                 >
                   <div className="mt-0.5">{getTypeIcon(notification.type)}</div>
                   <div className="flex-grow min-w-0">
-                    <p className={`text-sm leading-tight ${notification.is_read ? 'text-zinc-600' : 'font-bold'}`}>
+                    <p
+                      className={`text-sm leading-tight ${notification.is_read ? "text-zinc-600" : "font-bold"}`}
+                    >
                       {notification.title}
                     </p>
                     <p className="text-xs text-zinc-500 line-clamp-2 mt-1">
                       {notification.message}
                     </p>
                     <p className="text-[10px] text-zinc-400 mt-2">
-                      {formatDistanceToNow(new Date(notification.created_at), { addSuffix: true })}
+                      {formatDistanceToNow(new Date(notification.created_at), {
+                        addSuffix: true,
+                      })}
                     </p>
                   </div>
                   {!notification.is_read && (
-                    <button 
+                    <button
                       onClick={() => markAsRead(notification.id)}
                       className="text-zinc-300 hover:text-green-600 transition-colors self-center"
                       title="Mark as read"
@@ -158,9 +179,9 @@ export default function NotificationsBell({ userId }: { userId: string }) {
               ))
             )}
           </div>
-          
+
           <div className="p-3 border-t bg-zinc-50/50 text-center">
-            <button 
+            <button
               className="text-xs font-semibold text-zinc-500 hover:text-zinc-800"
               onClick={() => setIsOpen(false)}
             >

@@ -1,16 +1,16 @@
-'use client';
+"use client";
 
-import { useState, useEffect } from 'react';
-import { useTranslations } from 'next-intl';
-import { X, Mail, Sparkles, CheckCircle2, Loader2 } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { subscribeToNewsletter } from '@/app/[locale]/actions/newsletter';
+import { useState, useEffect } from "react";
+import { useTranslations } from "next-intl";
+import { X, Mail, Sparkles, CheckCircle2, Loader2 } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { subscribeToNewsletter } from "@/app/[locale]/actions/newsletter";
 
 export default function NewsletterPopup({ locale }: { locale: string }) {
-  const t = useTranslations('Newsletter');
+  const t = useTranslations("Newsletter");
   const [isOpen, setIsOpen] = useState(false);
-  const [email, setEmail] = useState('');
+  const [email, setEmail] = useState("");
   const [isPending, setIsPending] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -18,16 +18,19 @@ export default function NewsletterPopup({ locale }: { locale: string }) {
   useEffect(() => {
     // Show after 5 seconds
     const timer = setTimeout(() => {
-      const hasDismissed = localStorage.getItem('newsletter_dismissed');
-      const hasSignedUp = document.cookie.includes('newsletter_signed_up=true');
-      const consentRaw = localStorage.getItem('cookie_consent');
+      const dismissedUntil = localStorage.getItem("newsletter_dismissed_until");
+      const hasSignedUp = document.cookie.includes("newsletter_signed_up=true");
+      const consentRaw = localStorage.getItem("cookie_consent");
       const consent = consentRaw ? JSON.parse(consentRaw) : null;
 
-      // Only show if: 
-      // 1. Not dismissed 
+      const isDismissed =
+        dismissedUntil && parseInt(dismissedUntil) > Date.now();
+
+      // Only show if:
+      // 1. Not dismissed
       // 2. Not already signed up
       // 3. Either consent is not yet set (we assume we can ask) OR functional cookies are allowed
-      if (!hasDismissed && !hasSignedUp && (!consent || consent.functional)) {
+      if (!isDismissed && !hasSignedUp && (!consent || consent.functional)) {
         setIsOpen(true);
       }
     }, 5000);
@@ -37,7 +40,9 @@ export default function NewsletterPopup({ locale }: { locale: string }) {
 
   const handleDismiss = () => {
     setIsOpen(false);
-    localStorage.setItem('newsletter_dismissed', 'true');
+    // Remember dismissal for 30 days
+    const expiry = Date.now() + 30 * 24 * 60 * 60 * 1000;
+    localStorage.setItem("newsletter_dismissed_until", expiry.toString());
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -51,14 +56,15 @@ export default function NewsletterPopup({ locale }: { locale: string }) {
         setIsSuccess(true);
         // Set cookie to remember signup for 1 year
         document.cookie = `newsletter_signed_up=true; path=/; max-age=${60 * 60 * 24 * 365}; SameSite=Lax`;
-        localStorage.setItem('newsletter_dismissed', 'true');
+        const expiry = Date.now() + 365 * 24 * 60 * 60 * 1000;
+        localStorage.setItem("newsletter_dismissed_until", expiry.toString());
         // Close after 3 seconds on success
         setTimeout(() => setIsOpen(false), 3000);
       } else {
-        setError(result.error || 'Failed to subscribe');
+        setError(result.error || "Failed to subscribe");
       }
     } catch (err) {
-      setError('Something went wrong. Please try again.');
+      setError("Something went wrong. Please try again.");
     } finally {
       setIsPending(false);
     }
@@ -70,7 +76,7 @@ export default function NewsletterPopup({ locale }: { locale: string }) {
     <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in duration-300">
       <div className="relative w-full max-w-md bg-white rounded-2xl shadow-2xl overflow-hidden animate-in zoom-in slide-in-from-bottom-4 duration-500">
         {/* Close Button */}
-        <button 
+        <button
           onClick={handleDismiss}
           className="absolute top-4 right-4 p-1 rounded-full hover:bg-zinc-100 text-zinc-400 transition-colors"
         >
@@ -86,15 +92,22 @@ export default function NewsletterPopup({ locale }: { locale: string }) {
                 </div>
               </div>
 
-              <h2 className="text-2xl font-bold text-center mb-2">{t('title')}</h2>
-              <p className="text-zinc-600 text-center mb-8">{t('description')}</p>
+              <h2 className="text-2xl font-bold text-center mb-2">
+                {t("title")}
+              </h2>
+              <p className="text-zinc-600 text-center mb-8">
+                {t("description")}
+              </p>
 
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div className="relative">
-                  <Mail className="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-400" size={18} />
-                  <Input 
-                    type="email" 
-                    placeholder={t('placeholder')} 
+                  <Mail
+                    className="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-400"
+                    size={18}
+                  />
+                  <Input
+                    type="email"
+                    placeholder={t("placeholder")}
                     className="pl-10 h-12 rounded-xl"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
@@ -103,20 +116,26 @@ export default function NewsletterPopup({ locale }: { locale: string }) {
                   />
                 </div>
 
-                {error && <p className="text-red-500 text-xs text-center font-medium">{error}</p>}
+                {error && (
+                  <p className="text-red-500 text-xs text-center font-medium">
+                    {error}
+                  </p>
+                )}
 
-                <Button 
-                  type="submit" 
+                <Button
+                  type="submit"
                   disabled={isPending}
                   className="w-full h-12 text-lg font-bold bg-red-600 hover:bg-red-700 text-white rounded-xl shadow-lg shadow-red-200"
                 >
-                  {isPending ? <Loader2 className="mr-2 h-5 w-5 animate-spin" /> : null}
-                  {t('cta')}
+                  {isPending ? (
+                    <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+                  ) : null}
+                  {t("cta")}
                 </Button>
               </form>
 
               <p className="text-[10px] text-zinc-400 text-center mt-6 uppercase tracking-wider font-semibold">
-                {t('noSpam')}
+                {t("noSpam")}
               </p>
             </>
           ) : (
@@ -124,9 +143,11 @@ export default function NewsletterPopup({ locale }: { locale: string }) {
               <div className="flex justify-center mb-6">
                 <CheckCircle2 className="w-16 h-16 text-green-500" />
               </div>
-              <h2 className="text-2xl font-bold mb-4">{t('successTitle')}</h2>
-              <p className="text-zinc-600 mb-2">{t('successDescription')}</p>
-              <p className="text-sm font-bold text-red-600">{t('successAction')}</p>
+              <h2 className="text-2xl font-bold mb-4">{t("successTitle")}</h2>
+              <p className="text-zinc-600 mb-2">{t("successDescription")}</p>
+              <p className="text-sm font-bold text-red-600">
+                {t("successAction")}
+              </p>
             </div>
           )}
         </div>

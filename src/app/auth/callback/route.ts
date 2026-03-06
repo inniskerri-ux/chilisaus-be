@@ -1,11 +1,11 @@
-import { NextRequest, NextResponse } from 'next/server';
-import { createServerClient } from '@supabase/ssr';
-import { cookies } from 'next/headers';
+import { NextRequest, NextResponse } from "next/server";
+import { createServerClient } from "@supabase/ssr";
+import { cookies } from "next/headers";
 
 export async function GET(request: NextRequest) {
   const { searchParams, origin } = new URL(request.url);
-  const code = searchParams.get('code');
-  const next = searchParams.get('next') ?? '/en';
+  const code = searchParams.get("code");
+  const next = searchParams.get("next") ?? "/en";
 
   if (code) {
     const cookieStore = await cookies();
@@ -14,11 +14,17 @@ export async function GET(request: NextRequest) {
       process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
       {
         cookies: {
-          get(name) { return cookieStore.get(name)?.value; },
-          set(name, value, options) { cookieStore.set({ name, value, ...options }); },
-          remove(name, options) { cookieStore.set({ name, value: '', ...options }); },
+          get(name) {
+            return cookieStore.get(name)?.value;
+          },
+          set(name, value, options) {
+            cookieStore.set({ name, value, ...options });
+          },
+          remove(name, options) {
+            cookieStore.set({ name, value: "", ...options });
+          },
         },
-      }
+      },
     );
 
     const { error } = await supabase.auth.exchangeCodeForSession(code);
@@ -27,5 +33,7 @@ export async function GET(request: NextRequest) {
     }
   }
 
-  return NextResponse.redirect(`${origin}/en/auth/sign-in?error=confirmation_failed`);
+  return NextResponse.redirect(
+    `${origin}/en/auth/sign-in?error=confirmation_failed`,
+  );
 }
