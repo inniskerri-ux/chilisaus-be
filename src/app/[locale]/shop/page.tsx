@@ -27,7 +27,7 @@ export default async function ShopPage({
           `
         id, name, slug, description, price_cents, currency,
         heat_level, image_url, stock, is_active,
-        brand:brands ( id, name, slug ),
+        brand:brands ( id, name, slug, country ),
         category:categories ( id, name, slug ),
         chilliTypes:products_chilli_types ( chilli_type:chilli_types ( id, name, slug, heat_level ) )
       `,
@@ -42,7 +42,7 @@ export default async function ShopPage({
         .select("id, name, slug, heat_level")
         .order("name"),
 
-      supabase.from("brands").select("id, name, slug").order("name"),
+      supabase.from("brands").select("id, name, slug, country").order("name"),
     ]);
 
   const products: StoreProduct[] = (productsRes.data ?? []).map((row: any) => ({
@@ -57,7 +57,7 @@ export default async function ShopPage({
     stock: row.stock,
     is_active: row.is_active,
     brand: row.brand
-      ? { id: row.brand.id, name: row.brand.name, slug: row.brand.slug }
+      ? { id: row.brand.id, name: row.brand.name, slug: row.brand.slug, country: row.brand.country }
       : null,
     category: row.category
       ? {
@@ -96,6 +96,7 @@ export default async function ShopPage({
     id: b.id,
     name: b.name,
     slug: b.slug,
+    country: b.country,
   }));
 
   return (
