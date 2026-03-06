@@ -52,8 +52,20 @@ function ProductArchiveContent({
     initialCategory || "",
   );
   const [selectedBrand, setSelectedBrand] = useState("");
+  const [selectedCountry, setSelectedCountry] = useState("");
   const [sortBy, setSortBy] = useState<SortOption>("popular");
   const [displayCount, setDisplayCount] = useState(12);
+
+  // Derive unique countries from brands
+  const countries = useMemo(() => {
+    const uniqueCountries = new Set<string>();
+    brands.forEach((brand) => {
+      if (brand.country) {
+        uniqueCountries.add(brand.country);
+      }
+    });
+    return Array.from(uniqueCountries).sort();
+  }, [brands]);
 
   // Sync state if URL changes (e.g. back button)
   useEffect(() => {
@@ -99,12 +111,16 @@ function ProductArchiveContent({
         product.brand?.id?.toString() === selectedBrand ||
         product.brand?.slug === selectedBrand;
 
+      const matchesCountry =
+        !selectedCountry || product.brand?.country === selectedCountry;
+
       return (
         matchesSearch &&
         matchesHeatLevel &&
         matchesChilliType &&
         matchesCategory &&
-        matchesBrand
+        matchesBrand &&
+        matchesCountry
       );
     });
 
@@ -135,6 +151,7 @@ function ProductArchiveContent({
     selectedChilliType,
     selectedCategory,
     selectedBrand,
+    selectedCountry,
     sortBy,
   ]);
 
@@ -144,7 +161,7 @@ function ProductArchiveContent({
     if (selectedHeatLevel) {
       filters.push({
         label: `Heat: ${selectedHeatLevel}`,
-        value: selectedHeatLevel,
+        value: `heat-${selectedHeatLevel}`,
         clear: () => setSelectedHeatLevel(""),
       });
     }
@@ -157,7 +174,7 @@ function ProductArchiveContent({
       const catName = cat?.name || selectedCategory;
       filters.push({
         label: `Type: ${catName}`,
-        value: selectedCategory,
+        value: `cat-${selectedCategory}`,
         clear: () => setSelectedCategory(""),
       });
     }
@@ -168,12 +185,26 @@ function ProductArchiveContent({
       const brandName = brand?.name || selectedBrand;
       filters.push({
         label: `Producer: ${brandName}`,
-        value: selectedBrand,
+        value: `brand-${selectedBrand}`,
         clear: () => setSelectedBrand(""),
       });
     }
+    if (selectedCountry) {
+      filters.push({
+        label: `Country: ${selectedCountry}`,
+        value: `country-${selectedCountry}`,
+        clear: () => setSelectedCountry(""),
+      });
+    }
     return filters;
-  }, [selectedHeatLevel, selectedCategory, selectedBrand, categories, brands]);
+  }, [
+    selectedHeatLevel,
+    selectedCategory,
+    selectedBrand,
+    selectedCountry,
+    categories,
+    brands,
+  ]);
 
   const selectedPepper = useMemo(() => {
     if (!selectedChilliType) return null;
@@ -186,6 +217,7 @@ function ProductArchiveContent({
     setSelectedChilliType("");
     setSelectedCategory("");
     setSelectedBrand("");
+    setSelectedCountry("");
   };
 
   const displayedProducts = filteredAndSortedProducts.slice(0, displayCount);
@@ -196,7 +228,7 @@ function ProductArchiveContent({
       <div className="max-w-7xl mx-auto">
         {/* Filter Section */}
         <section className="border-b border-border pb-5 mb-8">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-7 gap-3">
             {/* Search */}
             <label className="block text-sm font-medium text-foreground">
               {t("search.placeholder")}
@@ -241,6 +273,24 @@ function ProductArchiveContent({
                 {brands.map((brand) => (
                   <option key={brand.id} value={brand.id}>
                     {brand.name}
+                  </option>
+                ))}
+              </select>
+            </label>
+
+            {/* Country */}
+            <label className="block text-sm font-medium text-foreground">
+              {t("search.filters.country")}
+              <select
+                value={selectedCountry}
+                onChange={(e) => setSelectedCountry(e.target.value)}
+                className="mt-1 w-full rounded-lg border border-border bg-card px-3 py-2 text-foreground
+                         focus:outline-none focus:ring-2 focus:ring-brand-red"
+              >
+                <option value="">{t("search.filters.allCountries")}</option>
+                {countries.map((country) => (
+                  <option key={country} value={country}>
+                    {country}
                   </option>
                 ))}
               </select>

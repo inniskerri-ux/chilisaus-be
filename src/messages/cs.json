@@ -83,6 +83,8 @@
       "filters": {
         "heatLevel": "Úroveň pálivosti",
         "pepper": "Paprika",
+        "country": "Země",
+        "allCountries": "Všechny země",
         "allChilliTypes": "Všechny papriky",
         "sauceType": "Typ",
         "allCategories": "Všechny typy",

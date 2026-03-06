@@ -83,6 +83,8 @@
       "filters": {
         "heatLevel": "Schärfegrad",
         "pepper": "Pfeffer",
+        "country": "Land",
+        "allCountries": "Alle Länder",
         "allChilliTypes": "Alle Paprika",
         "sauceType": "Typ",
         "allCategories": "Alle Typen",

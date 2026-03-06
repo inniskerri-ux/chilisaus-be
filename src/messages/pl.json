@@ -83,6 +83,8 @@
       "filters": {
         "heatLevel": "Poziom ostrości",
         "pepper": "Pieprz",
+        "country": "Kraj",
+        "allCountries": "Wszystkie kraje",
         "allChilliTypes": "Wszystkie papryki",
         "sauceType": "Typ",
         "allCategories": "Wszystkie typy",

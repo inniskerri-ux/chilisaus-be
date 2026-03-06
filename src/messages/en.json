@@ -138,6 +138,8 @@
         },
         "pepper": "Pepper",
         "allChilliTypes": "All peppers",
+        "country": "Country",
+        "allCountries": "All countries",
         "sauceType": "Type",
         "allCategories": "All types",
         "sort": "Sort by",

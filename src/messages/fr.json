@@ -89,6 +89,8 @@
           "extreme": "Extrême"
         },
         "pepper": "Piment",
+        "country": "Pays",
+        "allCountries": "Tous les pays",
         "allChilliTypes": "Tous les piments",
         "sauceType": "Type",
         "allCategories": "Tous les types",
