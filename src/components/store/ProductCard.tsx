@@ -35,6 +35,7 @@ const getCategoryColor = (slug?: string) => {
     "hot-salt":                    "bg-cyan-100 text-cyan-800 border-cyan-200",
     "seasonings-rubs":             "bg-teal-100 text-teal-800 border-teal-200",
     "spicy-chips-nuts-candy":      "bg-violet-100 text-violet-800 border-violet-200",
+    merchandise:                   "bg-indigo-100 text-indigo-800 border-indigo-200",
   };
 
   return colors[slug] || "bg-zinc-100 text-zinc-800 border-zinc-200";
