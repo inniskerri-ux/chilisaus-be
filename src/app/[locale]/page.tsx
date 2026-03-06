@@ -1,6 +1,7 @@
 import { createClient } from "@/lib/supabase/server";
 import { getTranslations } from "next-intl/server";
 import Link from "next/link";
+import Image from "next/image";
 import CategoryCard from "@/components/store/CategoryCard";
 
 export const dynamic = "force-dynamic";
@@ -111,10 +112,13 @@ export default async function HomePage({
               </div>
             </div>
             <div className="relative aspect-square overflow-hidden rounded-3xl bg-zinc-200 shadow-2xl">
-              {/* Placeholder for Client Image/Logo at Event */}
-              <div className="flex h-full w-full items-center justify-center bg-zinc-300">
-                <span className="text-8xl">🌶️</span>
-              </div>
+              <Image
+                src="/images/kerri.jpg"
+                alt="Kerri - Chilisaus Maker"
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 50vw"
+              />
             </div>
           </div>
         </div>
