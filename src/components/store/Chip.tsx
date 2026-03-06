@@ -14,7 +14,7 @@ export default function Chip({ children, onRemove }: ChipProps) {
         <button
           onClick={onRemove}
           aria-label="Remove filter"
-          className="ml-1 rounded-full hover:text-roh-flag-green focus:outline-none"
+          className="ml-1 rounded-full hover:text-brand-red focus:outline-none"
         >
           ×
         </button>

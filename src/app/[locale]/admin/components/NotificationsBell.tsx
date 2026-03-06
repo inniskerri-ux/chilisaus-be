@@ -147,7 +147,7 @@ export default function NotificationsBell({ userId }: { userId: string }) {
                   className={`p-4 border-b last:border-0 transition-colors flex gap-3 ${
                     notification.is_read
                       ? "bg-white opacity-60"
-                      : "bg-roh-flag-green/5"
+                      : "bg-brand-red/5"
                   }`}
                 >
                   <div className="mt-0.5">{getTypeIcon(notification.type)}</div>

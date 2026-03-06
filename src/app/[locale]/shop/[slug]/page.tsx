@@ -167,7 +167,7 @@ export default async function ProductPage({
             productId={product.id}
             disabled={!inStock}
             label={t("addToCart")}
-            className="w-full sm:w-auto bg-roh-flag-green hover:bg-roh-flag-green/90 text-white"
+            className="w-full sm:w-auto bg-brand-red hover:bg-brand-red/90 text-white"
           />
 
           {/* Description */}

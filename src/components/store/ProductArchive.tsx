@@ -332,7 +332,7 @@ function ProductArchiveContent({
                 activeFilters.length + (selectedPepper ? 1 : 0) > 1 && (
                   <button
                     onClick={clearAllFilters}
-                    className="text-xs font-medium text-foreground underline-offset-4 hover:text-roh-flag-green hover:underline"
+                    className="text-xs font-medium text-foreground underline-offset-4 hover:text-brand-red hover:underline"
                   >
                     {t("results.clearFilters")}
                   </button>
@@ -357,7 +357,7 @@ function ProductArchiveContent({
             <button
               onClick={clearAllFilters}
               className="mt-4 px-4 py-2 rounded-lg border border-border bg-card text-foreground
-                       transition-colors hover:border-roh-flag-green hover:bg-roh-flag-green/10"
+                       transition-colors hover:border-brand-red hover:bg-brand-red/10"
             >
               {t("results.clearFilters")}
             </button>
@@ -378,7 +378,7 @@ function ProductArchiveContent({
             <button
               onClick={() => setDisplayCount((prev) => prev + 12)}
               className="px-4 py-2 rounded-lg border border-border bg-card text-foreground
-                       transition-colors font-medium hover:border-roh-flag-green hover:bg-roh-flag-green/10"
+                       transition-colors font-medium hover:border-brand-red hover:bg-brand-red/10"
             >
               {t("results.loadMore")}
             </button>

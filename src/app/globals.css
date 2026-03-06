@@ -10,7 +10,9 @@
   --color-foreground: var(--color-brand-black);
   
   --color-primary: var(--color-brand-red);
+  --color-primary-foreground: var(--color-brand-white);
   --color-secondary: var(--color-brand-black);
+  --color-secondary-foreground: var(--color-brand-white);
 }
 
 /* Force light mode feel as per client request for clean white background */

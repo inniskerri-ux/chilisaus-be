@@ -50,7 +50,7 @@ export default async function AdminLayout({
                 <Link
                   key={item.key}
                   href={`/${locale}/admin${item.path}`}
-                  className="rounded-full border border-border px-4 py-1.5 hover:border-roh-flag-green hover:text-roh-flag-green transition-colors"
+                  className="rounded-full border border-border px-4 py-1.5 hover:border-brand-red hover:text-brand-red transition-colors"
                 >
                   {t(`nav.${item.key}`)}
                 </Link>

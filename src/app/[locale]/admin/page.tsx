@@ -256,7 +256,7 @@ export default async function AdminDashboard({
           </CardContent>
         </Card>
 
-        <Card className="bg-roh-flag-green text-white border-none">
+        <Card className="bg-brand-red text-white border-none">
           <CardHeader>
             <CardTitle className="text-lg flex items-center gap-2">
               <Mail size={20} />
@@ -271,7 +271,7 @@ export default async function AdminDashboard({
               asChild
               variant="secondary"
               size="sm"
-              className="mt-4 bg-white text-roh-flag-green hover:bg-green-50 border-none font-bold"
+              className="mt-4 bg-white text-brand-red hover:bg-green-50 border-none font-bold"
             >
               <Link href={`/${locale}/admin/marketing`}>
                 Go to Marketing Hub

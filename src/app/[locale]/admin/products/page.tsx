@@ -67,7 +67,7 @@ export default async function ProductsPage({
         </div>
         <Link
           href={`/${locale}/admin/products/new`}
-          className="inline-flex items-center rounded-full bg-roh-flag-green px-4 py-2 text-sm font-semibold text-white"
+          className="inline-flex items-center rounded-full bg-brand-red px-4 py-2 text-sm font-semibold text-white"
         >
           {t("products.newProduct")}
         </Link>
@@ -107,7 +107,7 @@ export default async function ProductsPage({
                 <td className="px-4 py-3 text-right">
                   <Link
                     href={`/${locale}/admin/products/${product.id}`}
-                    className="text-sm font-semibold text-roh-flag-green hover:underline"
+                    className="text-sm font-semibold text-brand-red hover:underline"
                   >
                     {t("products.edit")}
                   </Link>

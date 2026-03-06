@@ -75,7 +75,7 @@ export default async function BrandShowcase({
                   </h3>
                   <Link
                     href={`/${locale}/brands/${brand.slug}`}
-                    className="text-xs text-roh-flag-green underline hover:no-underline"
+                    className="text-xs text-brand-red underline hover:no-underline"
                     aria-label={`${t("seeMore")} ${brand.name}`}
                   >
                     {t("seeMore")}
