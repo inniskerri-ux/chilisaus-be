@@ -15,19 +15,7 @@ interface ProductArchiveProps {
   locale: string;
 }
 
-type SortOption =
-  | "recent"
-  | "popular"
-  | "mild-first"
-  | "hot-first"
-  | "price-asc";
-
-const HEAT_ORDER: Record<string, number> = {
-  mild: 1,
-  medium: 5,
-  hot: 8,
-  extreme: 12,
-};
+type SortOption = "popular" | "mild-first" | "hot-first" | "price-asc";
 
 const resolveHeatRank = (value?: string | number | null): number | null => {
   if (value === null || value === undefined || value === "") return null;
@@ -134,9 +122,8 @@ function ProductArchiveContent({
       });
     } else if (sortBy === "price-asc") {
       filtered = [...filtered].sort((a, b) => a.price_cents - b.price_cents);
-    } else if (sortBy === "popular") {
-      filtered = [...filtered];
     } else {
+      // Default / popular
       filtered = [...filtered];
     }
 
@@ -289,7 +276,6 @@ function ProductArchiveContent({
                 <option value="popular">
                   {t("search.filters.sortPopular")}
                 </option>
-                <option value="recent">{t("search.filters.sortNewest")}</option>
                 <option value="mild-first">
                   {t("search.filters.sortMildToHot")}
                 </option>
