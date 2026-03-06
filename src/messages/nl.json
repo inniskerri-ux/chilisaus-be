@@ -190,6 +190,25 @@
     "terms": "Algemene Voorwaarden",
     "privacy": "Privacybeleid"
   },
+  "Account": {
+    "title": "Mijn Account",
+    "welcome": "Welkom terug, {name}",
+    "orders": {
+      "title": "Mijn Bestellingen",
+      "empty": "Je hebt nog geen bestellingen geplaatst.",
+      "viewAll": "Bekijk alle bestellingen",
+      "orderNumber": "Bestelling #",
+      "date": "Datum",
+      "status": "Status",
+      "total": "Totaal",
+      "details": "Bekijk details"
+    },
+    "profile": {
+      "title": "Profielinformatie",
+      "email": "E-mail",
+      "role": "Rol"
+    }
+  },
   "Checkout": {
     "title": "Afrekenen",
     "shipping": "Bezorgadres",

@@ -38,18 +38,18 @@ export default async function Footer({ locale }: { locale: string }) {
               </li>
               <li>
                 <Link
-                  href={`/${locale}/shop?category=classic-hot-sauce`}
+                  href={`/${locale}/shop?category=gift-boxes-sets`}
                   className="hover:text-brand-red transition-colors"
                 >
-                  Classic Sauces
+                  Gift Boxes & Sets
                 </Link>
               </li>
               <li>
                 <Link
-                  href={`/${locale}/shop?heat=extreme`}
+                  href={`/${locale}/shop?category=superhot`}
                   className="hover:text-brand-red transition-colors"
                 >
-                  Extreme Heat
+                  Superhot
                 </Link>
               </li>
             </ul>

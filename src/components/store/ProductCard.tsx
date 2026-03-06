@@ -17,19 +17,24 @@ const getCategoryColor = (slug?: string) => {
   if (!slug) return "bg-zinc-100 text-zinc-800 border-zinc-200";
 
   const colors: Record<string, string> = {
-    "classic-hot-sauce": "bg-red-100 text-red-800 border-red-200",
-    fermented: "bg-amber-100 text-amber-800 border-amber-200",
-    smoky: "bg-orange-100 text-orange-800 border-orange-200",
-    "fruit-forward": "bg-lime-100 text-lime-800 border-lime-200",
-    "chili-challenges-spicy-snacks":
-      "bg-purple-100 text-purple-800 border-purple-200",
-    "chili-extracts": "bg-rose-100 text-rose-800 border-rose-200",
-    "chili-oil": "bg-yellow-100 text-yellow-800 border-yellow-200",
-    "dried-chilies-pods-flakes-powders":
-      "bg-emerald-100 text-emerald-800 border-emerald-200",
-    "gift-boxes-sets": "bg-blue-100 text-blue-800 border-blue-200",
-    "hot-honey": "bg-orange-100 text-orange-800 border-orange-200",
-    "salts-seasonings-rubs": "bg-cyan-100 text-cyan-800 border-cyan-200",
+    // Heat bands
+    mild:                          "bg-lime-100 text-lime-800 border-lime-200",
+    medium:                        "bg-yellow-100 text-yellow-800 border-yellow-200",
+    hot:                           "bg-orange-100 text-orange-800 border-orange-200",
+    "very-hot":                    "bg-red-100 text-red-800 border-red-200",
+    superhot:                      "bg-rose-100 text-rose-800 border-rose-200",
+    // Product types
+    "bbq-products":                "bg-amber-100 text-amber-800 border-amber-200",
+    "chili-challenges":            "bg-purple-100 text-purple-800 border-purple-200",
+    "chili-extracts":              "bg-rose-100 text-rose-800 border-rose-200",
+    "chili-oils":                  "bg-yellow-100 text-yellow-800 border-yellow-200",
+    "chili-chocolate":             "bg-stone-100 text-stone-800 border-stone-200",
+    "dried-chili-pods-powders-flakes": "bg-emerald-100 text-emerald-800 border-emerald-200",
+    "gift-boxes-sets":             "bg-blue-100 text-blue-800 border-blue-200",
+    "hot-honey":                   "bg-amber-100 text-amber-800 border-amber-200",
+    "hot-salt":                    "bg-cyan-100 text-cyan-800 border-cyan-200",
+    "seasonings-rubs":             "bg-teal-100 text-teal-800 border-teal-200",
+    "spicy-chips-nuts-candy":      "bg-violet-100 text-violet-800 border-violet-200",
   };
 
   return colors[slug] || "bg-zinc-100 text-zinc-800 border-zinc-200";

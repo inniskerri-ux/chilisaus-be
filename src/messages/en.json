@@ -190,6 +190,25 @@
     "terms": "Terms of Service",
     "privacy": "Privacy Policy"
   },
+  "Account": {
+    "title": "My Account",
+    "welcome": "Welcome back, {name}",
+    "orders": {
+      "title": "My Orders",
+      "empty": "You haven't placed any orders yet.",
+      "viewAll": "View all orders",
+      "orderNumber": "Order #",
+      "date": "Date",
+      "status": "Status",
+      "total": "Total",
+      "details": "View Details"
+    },
+    "profile": {
+      "title": "Profile Information",
+      "email": "Email",
+      "role": "Role"
+    }
+  },
   "Checkout": {
     "title": "Checkout",
     "shipping": "Shipping Address",
