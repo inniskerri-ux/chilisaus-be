@@ -76,6 +76,97 @@
       "notSet": "Not set"
     }
   },
+  "SauceArchive": {
+    "heading": "Naše pálivé omáčky",
+    "search": {
+      "placeholder": "Hledat omáčky…",
+      "filters": {
+        "heatLevel": "Úroveň pálivosti",
+        "pepper": "Paprika",
+        "allChilliTypes": "Všechny papriky",
+        "sauceType": "Typ",
+        "allCategories": "Všechny typy",
+        "sort": "Seřadit podle",
+        "sortNewest": "Nejnovější",
+        "sortPopular": "Nejoblíbenější",
+        "sortMildToHot": "Jemné → Pálivé",
+        "sortHotToMild": "Pálivé → Jemné"
+      }
+    },
+    "results": {
+      "showing": "Zobrazeno",
+      "of": "z",
+      "sauces": "omáček",
+      "noResults": "Nebyly nalezeny žádné omáčky",
+      "adjustSearch": "Zkuste upravit hledání nebo filtry.",
+      "clearFilters": "Vymazat filtry",
+      "loadMore": "Načíst další"
+    }
+  },
+  "Landing": {
+    "hero": {
+      "welcome": "Vítejte v Chilisaus.be/eu",
+      "title": "Pálivé omáčky není nikdy dost",
+      "subtitle": "Objevte pečlivě vybranou kolekci nejlepších chilli omáček na světě. Od jemných každodenních chutí až po extrémní pálivost.",
+      "cta": "Nakupovat všechny omáčky"
+    },
+    "maker": {
+      "title": "Poznejte výrobce",
+      "content": "Mnoho z vás mě potkalo na akcích po celé zemi. Mojí vášní je přinášet vám ty nejlepší omáčky přímo, osobně a jednoduše. Chci si zachovat osobní vztah, nebýt neosobní korporací. Vše je o omáčce a lidech, kteří ji milují."
+    },
+    "categories": {
+      "title": "Nakupovat podle kategorie",
+      "subtitle": "Najděte ideální omáčku pro své příští jídlo."
+    }
+  },
+  "Account": {
+    "title": "Můj účet",
+    "welcome": "Vítejte zpět, {name}",
+    "orders": {
+      "title": "Moje objednávky",
+      "empty": "Zatím jste neudělali žádnou objednávku.",
+      "viewAll": "Zobrazit všechny objednávky",
+      "orderNumber": "Objednávka #",
+      "date": "Datum",
+      "status": "Stav",
+      "total": "Celkem",
+      "details": "Zobrazit detaily"
+    },
+    "profile": {
+      "title": "Informace o profilu",
+      "email": "Email",
+      "role": "Role"
+    }
+  },
+  "Legal": {
+    "notice": "Právní upozornění",
+    "shipping": "Doprava a vrácení",
+    "terms": "Obchodní podmínky",
+    "privacy": "Zásady ochrany osobních údajů"
+  },
+  "Checkout": {
+    "title": "Pokladna",
+    "shipping": "Doručovací adresa",
+    "payment": "Platba",
+    "summary": "Shrnutí objednávky",
+    "email": "Emailová adresa",
+    "fullName": "Celé jméno",
+    "street": "Adresa",
+    "city": "Město",
+    "zip": "PSČ",
+    "country": "Země",
+    "payNow": "Zaplatit přes Stripe",
+    "Success": {
+      "title": "Objednávka potvrzena!",
+      "description": "Poslali jsme potvrzovací email na {email}. Vaše pálivá zásilka se připravuje.",
+      "orderNumber": "Číslo objednávky",
+      "total": "Celkem"
+    }
+  },
+  "Scoville": {
+    "title": "Scovilleho stupnice",
+    "intro": "Scovilleho stupnice je měřítkem pálivosti chilli papriček. Pojmenovaná po svém tvůrci Wilbur Scovilleovi vám pomůže orientovat se ve světě pálivosti, aniž byste se spálili — pokud ovšem nechcete!"
+  },
   "ProductPage": {
     "breadcrumbShop": "Obchod",
     "by": "od",

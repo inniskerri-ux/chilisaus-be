@@ -103,6 +103,70 @@
       "loadMore": "Cargar más"
     }
   },
+  "Landing": {
+    "hero": {
+      "welcome": "Bienvenidos a Chilisaus.be/eu",
+      "title": "Nunca se tiene demasiada salsa picante",
+      "subtitle": "Descubre una colección seleccionada a mano de las mejores salsas de chile del mundo. Desde sabores suaves cotidianos hasta calor extremo.",
+      "cta": "Comprar Todas las Salsas"
+    },
+    "maker": {
+      "title": "Conoce al Fabricante",
+      "content": "Muchos de ustedes me han conocido en eventos por todo el país. Me apasiona traerles directamente las mejores salsas, manteniéndolo personal y simple. Quiero mantener una conexión personal, no ser una corporación sin rostro. Todo se trata de la salsa y de la gente que la ama."
+    },
+    "categories": {
+      "title": "Comprar por Categoría",
+      "subtitle": "Encuentra la salsa perfecta para tu próxima comida."
+    }
+  },
+  "Account": {
+    "title": "Mi Cuenta",
+    "welcome": "Bienvenido de nuevo, {name}",
+    "orders": {
+      "title": "Mis Pedidos",
+      "empty": "Aún no has realizado ningún pedido.",
+      "viewAll": "Ver todos los pedidos",
+      "orderNumber": "Pedido #",
+      "date": "Fecha",
+      "status": "Estado",
+      "total": "Total",
+      "details": "Ver detalles"
+    },
+    "profile": {
+      "title": "Información del Perfil",
+      "email": "Email",
+      "role": "Rol"
+    }
+  },
+  "Legal": {
+    "notice": "Aviso Legal",
+    "shipping": "Envíos y Devoluciones",
+    "terms": "Términos de Servicio",
+    "privacy": "Política de Privacidad"
+  },
+  "Checkout": {
+    "title": "Pago",
+    "shipping": "Dirección de Envío",
+    "payment": "Pago",
+    "summary": "Resumen del Pedido",
+    "email": "Correo Electrónico",
+    "fullName": "Nombre Completo",
+    "street": "Dirección",
+    "city": "Ciudad",
+    "zip": "Código Postal",
+    "country": "País",
+    "payNow": "Pagar con Stripe",
+    "Success": {
+      "title": "¡Pedido Confirmado!",
+      "description": "Hemos enviado un correo de confirmación a {email}. Tu envío picante se está preparando.",
+      "orderNumber": "Número de Pedido",
+      "total": "Total"
+    }
+  },
+  "Scoville": {
+    "title": "La Escala Scoville",
+    "intro": "La escala Scoville es una medida del picor de los chiles. Nombrada en honor a su creador Wilbur Scoville, te ayuda a navegar por el mundo del picor sin quemarte, ¡a menos que quieras!"
+  },
   "ProductPage": {
     "breadcrumbShop": "Tienda",
     "by": "por",

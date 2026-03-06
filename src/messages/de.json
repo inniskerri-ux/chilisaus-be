@@ -103,6 +103,70 @@
       "loadMore": "Mehr laden"
     }
   },
+  "Landing": {
+    "hero": {
+      "welcome": "Willkommen bei Chilisaus.be/eu",
+      "title": "Man kann nie zu viel scharfe Sauce haben",
+      "subtitle": "Entdecke eine handverlesene Kollektion der besten Chilisaucen der Welt. Von milden Alltagsaromen bis hin zu extremer Schärfe.",
+      "cta": "Alle Saucen shoppen"
+    },
+    "maker": {
+      "title": "Triff den Macher",
+      "content": "Viele von euch haben mich bei Veranstaltungen im ganzen Land getroffen. Ich brenne dafür, euch die besten Saucen direkt zu bringen, persönlich und einfach. Ich möchte eine persönliche Verbindung halten, kein gesichtsloses Unternehmen sein. Es dreht sich alles um die Sauce und die Menschen, die sie lieben."
+    },
+    "categories": {
+      "title": "Nach Kategorie shoppen",
+      "subtitle": "Finde die perfekte Sauce für deine nächste Mahlzeit."
+    }
+  },
+  "Account": {
+    "title": "Mein Konto",
+    "welcome": "Willkommen zurück, {name}",
+    "orders": {
+      "title": "Meine Bestellungen",
+      "empty": "Du hast noch keine Bestellungen aufgegeben.",
+      "viewAll": "Alle Bestellungen anzeigen",
+      "orderNumber": "Bestellung #",
+      "date": "Datum",
+      "status": "Status",
+      "total": "Gesamt",
+      "details": "Details anzeigen"
+    },
+    "profile": {
+      "title": "Profil-Informationen",
+      "email": "E-Mail",
+      "role": "Rolle"
+    }
+  },
+  "Legal": {
+    "notice": "Impressum",
+    "shipping": "Versand & Rückgabe",
+    "terms": "AGB",
+    "privacy": "Datenschutz"
+  },
+  "Checkout": {
+    "title": "Kasse",
+    "shipping": "Lieferadresse",
+    "payment": "Zahlung",
+    "summary": "Bestellübersicht",
+    "email": "E-Mail-Adresse",
+    "fullName": "Vollständiger Name",
+    "street": "Adresse",
+    "city": "Stadt",
+    "zip": "Postleitzahl",
+    "country": "Land",
+    "payNow": "Mit Stripe bezahlen",
+    "Success": {
+      "title": "Bestellung bestätigt!",
+      "description": "Wir haben eine Bestätigungs-E-Mail an {email} gesendet. Deine scharfe Lieferung wird vorbereitet.",
+      "orderNumber": "Bestellnummer",
+      "total": "Gesamt"
+    }
+  },
+  "Scoville": {
+    "title": "Die Scoville-Skala",
+    "intro": "Die Scoville-Skala ist ein Maß für die Schärfe von Chilischoten. Benannt nach ihrem Schöpfer Wilbur Scoville, hilft sie dir, dich in der Welt der Schärfe zurechtzufinden, ohne dich zu verbrennen – es sei denn, du willst es!"
+  },
   "ProductPage": {
     "breadcrumbShop": "Shop",
     "by": "von",

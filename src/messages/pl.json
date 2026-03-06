@@ -103,6 +103,70 @@
       "loadMore": "Załaduj więcej"
     }
   },
+  "Landing": {
+    "hero": {
+      "welcome": "Witaj w Chilisaus.be/eu",
+      "title": "Nigdy za dużo ostrego sosu",
+      "subtitle": "Odkryj starannie dobraną kolekcję najlepszych sosów chili na świecie. Od łagodnych codziennych smaków po ekstremalną ostrość.",
+      "cta": "Kupuj wszystkie sosy"
+    },
+    "maker": {
+      "title": "Poznaj twórcę",
+      "content": "Wielu z Was spotkało mnie na wydarzeniach w całym kraju. Moją pasją jest dostarczanie Wam najlepszych sosów bezpośrednio, w sposób osobisty i prosty. Chcę zachować osobistą relację, a nie być bezduszną korporacją. Chodzi przede wszystkim o sos i ludzi, którzy go kochają."
+    },
+    "categories": {
+      "title": "Kupuj według kategorii",
+      "subtitle": "Znajdź idealny sos do swojego następnego posiłku."
+    }
+  },
+  "Account": {
+    "title": "Moje konto",
+    "welcome": "Witaj ponownie, {name}",
+    "orders": {
+      "title": "Moje zamówienia",
+      "empty": "Nie masz jeszcze żadnych zamówień.",
+      "viewAll": "Zobacz wszystkie zamówienia",
+      "orderNumber": "Zamówienie #",
+      "date": "Data",
+      "status": "Status",
+      "total": "Suma",
+      "details": "Zobacz szczegóły"
+    },
+    "profile": {
+      "title": "Informacje o profilu",
+      "email": "Email",
+      "role": "Rola"
+    }
+  },
+  "Legal": {
+    "notice": "Nota prawna",
+    "shipping": "Wysyłka i zwroty",
+    "terms": "Regulamin",
+    "privacy": "Polityka prywatności"
+  },
+  "Checkout": {
+    "title": "Płatność",
+    "shipping": "Adres do wysyłki",
+    "payment": "Płatność",
+    "summary": "Podsumowanie zamówienia",
+    "email": "Adres e-mail",
+    "fullName": "Imię i nazwisko",
+    "street": "Adres",
+    "city": "Miasto",
+    "zip": "Kod pocztowy",
+    "country": "Kraj",
+    "payNow": "Zapłać przez Stripe",
+    "Success": {
+      "title": "Zamówienie potwierdzone!",
+      "description": "Wysłaliśmy e-mail z potwierdzeniem na adres {email}. Twoja ostra przesyłka jest w przygotowaniu.",
+      "orderNumber": "Numer zamówienia",
+      "total": "Suma"
+    }
+  },
+  "Scoville": {
+    "title": "Skala Scoville'a",
+    "intro": "Skala Scoville'a to miara ostrości papryk chili. Nazwana na cześć jej twórcy Wilbura Scoville'a, pomaga poruszać się po świecie ostrości bez poparzenia się — chyba że tego chcesz!"
+  },
   "ProductPage": {
     "breadcrumbShop": "Sklep",
     "by": "przez",

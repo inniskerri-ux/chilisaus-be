@@ -116,10 +116,62 @@
       "subtitle": "Des sauces de table douces aux extraits les plus extrêmes du monde. Sélectionnées pour leur saveur et leur feu.",
       "cta": "Explorer la Collection"
     },
+    "maker": {
+      "title": "Rencontrez le Fabricant",
+      "content": "Beaucoup d'entre vous m'ont rencontré lors d'événements à travers le pays. Je suis passionnée par l'idée de vous apporter directement les meilleures sauces, tout en restant simple et personnel. Je veux garder un lien personnel, pas une entreprise sans visage. Tout tourne autour de la sauce et des gens qui l'aiment."
+    },
     "categories": {
       "title": "Acheter par Catégorie",
       "subtitle": "Trouvez la sauce parfaite pour votre prochain repas."
     }
+  },
+  "Account": {
+    "title": "Mon Compte",
+    "welcome": "Bon retour, {name}",
+    "orders": {
+      "title": "Mes Commandes",
+      "empty": "Vous n'avez pas encore passé de commande.",
+      "viewAll": "Voir toutes les commandes",
+      "orderNumber": "Commande #",
+      "date": "Date",
+      "status": "Statut",
+      "total": "Total",
+      "details": "Voir détails"
+    },
+    "profile": {
+      "title": "Informations du profil",
+      "email": "Email",
+      "role": "Rôle"
+    }
+  },
+  "Legal": {
+    "notice": "Mention Légale",
+    "shipping": "Livraison & Retours",
+    "terms": "Conditions d'utilisation",
+    "privacy": "Politique de confidentialité"
+  },
+  "Checkout": {
+    "title": "Paiement",
+    "shipping": "Adresse de livraison",
+    "payment": "Paiement",
+    "summary": "Résumé de la commande",
+    "email": "Adresse e-mail",
+    "fullName": "Nom complet",
+    "street": "Adresse",
+    "city": "Ville",
+    "zip": "Code postal",
+    "country": "Pays",
+    "payNow": "Payer avec Stripe",
+    "Success": {
+      "title": "Commande confirmée !",
+      "description": "Nous avons envoyé un e-mail de confirmation à {email}. Votre livraison épicée est en cours de préparation.",
+      "orderNumber": "Numéro de commande",
+      "total": "Total"
+    }
+  },
+  "Scoville": {
+    "title": "L'échelle de Scoville",
+    "intro": "L'échelle de Scoville est une mesure de la force (piquant) des piments. Nommée d'après son créateur Wilbur Scoville, elle vous aide à naviguer dans le monde de la chaleur sans vous brûler — à moins que vous ne le vouliez !"
   },
   "ProductPage": {
     "breadcrumbShop": "Boutique",
