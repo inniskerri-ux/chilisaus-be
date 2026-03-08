@@ -3,6 +3,7 @@ import Image from "next/image";
 import { createClient } from "@/lib/supabase/server";
 import { Instagram, MessageCircle, Search } from "lucide-react";
 import { getTranslations } from "next-intl/server";
+import LocaleSwitcher from "./store/LocaleSwitcher";
 
 export default async function Header({ locale }: { locale: string }) {
   const supabase = await createClient();
@@ -113,6 +114,8 @@ export default async function Header({ locale }: { locale: string }) {
                 {tAuth("SignIn")}
               </Link>
             )}
+
+            <LocaleSwitcher />
 
             <Link
               href={`/${locale}/cart`}

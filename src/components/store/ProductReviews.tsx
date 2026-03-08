@@ -20,7 +20,10 @@ interface ProductReviewsProps {
   locale: string;
 }
 
-export default function ProductReviews({ productId, locale }: ProductReviewsProps) {
+export default function ProductReviews({
+  productId,
+  locale,
+}: ProductReviewsProps) {
   const t = useTranslations("ProductPage");
   const [reviews, setReviews] = useState<Review[]>([]);
   const [isLoading, setIsLoading] = useState(true);
