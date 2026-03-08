@@ -15,7 +15,21 @@ interface ProductArchiveProps {
   locale: string;
 }
 
-type SortOption = "popular" | "mild-first" | "hot-first" | "price-asc";
+type SortOption =
+  | "popular"
+  | "newest"
+  | "mild-first"
+  | "hot-first"
+  | "price-asc"
+  | "price-desc";
+
+const HEAT_BAND_SLUGS = new Set([
+  "mild",
+  "medium",
+  "hot",
+  "very-hot",
+  "superhot",
+]);
 
 const resolveHeatRank = (value?: string | number | null): number | null => {
   if (value === null || value === undefined || value === "") return null;
@@ -44,6 +58,7 @@ function ProductArchiveContent({
   const searchParams = useSearchParams();
   const initialCategory = searchParams.get("category");
   const initialHeat = searchParams.get("heat");
+  const initialBrand = searchParams.get("brand");
 
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedHeatLevel, setSelectedHeatLevel] = useState(initialHeat || "");
@@ -51,10 +66,19 @@ function ProductArchiveContent({
   const [selectedCategory, setSelectedCategory] = useState(
     initialCategory || "",
   );
-  const [selectedBrand, setSelectedBrand] = useState("");
+  const [selectedBrand, setSelectedBrand] = useState(initialBrand || "");
   const [selectedCountry, setSelectedCountry] = useState("");
   const [sortBy, setSortBy] = useState<SortOption>("popular");
   const [displayCount, setDisplayCount] = useState(12);
+
+  // Build type categories: replace heat band entries with a single "Sauces" option
+  const typeCategories = useMemo(() => {
+    const hasSauces = categories.some((c) => HEAT_BAND_SLUGS.has(c.slug));
+    const nonHeatBand = categories.filter((c) => !HEAT_BAND_SLUGS.has(c.slug));
+    return hasSauces
+      ? [{ id: "sauces", name: "Sauces", slug: "sauces" }, ...nonHeatBand]
+      : nonHeatBand;
+  }, [categories]);
 
   // Derive unique countries from brands
   const countries = useMemo(() => {
@@ -75,7 +99,10 @@ function ProductArchiveContent({
     if (initialHeat !== null) {
       setSelectedHeatLevel(initialHeat);
     }
-  }, [initialCategory, initialHeat]);
+    if (initialBrand !== null) {
+      setSelectedBrand(initialBrand);
+    }
+  }, [initialCategory, initialHeat, initialBrand]);
 
   const filteredAndSortedProducts = useMemo(() => {
     let filtered = products.filter((product) => {
@@ -103,8 +130,11 @@ function ProductArchiveContent({
 
       const matchesCategory =
         !selectedCategory ||
-        product.category?.id?.toString() === selectedCategory ||
-        product.category?.slug === selectedCategory;
+        (selectedCategory === "sauces"
+          ? product.category?.slug != null &&
+            HEAT_BAND_SLUGS.has(product.category.slug)
+          : product.category?.id?.toString() === selectedCategory ||
+            product.category?.slug === selectedCategory);
 
       const matchesBrand =
         !selectedBrand ||
@@ -138,6 +168,14 @@ function ProductArchiveContent({
       });
     } else if (sortBy === "price-asc") {
       filtered = [...filtered].sort((a, b) => a.price_cents - b.price_cents);
+    } else if (sortBy === "price-desc") {
+      filtered = [...filtered].sort((a, b) => b.price_cents - a.price_cents);
+    } else if (sortBy === "newest") {
+      filtered = [...filtered].sort((a, b) => {
+        const aDate = a.created_at ? new Date(a.created_at).getTime() : 0;
+        const bDate = b.created_at ? new Date(b.created_at).getTime() : 0;
+        return bDate - aDate;
+      });
     } else {
       // Default / popular
       filtered = [...filtered];
@@ -166,7 +204,7 @@ function ProductArchiveContent({
       });
     }
     if (selectedCategory) {
-      const cat = categories.find(
+      const cat = typeCategories.find(
         (cat) =>
           cat.id.toString() === selectedCategory ||
           cat.slug === selectedCategory,
@@ -202,7 +240,7 @@ function ProductArchiveContent({
     selectedCategory,
     selectedBrand,
     selectedCountry,
-    categories,
+    typeCategories,
     brands,
   ]);
 
@@ -231,7 +269,7 @@ function ProductArchiveContent({
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-7 gap-3">
             {/* Search */}
             <label className="block text-sm font-medium text-foreground">
-              {t("search.placeholder")}
+              {t("search.label")}
               <input
                 type="search"
                 placeholder={t("search.placeholder")}
@@ -306,7 +344,7 @@ function ProductArchiveContent({
                          focus:outline-none focus:ring-2 focus:ring-brand-red"
               >
                 <option value="">{t("search.filters.allCategories")}</option>
-                {categories.map((category) => (
+                {typeCategories.map((category) => (
                   <option key={category.slug} value={category.slug}>
                     {category.name}
                   </option>
@@ -326,13 +364,19 @@ function ProductArchiveContent({
                 <option value="popular">
                   {t("search.filters.sortPopular")}
                 </option>
+                <option value="newest">{t("search.filters.sortNewest")}</option>
                 <option value="mild-first">
                   {t("search.filters.sortMildToHot")}
                 </option>
                 <option value="hot-first">
                   {t("search.filters.sortHotToMild")}
                 </option>
-                <option value="price-asc">Price: Low to High</option>
+                <option value="price-asc">
+                  {t("search.filters.sortPriceLowHigh") || "Price: Low to High"}
+                </option>
+                <option value="price-desc">
+                  {t("search.filters.sortPriceHighLow") || "Price: High to Low"}
+                </option>
               </select>
             </label>
 

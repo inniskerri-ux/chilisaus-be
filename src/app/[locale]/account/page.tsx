@@ -106,7 +106,9 @@ export default async function AccountPage({
                         <th className="pb-3 pr-4">{t("orders.orderNumber")}</th>
                         <th className="pb-3 pr-4">{t("orders.date")}</th>
                         <th className="pb-3 pr-4">{t("orders.status")}</th>
-                        <th className="pb-3 pr-4 text-right">{t("orders.total")}</th>
+                        <th className="pb-3 pr-4 text-right">
+                          {t("orders.total")}
+                        </th>
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-zinc-50">

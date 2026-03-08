@@ -1,6 +1,7 @@
 import { NextIntlClientProvider } from "next-intl";
 import { setRequestLocale, getMessages } from "next-intl/server";
 import { Montserrat } from "next/font/google";
+import Script from "next/script";
 import "../globals.css";
 import type { ReactNode } from "react";
 import Header from "@/components/Header";
@@ -33,6 +34,37 @@ export default async function LocaleLayout({
 
   return (
     <html lang={locale} dir={dir} suppressHydrationWarning>
+      <head>
+        {/* Google Consent Mode Default State */}
+        <Script id="google-consent-mode" strategy="beforeInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            
+            // Default consent to 'denied'
+            gtag('consent', 'default', {
+              'ad_storage': 'denied',
+              'ad_user_data': 'denied',
+              'ad_personalization': 'denied',
+              'analytics_storage': 'denied',
+              'wait_for_update': 500
+            });
+          `}
+        </Script>
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=G-WXW3MZSEP3`}
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-WXW3MZSEP3');
+          `}
+        </Script>
+      </head>
       <body
         className={`${fontSans.variable} min-h-screen bg-white text-gray-900 antialiased font-sans flex flex-col`}
       >

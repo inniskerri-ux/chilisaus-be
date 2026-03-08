@@ -79,7 +79,8 @@
   "SauceArchive": {
     "heading": "Unsere scharfen Saucen",
     "search": {
-      "placeholder": "Saucen suchen…",
+      "label": "Produkte suchen",
+      "placeholder": "Produkte suchen…",
       "filters": {
         "heatLevel": "Schärfegrad",
         "pepper": "Pfeffer",
@@ -98,7 +99,7 @@
     "results": {
       "showing": "Zeige",
       "of": "von",
-      "sauces": "Saucen",
+      "sauces": "Produkte",
       "noResults": "Keine Saucen gefunden",
       "adjustSearch": "Passen Sie Ihre Suche oder Filter an.",
       "clearFilters": "Filter löschen",

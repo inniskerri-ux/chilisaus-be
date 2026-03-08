@@ -144,6 +144,82 @@ export function calculatePackageWeight(items: OrderItem[]): number {
   return Math.max(0.01, weightKg);
 }
 
+// ==================== SHIPPING RATES & PROVIDERS ====================
+
+export type ShippingProvider = "Bpost" | "PostNL";
+
+export interface ShippingRate {
+  provider: ShippingProvider;
+  rateCents: number;
+  minWeightKg: number;
+  maxWeightKg: number;
+}
+
+/**
+ * Default shipping rates (Placeholders - awaiting client confirmation)
+ * Logic: Bpost for Belgium (BE), PostNL for everywhere else.
+ */
+export const SHIPPING_RATES: Record<string, ShippingRate[]> = {
+  BE: [
+    {
+      provider: "Bpost",
+      rateCents: 595, // €5.95 placeholder
+      minWeightKg: 0,
+      maxWeightKg: 2,
+    },
+    {
+      provider: "Bpost",
+      rateCents: 895, // €8.95 placeholder
+      minWeightKg: 2,
+      maxWeightKg: 10,
+    },
+  ],
+  DEFAULT: [
+    {
+      provider: "PostNL",
+      rateCents: 1295, // €12.95 placeholder for EU
+      minWeightKg: 0,
+      maxWeightKg: 2,
+    },
+    {
+      provider: "PostNL",
+      rateCents: 1895, // €18.95 placeholder for EU
+      minWeightKg: 2,
+      maxWeightKg: 10,
+    },
+  ],
+};
+
+/**
+ * Get shipping cost for a destination and weight
+ */
+export function getShippingCost(
+  countryCode: string,
+  weightKg: number,
+): { provider: ShippingProvider; costCents: number } {
+  const rates =
+    SHIPPING_RATES[countryCode.toUpperCase()] || SHIPPING_RATES.DEFAULT;
+
+  // Find matching weight bracket
+  const matchingRate = rates.find(
+    (r) => weightKg >= r.minWeightKg && weightKg < r.maxWeightKg,
+  );
+
+  if (matchingRate) {
+    return {
+      provider: matchingRate.provider,
+      costCents: matchingRate.rateCents,
+    };
+  }
+
+  // Fallback to highest available rate if over max weight
+  const fallbackRate = rates[rates.length - 1];
+  return {
+    provider: fallbackRate.provider,
+    costCents: fallbackRate.rateCents,
+  };
+}
+
 /**
  * Get box dimensions for shipping calculations
  * Returns dimensions in centimeters

@@ -41,7 +41,9 @@ export default async function OrdersPage({
           <ArrowLeft size={16} className="mr-2" />
           Back to Account
         </Link>
-        <h1 className="text-3xl font-bold text-zinc-900">{t("orders.title")}</h1>
+        <h1 className="text-3xl font-bold text-zinc-900">
+          {t("orders.title")}
+        </h1>
       </div>
 
       <div className="space-y-6">
@@ -106,13 +108,18 @@ export default async function OrdersPage({
               <CardContent className="py-6">
                 <div className="space-y-4">
                   {(order.order_items || []).map((item: any) => (
-                    <div key={item.id} className="flex items-center justify-between text-sm">
+                    <div
+                      key={item.id}
+                      className="flex items-center justify-between text-sm"
+                    >
                       <div className="flex items-center gap-4">
                         <div className="w-12 h-12 bg-zinc-50 rounded-lg flex items-center justify-center text-xl border border-zinc-100">
                           🌶️
                         </div>
                         <div>
-                          <p className="font-bold text-zinc-900">{item.product_name}</p>
+                          <p className="font-bold text-zinc-900">
+                            {item.product_name}
+                          </p>
                           <p className="text-zinc-500">Qty: {item.quantity}</p>
                         </div>
                       </div>
@@ -122,18 +129,25 @@ export default async function OrdersPage({
                     </div>
                   ))}
                 </div>
-                
+
                 <div className="mt-6 pt-6 border-t border-zinc-100 flex flex-col sm:flex-row justify-between gap-4">
                   <div className="text-xs text-zinc-500">
-                    <p className="font-bold uppercase tracking-widest mb-1">Shipping Address</p>
+                    <p className="font-bold uppercase tracking-widest mb-1">
+                      Shipping Address
+                    </p>
                     <p>{order.shipping_name}</p>
                     <p>{order.shipping_street}</p>
-                    <p>{order.shipping_postal_code} {order.shipping_city}</p>
+                    <p>
+                      {order.shipping_postal_code} {order.shipping_city}
+                    </p>
                     <p>{order.shipping_country}</p>
                   </div>
-                  {order.status === 'shipped' && (
+                  {order.status === "shipped" && (
                     <div className="flex items-end">
-                      <Badge variant="outline" className="text-blue-600 border-blue-200">
+                      <Badge
+                        variant="outline"
+                        className="text-blue-600 border-blue-200"
+                      >
                         In Transit
                       </Badge>
                     </div>

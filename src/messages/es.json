@@ -79,7 +79,8 @@
   "SauceArchive": {
     "heading": "Nuestras salsas picantes",
     "search": {
-      "placeholder": "Buscar salsas…",
+      "label": "Buscar productos",
+      "placeholder": "Buscar productos…",
       "filters": {
         "heatLevel": "Nivel de picante",
         "pepper": "Pimienta",
@@ -98,7 +99,7 @@
     "results": {
       "showing": "Mostrando",
       "of": "de",
-      "sauces": "salsas",
+      "sauces": "productos",
       "noResults": "No se encontraron salsas",
       "adjustSearch": "Intenta ajustar tu búsqueda o filtros.",
       "clearFilters": "Limpiar filtros",

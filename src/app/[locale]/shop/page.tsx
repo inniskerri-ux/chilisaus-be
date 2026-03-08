@@ -26,7 +26,7 @@ export default async function ShopPage({
         .select(
           `
         id, name, slug, description, price_cents, currency,
-        heat_level, image_url, stock, is_active,
+        heat_level, image_url, stock, is_active, created_at,
         brand:brands ( id, name, slug, country ),
         category:categories ( id, name, slug ),
         chilliTypes:products_chilli_types ( chilli_type:chilli_types ( id, name, slug, heat_level ) )
@@ -56,8 +56,14 @@ export default async function ShopPage({
     image_url: row.image_url,
     stock: row.stock,
     is_active: row.is_active,
+    created_at: row.created_at,
     brand: row.brand
-      ? { id: row.brand.id, name: row.brand.name, slug: row.brand.slug, country: row.brand.country }
+      ? {
+          id: row.brand.id,
+          name: row.brand.name,
+          slug: row.brand.slug,
+          country: row.brand.country,
+        }
       : null,
     category: row.category
       ? {

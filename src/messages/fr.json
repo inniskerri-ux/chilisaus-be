@@ -79,7 +79,8 @@
   "SauceArchive": {
     "heading": "Nos Sauces Piquantes",
     "search": {
-      "placeholder": "Rechercher des sauces…",
+      "label": "Rechercher des produits",
+      "placeholder": "Rechercher des produits…",
       "filters": {
         "heatLevel": "Niveau de chaleur",
         "heatLevels": {
@@ -104,7 +105,7 @@
     "results": {
       "showing": "Affichage de",
       "of": "sur",
-      "sauces": "sauces",
+      "sauces": "produits",
       "noResults": "Aucune sauce trouvée",
       "adjustSearch": "Essayez d'ajuster votre recherche ou vos filtres.",
       "clearFilters": "Effacer les filtres",

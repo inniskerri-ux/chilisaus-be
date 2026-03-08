@@ -25,8 +25,26 @@ export default function CookieConsent() {
     const consent = localStorage.getItem("cookie_consent");
     if (!consent) {
       setIsOpen(true);
+    } else {
+      try {
+        const prefs = JSON.parse(consent);
+        updateGoogleConsent(prefs);
+      } catch (e) {
+        console.error("Failed to parse cookie consent", e);
+      }
     }
   }, []);
+
+  function updateGoogleConsent(prefs: CookiePreferences) {
+    if (typeof window !== "undefined" && (window as any).gtag) {
+      (window as any).gtag("consent", "update", {
+        ad_storage: prefs.marketing ? "granted" : "denied",
+        ad_user_data: prefs.marketing ? "granted" : "denied",
+        ad_personalization: prefs.marketing ? "granted" : "denied",
+        analytics_storage: prefs.marketing ? "granted" : "denied",
+      });
+    }
+  }
 
   const handleAcceptAll = () => {
     const allAccepted = { necessary: true, functional: true, marketing: true };
@@ -44,6 +62,9 @@ export default function CookieConsent() {
 
   const savePreferences = (prefs: CookiePreferences) => {
     localStorage.setItem("cookie_consent", JSON.stringify(prefs));
+    // Update Google Consent Mode
+    updateGoogleConsent(prefs);
+
     // Also set as actual cookie for server-side if needed
     document.cookie = `cookie_consent=${JSON.stringify(prefs)}; path=/; max-age=${60 * 60 * 24 * 365}; SameSite=Lax`;
     setIsOpen(false);

@@ -79,7 +79,8 @@
   "SauceArchive": {
     "heading": "Naše pálivé omáčky",
     "search": {
-      "placeholder": "Hledat omáčky…",
+      "label": "Hledat produkty",
+      "placeholder": "Hledat produkty…",
       "filters": {
         "heatLevel": "Úroveň pálivosti",
         "pepper": "Paprika",
@@ -98,7 +99,7 @@
     "results": {
       "showing": "Zobrazeno",
       "of": "z",
-      "sauces": "omáček",
+      "sauces": "produktů",
       "noResults": "Nebyly nalezeny žádné omáčky",
       "adjustSearch": "Zkuste upravit hledání nebo filtry.",
       "clearFilters": "Vymazat filtry",

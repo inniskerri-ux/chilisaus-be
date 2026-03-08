@@ -37,4 +37,5 @@ export interface StoreProduct {
   brand?: StoreBrand | null;
   stock?: number;
   is_active?: boolean;
+  created_at?: string;
 }

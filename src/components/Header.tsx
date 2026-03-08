@@ -50,12 +50,6 @@ export default async function Header({ locale }: { locale: string }) {
           >
             {tNav("Scoville")}
           </Link>
-          <Link
-            href={`#`}
-            className="text-zinc-600 hover:text-brand-red transition-colors"
-          >
-            {tNav("Videos")}
-          </Link>
         </nav>
 
         <div className="flex items-center gap-4">

@@ -79,7 +79,8 @@
   "SauceArchive": {
     "heading": "Nasze ostre sosy",
     "search": {
-      "placeholder": "Szukaj sosów…",
+      "label": "Szukaj produktów",
+      "placeholder": "Szukaj produktów…",
       "filters": {
         "heatLevel": "Poziom ostrości",
         "pepper": "Pieprz",
@@ -98,7 +99,7 @@
     "results": {
       "showing": "Wyświetlanie",
       "of": "z",
-      "sauces": "sosów",
+      "sauces": "produktów",
       "noResults": "Nie znaleziono sosów",
       "adjustSearch": "Spróbuj dostosować wyszukiwanie lub filtry.",
       "clearFilters": "Wyczyść filtry",

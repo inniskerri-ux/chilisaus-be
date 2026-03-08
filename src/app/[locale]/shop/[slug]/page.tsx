@@ -7,6 +7,7 @@ import { formatPrice } from "@/lib/format";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import AddToCartButton from "@/components/store/AddToCartButton";
+import ProductReviews from "@/components/store/ProductReviews";
 
 export const dynamic = "force-dynamic";
 
@@ -209,6 +210,8 @@ export default async function ProductPage({
           )}
         </div>
       </div>
+
+      <ProductReviews productId={product.id} locale={locale} />
     </main>
   );
 }

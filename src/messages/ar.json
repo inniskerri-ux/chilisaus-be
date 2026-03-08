@@ -9,6 +9,7 @@
     "SignOut": "Sign out"
   },
   "Nav": {
+    "dir": "rtl",
     "Shop": "Shop",
     "Cart": "Cart",
     "Checkout": "Checkout",

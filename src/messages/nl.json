@@ -127,7 +127,8 @@
   "SauceArchive": {
     "heading": "Onze hete sauzen",
     "search": {
-      "placeholder": "Zoek sauzen…",
+      "label": "Zoek producten",
+      "placeholder": "Zoek producten…",
       "filters": {
         "heatLevel": "Heetheid",
         "heatLevels": {
@@ -146,13 +147,15 @@
         "sortNewest": "Nieuwste",
         "sortPopular": "Meest populair",
         "sortMildToHot": "Mild → Heet",
-        "sortHotToMild": "Heet → Mild"
+        "sortHotToMild": "Heet → Mild",
+        "sortPriceLowHigh": "Prijs: Laag naar Hoog",
+        "sortPriceHighLow": "Prijs: Hoog naar Laag"
       }
     },
     "results": {
       "showing": "Toont",
       "of": "van",
-      "sauces": "sauzen",
+      "sauces": "producten",
       "noResults": "Geen sauzen gevonden",
       "adjustSearch": "Pas uw zoekopdracht of filters aan.",
       "clearFilters": "Filters wissen",
@@ -184,7 +187,13 @@
     "addToCart": "In winkelwagen",
     "description": "Beschrijving",
     "ingredients": "Ingrediënten",
-    "peppers": "Pepers"
+    "peppers": "Pepers",
+    "reviewsTitle": "Klantenbeoordelingen",
+    "reviewCount": "beoordeling",
+    "reviewsCount": "beoordelingen",
+    "writeReview": "Schrijf een beoordeling",
+    "noReviews": "Nog geen beoordelingen. Deel als eerste je ervaring!",
+    "verifiedPurchase": "Geverifieerde aankoop"
   },
   "Legal": {
     "notice": "Colofon",
