@@ -93,16 +93,23 @@ function ProductArchiveContent({
 
   // Sync state if URL changes (e.g. back button)
   useEffect(() => {
-    if (initialCategory !== null) {
+    if (initialCategory !== null && initialCategory !== selectedCategory) {
       setSelectedCategory(initialCategory);
     }
-    if (initialHeat !== null) {
+    if (initialHeat !== null && initialHeat !== selectedHeatLevel) {
       setSelectedHeatLevel(initialHeat);
     }
-    if (initialBrand !== null) {
+    if (initialBrand !== null && initialBrand !== selectedBrand) {
       setSelectedBrand(initialBrand);
     }
-  }, [initialCategory, initialHeat, initialBrand]);
+  }, [
+    initialCategory,
+    initialHeat,
+    initialBrand,
+    selectedCategory,
+    selectedHeatLevel,
+    selectedBrand,
+  ]);
 
   const filteredAndSortedProducts = useMemo(() => {
     let filtered = products.filter((product) => {

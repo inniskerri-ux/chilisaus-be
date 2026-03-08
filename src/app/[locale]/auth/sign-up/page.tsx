@@ -65,7 +65,7 @@ export default function SignUpPage({ params }: { params: { locale: string } }) {
               Check your email
             </h1>
             <p className="text-zinc-600 mb-8">
-              We've sent a confirmation link to <strong>{email}</strong>. Please
+              We&apos;ve sent a confirmation link to <strong>{email}</strong>. Please
               click it to activate your account.
             </p>
             <Button

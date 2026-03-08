@@ -52,47 +52,53 @@ export default async function ShopPage({
 
       supabase
         .from("brands")
-        .select(`id, name, slug, country, description ${isEn ? "" : `, description_${locale}`}`)
+        .select(
+          `id, name, slug, country, description ${isEn ? "" : `, description_${locale}`}`,
+        )
         .order("name"),
     ]);
 
   // Log errors if they occur
-  if (productsRes.error) console.error("Products fetch error:", productsRes.error);
-  if (categoriesRes.error) console.error("Categories fetch error:", categoriesRes.error);
-  if (chilliTypesRes.error) console.error("ChilliTypes fetch error:", chilliTypesRes.error);
+  if (productsRes.error)
+    console.error("Products fetch error:", productsRes.error);
+  if (categoriesRes.error)
+    console.error("Categories fetch error:", categoriesRes.error);
+  if (chilliTypesRes.error)
+    console.error("ChilliTypes fetch error:", chilliTypesRes.error);
   if (brandsRes.error) console.error("Brands fetch error:", brandsRes.error);
 
-  const products: StoreProduct[] = (productsRes.data ?? []).map(
-    (row: Record<string, any>) => ({
-      id: row.id,
-      name: row.name,
-      slug: row.slug,
-      description: getLocalizedField(row, "description", locale),
-      price_cents: row.price_cents,
-      currency: row.currency,
-      heatLevel: row.heat_level,
-      image_url: row.image_url,
-      stock: row.stock,
-      is_active: row.is_active,
-      created_at: row.created_at,
-      brand: row.brand
+  const products: StoreProduct[] = (productsRes.data ?? []).map((row) => {
+    const r = row as any; // Temporary cast to bypass complex Supabase join types for now, but better than Record<string, any> in map
+    return {
+      id: r.id,
+      name: r.name,
+      slug: r.slug,
+      description: getLocalizedField(r, "description", locale),
+      price_cents: r.price_cents,
+      currency: r.currency,
+      heatLevel: r.heat_level,
+      image_url: r.image_url,
+      stock: r.stock,
+      is_active: r.is_active,
+      created_at: r.created_at,
+      brand: r.brand
         ? {
-            id: row.brand.id,
-            name: row.brand.name,
-            slug: row.brand.slug,
-            country: row.brand.country,
-            description: getLocalizedField(row.brand, "description", locale),
+            id: r.brand.id,
+            name: r.brand.name,
+            slug: r.brand.slug,
+            country: r.brand.country,
+            description: getLocalizedField(r.brand, "description", locale),
           }
         : null,
-      category: row.category
+      category: r.category
         ? {
-            id: row.category.id,
-            name: getLocalizedField(row.category, "name", locale),
-            slug: row.category.slug,
+            id: r.category.id,
+            name: getLocalizedField(r.category, "name", locale),
+            slug: r.category.slug,
           }
         : null,
-      chilliTypes: (row.chilliTypes ?? [])
-        .map((j: any) => j.chilli_type)
+      chilliTypes: (r.chilliTypes ?? [])
+        .map((j: { chilli_type: any }) => j.chilli_type)
         .filter(Boolean)
         .map((ct: any) => ({
           id: ct.id,
@@ -100,35 +106,29 @@ export default async function ShopPage({
           slug: ct.slug,
           heatLevel: ct.heat_level,
         })),
-    }),
-  );
+    };
+  });
 
-  const categories: Category[] = (categoriesRes.data ?? []).map(
-    (c: Record<string, any>) => ({
-      id: c.id,
-      name: getLocalizedField(c, "name", locale),
-      slug: c.slug,
-    }),
-  );
+  const categories: Category[] = (categoriesRes.data as any[] ?? []).map((c) => ({
+    id: c.id,
+    name: getLocalizedField(c, "name", locale),
+    slug: (c as any).slug,
+  }));
 
-  const chilliTypes: ChilliType[] = (chilliTypesRes.data ?? []).map(
-    (ct: Record<string, any>) => ({
-      id: ct.id,
-      name: getLocalizedField(ct, "name", locale),
-      slug: ct.slug,
-      heatLevel: ct.heat_level,
-    }),
-  );
+  const chilliTypes: ChilliType[] = (chilliTypesRes.data as any[] ?? []).map((ct) => ({
+    id: ct.id,
+    name: getLocalizedField(ct, "name", locale),
+    slug: (ct as any).slug,
+    heatLevel: (ct as any).heat_level,
+  }));
 
-  const brands: StoreBrand[] = (brandsRes.data ?? []).map(
-    (b: Record<string, any>) => ({
-      id: b.id,
-      name: b.name,
-      slug: b.slug,
-      country: b.country,
-      description: getLocalizedField(b, "description", locale),
-    }),
-  );
+  const brands: StoreBrand[] = (brandsRes.data as any[] ?? []).map((b) => ({
+    id: b.id,
+    name: b.name,
+    slug: b.slug,
+    country: (b as any).country,
+    description: getLocalizedField(b, "description", locale),
+  }));
 
   return (
     <main>
