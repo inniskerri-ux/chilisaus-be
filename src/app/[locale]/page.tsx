@@ -3,6 +3,7 @@ import { getTranslations } from "next-intl/server";
 import Link from "next/link";
 import Image from "next/image";
 import CategoryCard from "@/components/store/CategoryCard";
+import { getLocalizedField } from "@/lib/utils";
 
 export const dynamic = "force-dynamic";
 
@@ -15,14 +16,16 @@ export default async function HomePage({
   const t = await getTranslations({ locale, namespace: "Landing" });
   const supabase = await createClient();
 
+  const isEn = locale === "en";
+
   // Fetch categories and one product image for each
-  const { data: categoriesData } = await supabase
+  const { data: categoriesData } = await (supabase
     .from("categories")
-    .select("id, name, slug")
-    .order("name");
+    .select(`id, name, ${isEn ? "" : `name_${locale},`} slug`)
+    .order("name") as any);
 
   const categories = await Promise.all(
-    (categoriesData ?? []).map(async (cat) => {
+    (categoriesData ?? []).map(async (cat: any) => {
       const { data: product } = await supabase
         .from("products")
         .select("image_url")
@@ -35,6 +38,7 @@ export default async function HomePage({
 
       return {
         ...cat,
+        name: getLocalizedField(cat, "name", locale),
         image_url: product?.image_url || null,
       };
     }),

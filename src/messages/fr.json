@@ -1,21 +1,67 @@
 {
   "Auth": {
     "SignIn": "Se connecter",
-    "SignUp": "Sign up",
-    "Email": "Email",
-    "Password": "Password",
-    "ConfirmPassword": "Confirm password",
-    "ResetPassword": "Reset password",
+    "SignUp": "S'inscrire",
+    "Email": "E-mail",
+    "Password": "Mot de passe",
+    "ConfirmPassword": "Confirmer le mot de passe",
+    "ResetPassword": "Réinitialiser le mot de passe",
     "SignOut": "Déconnexion"
   },
   "Nav": {
-    "Shop": "Shop",
-    "Cart": "Cart",
-    "Checkout": "Checkout",
-    "Account": "Account",
+    "Shop": "Boutique",
+    "Cart": "Panier",
+    "Checkout": "Paiement",
+    "Account": "Compte",
     "Dashboard": "Tableau de bord",
     "Scoville": "Scoville",
     "Videos": "Vidéos"
+  },
+  "Cart": {
+    "title": "Votre Panier",
+    "empty": "Votre panier est vide",
+    "continueShopping": "Continuer vos achats",
+    "checkout": "Passer à la caisse",
+    "items": "articles",
+    "item": "article",
+    "summary": "Résumé de la commande",
+    "subtotal": "Sous-total",
+    "shipping": "Livraison",
+    "shippingNote": "Les frais de port sont calculés lors du paiement.",
+    "total": "Total",
+    "remove": "Supprimer"
+  },
+  "Newsletter": {
+    "title": "Obtenez 10% de réduction !",
+    "description": "Inscrivez-vous à notre newsletter pimentée et recevez un bon de réduction de 10% pour votre première commande.",
+    "placeholder": "Votre adresse e-mail",
+    "cta": "Réclamer ma réduction",
+    "noSpam": "Pas de spam, juste du piquant. Désabonnez-vous à tout moment.",
+    "successTitle": "Vérifiez votre boîte de réception !",
+    "successDescription": "Nous avons envoyé un lien de vérification à votre adresse e-mail.",
+    "successAction": "Confirmez votre e-mail pour obtenir le code."
+  },
+  "CookieConsent": {
+    "title": "Nous respectons votre vie privée",
+    "description": "Nous utilisons des cookies pour améliorer votre expérience de navigation, diffuser des contenus personnalisés et analyser notre trafic. Veuillez choisir les cookies que vous acceptez.",
+    "acceptAll": "Tout accepter",
+    "rejectAll": "Uniquement nécessaire",
+    "customize": "Personnaliser",
+    "save": "Enregistrer les préférences",
+    "categories": {
+      "necessary": {
+        "title": "Strictement nécessaire",
+        "description": "Requis pour le fonctionnement du site (Auth, Panier, Sécurité). Ne peut pas être désactivé."
+      },
+      "functional": {
+        "title": "Fonctionnel",
+        "description": "Mémorisation de vos préférences, comme la fermeture de la fenêtre de la newsletter."
+      },
+      "marketing": {
+        "title": "Marketing & Analyse",
+        "description": "Nous aide à comprendre comment vous utilisez le site et à afficher des offres pertinentes."
+      }
+    }
   },
   "Admin": {
     "title": "Store admin",
@@ -23,10 +69,12 @@
     "dashboardWelcomeHeading": "You're in control",
     "dashboardWelcomeCopy": "Use the admin panel to add new sauces, edit listings, and keep imagery fresh.",
     "nav": {
-      "dashboard": "Tableau de bord",
-      "products": "Produits",
-      "brands": "Marques",
-      "newProduct": "Nouveau produit"
+      "dashboard": "Dashboard",
+      "products": "Products",
+      "brands": "Brands",
+      "marketing": "Marketing",
+      "vouchers": "Vouchers",
+      "newProduct": "New product"
     },
     "stats": {
       "products": "Products",
@@ -90,16 +138,18 @@
           "extreme": "Extrême"
         },
         "pepper": "Piment",
+        "allChilliTypes": "Tous les piments",
         "country": "Pays",
         "allCountries": "Tous les pays",
-        "allChilliTypes": "Tous les piments",
         "sauceType": "Type",
         "allCategories": "Tous les types",
         "sort": "Trier par",
         "sortNewest": "Plus récents",
         "sortPopular": "Les plus populaires",
         "sortMildToHot": "Doux → Fort",
-        "sortHotToMild": "Fort → Doux"
+        "sortHotToMild": "Fort → Doux",
+        "sortPriceLowHigh": "Prix : croissant",
+        "sortPriceHighLow": "Prix : décroissant"
       }
     },
     "results": {
@@ -128,6 +178,29 @@
       "subtitle": "Trouvez la sauce parfaite pour votre prochain repas."
     }
   },
+  "ProductPage": {
+    "breadcrumbShop": "Boutique",
+    "by": "par",
+    "heatLevel": "Niveau de chaleur",
+    "inStock": "En stock",
+    "outOfStock": "Épuisé",
+    "addToCart": "Ajouter au panier",
+    "description": "Description",
+    "ingredients": "Ingrédients",
+    "peppers": "Piments",
+    "reviewsTitle": "Avis clients",
+    "reviewCount": "avis",
+    "reviewsCount": "avis",
+    "writeReview": "Écrire un avis",
+    "noReviews": "Aucun avis pour le moment. Soyez le premier à partager votre expérience !",
+    "verifiedPurchase": "Achat vérifié"
+  },
+  "Legal": {
+    "notice": "Mention Légale",
+    "shipping": "Livraison & Retours",
+    "terms": "Conditions d'utilisation",
+    "privacy": "Politique de confidentialité"
+  },
   "Account": {
     "title": "Mon Compte",
     "welcome": "Bon retour, {name}",
@@ -147,12 +220,6 @@
       "role": "Rôle"
     }
   },
-  "Legal": {
-    "notice": "Mention Légale",
-    "shipping": "Livraison & Retours",
-    "terms": "Conditions d'utilisation",
-    "privacy": "Politique de confidentialité"
-  },
   "Checkout": {
     "title": "Paiement",
     "shipping": "Adresse de livraison",
@@ -165,26 +232,50 @@
     "zip": "Code postal",
     "country": "Pays",
     "payNow": "Payer avec Stripe",
+    "freeShipping": "Livraison gratuite appliquée",
     "Success": {
       "title": "Commande confirmée !",
       "description": "Nous avons envoyé un e-mail de confirmation à {email}. Votre livraison épicée est en cours de préparation.",
       "orderNumber": "Numéro de commande",
-      "total": "Total"
+      "subtotal": "Sous-total",
+      "shipping": "Livraison",
+      "total": "Total",
+      "shippingInfo": "Expédition prochaine",
+      "shippingDescription": "Les commandes sont généralement expédiées dans les 24 à 48 heures.",
+      "support": "Besoin d'aide ?",
+      "continueShopping": "Continuer vos achats",
+      "backToShop": "Retour à la boutique",
+      "invalidSession": "Session de paiement invalide"
     }
   },
   "Scoville": {
     "title": "L'échelle de Scoville",
-    "intro": "L'échelle de Scoville est une mesure de la force (piquant) des piments. Nommée d'après son créateur Wilbur Scoville, elle vous aide à naviguer dans le monde de la chaleur sans vous brûler — à moins que vous ne le vouliez !"
-  },
-  "ProductPage": {
-    "breadcrumbShop": "Boutique",
-    "by": "par",
-    "heatLevel": "Niveau de chaleur",
-    "inStock": "En stock",
-    "outOfStock": "Épuisé",
-    "addToCart": "Ajouter au panier",
-    "description": "Description",
-    "ingredients": "Ingrédients",
-    "peppers": "Piments"
+    "intro": "L'échelle de Scoville est une mesure de la force (piquant) des piments, enregistrée en unités de chaleur Scoville (SHU). Nommée d'après son créateur Wilbur Scoville, cette échelle vous aide à naviguer dans le monde de la chaleur sans vous brûler — à moins que vous ne le vouliez !",
+    "levels": {
+      "mild": {
+        "title": "Doux (0 - 2 500 SHU)",
+        "description": "Parfait pour les saveurs de tous les jours. Le poivron classique est à zéro, tandis que le piment banane légèrement piquant ou le piment doux apportent juste une touche de chaleur."
+      },
+      "medium": {
+        "title": "Moyen (2 500 - 10 000 SHU)",
+        "description": "Le point d'entrée pour les amateurs de piment. C'est le domaine du Jalapeño et du Chipotle fumé. Attendez-vous à un picotement notable qui complète plutôt qu'il ne domine."
+      },
+      "hot": {
+        "title": "Fort (10 000 - 50 000 SHU)",
+        "description": "On commence à discuter sérieusement. Le Serrano et le Cayenne vivent ici. Ces piments procurent une chaleur vive et claire qui persiste au palais."
+      },
+      "extraHot": {
+        "title": "Extra fort (50 000 - 100 000 SHU)",
+        "description": "À aborder avec prudence. Le piment oiseau thaïlandais et le Malagueta offrent un coup de fouet significatif qui fera transpirer la plupart des gens."
+      },
+      "volcanic": {
+        "title": "Volcanique (100 000 - 350 000 SHU)",
+        "description": "Une chaleur sérieuse pour les braves. Les légendaires piments Habanero et Scotch Bonnet se trouvent ici, souvent accompagnés de notes fruitées ou florales sous le feu."
+      },
+      "superhot": {
+        "title": "Super fort (350 000 - 2 200 000+ SHU)",
+        "description": "Zone de danger. Du Ghost Pepper (Bhut Jolokia) au recordman Carolina Reaper, ces piments contiennent des quantités massives de capsaïcine et doivent être manipulés avec une extrême précaution."
+      }
+    }
   }
 }

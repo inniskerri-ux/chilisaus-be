@@ -1,65 +1,65 @@
 {
   "Auth": {
-    "SignIn": "Sign in",
-    "SignUp": "Sign up",
-    "Email": "Email",
-    "Password": "Password",
-    "ConfirmPassword": "Confirm password",
-    "ResetPassword": "Reset password",
-    "SignOut": "Sign out"
+    "SignIn": "Увійти",
+    "SignUp": "Зареєструватися",
+    "Email": "Електронна пошта",
+    "Password": "Пароль",
+    "ConfirmPassword": "Підтвердити пароль",
+    "ResetPassword": "Скинути пароль",
+    "SignOut": "Вийти"
   },
   "Nav": {
-    "Shop": "Shop",
-    "Cart": "Cart",
-    "Checkout": "Checkout",
-    "Account": "Account",
-    "Dashboard": "Dashboard",
-    "Scoville": "Scoville",
-    "Videos": "Videos"
+    "Shop": "Магазин",
+    "Cart": "Кошик",
+    "Checkout": "Оформлення",
+    "Account": "Профіль",
+    "Dashboard": "Панель",
+    "Scoville": "Сковіл",
+    "Videos": "Відео"
   },
   "Cart": {
-    "title": "Your Shopping Cart",
-    "empty": "Your cart is empty",
-    "continueShopping": "Continue Shopping",
-    "checkout": "Proceed to Checkout",
-    "items": "items",
-    "item": "item",
-    "summary": "Order Summary",
-    "subtotal": "Subtotal",
-    "shipping": "Shipping",
-    "shippingNote": "Shipping is calculated at checkout.",
-    "total": "Total",
-    "remove": "Remove"
+    "title": "Ваш кошик",
+    "empty": "Ваш кошик порожній",
+    "continueShopping": "Продовжити покупки",
+    "checkout": "Перейти до оформлення",
+    "items": "товари",
+    "item": "товар",
+    "summary": "Підсумок замовлення",
+    "subtotal": "Проміжний підсумок",
+    "shipping": "Доставка",
+    "shippingNote": "Вартість доставки розраховується під час оформлення.",
+    "total": "Разом",
+    "remove": "Видалити"
   },
   "Newsletter": {
-    "title": "Get 10% Off!",
-    "description": "Sign up for our spicy newsletter and receive a 10% discount voucher for your first order.",
-    "placeholder": "Your email address",
-    "cta": "Claim My Discount",
-    "noSpam": "No spam, just heat. Unsubscribe anytime.",
-    "successTitle": "Check Your Inbox!",
-    "successDescription": "We've sent a verification link to your email.",
-    "successAction": "Confirm your email to get the code."
+    "title": "Отримайте знижку 10%!",
+    "description": "Підпишіться на нашу гостру розсилку та отримайте ваучер на знижку 10% на перше замовлення.",
+    "placeholder": "Ваша електронна адреса",
+    "cta": "Отримати знижку",
+    "noSpam": "Без спаму, тільки гострота. Відписатися можна будь-коли.",
+    "successTitle": "Перевірте пошту!",
+    "successDescription": "Ми надіслали посилання для підтвердження на вашу електронну адресу.",
+    "successAction": "Підтвердьте пошту, щоб отримати код."
   },
   "CookieConsent": {
-    "title": "We value your privacy",
-    "description": "We use cookies to enhance your browsing experience, serve personalized content, and analyze our traffic. Please choose which cookies you're okay with.",
-    "acceptAll": "Accept All",
-    "rejectAll": "Only Necessary",
-    "customize": "Customize",
-    "save": "Save Preferences",
+    "title": "Ми цінуємо вашу приватність",
+    "description": "Ми використовуємо файли cookie, щоб покращити ваш досвід користування, показувати персоналізований контент та аналізувати наш трафік. Будь ласка, виберіть, які файли cookie ви приймаєте.",
+    "acceptAll": "Прийняти всі",
+    "rejectAll": "Тільки необхідні",
+    "customize": "Налаштувати",
+    "save": "Зберегти налаштування",
     "categories": {
       "necessary": {
-        "title": "Strictly Necessary",
-        "description": "Required for the website to function (Auth, Cart, Security). Cannot be disabled."
+        "title": "Суворо необхідні",
+        "description": "Потрібні для роботи сайту (вхід, кошик, безпека). Неможливо вимкнути."
       },
       "functional": {
-        "title": "Functional",
-        "description": "Remembering your preferences, such as the newsletter popup dismissal."
+        "title": "Функціональні",
+        "description": "Запам'ятовування ваших уподобань, наприклад, закриття вікна розсилки."
       },
       "marketing": {
-        "title": "Marketing & Analytics",
-        "description": "Helps us understand how you use the site and show relevant offers."
+        "title": "Маркетинг та аналітика",
+        "description": "Допомагає нам зрозуміти, як ви користуєтеся сайтом, і показувати відповідні пропозиції."
       }
     }
   },
@@ -125,156 +125,156 @@
     }
   },
   "SauceArchive": {
-    "heading": "Our Hot Sauces",
+    "heading": "Наші гострі соуси",
     "search": {
-      "label": "Search products",
-      "placeholder": "Search products…",
+      "label": "Пошук товарів",
+      "placeholder": "Пошук товарів…",
       "filters": {
-        "heatLevel": "Heat Level",
+        "heatLevel": "Рівень гостроти",
         "heatLevels": {
-          "mild": "Mild",
-          "medium": "Medium",
-          "hot": "Hot",
-          "extreme": "Extreme Heat"
+          "mild": "Лагідний",
+          "medium": "Середній",
+          "hot": "Гострий",
+          "extreme": "Екстремально гострий"
         },
-        "pepper": "Pepper",
-        "allChilliTypes": "All peppers",
-        "country": "Country",
-        "allCountries": "All countries",
-        "sauceType": "Type",
-        "allCategories": "All types",
-        "sort": "Sort by",
-        "sortNewest": "Newest",
-        "sortPopular": "Most popular",
-        "sortMildToHot": "Mild → Hot",
-        "sortHotToMild": "Hot → Mild",
-        "sortPriceLowHigh": "Price: Low to High",
-        "sortPriceHighLow": "Price: High to Low"
+        "pepper": "Перець",
+        "allChilliTypes": "Всі перці",
+        "country": "Країна",
+        "allCountries": "Всі країни",
+        "sauceType": "Тип",
+        "allCategories": "Всі типи",
+        "sort": "Сортувати за",
+        "sortNewest": "Найновіші",
+        "sortPopular": "Найпопулярніші",
+        "sortMildToHot": "Від лагідних до гострих",
+        "sortHotToMild": "Від гострих до лагідних",
+        "sortPriceLowHigh": "Ціна: від низької",
+        "sortPriceHighLow": "Ціна: від високої"
       }
     },
     "results": {
-      "showing": "Showing",
-      "of": "of",
-      "sauces": "products",
-      "noResults": "No sauces found",
-      "adjustSearch": "Try adjusting your search or filters.",
-      "clearFilters": "Clear filters",
-      "loadMore": "Load more"
+      "showing": "Показано",
+      "of": "з",
+      "sauces": "товарів",
+      "noResults": "Соусів не знайдено",
+      "adjustSearch": "Спробуйте змінити параметри пошуку або фільтри.",
+      "clearFilters": "Очистити фільтри",
+      "loadMore": "Завантажити ще"
     }
   },
   "Landing": {
     "hero": {
-      "welcome": "Welcome to Chilisaus.be/eu",
-      "title": "You Can Never Have Too Much Hot Sauce",
-      "subtitle": "Discover a hand-picked collection of the world's finest chili sauces. From mild everyday flavors to extreme heat.",
-      "cta": "Shop All Sauces"
+      "welcome": "Ласкаво просимо до Chilisaus.be/eu",
+      "title": "Гострого соусу забагато не буває",
+      "subtitle": "Відкрийте для себе добірну колекцію найкращих у світі соусів чилі. Від м'яких повсякденних смаків до екстремальної гостроти.",
+      "cta": "Купити всі соуси"
     },
     "maker": {
-      "title": "Meet the Maker",
-      "content": "A lot of you have met me at events across the country. I'm passionate about bringing the best sauces directly to you, keeping it personal and simple. I want to keep it a personal connection, not a faceless corporation. It's all about the sauce and the people who love it."
+      "title": "Знайомство з виробником",
+      "content": "Багато хто з вас зустрічав мене на заходах по всій країні. Я прагну приносити вам найкращі соуси безпосередньо, особисто та просто. Я хочу зберегти особистий зв'язок, а не бути безликою корпорацією. Все заради соусу та людей, які його люблять."
     },
     "categories": {
-      "title": "Shop by Category",
-      "subtitle": "Find the perfect sauce for your next meal."
+      "title": "Купити за категорією",
+      "subtitle": "Знайдіть ідеальний сос для вашої наступної страви."
     }
   },
   "ProductPage": {
-    "breadcrumbShop": "Shop",
-    "by": "by",
-    "heatLevel": "Heat Level",
-    "inStock": "In stock",
-    "outOfStock": "Out of stock",
-    "addToCart": "Add to cart",
-    "description": "Description",
-    "ingredients": "Ingredients",
-    "peppers": "Peppers",
-    "reviewsTitle": "Customer Reviews",
-    "reviewCount": "review",
-    "reviewsCount": "reviews",
-    "writeReview": "Write a Review",
-    "noReviews": "No reviews yet. Be the first to share your experience!",
-    "verifiedPurchase": "Verified Purchase"
+    "breadcrumbShop": "Магазин",
+    "by": "від",
+    "heatLevel": "Рівень гостроти",
+    "inStock": "В наявності",
+    "outOfStock": "Немає в наявності",
+    "addToCart": "Додати в кошик",
+    "description": "Опис",
+    "ingredients": "Інгредієнти",
+    "peppers": "Перці",
+    "reviewsTitle": "Відгуки клієнтів",
+    "reviewCount": "відгук",
+    "reviewsCount": "відгуків",
+    "writeReview": "Написати відгук",
+    "noReviews": "Відгуків ще немає. Будьте першими, хто поділиться враженнями!",
+    "verifiedPurchase": "Підтверджена покупка"
   },
   "Legal": {
-    "notice": "Legal Notice",
-    "shipping": "Shipping & Returns",
-    "terms": "Terms of Service",
-    "privacy": "Privacy Policy"
+    "notice": "Юридична інформація",
+    "shipping": "Доставка та повернення",
+    "terms": "Умови використання",
+    "privacy": "Політика конфіденційності"
   },
   "Account": {
-    "title": "My Account",
-    "welcome": "Welcome back, {name}",
+    "title": "Мій профіль",
+    "welcome": "З поверненням, {name}",
     "orders": {
-      "title": "My Orders",
-      "empty": "You haven't placed any orders yet.",
-      "viewAll": "View all orders",
-      "orderNumber": "Order #",
-      "date": "Date",
-      "status": "Status",
-      "total": "Total",
-      "details": "View Details"
+      "title": "Мої замовлення",
+      "empty": "Ви ще не робили замовлень.",
+      "viewAll": "Переглянути всі замовлення",
+      "orderNumber": "Замовлення №",
+      "date": "Дата",
+      "status": "Статус",
+      "total": "Разом",
+      "details": "Детальніше"
     },
     "profile": {
-      "title": "Profile Information",
-      "email": "Email",
-      "role": "Role"
+      "title": "Інформація про профіль",
+      "email": "Електронна пошта",
+      "role": "Роль"
     }
   },
   "Checkout": {
-    "title": "Checkout",
-    "shipping": "Shipping Address",
-    "payment": "Payment",
-    "summary": "Order Summary",
-    "email": "Email Address",
-    "fullName": "Full Name",
-    "street": "Street Address",
-    "city": "City",
-    "zip": "ZIP / Postal Code",
-    "country": "Country",
-    "payNow": "Pay with Stripe",
-    "freeShipping": "Free shipping applied",
+    "title": "Оформлення замовлення",
+    "shipping": "Адреса доставки",
+    "payment": "Оплата",
+    "summary": "Підсумок замовлення",
+    "email": "Електронна адреса",
+    "fullName": "Повне ім'я",
+    "street": "Адреса",
+    "city": "Місто",
+    "zip": "Поштовий індекс",
+    "country": "Країна",
+    "payNow": "Оплатити через Stripe",
+    "freeShipping": "Застосовано безкоштовну доставку",
     "Success": {
-      "title": "Order Confirmed!",
-      "description": "We've sent a confirmation email to {email}. Your spicy delivery is being prepared.",
-      "orderNumber": "Order Number",
-      "subtotal": "Subtotal",
-      "shipping": "Shipping",
-      "total": "Total",
-      "shippingInfo": "Shipping soon",
-      "shippingDescription": "Orders are typically dispatched within 24-48 hours.",
-      "support": "Need help?",
-      "continueShopping": "Continue Shopping",
-      "backToShop": "Back to Shop",
-      "invalidSession": "Invalid checkout session"
+      "title": "Замовлення підтверджено!",
+      "description": "Ми надіслали електронний лист із підтвердженням на {email}. Ваша гостра посилка готується.",
+      "orderNumber": "Номер замовлення",
+      "subtotal": "Проміжний підсумок",
+      "shipping": "Доставка",
+      "total": "Разом",
+      "shippingInfo": "Скоро буде відправлено",
+      "shippingDescription": "Замовлення зазвичай відправляються протягом 24-48 годин.",
+      "support": "Потрібна допомога?",
+      "continueShopping": "Продовжити покупки",
+      "backToShop": "Назад до магазину",
+      "invalidSession": "Недійсний сеанс оплати"
     }
   },
   "Scoville": {
-    "title": "The Scoville Scale",
-    "intro": "The Scoville scale is a measurement of the pungency (spiciness or heat) of chili peppers, as recorded in Scoville Heat Units (SHU). Named after its creator, Wilbur Scoville, this scale helps you navigate the world of heat without getting burned—unless you want to!",
+    "title": "Шкала Сковілла",
+    "intro": "Шкала Сковілла — це міра гостроти перцю чилі, зафіксована в одиницях шкали Сковілла (SHU). Названа на честь свого творця Вілбура Сковілла, ця шкала допоможе вам орієнтуватися у світі гостроти, не обпікшись — хіба що ви цього хочете!",
     "levels": {
       "mild": {
-        "title": "Mild (0 - 2,500 SHU)",
-        "description": "Perfect for everyday flavor. The classic Bell Pepper sits at zero, while the slightly zesty Banana Pepper or mild Pimento adds just a hint of warmth."
+        "title": "Лагідний (0 - 2 500 SHU)",
+        "description": "Ідеально для повсякденного смаку. Класичний болгарський перець має нульову гостроту, тоді як злегка пікантний банановий перець або лагідний піменто додають лише натяк на тепло."
       },
       "medium": {
-        "title": "Medium (2,500 - 10,000 SHU)",
-        "description": "The 'entry-level' for chili lovers. This is the domain of the Jalapeño and the smoky Chipotle. Expect a noticeable tingle that complements rather than overpowers."
+        "title": "Середній (2 500 - 10 000 SHU)",
+        "description": "Початковий рівень для любителів чилі. Це територія халапеньйо та копченого чипотле. Очікуйте помітне поколювання, яке радше доповнює, ніж перебиває смак."
       },
       "hot": {
-        "title": "Hot (10,000 - 50,000 SHU)",
-        "description": "Now we're talking. The Serrano and Cayenne peppers live here. These peppers provide a sharp, clear heat that lingers on the palate."
+        "title": "Гострий (10 000 - 50 000 SHU)",
+        "description": "Ось тепер ми говоримо серйозно. Тут живуть перці серрано та кайєнський. Ці перці дають гостру, чисту гостроту, яка тримається на піднебінні."
       },
       "extraHot": {
-        "title": "Extra Hot (50,000 - 100,000 SHU)",
-        "description": "Approach with caution. The Thai Bird's Eye pepper and the Malagueta offer a significant kick that will make most people break a sweat."
+        "title": "Дуже гострий (50 000 - 100 000 SHU)",
+        "description": "Підходьте з обережністю. Тайський перець «пташине око» та малагета дають значний поштовх, від якого більшість людей спітніє."
       },
       "volcanic": {
-        "title": "Volcanic (100,000 - 350,000 SHU)",
-        "description": "Serious heat for the brave. The legendary Habanero and Scotch Bonnet peppers are found here, often accompanied by fruity or floral notes underneath the fire."
+        "title": "Вулканічний (100 000 - 350 000 SHU)",
+        "description": "Серйозна гострота для сміливців. Тут зустрічаються легендарні перці хабанеро та скотч боннет, які під вогнем часто супроводжуються фруктовими або квітковими нотами."
       },
       "superhot": {
-        "title": "Superhot (350,000 - 2,200,000+ SHU)",
-        "description": "The danger zone. From the Ghost Pepper (Bhut Jolokia) to the record-breaking Carolina Reaper, these peppers contain massive amounts of capsaicin and should be handled with extreme care."
+        "title": "Супергострий (350 000 - 2 200 000+ SHU)",
+        "description": "Зона небезпеки. Від перцю-привида (бхут джолокія) до рекордсмена Carolina Reaper — ці перці містять величезну кількість капсаїцину, і з ними слід поводитися надзвичайно обережно."
       }
     }
   }

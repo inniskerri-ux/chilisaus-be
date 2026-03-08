@@ -1,65 +1,65 @@
 {
   "Auth": {
-    "SignIn": "Sign in",
-    "SignUp": "Sign up",
-    "Email": "Email",
-    "Password": "Password",
-    "ConfirmPassword": "Confirm password",
-    "ResetPassword": "Reset password",
-    "SignOut": "Sign out"
+    "SignIn": "Log ind",
+    "SignUp": "Opret bruger",
+    "Email": "E-mail",
+    "Password": "Adgangskode",
+    "ConfirmPassword": "Bekræft adgangskode",
+    "ResetPassword": "Nulstil adgangskode",
+    "SignOut": "Log ud"
   },
   "Nav": {
     "Shop": "Shop",
-    "Cart": "Cart",
-    "Checkout": "Checkout",
-    "Account": "Account",
+    "Cart": "Kurv",
+    "Checkout": "Betaling",
+    "Account": "Konto",
     "Dashboard": "Dashboard",
     "Scoville": "Scoville",
-    "Videos": "Videos"
+    "Videos": "Videoer"
   },
   "Cart": {
-    "title": "Your Shopping Cart",
-    "empty": "Your cart is empty",
-    "continueShopping": "Continue Shopping",
-    "checkout": "Proceed to Checkout",
-    "items": "items",
-    "item": "item",
-    "summary": "Order Summary",
+    "title": "Din indkøbskurv",
+    "empty": "Din kurv er tom",
+    "continueShopping": "Fortsæt med at handle",
+    "checkout": "Gå til betaling",
+    "items": "varer",
+    "item": "vare",
+    "summary": "Ordreoversigt",
     "subtotal": "Subtotal",
-    "shipping": "Shipping",
-    "shippingNote": "Shipping is calculated at checkout.",
+    "shipping": "Fragt",
+    "shippingNote": "Fragt beregnes ved betaling.",
     "total": "Total",
-    "remove": "Remove"
+    "remove": "Fjern"
   },
   "Newsletter": {
-    "title": "Get 10% Off!",
-    "description": "Sign up for our spicy newsletter and receive a 10% discount voucher for your first order.",
-    "placeholder": "Your email address",
-    "cta": "Claim My Discount",
-    "noSpam": "No spam, just heat. Unsubscribe anytime.",
-    "successTitle": "Check Your Inbox!",
-    "successDescription": "We've sent a verification link to your email.",
-    "successAction": "Confirm your email to get the code."
+    "title": "Få 10% rabat!",
+    "description": "Tilmeld dig vores stærke nyhedsbrev og modtag en rabatkode på 10% til din første ordre.",
+    "placeholder": "Din e-mailadresse",
+    "cta": "Hent min rabat",
+    "noSpam": "Ingen spam, kun varme. Afmeld dig når som helst.",
+    "successTitle": "Tjek din indbakke!",
+    "successDescription": "Vi har sendt et bekræftelseslink til din e-mail.",
+    "successAction": "Bekræft din e-mail for at få koden."
   },
   "CookieConsent": {
-    "title": "We value your privacy",
-    "description": "We use cookies to enhance your browsing experience, serve personalized content, and analyze our traffic. Please choose which cookies you're okay with.",
-    "acceptAll": "Accept All",
-    "rejectAll": "Only Necessary",
-    "customize": "Customize",
-    "save": "Save Preferences",
+    "title": "Vi værdsætter dit privatliv",
+    "description": "Vi bruger cookies til at forbedre din brugeroplevelse, vise personliggjort indhold og analysere vores trafik. Vælg venligst hvilke cookies du accepterer.",
+    "acceptAll": "Accepter alle",
+    "rejectAll": "Kun nødvendige",
+    "customize": "Tilpas",
+    "save": "Gem præferencer",
     "categories": {
       "necessary": {
-        "title": "Strictly Necessary",
-        "description": "Required for the website to function (Auth, Cart, Security). Cannot be disabled."
+        "title": "Helt nødvendige",
+        "description": "Kræves for at hjemmesiden kan fungere (Auth, kurv, sikkerhed). Kan ikke deaktiveres."
       },
       "functional": {
-        "title": "Functional",
-        "description": "Remembering your preferences, such as the newsletter popup dismissal."
+        "title": "Funktionelle",
+        "description": "Husker dine præferencer, såsom at lukke nyhedsbrev-popup."
       },
       "marketing": {
-        "title": "Marketing & Analytics",
-        "description": "Helps us understand how you use the site and show relevant offers."
+        "title": "Marketing & Analyse",
+        "description": "Hjælper os med at forstå, hvordan du bruger siden og viser relevante tilbud."
       }
     }
   },
@@ -125,156 +125,156 @@
     }
   },
   "SauceArchive": {
-    "heading": "Our Hot Sauces",
+    "heading": "Vores stærke saucer",
     "search": {
-      "label": "Search products",
-      "placeholder": "Search products…",
+      "label": "Søg efter produkter",
+      "placeholder": "Søg efter produkter…",
       "filters": {
-        "heatLevel": "Heat Level",
+        "heatLevel": "Styrke",
         "heatLevels": {
           "mild": "Mild",
-          "medium": "Medium",
-          "hot": "Hot",
-          "extreme": "Extreme Heat"
+          "medium": "Middel",
+          "hot": "Stærk",
+          "extreme": "Ekstrem styrke"
         },
-        "pepper": "Pepper",
-        "allChilliTypes": "All peppers",
-        "country": "Country",
-        "allCountries": "All countries",
+        "pepper": "Peber",
+        "allChilliTypes": "Alle chilier",
+        "country": "Land",
+        "allCountries": "Alle lande",
         "sauceType": "Type",
-        "allCategories": "All types",
-        "sort": "Sort by",
-        "sortNewest": "Newest",
-        "sortPopular": "Most popular",
-        "sortMildToHot": "Mild → Hot",
-        "sortHotToMild": "Hot → Mild",
-        "sortPriceLowHigh": "Price: Low to High",
-        "sortPriceHighLow": "Price: High to Low"
+        "allCategories": "Alle typer",
+        "sort": "Sorter efter",
+        "sortNewest": "Nyeste",
+        "sortPopular": "Mest populære",
+        "sortMildToHot": "Mild → Stærk",
+        "sortHotToMild": "Stærk → Mild",
+        "sortPriceLowHigh": "Pris: Lav til høj",
+        "sortPriceHighLow": "Pris: Høj til lav"
       }
     },
     "results": {
-      "showing": "Showing",
-      "of": "of",
-      "sauces": "products",
-      "noResults": "No sauces found",
-      "adjustSearch": "Try adjusting your search or filters.",
-      "clearFilters": "Clear filters",
-      "loadMore": "Load more"
+      "showing": "Viser",
+      "of": "af",
+      "sauces": "produkter",
+      "noResults": "Ingen saucer fundet",
+      "adjustSearch": "Prøv at justere din søgning eller dine filtre.",
+      "clearFilters": "Ryd filtre",
+      "loadMore": "Indlæs flere"
     }
   },
   "Landing": {
     "hero": {
-      "welcome": "Welcome to Chilisaus.be/eu",
-      "title": "You Can Never Have Too Much Hot Sauce",
-      "subtitle": "Discover a hand-picked collection of the world's finest chili sauces. From mild everyday flavors to extreme heat.",
-      "cta": "Shop All Sauces"
+      "welcome": "Velkommen til Chilisaus.be/eu",
+      "title": "Man kan aldrig få for meget chilisovs",
+      "subtitle": "Oplev en håndplukket samling af verdens fineste chilisaucer. Fra milde hverdagsolier til ekstrem varme.",
+      "cta": "Se alle saucer"
     },
     "maker": {
-      "title": "Meet the Maker",
-      "content": "A lot of you have met me at events across the country. I'm passionate about bringing the best sauces directly to you, keeping it personal and simple. I want to keep it a personal connection, not a faceless corporation. It's all about the sauce and the people who love it."
+      "title": "Mød manden bag",
+      "content": "Mange af jer har mødt mig til arrangementer rundt om i landet. Jeg brænder for at bringe de bedste saucer direkte til dig på en personlig og enkel måde. Jeg ønsker at bevare den personlige forbindelse, ikke være et ansigtsløst firma. Det handler om saucen og de mennesker, der elsker den."
     },
     "categories": {
-      "title": "Shop by Category",
-      "subtitle": "Find the perfect sauce for your next meal."
+      "title": "Shop efter kategori",
+      "subtitle": "Find den perfekte sauce til dit næste måltid."
     }
   },
   "ProductPage": {
     "breadcrumbShop": "Shop",
-    "by": "by",
-    "heatLevel": "Heat Level",
-    "inStock": "In stock",
-    "outOfStock": "Out of stock",
-    "addToCart": "Add to cart",
-    "description": "Description",
-    "ingredients": "Ingredients",
-    "peppers": "Peppers",
-    "reviewsTitle": "Customer Reviews",
-    "reviewCount": "review",
-    "reviewsCount": "reviews",
-    "writeReview": "Write a Review",
-    "noReviews": "No reviews yet. Be the first to share your experience!",
-    "verifiedPurchase": "Verified Purchase"
+    "by": "af",
+    "heatLevel": "Styrke",
+    "inStock": "På lager",
+    "outOfStock": "Udsolgt",
+    "addToCart": "Læg i kurv",
+    "description": "Beskrivelse",
+    "ingredients": "Ingredienser",
+    "peppers": "Chilier",
+    "reviewsTitle": "Kundeanmeldelser",
+    "reviewCount": "anmeldelse",
+    "reviewsCount": "anmeldelser",
+    "writeReview": "Skriv en anmeldelse",
+    "noReviews": "Ingen anmeldelser endnu. Vær den første til at dele din oplevelse!",
+    "verifiedPurchase": "Bekræftet køb"
   },
   "Legal": {
-    "notice": "Legal Notice",
-    "shipping": "Shipping & Returns",
-    "terms": "Terms of Service",
-    "privacy": "Privacy Policy"
+    "notice": "Juridisk meddelelse",
+    "shipping": "Fragt & Returnering",
+    "terms": "Handelsbetingelser",
+    "privacy": "Privatlivspolitik"
   },
   "Account": {
-    "title": "My Account",
-    "welcome": "Welcome back, {name}",
+    "title": "Min konto",
+    "welcome": "Velkommen tilbage, {name}",
     "orders": {
-      "title": "My Orders",
-      "empty": "You haven't placed any orders yet.",
-      "viewAll": "View all orders",
-      "orderNumber": "Order #",
-      "date": "Date",
+      "title": "Mine ordrer",
+      "empty": "Du har ikke afgivet nogen ordrer endnu.",
+      "viewAll": "Se alle ordrer",
+      "orderNumber": "Ordre #",
+      "date": "Dato",
       "status": "Status",
       "total": "Total",
-      "details": "View Details"
+      "details": "Se detaljer"
     },
     "profile": {
-      "title": "Profile Information",
-      "email": "Email",
-      "role": "Role"
+      "title": "Profilinformation",
+      "email": "E-mail",
+      "role": "Rolle"
     }
   },
   "Checkout": {
-    "title": "Checkout",
-    "shipping": "Shipping Address",
-    "payment": "Payment",
-    "summary": "Order Summary",
-    "email": "Email Address",
-    "fullName": "Full Name",
-    "street": "Street Address",
-    "city": "City",
-    "zip": "ZIP / Postal Code",
-    "country": "Country",
-    "payNow": "Pay with Stripe",
-    "freeShipping": "Free shipping applied",
+    "title": "Betaling",
+    "shipping": "Leveringsadresse",
+    "payment": "Betaling",
+    "summary": "Ordreoversigt",
+    "email": "E-mailadresse",
+    "fullName": "Fulde navn",
+    "street": "Adresse",
+    "city": "By",
+    "zip": "Postnummer",
+    "country": "Land",
+    "payNow": "Betal med Stripe",
+    "freeShipping": "Gratis fragt anvendt",
     "Success": {
-      "title": "Order Confirmed!",
-      "description": "We've sent a confirmation email to {email}. Your spicy delivery is being prepared.",
-      "orderNumber": "Order Number",
+      "title": "Ordre bekræftet!",
+      "description": "Vi har sendt en bekræftelses-e-mail til {email}. Din stærke levering er ved at blive klargjort.",
+      "orderNumber": "Ordrenummer",
       "subtotal": "Subtotal",
-      "shipping": "Shipping",
+      "shipping": "Fragt",
       "total": "Total",
-      "shippingInfo": "Shipping soon",
-      "shippingDescription": "Orders are typically dispatched within 24-48 hours.",
-      "support": "Need help?",
-      "continueShopping": "Continue Shopping",
-      "backToShop": "Back to Shop",
-      "invalidSession": "Invalid checkout session"
+      "shippingInfo": "Sendes snart",
+      "shippingDescription": "Ordrer afsendes normalt inden for 24-48 timer.",
+      "support": "Brug for hjælp?",
+      "continueShopping": "Fortsæt med at handle",
+      "backToShop": "Tilbage til shoppen",
+      "invalidSession": "Ugyldig betalingssession"
     }
   },
   "Scoville": {
-    "title": "The Scoville Scale",
-    "intro": "The Scoville scale is a measurement of the pungency (spiciness or heat) of chili peppers, as recorded in Scoville Heat Units (SHU). Named after its creator, Wilbur Scoville, this scale helps you navigate the world of heat without getting burned—unless you want to!",
+    "title": "Scoville-skalaen",
+    "intro": "Scoville-skalaen er en måling af styrken (stærkheden) af chilipebre, registreret i Scoville Heat Units (SHU). Skalaen er opkaldt efter sin skaber, Wilbur Scoville, og hjælper dig med at navigere i varmens verden uden at blive brændt – medmindre du vil!",
     "levels": {
       "mild": {
-        "title": "Mild (0 - 2,500 SHU)",
-        "description": "Perfect for everyday flavor. The classic Bell Pepper sits at zero, while the slightly zesty Banana Pepper or mild Pimento adds just a hint of warmth."
+        "title": "Mild (0 - 2.500 SHU)",
+        "description": "Perfekt til hverdagens smag. Den klassiske peberfrugt ligger på nul, mens den let pikante Banana Pepper eller milde Pimento tilføjer blot et strejf af varme."
       },
       "medium": {
-        "title": "Medium (2,500 - 10,000 SHU)",
-        "description": "The 'entry-level' for chili lovers. This is the domain of the Jalapeño and the smoky Chipotle. Expect a noticeable tingle that complements rather than overpowers."
+        "title": "Middel (2.500 - 10.000 SHU)",
+        "description": "Indgangen for chili-elskere. Dette er domænet for Jalapeño og den røgede Chipotle. Forvent en mærkbar prikken, der komplementerer snarere end overvælder."
       },
       "hot": {
-        "title": "Hot (10,000 - 50,000 SHU)",
-        "description": "Now we're talking. The Serrano and Cayenne peppers live here. These peppers provide a sharp, clear heat that lingers on the palate."
+        "title": "Stærk (10.000 - 50.000 SHU)",
+        "description": "Nu begynder det at blive alvorligt. Serrano- og cayennepebre bor her. Disse pebre giver en skarp, klar varme, der bliver hængende på paletten."
       },
       "extraHot": {
-        "title": "Extra Hot (50,000 - 100,000 SHU)",
-        "description": "Approach with caution. The Thai Bird's Eye pepper and the Malagueta offer a significant kick that will make most people break a sweat."
+        "title": "Ekstremt stærk (50.000 - 100.000 SHU)",
+        "description": "Bør tilgås med forsigtighed. Den thailandske Bird's Eye-chili og Malagueta giver et betydeligt spark, der vil få de fleste til at svede."
       },
       "volcanic": {
-        "title": "Volcanic (100,000 - 350,000 SHU)",
-        "description": "Serious heat for the brave. The legendary Habanero and Scotch Bonnet peppers are found here, often accompanied by fruity or floral notes underneath the fire."
+        "title": "Vulkansk (100.000 - 350.000 SHU)",
+        "description": "Seriøs varme til de modige. De legendariske Habanero- og Scotch Bonnet-pebre findes her, ofte ledsaget af frugtagtige eller blomsteragtige noter under ilden."
       },
       "superhot": {
-        "title": "Superhot (350,000 - 2,200,000+ SHU)",
-        "description": "The danger zone. From the Ghost Pepper (Bhut Jolokia) to the record-breaking Carolina Reaper, these peppers contain massive amounts of capsaicin and should be handled with extreme care."
+        "title": "Superstærk (350.000 - 2.200.000+ SHU)",
+        "description": "Farezonen. Fra Ghost Pepper (Bhut Jolokia) til den rekordbrydende Carolina Reaper – disse pebre indeholder massive mængder capsaicin og bør håndteres med ekstrem forsigtighed."
       }
     }
   }

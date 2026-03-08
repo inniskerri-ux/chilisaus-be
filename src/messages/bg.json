@@ -1,65 +1,65 @@
 {
   "Auth": {
-    "SignIn": "Sign in",
-    "SignUp": "Sign up",
-    "Email": "Email",
-    "Password": "Password",
-    "ConfirmPassword": "Confirm password",
-    "ResetPassword": "Reset password",
-    "SignOut": "Sign out"
+    "SignIn": "Вход",
+    "SignUp": "Регистрация",
+    "Email": "Имейл",
+    "Password": "Парола",
+    "ConfirmPassword": "Потвърди паролата",
+    "ResetPassword": "Нулирай паролата",
+    "SignOut": "Изход"
   },
   "Nav": {
-    "Shop": "Shop",
-    "Cart": "Cart",
-    "Checkout": "Checkout",
-    "Account": "Account",
-    "Dashboard": "Dashboard",
-    "Scoville": "Scoville",
-    "Videos": "Videos"
+    "Shop": "Магазин",
+    "Cart": "Количка",
+    "Checkout": "Плащане",
+    "Account": "Профил",
+    "Dashboard": "Табло",
+    "Scoville": "Сковил",
+    "Videos": "Видео"
   },
   "Cart": {
-    "title": "Your Shopping Cart",
-    "empty": "Your cart is empty",
-    "continueShopping": "Continue Shopping",
-    "checkout": "Proceed to Checkout",
-    "items": "items",
-    "item": "item",
-    "summary": "Order Summary",
-    "subtotal": "Subtotal",
-    "shipping": "Shipping",
-    "shippingNote": "Shipping is calculated at checkout.",
-    "total": "Total",
-    "remove": "Remove"
+    "title": "Вашата количка",
+    "empty": "Количката ви е празна",
+    "continueShopping": "Продължи с пазаруването",
+    "checkout": "Към плащане",
+    "items": "продукта",
+    "item": "продукт",
+    "summary": "Резюме на поръчката",
+    "subtotal": "Междинна сума",
+    "shipping": "Доставка",
+    "shippingNote": "Доставката се изчислява при плащане.",
+    "total": "Общо",
+    "remove": "Премахни"
   },
   "Newsletter": {
-    "title": "Get 10% Off!",
-    "description": "Sign up for our spicy newsletter and receive a 10% discount voucher for your first order.",
-    "placeholder": "Your email address",
-    "cta": "Claim My Discount",
-    "noSpam": "No spam, just heat. Unsubscribe anytime.",
-    "successTitle": "Check Your Inbox!",
-    "successDescription": "We've sent a verification link to your email.",
-    "successAction": "Confirm your email to get the code."
+    "title": "Вземете 10% отстъпка!",
+    "description": "Абонирайте се за нашия лют бюлетин и получете ваучер за 10% отстъпка за първата си поръчка.",
+    "placeholder": "Вашият имейл адрес",
+    "cta": "Вземи моята отстъпка",
+    "noSpam": "Без спам, само люти новини. Отпишете се по всяко време.",
+    "successTitle": "Проверете пощата си!",
+    "successDescription": "Изпратихме линк за потвърждение на вашия имейл.",
+    "successAction": "Потвърдете имейла си, за да получите кода."
   },
   "CookieConsent": {
-    "title": "We value your privacy",
-    "description": "We use cookies to enhance your browsing experience, serve personalized content, and analyze our traffic. Please choose which cookies you're okay with.",
-    "acceptAll": "Accept All",
-    "rejectAll": "Only Necessary",
-    "customize": "Customize",
-    "save": "Save Preferences",
+    "title": "Ние ценим вашата поверителност",
+    "description": "Използваме бисквитки, за да подобрим вашето преживяване, да показваме персонализирано съдържание и да анализираме трафика си. Моля, изберете кои бисквитки приемате.",
+    "acceptAll": "Приеми всички",
+    "rejectAll": "Само необходимите",
+    "customize": "Персонализирай",
+    "save": "Запази предпочитанията",
     "categories": {
       "necessary": {
-        "title": "Strictly Necessary",
-        "description": "Required for the website to function (Auth, Cart, Security). Cannot be disabled."
+        "title": "Строго необходими",
+        "description": "Нужни за функционирането на сайта (Вход, Количка, Сигурност). Не могат да бъдат изключени."
       },
       "functional": {
-        "title": "Functional",
-        "description": "Remembering your preferences, such as the newsletter popup dismissal."
+        "title": "Функционални",
+        "description": "Запомняне на вашите предпочитания, като например затварянето на изскачащия прозорец за бюлетина."
       },
       "marketing": {
-        "title": "Marketing & Analytics",
-        "description": "Helps us understand how you use the site and show relevant offers."
+        "title": "Маркетинг и анализи",
+        "description": "Помага ни да разберем как използвате сайта и да показваме подходящи оферти."
       }
     }
   },
@@ -125,156 +125,156 @@
     }
   },
   "SauceArchive": {
-    "heading": "Our Hot Sauces",
+    "heading": "Нашите люти сосове",
     "search": {
-      "label": "Search products",
-      "placeholder": "Search products…",
+      "label": "Търсене на продукти",
+      "placeholder": "Търсене на продукти…",
       "filters": {
-        "heatLevel": "Heat Level",
+        "heatLevel": "Степен на лютивост",
         "heatLevels": {
-          "mild": "Mild",
-          "medium": "Medium",
-          "hot": "Hot",
-          "extreme": "Extreme Heat"
+          "mild": "Слаб",
+          "medium": "Среден",
+          "hot": "Лют",
+          "extreme": "Екстремно лют"
         },
-        "pepper": "Pepper",
-        "allChilliTypes": "All peppers",
-        "country": "Country",
-        "allCountries": "All countries",
-        "sauceType": "Type",
-        "allCategories": "All types",
-        "sort": "Sort by",
-        "sortNewest": "Newest",
-        "sortPopular": "Most popular",
-        "sortMildToHot": "Mild → Hot",
-        "sortHotToMild": "Hot → Mild",
-        "sortPriceLowHigh": "Price: Low to High",
-        "sortPriceHighLow": "Price: High to Low"
+        "pepper": "Чушка",
+        "allChilliTypes": "Всички чушки",
+        "country": "Държава",
+        "allCountries": "Всички държави",
+        "sauceType": "Тип",
+        "allCategories": "Всички типове",
+        "sort": "Сортирай по",
+        "sortNewest": "Най-нови",
+        "sortPopular": "Най-популярни",
+        "sortMildToHot": "Слаб → Лют",
+        "sortHotToMild": "Лют → Слаб",
+        "sortPriceLowHigh": "Цена: Ниска към висока",
+        "sortPriceHighLow": "Цена: Висока към ниска"
       }
     },
     "results": {
-      "showing": "Showing",
-      "of": "of",
-      "sauces": "products",
-      "noResults": "No sauces found",
-      "adjustSearch": "Try adjusting your search or filters.",
-      "clearFilters": "Clear filters",
-      "loadMore": "Load more"
+      "showing": "Показване на",
+      "of": "от",
+      "sauces": "продукта",
+      "noResults": "Не са намерени сосове",
+      "adjustSearch": "Опитайте да коригирате търсенето или филтрите.",
+      "clearFilters": "Изчисти филтрите",
+      "loadMore": "Зареди още"
     }
   },
   "Landing": {
     "hero": {
-      "welcome": "Welcome to Chilisaus.be/eu",
-      "title": "You Can Never Have Too Much Hot Sauce",
-      "subtitle": "Discover a hand-picked collection of the world's finest chili sauces. From mild everyday flavors to extreme heat.",
-      "cta": "Shop All Sauces"
+      "welcome": "Добре дошли в Chilisaus.be/eu",
+      "title": "Никога не е твърде много лют сос",
+      "subtitle": "Открийте подбрана колекция от най-добрите сосове чили в света. От меки ежедневни вкусове до екстремна лютивост.",
+      "cta": "Виж всички сосове"
     },
     "maker": {
-      "title": "Meet the Maker",
-      "content": "A lot of you have met me at events across the country. I'm passionate about bringing the best sauces directly to you, keeping it personal and simple. I want to keep it a personal connection, not a faceless corporation. It's all about the sauce and the people who love it."
+      "title": "Запознайте се със създателя",
+      "content": "Много от вас са ме срещали на събития из цялата страна. Страстен съм към това да ви нося най-добрите сосове директно, лично и просто. Искам да запазя личната връзка, а не да бъда безлична корпорация. Всичко е заради соса и хората, които го обичат."
     },
     "categories": {
-      "title": "Shop by Category",
-      "subtitle": "Find the perfect sauce for your next meal."
+      "title": "Пазарувай по категория",
+      "subtitle": "Намерете идеалния сос за следващото си ястие."
     }
   },
   "ProductPage": {
-    "breadcrumbShop": "Shop",
-    "by": "by",
-    "heatLevel": "Heat Level",
-    "inStock": "In stock",
-    "outOfStock": "Out of stock",
-    "addToCart": "Add to cart",
-    "description": "Description",
-    "ingredients": "Ingredients",
-    "peppers": "Peppers",
-    "reviewsTitle": "Customer Reviews",
-    "reviewCount": "review",
-    "reviewsCount": "reviews",
-    "writeReview": "Write a Review",
-    "noReviews": "No reviews yet. Be the first to share your experience!",
-    "verifiedPurchase": "Verified Purchase"
+    "breadcrumbShop": "Магазин",
+    "by": "от",
+    "heatLevel": "Степен на лютивост",
+    "inStock": "В наличност",
+    "outOfStock": "Изчерпан",
+    "addToCart": "Добави в количката",
+    "description": "Описание",
+    "ingredients": "Съставки",
+    "peppers": "Чушки",
+    "reviewsTitle": "Клиентски отзиви",
+    "reviewCount": "отзив",
+    "reviewsCount": "отзива",
+    "writeReview": "Напиши отзив",
+    "noReviews": "Все още няма отзиви. Бъдете първите, които ще споделят опита си!",
+    "verifiedPurchase": "Потвърдена покупка"
   },
   "Legal": {
-    "notice": "Legal Notice",
-    "shipping": "Shipping & Returns",
-    "terms": "Terms of Service",
-    "privacy": "Privacy Policy"
+    "notice": "Правна информация",
+    "shipping": "Доставка и връщане",
+    "terms": "Условия за ползване",
+    "privacy": "Политика за поверителност"
   },
   "Account": {
-    "title": "My Account",
-    "welcome": "Welcome back, {name}",
+    "title": "Моят профил",
+    "welcome": "Добре дошли отново, {name}",
     "orders": {
-      "title": "My Orders",
-      "empty": "You haven't placed any orders yet.",
-      "viewAll": "View all orders",
-      "orderNumber": "Order #",
-      "date": "Date",
-      "status": "Status",
-      "total": "Total",
-      "details": "View Details"
+      "title": "Моите поръчки",
+      "empty": "Все още нямате направени поръчки.",
+      "viewAll": "Виж всички поръчки",
+      "orderNumber": "Поръчка #",
+      "date": "Дата",
+      "status": "Статус",
+      "total": "Общо",
+      "details": "Виж детайли"
     },
     "profile": {
-      "title": "Profile Information",
-      "email": "Email",
-      "role": "Role"
+      "title": "Информация за профила",
+      "email": "Имейл",
+      "role": "Роля"
     }
   },
   "Checkout": {
-    "title": "Checkout",
-    "shipping": "Shipping Address",
-    "payment": "Payment",
-    "summary": "Order Summary",
-    "email": "Email Address",
-    "fullName": "Full Name",
-    "street": "Street Address",
-    "city": "City",
-    "zip": "ZIP / Postal Code",
-    "country": "Country",
-    "payNow": "Pay with Stripe",
-    "freeShipping": "Free shipping applied",
+    "title": "Плащане",
+    "shipping": "Адрес за доставка",
+    "payment": "Плащане",
+    "summary": "Резюме на поръчката",
+    "email": "Имейл адрес",
+    "fullName": "Три имена",
+    "street": "Адрес",
+    "city": "Град",
+    "zip": "Пощенски код",
+    "country": "Държава",
+    "payNow": "Плати със Stripe",
+    "freeShipping": "Приложена безплатна доставка",
     "Success": {
-      "title": "Order Confirmed!",
-      "description": "We've sent a confirmation email to {email}. Your spicy delivery is being prepared.",
-      "orderNumber": "Order Number",
-      "subtotal": "Subtotal",
-      "shipping": "Shipping",
-      "total": "Total",
-      "shippingInfo": "Shipping soon",
-      "shippingDescription": "Orders are typically dispatched within 24-48 hours.",
-      "support": "Need help?",
-      "continueShopping": "Continue Shopping",
-      "backToShop": "Back to Shop",
-      "invalidSession": "Invalid checkout session"
+      "title": "Поръчката е потвърдена!",
+      "description": "Изпратихме имейл за потвърждение на {email}. Вашата люта пратка се подготвя.",
+      "orderNumber": "Номер на поръчка",
+      "subtotal": "Междинна сума",
+      "shipping": "Доставка",
+      "total": "Общо",
+      "shippingInfo": "Изпраща се скоро",
+      "shippingDescription": "Поръчките обикновено се изпращат в рамките на 24-48 часа.",
+      "support": "Нуждаете се от помощ?",
+      "continueShopping": "Продължи с пазаруването",
+      "backToShop": "Обратно към магазина",
+      "invalidSession": "Невалидна сесия за плащане"
     }
   },
   "Scoville": {
-    "title": "The Scoville Scale",
-    "intro": "The Scoville scale is a measurement of the pungency (spiciness or heat) of chili peppers, as recorded in Scoville Heat Units (SHU). Named after its creator, Wilbur Scoville, this scale helps you navigate the world of heat without getting burned—unless you want to!",
+    "title": "Скала на Сковил",
+    "intro": "Скалата на Сковил е измерване на лютивостта на пиперките чили, записана в топлинни единици на Сковил (SHU). Кръстена на своя създател Уилбър Сковил, тази скала ви помага да навигирате в света на лютото, без да се изгорите – освен ако не го искате!",
     "levels": {
       "mild": {
-        "title": "Mild (0 - 2,500 SHU)",
-        "description": "Perfect for everyday flavor. The classic Bell Pepper sits at zero, while the slightly zesty Banana Pepper or mild Pimento adds just a hint of warmth."
+        "title": "Слаб (0 - 2,500 SHU)",
+        "description": "Перфектен за ежедневен вкус. Класическата чушка е на нула, докато леко пикантната бананова чушка или мекото пименто добавят само намек за топлина."
       },
       "medium": {
-        "title": "Medium (2,500 - 10,000 SHU)",
-        "description": "The 'entry-level' for chili lovers. This is the domain of the Jalapeño and the smoky Chipotle. Expect a noticeable tingle that complements rather than overpowers."
+        "title": "Среден (2,500 - 10,000 SHU)",
+        "description": "Входното ниво за любителите на чили. Това е територията на Халапеньо и опушеното Чипотле. Очаквайте забележимо изтръпване, което по-скоро допълва, отколкото надделява."
       },
       "hot": {
-        "title": "Hot (10,000 - 50,000 SHU)",
-        "description": "Now we're talking. The Serrano and Cayenne peppers live here. These peppers provide a sharp, clear heat that lingers on the palate."
+        "title": "Лют (10,000 - 50,000 SHU)",
+        "description": "Сега вече говорим сериозно. Тук живеят чушките Серано и Кайен. Тези чушки осигуряват остра, ясна лютивост, която се задържа на небцето."
       },
       "extraHot": {
-        "title": "Extra Hot (50,000 - 100,000 SHU)",
-        "description": "Approach with caution. The Thai Bird's Eye pepper and the Malagueta offer a significant kick that will make most people break a sweat."
+        "title": "Много лют (50,000 - 100,000 SHU)",
+        "description": "Подхождайте с внимание. Тайландското чили (Bird's Eye) и Малагета предлагат значителен удар, който ще накара повечето хора да се изпотят."
       },
       "volcanic": {
-        "title": "Volcanic (100,000 - 350,000 SHU)",
-        "description": "Serious heat for the brave. The legendary Habanero and Scotch Bonnet peppers are found here, often accompanied by fruity or floral notes underneath the fire."
+        "title": "Вулканичен (100,000 - 350,000 SHU)",
+        "description": "Сериозна лютивост за смелите. Легендарните чушки Хабанеро и Скоч Бонет се намират тук, често придружени от плодови или флорални нотки под огъня."
       },
       "superhot": {
-        "title": "Superhot (350,000 - 2,200,000+ SHU)",
-        "description": "The danger zone. From the Ghost Pepper (Bhut Jolokia) to the record-breaking Carolina Reaper, these peppers contain massive amounts of capsaicin and should be handled with extreme care."
+        "title": "Супер лют (350,000 - 2,200,000+ SHU)",
+        "description": "Опасната зона. От Призрачната чушка (Bhut Jolokia) до рекордьора Carolina Reaper – тези чушки съдържат огромни количества капсаицин и с тях трябва да се борави изключително внимателно."
       }
     }
   }

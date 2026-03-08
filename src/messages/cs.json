@@ -1,21 +1,67 @@
 {
   "Auth": {
     "SignIn": "Přihlásit se",
-    "SignUp": "Sign up",
-    "Email": "Email",
-    "Password": "Password",
-    "ConfirmPassword": "Confirm password",
-    "ResetPassword": "Reset password",
+    "SignUp": "Zaregistrovat se",
+    "Email": "E-mail",
+    "Password": "Heslo",
+    "ConfirmPassword": "Potvrdit heslo",
+    "ResetPassword": "Obnovit heslo",
     "SignOut": "Odhlásit se"
   },
   "Nav": {
-    "Shop": "Shop",
-    "Cart": "Cart",
-    "Checkout": "Checkout",
-    "Account": "Account",
+    "Shop": "Obchod",
+    "Cart": "Košík",
+    "Checkout": "Pokladna",
+    "Account": "Účet",
     "Dashboard": "Přehled",
     "Scoville": "Scoville",
     "Videos": "Videa"
+  },
+  "Cart": {
+    "title": "Váš Nákupní Košík",
+    "empty": "Váš košík je prázdný",
+    "continueShopping": "Pokračovat v nákupu",
+    "checkout": "Přejít k pokladně",
+    "items": "položek",
+    "item": "položka",
+    "summary": "Shrnutí objednávky",
+    "subtotal": "Mezisoučet",
+    "shipping": "Doprava",
+    "shippingNote": "Doprava je vypočítána u pokladny.",
+    "total": "Celkem",
+    "remove": "Odstranit"
+  },
+  "Newsletter": {
+    "title": "Získejte 10% Slevu!",
+    "description": "Zapište se do našeho pálivého newsletteru a získejte slevový kupón 10 % na svou první objednávku.",
+    "placeholder": "Vaše e-mailová adresa",
+    "cta": "Získat slevu",
+    "noSpam": "Žádný spam, jen pálivost. Odhlásit se můžete kdykoli.",
+    "successTitle": "Zkontrolujte si schránku!",
+    "successDescription": "Poslali jsme vám potvrzovací odkaz na e-mail.",
+    "successAction": "Potvrďte svůj e-mail a získejte kód."
+  },
+  "CookieConsent": {
+    "title": "Vážíme si vašeho soukromí",
+    "description": "Používáme soubory cookie ke zlepšení vašeho zážitku z prohlížení, zobrazování personalizovaného obsahu a analýze naší návštěvnosti. Vyberte si prosím, které cookies přijímáte.",
+    "acceptAll": "Přijmout vše",
+    "rejectAll": "Pouze nezbytné",
+    "customize": "Přizpůsobit",
+    "save": "Uložit předvolby",
+    "categories": {
+      "necessary": {
+        "title": "Nezbytně nutné",
+        "description": "Vyžadováno pro fungování webu (přihlášení, košík, bezpečnost). Nelze zakázat."
+      },
+      "functional": {
+        "title": "Funkční",
+        "description": "Zapamatování vašich předvoleb, například zavření okna s newsletterem."
+      },
+      "marketing": {
+        "title": "Marketing a analytika",
+        "description": "Pomáhá nám pochopit, jak web používáte, a zobrazovat relevantní nabídky."
+      }
+    }
   },
   "Admin": {
     "title": "Store admin",
@@ -23,10 +69,12 @@
     "dashboardWelcomeHeading": "You're in control",
     "dashboardWelcomeCopy": "Use the admin panel to add new sauces, edit listings, and keep imagery fresh.",
     "nav": {
-      "dashboard": "Přehled",
-      "products": "Produkty",
-      "brands": "Značky",
-      "newProduct": "Nový produkt"
+      "dashboard": "Dashboard",
+      "products": "Products",
+      "brands": "Brands",
+      "marketing": "Marketing",
+      "vouchers": "Vouchers",
+      "newProduct": "New product"
     },
     "stats": {
       "products": "Products",
@@ -83,17 +131,25 @@
       "placeholder": "Hledat produkty…",
       "filters": {
         "heatLevel": "Úroveň pálivosti",
-        "pepper": "Paprika",
+        "heatLevels": {
+          "mild": "Jemná",
+          "medium": "Střední",
+          "hot": "Pálivá",
+          "extreme": "Extrémně pálivá"
+        },
+        "pepper": "Paprička",
+        "allChilliTypes": "Všechny papričky",
         "country": "Země",
         "allCountries": "Všechny země",
-        "allChilliTypes": "Všechny papriky",
         "sauceType": "Typ",
         "allCategories": "Všechny typy",
         "sort": "Seřadit podle",
         "sortNewest": "Nejnovější",
         "sortPopular": "Nejoblíbenější",
         "sortMildToHot": "Jemné → Pálivé",
-        "sortHotToMild": "Pálivé → Jemné"
+        "sortHotToMild": "Pálivé → Jemné",
+        "sortPriceLowHigh": "Cena: Od nejlevnějšího",
+        "sortPriceHighLow": "Cena: Od nejdražšího"
       }
     },
     "results": {
@@ -122,6 +178,29 @@
       "subtitle": "Najděte ideální omáčku pro své příští jídlo."
     }
   },
+  "ProductPage": {
+    "breadcrumbShop": "Obchod",
+    "by": "od",
+    "heatLevel": "Úroveň pálivosti",
+    "inStock": "Skladem",
+    "outOfStock": "Vyprodáno",
+    "addToCart": "Přidat do košíku",
+    "description": "Popis",
+    "ingredients": "Ingredience",
+    "peppers": "Papričky",
+    "reviewsTitle": "Zákaznické recenze",
+    "reviewCount": "recenze",
+    "reviewsCount": "recenze",
+    "writeReview": "Napsat recenzi",
+    "noReviews": "Zatím žádné recenze. Podělte se o svou zkušenost jako první!",
+    "verifiedPurchase": "Ověřený nákup"
+  },
+  "Legal": {
+    "notice": "Právní upozornění",
+    "shipping": "Doprava a vrácení",
+    "terms": "Obchodní podmínky",
+    "privacy": "Zásady ochrany osobních údajů"
+  },
   "Account": {
     "title": "Můj účet",
     "welcome": "Vítejte zpět, {name}",
@@ -137,48 +216,66 @@
     },
     "profile": {
       "title": "Informace o profilu",
-      "email": "Email",
+      "email": "E-mail",
       "role": "Role"
     }
-  },
-  "Legal": {
-    "notice": "Právní upozornění",
-    "shipping": "Doprava a vrácení",
-    "terms": "Obchodní podmínky",
-    "privacy": "Zásady ochrany osobních údajů"
   },
   "Checkout": {
     "title": "Pokladna",
     "shipping": "Doručovací adresa",
     "payment": "Platba",
     "summary": "Shrnutí objednávky",
-    "email": "Emailová adresa",
+    "email": "E-mailová adresa",
     "fullName": "Celé jméno",
     "street": "Adresa",
     "city": "Město",
     "zip": "PSČ",
     "country": "Země",
     "payNow": "Zaplatit přes Stripe",
+    "freeShipping": "Doprava zdarma uplatněna",
     "Success": {
       "title": "Objednávka potvrzena!",
-      "description": "Poslali jsme potvrzovací email na {email}. Vaše pálivá zásilka se připravuje.",
+      "description": "Poslali jsme potvrzovací e-mail na {email}. Vaše pálivá zásilka se připravuje.",
       "orderNumber": "Číslo objednávky",
-      "total": "Celkem"
+      "subtotal": "Mezisoučet",
+      "shipping": "Doprava",
+      "total": "Celkem",
+      "shippingInfo": "Brzy k odeslání",
+      "shippingDescription": "Objednávky jsou obvykle expedovány do 24–48 hodin.",
+      "support": "Potřebujete pomoc?",
+      "continueShopping": "Pokračovat v nákupu",
+      "backToShop": "Zpět do obchodu",
+      "invalidSession": "Neplatná platební relace"
     }
   },
   "Scoville": {
     "title": "Scovilleho stupnice",
-    "intro": "Scovilleho stupnice je měřítkem pálivosti chilli papriček. Pojmenovaná po svém tvůrci Wilbur Scovilleovi vám pomůže orientovat se ve světě pálivosti, aniž byste se spálili — pokud ovšem nechcete!"
-  },
-  "ProductPage": {
-    "breadcrumbShop": "Obchod",
-    "by": "od",
-    "heatLevel": "Úroveň pálivosti",
-    "inStock": "Skladem",
-    "outOfStock": "Vyprodáno",
-    "addToCart": "Přidat do košíku",
-    "description": "Popis",
-    "ingredients": "Ingredience",
-    "peppers": "Papriky"
+    "intro": "Scovilleho stupnice je měřítkem pálivosti (ostrosti) chilli papriček, uváděným v jednotkách SHU. Pojmenovaná po svém tvůrci Wilburu Scovilleovi vám pomůže orientovat se ve světě pálivosti, aniž byste se spálili — pokud ovšem nechcete!",
+    "levels": {
+      "mild": {
+        "title": "Jemná (0 - 2 500 SHU)",
+        "description": "Ideální pro každodenní dochucení. Klasická sladká paprika je na nule, zatímco lehce pikantní Banana Pepper nebo jemné Pimento dodají jen nádech tepla."
+      },
+      "medium": {
+        "title": "Střední (2 500 - 10 000 SHU)",
+        "description": "Vstupní brána pro milovníky chilli. Toto je doména Jalapeña a uzeného Chipotle. Očekávejte znatelné brnění, které chuť spíše doplňuje, než aby ji přehlušilo."
+      },
+      "hot": {
+        "title": "Pálivá (10 000 - 50 000 SHU)",
+        "description": "Tady už to začíná být vážné. Patří sem papričky Serrano a Cayenne. Tyto papričky poskytují ostrou, jasnou pálivost, která přetrvává na patře."
+      },
+      "extraHot": {
+        "title": "Velmi pálivá (50 000 - 100 000 SHU)",
+        "description": "Přistupujte opatrně. Thajské piri-piri (Bird's Eye) a Malagueta nabízejí výrazný říz, u kterého se většina lidí zapotí."
+      },
+      "volcanic": {
+        "title": "Vulkanická (100 000 - 350 000 SHU)",
+        "description": "Pořádný žár pro odvážné. Najdete zde legendární papričky Habanero a Scotch Bonnet, které pod ohněm často doprovázejí ovocné nebo květinové tóny."
+      },
+      "superhot": {
+        "title": "Extrémně pálivá (350 000 - 2 200 000+ SHU)",
+        "description": "Nebezpečná zóna. Od Ghost Pepper (Bhut Jolokia) až po rekordmanku Carolina Reaper — tyto papričky obsahují obrovské množství kapsaicinu a mělo by se s nimi zacházet s maximální opatrností."
+      }
+    }
   }
 }

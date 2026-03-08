@@ -1,21 +1,67 @@
 {
   "Auth": {
     "SignIn": "Zaloguj się",
-    "SignUp": "Sign up",
-    "Email": "Email",
-    "Password": "Password",
-    "ConfirmPassword": "Confirm password",
-    "ResetPassword": "Reset password",
+    "SignUp": "Zarejestruj się",
+    "Email": "E-mail",
+    "Password": "Hasło",
+    "ConfirmPassword": "Potwierdź hasło",
+    "ResetPassword": "Zresetuj hasło",
     "SignOut": "Wyloguj się"
   },
   "Nav": {
-    "Shop": "Shop",
-    "Cart": "Cart",
-    "Checkout": "Checkout",
-    "Account": "Account",
+    "Shop": "Sklep",
+    "Cart": "Koszyk",
+    "Checkout": "Płatność",
+    "Account": "Konto",
     "Dashboard": "Panel",
     "Scoville": "Scoville",
     "Videos": "Filmy"
+  },
+  "Cart": {
+    "title": "Twój Koszyk",
+    "empty": "Twój koszyk jest pusty",
+    "continueShopping": "Kontynuuj Zakupy",
+    "checkout": "Przejdź do Płatności",
+    "items": "produkty",
+    "item": "produkt",
+    "summary": "Podsumowanie Zamówienia",
+    "subtotal": "Suma częściowa",
+    "shipping": "Wysyłka",
+    "shippingNote": "Wysyłka jest obliczana przy płatności.",
+    "total": "Suma",
+    "remove": "Usuń"
+  },
+  "Newsletter": {
+    "title": "Odbierz 10% Zniżki!",
+    "description": "Zapisz się do naszego ostrego newslettera i otrzymaj kupon rabatowy 10% na pierwsze zamówienie.",
+    "placeholder": "Twój adres e-mail",
+    "cta": "Odbierz Zniżkę",
+    "noSpam": "Zero spamu, sama ostrość. Możesz się wypisać w dowolnym momencie.",
+    "successTitle": "Sprawdź Skrzynkę!",
+    "successDescription": "Wysłaliśmy link weryfikacyjny na Twój e-mail.",
+    "successAction": "Potwierdź e-mail, aby otrzymać kod."
+  },
+  "CookieConsent": {
+    "title": "Cenimy Twoją prywatność",
+    "description": "Używamy plików cookie, aby ulepszyć przeglądanie stron, wyświetlać spersonalizowane treści oraz analizować ruch. Wybierz, na które pliki cookie się zgadzasz.",
+    "acceptAll": "Akceptuj wszystkie",
+    "rejectAll": "Tylko niezbędne",
+    "customize": "Dostosuj",
+    "save": "Zapisz preferencje",
+    "categories": {
+      "necessary": {
+        "title": "Stricte Niezbędne",
+        "description": "Wymagane do działania strony (Logowanie, Koszyk, Bezpieczeństwo). Nie można ich wyłączyć."
+      },
+      "functional": {
+        "title": "Funkcjonalne",
+        "description": "Zapamiętywanie Twoich preferencji, np. zamknięcie okna newslettera."
+      },
+      "marketing": {
+        "title": "Marketing i Analityka",
+        "description": "Pomaga nam zrozumieć, jak korzystasz ze strony i wyświetlać odpowiednie oferty."
+      }
+    }
   },
   "Admin": {
     "title": "Store admin",
@@ -23,10 +69,12 @@
     "dashboardWelcomeHeading": "You're in control",
     "dashboardWelcomeCopy": "Use the admin panel to add new sauces, edit listings, and keep imagery fresh.",
     "nav": {
-      "dashboard": "Panel",
-      "products": "Produkty",
-      "brands": "Marki",
-      "newProduct": "Nowy produkt"
+      "dashboard": "Dashboard",
+      "products": "Products",
+      "brands": "Brands",
+      "marketing": "Marketing",
+      "vouchers": "Vouchers",
+      "newProduct": "New product"
     },
     "stats": {
       "products": "Products",
@@ -83,17 +131,25 @@
       "placeholder": "Szukaj produktów…",
       "filters": {
         "heatLevel": "Poziom ostrości",
-        "pepper": "Pieprz",
+        "heatLevels": {
+          "mild": "Łagodny",
+          "medium": "Średni",
+          "hot": "Ostry",
+          "extreme": "Ekstremalnie Ostry"
+        },
+        "pepper": "Papryka",
+        "allChilliTypes": "Wszystkie papryki",
         "country": "Kraj",
         "allCountries": "Wszystkie kraje",
-        "allChilliTypes": "Wszystkie papryki",
         "sauceType": "Typ",
         "allCategories": "Wszystkie typy",
         "sort": "Sortuj według",
         "sortNewest": "Najnowsze",
         "sortPopular": "Najpopularniejsze",
         "sortMildToHot": "Łagodne → Ostre",
-        "sortHotToMild": "Ostre → Łagodne"
+        "sortHotToMild": "Ostre → Łagodne",
+        "sortPriceLowHigh": "Cena: od najniższej",
+        "sortPriceHighLow": "Cena: od najwyższej"
       }
     },
     "results": {
@@ -122,6 +178,29 @@
       "subtitle": "Znajdź idealny sos do swojego następnego posiłku."
     }
   },
+  "ProductPage": {
+    "breadcrumbShop": "Sklep",
+    "by": "przez",
+    "heatLevel": "Poziom ostrości",
+    "inStock": "Dostępny",
+    "outOfStock": "Wyprzedany",
+    "addToCart": "Dodaj do koszyka",
+    "description": "Opis",
+    "ingredients": "Składniki",
+    "peppers": "Papryki",
+    "reviewsTitle": "Opinie Klientów",
+    "reviewCount": "opinia",
+    "reviewsCount": "opinie",
+    "writeReview": "Napisz Opinię",
+    "noReviews": "Brak opinii. Bądź pierwszy i podziel się swoim doświadczeniem!",
+    "verifiedPurchase": "Zweryfikowany Zakup"
+  },
+  "Legal": {
+    "notice": "Nota prawna",
+    "shipping": "Wysyłka i zwroty",
+    "terms": "Regulamin",
+    "privacy": "Polityka prywatności"
+  },
   "Account": {
     "title": "Moje konto",
     "welcome": "Witaj ponownie, {name}",
@@ -137,15 +216,9 @@
     },
     "profile": {
       "title": "Informacje o profilu",
-      "email": "Email",
+      "email": "E-mail",
       "role": "Rola"
     }
-  },
-  "Legal": {
-    "notice": "Nota prawna",
-    "shipping": "Wysyłka i zwroty",
-    "terms": "Regulamin",
-    "privacy": "Polityka prywatności"
   },
   "Checkout": {
     "title": "Płatność",
@@ -159,26 +232,50 @@
     "zip": "Kod pocztowy",
     "country": "Kraj",
     "payNow": "Zapłać przez Stripe",
+    "freeShipping": "Zastosowano darmową wysyłkę",
     "Success": {
       "title": "Zamówienie potwierdzone!",
       "description": "Wysłaliśmy e-mail z potwierdzeniem na adres {email}. Twoja ostra przesyłka jest w przygotowaniu.",
       "orderNumber": "Numer zamówienia",
-      "total": "Suma"
+      "subtotal": "Suma częściowa",
+      "shipping": "Wysyłka",
+      "total": "Suma",
+      "shippingInfo": "Wysyłka wkrótce",
+      "shippingDescription": "Zamówienia są zazwyczaj wysyłane w ciągu 24-48 godzin.",
+      "support": "Potrzebujesz pomocy?",
+      "continueShopping": "Kontynuuj Zakupy",
+      "backToShop": "Powrót do Sklepu",
+      "invalidSession": "Nieprawidłowa sesja płatności"
     }
   },
   "Scoville": {
     "title": "Skala Scoville'a",
-    "intro": "Skala Scoville'a to miara ostrości papryk chili. Nazwana na cześć jej twórcy Wilbura Scoville'a, pomaga poruszać się po świecie ostrości bez poparzenia się — chyba że tego chcesz!"
-  },
-  "ProductPage": {
-    "breadcrumbShop": "Sklep",
-    "by": "przez",
-    "heatLevel": "Poziom ostrości",
-    "inStock": "Dostępny",
-    "outOfStock": "Wyprzedany",
-    "addToCart": "Dodaj do koszyka",
-    "description": "Opis",
-    "ingredients": "Składniki",
-    "peppers": "Papryki"
+    "intro": "Skala Scoville'a to miara ostrości (pikantności) papryk chili, rejestrowana w jednostkach Scoville (SHU). Nazwana na cześć jej twórcy Wilbura Scoville'a, pomaga poruszać się po świecie ostrości bez poparzenia się — chyba że tego chcesz!",
+    "levels": {
+      "mild": {
+        "title": "Łagodny (0 - 2 500 SHU)",
+        "description": "Idealny dla codziennego smaku. Klasyczna papryka słodka ma zero jednostek, podczas gdy lekko pikantna Banana Pepper lub łagodna Pimento dodają tylko odrobinę ciepła."
+      },
+      "medium": {
+        "title": "Średni (2 500 - 10 000 SHU)",
+        "description": "Punkt wyjścia dla miłośników chili. To królestwo Jalapeño i wędzonego Chipotle. Oczekuj zauważalnego mrowienia, które raczej dopełnia smak, niż go dominuje."
+      },
+      "hot": {
+        "title": "Ostry (10 000 - 50 000 SHU)",
+        "description": "Teraz zaczyna się zabawa. Mieszkają tu papryki Serrano i Cayenne. Zapewniają one ostrą, wyraźną pikanterię, która długo utrzymuje się na podniebieniu."
+      },
+      "extraHot": {
+        "title": "Bardzo ostry (50 000 - 100 000 SHU)",
+        "description": "Podchodzić z ostrożnością. Tajski piment Bird's Eye oraz Malagueta oferują solidnego kopa, który sprawi, że większość ludzi się spoci."
+      },
+      "volcanic": {
+        "title": "Wulkaniczny (100 000 - 350 000 SHU)",
+        "description": "Poważna ostrość dla odważnych. Znajdują się tu legendarne papryki Habanero i Scotch Bonnet, którym pod ogniem często towarzyszą owocowe lub kwiatowe nuty."
+      },
+      "superhot": {
+        "title": "Super ostry (350 000 - 2 200 000+ SHU)",
+        "description": "Strefa zagrożenia. Od Ghost Pepper (Bhut Jolokia) po rekordzistę Carolina Reaper — te papryki zawierają ogromne ilości kapsaicyny i należy się z nimi obchodzić z ekstremalną ostrożnością."
+      }
+    }
   }
 }

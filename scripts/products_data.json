@@ -1,0 +1,730 @@
+[
+  {
+    "brandSlug": "grim-reaper-foods-uk",
+    "categorySubquery": "NULL",
+    "name": "Evil One (Heat Level 10) 150ml",
+    "slug": "evil-one",
+    "description": "Evil One Ingredients ; Red Peppers, Cider Vinegar, Scotch Bonnet Chili (15%), Onion, Orange pulp, Lemon pulp and zest, Naga Ghost Pepper (3%), Carrot, Garlic, Brown sugar, Chili Extract (1%), Sea Salt. Packed with Scotch Bonnets, Naga Ghost Peppers and a hint of pure chili capsaicin for that super hot long lasting after burn feeling but without the bitter taste capsaicin often gives. This is a super hot, delicious sauce with hints of citrus, a very cleverly well made hot sauce. Great in spaghetti, on a burger, wok, pizza or mix it with some salsa for a great spicy dip. Heat Level 10 Suitable for Vegans"
+  },
+  {
+    "brandSlug": "grim-reaper-foods-uk",
+    "categorySubquery": "NULL",
+    "name": "Evil Twin - (Heat Level 10) 150ml",
+    "slug": "evil-twin",
+    "description": "Evil Twin (no added sugar) Ingredients ; Green Peppers, Vinegar, Scotch Bonnet Chili, Onion, Apple, Lime, Naga Ghost Pepper, Carrot, Spices, Garlic, Chili Extract (1%), Salt. Super Hot sauce with Scotch Bonnet Peppers, Naga Ghost Peppers and 1% Chili extract. Has a great heat, beautiful and fresh with the lime addition. A very well balanced sauce that delivers a great lasting heat from that splash of pure capsaicin. Great for spicy Spaghetti. Add to mayo for a spicy dip sauce. Good in the Wok or on a Burger / Veggie Burger. Heat level 10 Suitable for Vegans"
+  },
+  {
+    "brandSlug": "wiltshire-chilli-farm-uk",
+    "categorySubquery": "NULL",
+    "name": "Naga Chilli Sauce (Heat Level 10) 140ml",
+    "slug": "naga-chilli-sauce-heat-level-10-140ml",
+    "description": null
+  },
+  {
+    "brandSlug": "wiltshire-chilli-farm-uk",
+    "categorySubquery": "NULL",
+    "name": "Caribbean Chilli Sauce (Heat Level 9) 140ml",
+    "slug": "caribbean-chilli-sauce",
+    "description": null
+  },
+  {
+    "brandSlug": "grim-reaper-foods-uk",
+    "categorySubquery": "(SELECT id FROM public.categories WHERE slug = 'chili-oil' LIMIT 1)",
+    "name": "Tempest Garlic Chili Oil, NEW 150ml bottles (Heat Level 5)",
+    "slug": "tempest",
+    "description": "Tempest Garlic Chili Oil 150ml Ingredients ; Cold pressed Rapeseed Oil, Natural Chili Extract, Natural Garlic Extract. Definitely one for the Garlic lovers. Rich delicious Garlic, silky smooth Oil – this will quickly become addictive. Add while cooking or you can use it as a finishing oil. Perfect for Pizza, Pasta, Wok. Great with fried Chicken, mix with mayo for a spicy aioli dip. . Heat Level 5 Suitable for Vegans"
+  },
+  {
+    "brandSlug": "wiltshire-chilli-farm-uk",
+    "categorySubquery": "NULL",
+    "name": "Mango Chilli Sauce (Heat Level 7) 140ml",
+    "slug": "mango-chilli-sauce",
+    "description": null
+  },
+  {
+    "brandSlug": "wiltshire-chilli-farm-uk",
+    "categorySubquery": "NULL",
+    "name": "Sweet Chilli Sauce (Heat Level 1) 140ml",
+    "slug": "sweet-chilli-sauce",
+    "description": null
+  },
+  {
+    "brandSlug": "wiltshire-chilli-farm-uk",
+    "categorySubquery": "NULL",
+    "name": "Reaper Habanero (Heat Level 10) 140ml",
+    "slug": "reaper-habanero",
+    "description": null
+  },
+  {
+    "brandSlug": "wiltshire-chilli-farm-uk",
+    "categorySubquery": "(SELECT id FROM public.categories WHERE slug = 'salts-seasonings-rubs' LIMIT 1)",
+    "name": "Garlic Chilli Salt (Heat Level 3) 65g",
+    "slug": "garlic-chilli-salt",
+    "description": null
+  },
+  {
+    "brandSlug": "crazy-bastard-sauce-de",
+    "categorySubquery": "NULL",
+    "name": "BLACK - Carolina Reaper &amp; Blueberry Hot Sauce (Heat Level 10)",
+    "slug": "black-carolina-reaper-blueberry",
+    "description": null
+  },
+  {
+    "brandSlug": "crazy-bastard-sauce-de",
+    "categorySubquery": "NULL",
+    "name": "BLUE - Scotch Bonnet &amp; Caribbean Spices Hot Sauce (Heat Level 5)",
+    "slug": "blue-scotch-bonnet-caribbean",
+    "description": null
+  },
+  {
+    "brandSlug": "crazy-bastard-sauce-de",
+    "categorySubquery": "NULL",
+    "name": "PINK - Chipotle and Pineapple Hot Sauce (Heat Level 4)",
+    "slug": "pink-chipotle-and-pineapple-hot-sauce",
+    "description": null
+  },
+  {
+    "brandSlug": null,
+    "categorySubquery": "(SELECT id FROM public.categories WHERE slug = 'dried-chilies-pods-flakes-powders' LIMIT 1)",
+    "name": "Carolina Reaper Dried Pods (1.8 million - 2.2million Scoville Heat units)",
+    "slug": "carolina-reaper-dried-peppers",
+    "description": null
+  },
+  {
+    "brandSlug": "wiltshire-chilli-farm-uk",
+    "categorySubquery": "NULL",
+    "name": "\"God Slayer\" EXTREME Hot Sauce (Heat Level 15)",
+    "slug": "god-slayer",
+    "description": "‏"
+  },
+  {
+    "brandSlug": "crazy-bastard-sauce-de",
+    "categorySubquery": "NULL",
+    "name": "ORANGE - Ghost Pepper & Mango Hot Sauce (Heat Level 9 - 10)",
+    "slug": "orange-ghost-pepper-and-mango-hot-sauce",
+    "description": null
+  },
+  {
+    "brandSlug": null,
+    "categorySubquery": "(SELECT id FROM public.categories WHERE slug = 'dried-chilies-pods-flakes-powders' LIMIT 1)",
+    "name": "Mexican Smoked Chipotle Dried Pods (2500 - 8000 Scoville Heat units)",
+    "slug": "mexican-smoked-chipotle-peppers",
+    "description": null
+  },
+  {
+    "brandSlug": "wiltshire-chilli-farm-uk",
+    "categorySubquery": "(SELECT id FROM public.categories WHERE slug = 'salts-seasonings-rubs' LIMIT 1)",
+    "name": "Coffee &amp; Ghost Pepper Seasoning Rub BACK IN STOCK  (Heat Level 8)",
+    "slug": "black-coffee-ghost-rub",
+    "description": null
+  },
+  {
+    "brandSlug": "happy-hatter-hot-sauce-be",
+    "categorySubquery": "NULL",
+    "name": "Happy Hatter Hot Sauce - ORIGINAL  (Heat Level 6)",
+    "slug": "happy-hatter-hot-sauce",
+    "description": "Happy Hatter Hot Sauce – ORIGINAL As featured on popular TV cooking program “Dagelijkse Kost” (“daily dish”) Used personally by celebrity TV chef Jeroen Meus. Ingredients ; Tomato, Peach, Red Onion, Chili peppers (Madame Jeanette 75%, Birds eye 25%) G arlic, Apple, Vinegar, Cane Sugar, Lime, Salt, Celery, Herbs. Proud to stock our first ever Belgian produced hot sauce, by creator Wim Daans. This is a great example of how a hot sauce should be made and we are happy to welcome The Happy Hatter on board! A tomato based sauce, with a hint of peachy sweetness and just the right amount of Madame Jeanette peppers for that fruity, spicy kick. It is very well balanced and warms your mouth nicely without setting it on fire. Perfect for spaghetti sauce, delicious on a burger / veggie burger or a pizza. Add into tomato salsa or mayo to kick start your dip sauces. Great in the wok, with noodles / rice or add a splash into your smoothie mix. A great little boost to start the day! Heat level 6 Suitable for Vegans"
+  },
+  {
+    "brandSlug": "wiltshire-chilli-farm-uk",
+    "categorySubquery": "NULL",
+    "name": "Trinidad Scorpion - AS FEATURED ON \"HOT ONES\" (Heat Level 10) 140ml",
+    "slug": "trinidad-scorpion",
+    "description": "Trinidad Scorpion Ingredients; Cider Vinegar, Sugar, Trinidad Scorpion Pepper, Red Peppers, Salt With a sting in its tail, this super hot Trinidad Scorpion Sauce is a true experience to behold. Juicy and sweet to begin, building heat and a great long lasting burn. Not one for the faint hearted. Vibrant red in colour, this Scorpion has a bite! Delicious in Spaghetti, great with fried Chicken, noodles, rice or any Asian dishes. As Featured On Hot Ones Hot Ones – the famous YouTube show where celebrities eat wings with different heat levels of hot sauces on, while answering awkward questions about their lives! Our Trinidad Scorpion was Sauce Number 7 on the line up of Season 9, rating in at a whopping 104,000 Scoville Heat Units. Officially tested by the show themselves! It took every celebrity by surprise – you can find all the clips on You Tube! Celebrities who have tasted our sauce include; Halle Berry, Idris Elba, Stone Cold Steve Austin, Trevor Noah, Kristen Bell and The Jonas Brothers Heat level 10 Suitable for Vegans"
+  },
+  {
+    "brandSlug": "wiltshire-chilli-farm-uk",
+    "categorySubquery": "NULL",
+    "name": "\"Regret\" SUPER EXTREME Hot Sauce (Heat Level 20)",
+    "slug": "regret-extreme-hot-sauce",
+    "description": null
+  },
+  {
+    "brandSlug": "happy-hatter-hot-sauce-be",
+    "categorySubquery": "NULL",
+    "name": "Happy Hatter Hot Sauce - SMOKED (Heat Level 6)",
+    "slug": "smoked-happy-hatter-hot-sauce",
+    "description": "Happy Hatter Hot Sauce – SMOKED Ingredients; Forest Fruits, Red Port Wine, Red Wine Vinegar, Dates, Blossom Honey , Ghost Peppers, Red Onion, Shallots, Garlic, Chipotle Powder, Smoked Paprika, Olive Oil, Salt. (Red wine vinegar contains sulphites) This is the second creation from our new Belgian producer and we are very excited to have it in our range. This time he’s gone for a rich smokey hot sauce and we are glad he did. It is sweet, smokey and delicious! His first sauce was a huge success – I’m sure you can’t wait to try this one. Packed with Ghost Peppers, Mexican smoked Chipotle and juicy Forest Fruits. Decadent, full bodied, silky and smooth with a great long lasting spicy finish. This is a truly delicious sauce, perfectly balanced ingredients quickly make this one addictive. Try with Venison, Steak, Pulled Pork, Chili con Carne, BBQ, Burger / Veggie Burger, Mexican food Heat Level 7 NOT suitable for Vegans (contains Honey)"
+  },
+  {
+    "brandSlug": null,
+    "categorySubquery": "(SELECT id FROM public.categories WHERE slug = 'dried-chilies-pods-flakes-powders' LIMIT 1)",
+    "name": "Carolina Reaper Powder 10g (1.8 Million – 2.2 Million Scoville Heat Units)",
+    "slug": "carolina-reaper-powder-10g",
+    "description": null
+  },
+  {
+    "brandSlug": null,
+    "categorySubquery": "(SELECT id FROM public.categories WHERE slug = 'dried-chilies-pods-flakes-powders' LIMIT 1)",
+    "name": "Mexican Habanero Chili Flakes 20g (100,000 -350,000 Scoville Heat Units)",
+    "slug": "habanero-chili-flakes-15g-100000-350000-scoville-heat-units",
+    "description": "Habanero Chili Flakes 100,000 – 350,000 Scoville Heat Units Looking for a chili pepper that has the right balance of heat and flavour? The Habanero is a perfect choice. These peppers are one of the most popular in the world, mostly known for their fruity taste while also having a great balance of heat. Sprinkle into any dish to give your meal a delicious spicy kick. Fresh red habanero peppers are grown in Mexico, cleaned, oven-dried and crushed into these beautiful dark red pepper flakes. Suitable for Vegans"
+  },
+  {
+    "brandSlug": null,
+    "categorySubquery": "(SELECT id FROM public.categories WHERE slug = 'dried-chilies-pods-flakes-powders' LIMIT 1)",
+    "name": "Mexican Habanero Dried Pods (100,000 - 350,000 Scoville Heat Units)",
+    "slug": "mexican-habanero-peppers-100000-350000-scoville-heat-units",
+    "description": null
+  },
+  {
+    "brandSlug": null,
+    "categorySubquery": "(SELECT id FROM public.categories WHERE slug = 'dried-chilies-pods-flakes-powders' LIMIT 1)",
+    "name": "Naga / Ghost Pepper Dried Pods (855,000 - 1 Million Scoville Heat Units)",
+    "slug": "naga-ghost-pepper-855000-1-million-scoville-heat-units",
+    "description": "Naga / Ghost Pepper Pods 855,000 – 1 Million Scoville Heat Units The 3rd hottest pepper in the world A bag of 12 dried Ghost Peppers The Naga / Ghost Pepper goes by a few different names. It’s original Indian name is Bhut Jolokia. It originated in Nagaland, North East India and is often referred to as the Naga pepper because of this, but people generally know it as the Ghost Pepper. Sitting at the hottest in the world for a long time this pepper really packs a punch. It has a great flavour. At first it can taste smokey, almost sweet. But wait 30 seconds, the heat creeps up on you, just like a ghost! Fresh peppers are not always easy to come by, so using dried Naga / Ghost Peppers can be a quick and easy replacement to give you a super Hot chili heat. You can just slice them up as they are, crush them into a powder or you can re-hydrate them by soaking them in a bowl of hot water for 10 - 15 minutes until they soften. Suitable for Vegans"
+  },
+  {
+    "brandSlug": null,
+    "categorySubquery": "(SELECT id FROM public.categories WHERE slug = 'dried-chilies-pods-flakes-powders' LIMIT 1)",
+    "name": "Mexican Smoked Chipotle Flakes - 20g (2500 - 8000 Scoville Heat Units)",
+    "slug": "mexican-smoked-chipotle-powder-40g-2500-8000-scoville-heat-units",
+    "description": null
+  },
+  {
+    "brandSlug": null,
+    "categorySubquery": "(SELECT id FROM public.categories WHERE slug = 'dried-chilies-pods-flakes-powders' LIMIT 1)",
+    "name": "Mexican Habanero Powder 30g (100,000 -350,000 Scoville Heat Units)",
+    "slug": "habanero-powder-40g-100000-350000-scoville-heat-units",
+    "description": "Habanero Powder 100,000 – 350,000 Scoville Heat Units Looking for a chili pepper that has the right balance of heat and flavour? The Mexican Habanero is the perfect choice. These peppers are one of the most popular in the world, mostly known for their fruity taste while also having a great balance of heat. The powder comes from whole dried Habanero pods which are ground down to make this very fine, delicate powder. Sprinkle into any sauce to give a spicy kick. Ideal for Mexican dishes. Perfect for the BBQ - marinade in oil with meats, fish or veggies. Mix into mayo, yogurt or ketchup to make a spicy dip sauce. Suitable for Vegans"
+  },
+  {
+    "brandSlug": "devon-chilli-man-uk",
+    "categorySubquery": "NULL",
+    "name": "33% Pure Carolina Reaper Sambal - BACK IN APRIL (Heat Level 15)",
+    "slug": "33-carolina-reaper-sambal-heat-level-15",
+    "description": "33% Pure Carolina Reaper Sambal Ingredients; Onions 40%, Carolina Reaper 33%, Refined Sugar 8%, Sunflower Oil 7.5%, Sweet Soy Sauce 7.5%, White Vinegar 0.5%, Salt, Spices The Famous Devon Chilli Man is a UK based Chili Pepper Grower and Hot Sauce Producer. His Pepper plantations in Devon produce some of the hottest AND the best in the business! The Carolina Reaper seeds Cliff uses to grow his giant Reapers have come directly from Ed Currie at The Puckerbutt Pepper Company, South Carolina, USA. (The crazy man responsible for breeding the Carolina Reaper) First, a delicious sweet taste thanks to the caramelised onions. Then it’s a rollercoaster of a ride from the fresh Carolina Reapers. A lot of time, love and attention goes into the production of this Sambal. You won’t be disappointed Heat Level 12 Suitable for Vegans"
+  },
+  {
+    "brandSlug": "chilisausbe-our-own-range",
+    "categorySubquery": "NULL",
+    "name": "Chilisaus.be - The 2020 Edition - Garlic Italian - (Heat Level 8)",
+    "slug": "chilisaus-be-the-2020-edition-heat-level-8",
+    "description": "Garlic Italian (no added sugar) Perfect For Spaghetti Ingredients; Rapeseed Oil, Water, White Wine Vinegar, Olive Oil, Red Chilli, Naga Chilli (3%), Garlic Purée, Salt, Spices, Herbs This is the first sauce launched by Chilisaus.be and we couldn"
+  },
+  {
+    "brandSlug": null,
+    "categorySubquery": "(SELECT id FROM public.categories WHERE slug = 'dried-chilies-pods-flakes-powders' LIMIT 1)",
+    "name": "Carolina Reaper Flakes 10g (1.8 Million - 2.2 Million Scoville Heat Units)",
+    "slug": "carolina-reaper-flakes-10g-1-8-million-2-2-million-scoville-heat-units",
+    "description": "Carolina Reaper Flakes 1.8 Million – 2.2 Million Scoville Heat Units The Worlds Hottest Chili Pepper Super Hot Carolina Reaper Pods – dried and ground into beautiful flakes of fire (seeds included) Easy and simple to use. Perfect for adding into Soups, Curries, Spaghetti and Pasta dishes. A light sprinkle will give you that instant Reaper kick in any dish. To be used with caution – these flakes are made from the hottest pepper in the world. Suitable for Vegans"
+  },
+  {
+    "brandSlug": "happy-hatter-hot-sauce-be",
+    "categorySubquery": "NULL",
+    "name": "Happy Hatter Hot Sauce - BOMBAY - (Heat Level 7)",
+    "slug": "happy-hatter-bombay-produced-in-belgium-heat-level-7",
+    "description": "Happy Hatter Hot Sauce – BOMBAY Ingredients; Mango, Pineapple, Yellow Habanero Chili, Onion, White Wine Vinegar, Cane Sugar, Bananas, Garlic, Lime juice, Olive Oil, Spice mix (contains Celery), Salt The 3rd and final addition to the beautiful Happy Hatter family. This time creator Wim Daans has opted for a fresh and fruity hot sauce, with turmeric and Asian spices. Perfectly balanced. Great heat from the Yellow Habanero. Fresh juicy, fruity flavours, this sauce has a great taste that leaves you wanting more. Ideal for the wok, noodle or rice dishes. Perfect for a curry to get that real depth of flavour and those authentic spice flavours. Delicious also as a marinade. You won’t be disappointed. Heat Level 8 Suitable for Vegans"
+  },
+  {
+    "brandSlug": null,
+    "categorySubquery": "(SELECT id FROM public.categories WHERE slug = 'dried-chilies-pods-flakes-powders' LIMIT 1)",
+    "name": "Naga / Ghost Pepper Powder 10g (855,000 - 1 Million Scoville Heat Units)",
+    "slug": "naga-ghost-powder-10g-850000-1-million-scoville-heat-units",
+    "description": "Naga / Ghost Powder 855,000 - 1 Million Scoville Heat Units The 3rd hottest Pepper in the World The Naga / Ghost Pepper goes by a few different names. It’s original Indian name is Bhut Jolokia. It originated in Nagaland, North East India and is often referred to as the Naga pepper because of this, but people generally know it as the Ghost Pepper. Sitting at the hottest in the world for a long time this pepper really packs a punch. It has a great flavour. At first it tastes almost smokey, almost sweet. But wait 30 – 40 seconds, the intense heat sneaks up on you, just like a ghost! This powder is directly from Nagaland, to be used with care. Fresh Peppers are not always easy to come by, so using dried Naga / Ghost Powder can be a quick and easy replacement to give you a Super Hot Chili heat. Suitable for Vegans"
+  },
+  {
+    "brandSlug": null,
+    "categorySubquery": "(SELECT id FROM public.categories WHERE slug = 'dried-chilies-pods-flakes-powders' LIMIT 1)",
+    "name": "Naga / Ghost Pepper Flakes 10g (855,000 - 1 Million Scoville Heat Units)",
+    "slug": "naga-ghost-pepper-flakes-10g-855000-1-million-scoville-heat-units",
+    "description": "Naga / Ghost Pepper Flakes 855,000 - 1 Million Scoville Heat Units The 3rd Hottest Pepper in the World The Naga / Ghost Pepper goes by a few different names. It’s original Indian name is Bhut Jolokia. It originated in Nagaland, North East India and is often referred to as the Naga pepper because of this, but people generally know it as the Ghost Pepper. Sitting at the hottest in the world for a long time this pepper really packs a punch. It has a great flavour. At first it tastes almost smokey, almost sweet. But wait 30 – 40 seconds, the intense heat sneaks up on you, just like a ghost! These flakes are direct from Nagaland, use with care. Fresh Peppers are not always easy to come by, so using dried Naga / Ghost Flakes can be a quick and easy replacement to give you a super Hot chili heat. Suitable for Vegans"
+  },
+  {
+    "brandSlug": "happy-hatter-hot-sauce-be",
+    "categorySubquery": "(SELECT id FROM public.categories WHERE slug = 'gift-boxes-sets' LIMIT 1)",
+    "name": "Happy Hatter Gift Box - 3 Sauces - Original, Smoked, Bombay ( Heat Levels 6, 7, 7)",
+    "slug": "happy-hatter-trio-gift-boxed",
+    "description": "Happy Hatter Family – 3 Sauces – Gift Boxed The Happy Hatter is beautifully presented in this specially designed hand crafted gift box. Nothing but 100% quality from our Belgian Happy Hatter Hot Sauce producer Wim Daans. Happy Hatter ORIGINAL ( Heat Level 6 ) INGREDIENTS : Tomato, Peach, Madame Jeanette, Adjuma & Rawitt Chili Peppers, Onion, Apple Cider Vinegar, Cane Sugar, Garlic, Lime Juice, Olive Oil, Celery, Herbs. (Apple Cider vinegar contains sulphites ) A tomato based sauce, with a hint of peachy sweetness and just the right amount of Madame Jeanette Peppers for that fruity, spicy kick. Very well balanced, warms your mouth nicely without setting it on fire. Suitable for Vegans Happy Hatter SMOKED (Heat Level 7) INGREDIENTS; Forest Fruits, Red Port Wine, Red Wine Vinegar, Dates, Blossom Honey , Ghost Peppers, Red Onion, Shallots, Garlic, Chipotle Powder, Smoked Paprika Powder, Olive Oil, Salt. (Red Wine Vinegar contains sulphites) Smoky, silky, smooth, decadent, with a beautiful heat level. A very special combination of ingredients, perfectly balanced. Suitable for Vegetarians Not suitable for Vegans (Contains Honey) Happy Hatter BOMBAY (Heat Level 7) INGREDIENTS; Mango, Pineapple, Yellow Habanero Chili, Onion, White Wine Vinegar, Cane Sugar, Bananas, Garlic, Lime juice, Olive Oil, Spice Mix (contains Celery ), Salt. A fresh and fruity Asian style hot sauce. Great heat from the yellow Habanero, fresh fruity flavours, Turmeric and Asian spices. A delicious flavour combination. Suitable for Vegans"
+  },
+  {
+    "brandSlug": "devon-chilli-man-uk",
+    "categorySubquery": "(SELECT id FROM public.categories WHERE slug = 'dried-chilies-pods-flakes-powders' LIMIT 1)",
+    "name": "The Carolina Reaper Essentials Kit (Heat Level - EXTREME)",
+    "slug": "the-ultimate-reaper-pack",
+    "description": "Pods, Powder, Sambal and Sauce – all from The Hottest Pepper in the World Experience the delight of the Reaper in 4 deliciously different ways Reaper Habanero Sauce – 148ml - Heat Level 10 Ingredients; Red Habanero, Cider Vinegar, Brown Sugar, Onion, Red Peppers, Carolina Reaper, Smoked Paprika, Garlic Simple ingredients, incredible heat and flavour. One of our best selling sauces. 33% Fresh Carolina Reaper Sambal – 100ml - Heat Level 15 Ingredients; Onions 40%, Carolina Reaper 33%, Refined Sugar 8%, Sunflower Oil 7.5%, Sweet Soy Sauce 7.5%, White Vinegar 0.5%, Salt, Spices Sweet and juicy caramelised onions, quickly followed by a rollercoaster of a ride from the fresh Carolina Reapers. Delightful! Carolina Reaper Powder – 10g Dried and crushed into a fine powder. Easy and simple to use, sprinkle in or over anything for instant heat. Carolina Reaper Pods – 10 to 12 Dried Pods Fresh peppers are not always easy to come by, so using dried pepper pods can be a quick and easy replacement for a SUPER hot addition to any meal. Slice them up as they are, crush to make flakes or rehydrate by soaking in a bowl of warm water for about 10 minutes until they soften. All Suitable for Vegans"
+  },
+  {
+    "brandSlug": "white-whale-sauces-nl",
+    "categorySubquery": "NULL",
+    "name": "White Whale Sauces - Limonhello Hot Sauce (Heat Level 8)",
+    "slug": "white-whale-sauces-limonhello-hot-sauce-heat-level-8",
+    "description": "\" Limon-hello \" Using only the finest \"Sfusato\" Lemons from Italy"
+  },
+  {
+    "brandSlug": "grim-reaper-foods-uk",
+    "categorySubquery": "NULL",
+    "name": "\"The Ripper\" Carolina Reaper Extreme Hot Sauce - (Heat Level 12) 150ml",
+    "slug": "the-ripper-carolina-reaper",
+    "description": "…In the dead of night, he prowled the streets looking for his next victim.. That victim was you… Ingredients : Scotch Bonnet Chilli, Red Pepper, Carolina Reaper Chilli, Cider Vinegar, Salt, Chilli Powder, Chilli Extract ‘The Ripper ‘ (no added sugar) **NOW IN 150ML SIZE** Brand new Hottest Hot Sauce from the creative genius over at Grim Reaper Foods in the UK. Deliciously dangerous… Fruity Scotch Bonnet, world’s hottest Carolina Reaper, combined with juicy Red Bell Peppers, salt and a big splash of pure chilli extract - full flavour, maximum burn! Simple ingredients, no sugars, great building heat! Spice up your spaghetti, add into soups, curries, noodles, or mayo for a hot dipping sauce Suitable for Vegans Heat Level 12"
+  },
+  {
+    "brandSlug": "crazy-bastard-sauce-de",
+    "categorySubquery": "(SELECT id FROM public.categories WHERE slug = 'gift-boxes-sets' LIMIT 1)",
+    "name": "Crazy Bastard - FULL Collection X7 Sauces (Heat Levels, 3,4,5,7,10,10,10)",
+    "slug": "crazy-bastard-full-collection-x7-sauces",
+    "description": "Crazy Bastard Sauces – The Whole Family – Altogether in 1 specially designed Gift Box. Award Winning Hot Sauce. Hand-Made in Berlin “At Crazy Bastard Sauce we produce a range of high quality hot sauces, made with oven roasted chilis and fresh natural ingredients. We don’t add refined sugar, bitter extract, thickening agents or dilution with water” Green – Jalapeno & Date – Heat Level 2 Onions, Charliston Peppers, Jalapeño chili (20%), White Wine Vinegar, Dates (10%), Limes, Garlic, Olive Oil, Coriander, Sea Salt Pink – Chipotle & Pineapple – Heat Level 4 Onions, Sweet Peppers, Pineapple (17%), White Wine Vinegar, Red Jalapeño Chili, Lime, Chipotle Chili (1,7%), Olive Oil, Salt Blue – Caribbean & Scotch Bonnet – Heat Level 5 Peppers, Onions, White Wine Vinegar, Scotch Bonnet Chili (13%), Ginger, Garlic, Lime, Olive Oil, Celery, Salt, Spice Mixture (0,3%) Yellow – Habanero & Tomatillo – Heat Level 7 Peppers, Tomatillos (22%), Onions, Habanero Chili (20%), White Wine Vinegar, Apples, Lime, Garlic, Olive Oil, Sea Salt Orange – Ghost Pepper & Mango – Heat Level 10 Peppers, Onions, White Wine Vinegar, Mango (12%), Apples, Bhut Jolokia “Ghost” Chili (7%), Lime, Olive Oil, Cumin, Sea Salt Red – Trinidad Scorpion & Clementine – Heat Level 10 Peppers, Apples, Onions, White Wine Vinegar, Clementine’s (10%), Trinidad Scorpion Chili (6%), Garlic, Lime, Olive Oil, Sea Salt Black – Carolina Reaper & Blueberry – Heat Level 10 Peppers, Onions, White Wine Vinegar, Apples, Blueberries (10%), Carolina Reaper Chili (8%), Lime, Olive Oil, Sea Salt ALL Suitable for Vegans"
+  },
+  {
+    "brandSlug": "crazy-bastard-sauce-de",
+    "categorySubquery": "(SELECT id FROM public.categories WHERE slug = 'gift-boxes-sets' LIMIT 1)",
+    "name": "Crazy Bastard HOT BOX - x3 Hottest (Heat Level 10)",
+    "slug": "crazy-bastard-hot-box-x3-heat-level-10",
+    "description": "Crazy Bastard Sauce – Award Winning Hot Sauce. Hand-Made in Berlin “At Crazy Bastard Sauce we produce a range of high quality hot sauces, made with oven roasted chilis and fresh natural ingredients. We don’t add refined sugar, bitter extract, thickening agents or dilution with water” Producer @ Crazy Bastard Sauce Orange – Ghost Pepper & Mango – Heat Level 10 Peppers, Onions, White Wine Vinegar, Mango (12%), Apples, Bhut Jolokia “Ghost” Chili (7%), Lime, Olive Oil, Cumin, Sea Salt Red – Trinidad Scorpion & Clementine – Heat Level 10 Peppers, Apples, Onions, White Wine Vinegar, Clementine’s (10%), Trinidad Scorpion chili (6%), Garlic, Lime, Olive Oil, Sea Salt Black – Carolina Reaper & Blueberry – Heat Level 10 Peppers, Onions, White Wine Vinegar, Apples, Blueberries (10%), Carolina Reaper chili (8%), Lime, Olive Oil, Sea Salt All Suitable for Vegans"
+  },
+  {
+    "brandSlug": "crazy-bastard-sauce-de",
+    "categorySubquery": "NULL",
+    "name": "RED - Trinidad Scorpion & Clementine (Heat Level 10)",
+    "slug": "red-trinidad-scorpion-clementine-heat-level-10",
+    "description": "RED - Trinidad Scorpion & Clementine Ingredients: Sweet Peppers, Apple, Onion, White Wine Vinegar, Clementine"
+  },
+  {
+    "brandSlug": "grim-reaper-foods-uk",
+    "categorySubquery": "NULL",
+    "name": "\"Slasher\" - Scotch Bonnet, Pineapple & Beer Hot Sauce (Heat Level 5) BACK IN APRIL",
+    "slug": "slasher-pineapple-indian-pale-ale-heat-level-5",
+    "description": "\"Slasher\" ...hidden in the shadows, planning his return and fearing no one, as sharp as a razor, he emerged... Ingredients : Yellow Pepper, Sugar, Pineapple, Malt Vinegar (from BARLEY), Indian Pale Ale (water, malted BARLEY, WHEAT, hops), Garlic, Scotch Bonnet, Garlic Powder, Vitamin C, Citra Hop Pellets. A brand new award winning collaboration from our Grim Reaper Foods master chef and a local brewery from the UK. This delicious combination features juicy pineapple and delicious \"The Raven King\" IPA. Lovely sweetness, full bodied flavours and fruity Scotch Bonnets for a great medium heat sauce. Good with fish, chicken, salads and sandwiches. Works well in the wok. Awarded 1st Place at the Screaming Mimi Awards in New York City 2021, for the \"Hot Fruit category\" Heat Level 5 Suitable for Vegans"
+  },
+  {
+    "brandSlug": "crazy-bastard-sauce-de",
+    "categorySubquery": "(SELECT id FROM public.categories WHERE slug = 'gift-boxes-sets' LIMIT 1)",
+    "name": "Crazy Bastard Sauce - x3 Best Sellers - (Heat Levels 4, 7, 10)",
+    "slug": "crazy-bastard-sauce-3-best-sellers-box-heat-levels-4-7-10",
+    "description": "Crazy Bastard Hot Box - Heat Levels for Everyone PINK – Chipotle & Pineapple Ingredients ; Onions, Peppers, Pineapple (17%), White Wine Vinegar, Red Jalapeño"
+  },
+  {
+    "brandSlug": "chilisausbe-our-own-range",
+    "categorySubquery": "NULL",
+    "name": "Chilisaus.be - The 2022 Edition \"CHOCOLATE SMOKED\" (Heat Level 10)",
+    "slug": "the-2022-edition-smoked-heat-level-10",
+    "description": "Chilisaus.be - The 2022 Edition - CHOCOLATE SMOKED (no added sugar) Ingredients; Roasted Bell Peppers, Red Wine Vinegar, Carolina Reaper, Smoked Chipotle, Red Onion, Roasted Garlic, Lime, Raw Cacao, Ginger, Olive Oil, Salt, Provençal Herbs, This is the 2nd sauce launched by Chilisaus.be - a collaboration project with Happy Hatter Hot Sauce Fresh Carolina Reapers, dried Chipotle pods, French smoked Garlic & red bell peppers, oven roasted for a natural sweetness, raw cacao for that velvety chocolate finish - finished off with fresh lime, ginger & Provençale herbs. A real taste explosion. We love this with Mexican food, Ribs, Wings, Pizza, Pasta and goes great in a chili con carne Natural ingredients - no additives - no preservatives Heat Level 10 Suitable for Vegans"
+  },
+  {
+    "brandSlug": "grim-reaper-foods-uk",
+    "categorySubquery": "(SELECT id FROM public.categories WHERE slug = 'chili-oil' LIMIT 1)",
+    "name": "Venus - Carolina Reaper Mayonnaise - (Heat Level 9) - 04/26",
+    "slug": "venus-carolina-reaper-mayonnaise",
+    "description": "Carolina Reaper Mayonnaise - 180g Ingredients; Rapeseed oil, Pasteurised free range Egg yolk, Dijon mustard, Carolina Reaper Puree, Cider vinegar, Lemon juice, Sugar, Potato starch, Salt, Pepper What better combination - Mayonnaise infused with the world"
+  },
+  {
+    "brandSlug": null,
+    "categorySubquery": "(SELECT id FROM public.categories WHERE slug = 'chili-challenges-spicy-snacks' LIMIT 1)",
+    "name": "Johnny Scoville - Tube of Terror Challenge V2.0 (Heat Level - OFF THE SCALE)",
+    "slug": "johnny-scoville-tube-of-terror-challenge-v2-0-heat-level-off-the-scale",
+    "description": "TUBE OF TERROR CHALLENGE - USA “The epic Tube of Terror is updated in Version 2.0 with an all new pepper and seasoning blend and with toasted Corn Nuggets to accommodate our friends with peanut allergies” SAVAGELY HOT! Ingredients ; Corn, Corn Oil, Peppers - Carolina Reaper, Moruga Scorpion, 7-Pot Primo, 7-Pot Douglah, Ghost - Sea Salt, Spice ” If it’s worth doing ... It’s worth overdoing” Johnny Scoville DO YOU DARE?"
+  },
+  {
+    "brandSlug": null,
+    "categorySubquery": "(SELECT id FROM public.categories WHERE slug = 'dried-chilies-pods-flakes-powders' LIMIT 1)",
+    "name": "Trinidad Scorpion Powder 10g (1.2 Million Scoville Heat Units)",
+    "slug": "trinidad-scorpion-powder-10g-1-2-million-scoville-heat-units",
+    "description": "Trinidad Scorpion Powder 1.2 Million Scoville Heat Units The World"
+  },
+  {
+    "brandSlug": "white-whale-sauces-nl",
+    "categorySubquery": "NULL",
+    "name": "White Whale Sauces - \"Gnarlicky\" - 148ml (Heat Level 6)",
+    "slug": "white-whale-sauces-gnarlicky-heat-level-6",
+    "description": "Gnarlicky Ingredients; Garlic, habanero peppers, onion, lime juice, vinegar, olive oil, salt, mustard seed, thyme, rosemary, activated charcoal Gluten Free – N o Added Sugar – No Additives – 100% Natural Unholy amounts of garlic confit and fermented black garlic are the base for this sauce. Blackened habaneros and mustard seeds make this thick juicy sauce quite addictive. Certainly one for the garlic lovers. It"
+  },
+  {
+    "brandSlug": null,
+    "categorySubquery": "(SELECT id FROM public.categories WHERE slug = 'hot-honey' LIMIT 1)",
+    "name": "Sweet Heat Hot Honey (NL) - (Heat Level 4) 250g",
+    "slug": "sweet-heat-hot-honey",
+    "description": "Hot Honey – THE ORIGINAL Ingredients; Honey 90%, 10% Chili Peppers Sweet Heat are a team of young, enthusiastic guys from The Netherlands. Producing deliciously addictive sweet, sticky, spicy, Hot Honey! “We make our Hot Honey in Amsterdam - from the finest flower Honey and an awesome secret blend of Hot Peppers.. Minimum shelf life 1 Year\" These guys did have an Extra Heat version also - sadly they have stopped producing that one, keeping their focus on the OG - and the best !! Delicious on Everything.. Especially good on Pizza, Fried Chicken, Cheese Tosti, Salads, Burgers, Goats Cheese, Wok Dishes, Ice Cream, Apple Pie, Sandwiches – dare to be different!! Gluten Free – No Added Sugars – No Additives – 100% Natural NOT Suitable for Vegans – Contains HONEY"
+  },
+  {
+    "brandSlug": "chilisausbe-our-own-range",
+    "categorySubquery": "NULL",
+    "name": "Chilisaus.be - The 2023 Edition - \"ASIAN MANGO\" (Heat Level 10)",
+    "slug": "chilisaus-be-the-2023-edition-asian-mango-heat-level-10",
+    "description": null
+  },
+  {
+    "brandSlug": "chilisausbe-our-own-range",
+    "categorySubquery": "(SELECT id FROM public.categories WHERE slug = 'gift-boxes-sets' LIMIT 1)",
+    "name": "Chilisaus.be TRIO - 3 of our own Hot Sauces (Heat Levels 8, 10, 10)",
+    "slug": "chilisaus-be-trio-all-3-sauces-2020-2022-2023",
+    "description": "Garlic Italian, Chocolate Smoked, Asian Mango 2020 - Garlic Italian (Heat Level 8) Ingredients; Rapeseed Oil, Water, White Wine Vinegar, Olive Oil, Red Chilli, Naga Chilli (3%), Garlic Purée, Salt, Spices, Herbs Our 1st sauce – Inspired by the craziness of 2020, we teamed up with a small UK Chili producer to bring you our very own hot sauce! Top quality ingredients, silky smooth olive oil, fresh Naga / Ghost peppers, LOTS of garlic and real Italian herbs. Deliciously addictive, packed with flavour and that creeping Ghost heat - we just LOVE it Perfect for spaghetti, pizza, burger / veggie burger. Mix into mayo for a spicy dip sauce. We actually just add it pure onto our wraps, salads, tosti"
+  },
+  {
+    "brandSlug": "happy-hatter-hot-sauce-be",
+    "categorySubquery": "NULL",
+    "name": "Happy Hatter Hot Sauce - SHAKIRA (Heat Level 3)",
+    "slug": "happy-hatter-hot-sauce-shakira-heat-level-3",
+    "description": "Ingredients; Shakira Peppers, Serrano Peppers, Apple cider vinegar, Cane sugar, Onion, Garlic powder, Lime juice, Salt, Ginger powder, Olive oil The Happy Hatter family continues - this one is quite different for Mr Hatter, we love it. A Green sauce - light, fresh and zesty. So easy to use and accessible for the whole family. Using the unique Shakira Pepper; The Shakira is originally an Arabic chili and mostly used in the Turkish and North African cuisine. The chillies are a long, slightly curved in shape, robust and green in colour. Juicy and slightly bitter, they become sweet and spicy when cooked. This is a well balanced, delicious, very fresh sauce - think Salsa Verde, great on nacho"
+  },
+  {
+    "brandSlug": "happy-hatter-hot-sauce-be",
+    "categorySubquery": "NULL",
+    "name": "Happy Hatter Hot Sauce - PICKLE PUMPKIN PIRATE (Heat Level 8)",
+    "slug": "happy-hatter-hot-sauce-pickle-pumpkin-pirate-heat-level-7",
+    "description": "Ingredients; Pumpkin, Pickles, Aji Amarillo Peppers, Trinidad Scorpion, Onion, Vinegar, Cane sugar, Spiced Rum, Garlic, Lime juice, Salt, Mixed herbs (contains celery ), Olive oil, Bitters, Mustard seeds A savoury sauce for Real Pirates. Sour pickles, juicy pumpkin, zesty lime - a real taste explosion! Not forgetting spiced Rum, for that Pirate twist with a lasting Scorpion sting. Great for burgers, hot dogs, Nacho"
+  },
+  {
+    "brandSlug": "happy-hatter-hot-sauce-be",
+    "categorySubquery": "(SELECT id FROM public.categories WHERE slug = 'gift-boxes-sets' LIMIT 1)",
+    "name": "Happy Hatter Hot Sauce - THE WHOLE FAMILY - x6 Sauces -100ml  (Heat Levels 3, 6, 6, 7, 8,10)",
+    "slug": "happy-hatter-the-whole-family-x6-sauces",
+    "description": "All 6 sauces; Happy Hatter - ORIGINAL (Heat Level 6) Happy Hatter - SMOKED (Heat Level 7) Happy Hatter - BOMBAY (Heat Level 7) Happy Hatter - SHAKIRA (Heat Level 3) Happy Hatter - PICKLE PUMPKIN PIRATE (Heat Level 8) Chilisaus.be & Happy Hatter - THE 2022 CHOCOLATE SMOKED (Heat Level 10) Vegan NOT Vegan - Happy Hatter SMOKED (Heat Level 7) Contains Honey"
+  },
+  {
+    "brandSlug": "grim-reaper-foods-uk",
+    "categorySubquery": "(SELECT id FROM public.categories WHERE slug = 'chili-extracts' LIMIT 1)",
+    "name": "DOOMSDAY - 1.6 Million Scoville PURE Capsaicin - (Heat Level 15) 30ml",
+    "slug": "doomsday-1-6million-scoville-pure-capsaicin-heat-level-15-30ml-dropper",
+    "description": "Ingredients; Chilli Extract at 1.6 Million SHU (Scoville Heat Units) 1 million Scoville"
+  },
+  {
+    "brandSlug": "grim-reaper-foods-uk",
+    "categorySubquery": "(SELECT id FROM public.categories WHERE slug = 'chili-extracts' LIMIT 1)",
+    "name": "OBLIVION - 500,000 Scoville PURE Capsaicin (Heat Level 12) 30ml",
+    "slug": "oblivion-500000-scoville-pure-capsaicin-heat-level-12-30ml-dropper-bottle",
+    "description": "Pure Chilli Extract at 500,000 SHU (Scoville Heat Units) 1 million Scoville’s is the most the tongue can detect – welcome to Oblivion... This oleoresin is not bitter or harsh like other extracts due to the African peppers used in its manufacture. Completely clear in colour – this is a very special, unique super hot product. You can use drops of Oblivion for some seriously spicy spaghetti, chili con carne or add 1 drop into vodka shots (a personal favourite) Adds instant long lasting heat to anything it touches.. It is not intended to be ingested directly, but is intended to be used as a food / drink additive. Product of the USA – Bottled in the UK 30 mls DISCLAIMER; The purchaser of Oblivion hereby acknowledges the extreme heat factor of this product and the danger involved if misused. You must be aged 18 or over to buy Oblivion, and should you continue to purchase it, you release Chilisaus.be of all liability and hold us harmless in respect to any claim of damages resulting in the use, consumption, ingestion and/or contact with respect to this product, Grim Reaper’s Oblivion."
+  },
+  {
+    "brandSlug": "el-jefes-primo-salsa-nl",
+    "categorySubquery": "NULL",
+    "name": "El Jefe - PICANTE- Mexican Hot Sauce (Heat Level 6)",
+    "slug": "el-jefe-picante-mexican-hot-sauce-heat-level-6",
+    "description": "Ingredients; Tomatoes, Chili"
+  },
+  {
+    "brandSlug": null,
+    "categorySubquery": "NULL",
+    "name": "Lord Reaper (UK) - Carolina Reaper Hot Sauce (Heat Level 10)",
+    "slug": "lord-reaper-carolina-reaper-hot-sauce-heat-level-10",
+    "description": "Carolina Reaper fermented Hot Sauce 100ml Ingredients; Water, Rapeseed Oil, Carolina Reaper Chilli (20%), Vinegar, Soy Sauce (water, SOYA bean, salt, WHEAT flour, sugar), Orange (from concentrate), Cane Sugar, Spices, Salt, Ginger, Garlic Puree, Lemon (from concentrate), Stabiliser: Xanthium Gum \"Super hot and super tasty with fermented Carolina Reaper Peppers... If you can handle the heat, you will experience several layers of flavour in this fiery sauce\" Loved this when we first tried it over in the UK, small batch produced - delighted to bring it to our shop. Full flavours, thick and sticky with a great Reaper heat. Works great as a wok sauce, perfect for meats as a marinade or a glaze too. Great with Asian dishes, noodles, chili con carne, spaghetti, steak Deliciously versatile. Suitable for Vegans"
+  },
+  {
+    "brandSlug": null,
+    "categorySubquery": "(SELECT id FROM public.categories WHERE slug = 'chili-challenges-spicy-snacks' LIMIT 1)",
+    "name": "Johnny Scoville - Tube Of Terror Challenge V1.0 Peanuts - Heat Level, Off The Scale",
+    "slug": "johnny-scoville-tube-of-terror-challenge-v1-0-peanuts-heat-level-off-the-scale",
+    "description": "TUBE OF TERROR CHALLENGE Each Tube contains enough peanuts for a 5-6 person party-night challenge or one very brave soul. Grab your crew, a bucket of beer and a Tube of Terror… TIME TO NUT UP OR SHUT UP!! Quite frankly the hottest damn challenge available & the perfect gift for any hot sauce or spicy food lover! Can you handle 30-45 of the world’s hottest peanuts completely smothered with these insanely hot, tongue torching peppers? Carolina Reaper Peppers Trinidad Moruga Scorpion Peppers 7 Pot Brain Strain Peppers 7 Pot Duglah Peppers Bhut Jolokia (Ghost) Peppers All Natural Pure Capsaicin Crystals – 13,000,000 Scoville Listing is for one (1) tube ” If it’s worth doing … It’s worth overdoing” Johnny Scoville DO YOU DARE? Not for the faint of heart, children under the age of 18, elderly people or anyone with any medical condition."
+  },
+  {
+    "brandSlug": "wiltshire-chilli-farm-uk",
+    "categorySubquery": "(SELECT id FROM public.categories WHERE slug = 'salts-seasonings-rubs' LIMIT 1)",
+    "name": "Chipotle Adobo Seasoning (Heat Level 5) 65g",
+    "slug": "chipotle-adobo-heat-level-5-65g",
+    "description": "Mexican Chipotle Adobo - Dried Seasoning Mix Ingredients : Cumin, Paprika, Garlic, Onion, Chipotle, Oregano, Pepper, Tomato, Salt Inspired from the traditional Mexican kitchen. Adobo is a popular Mexican style of dish - earthy, smokey, lots of tomato and garlic. . Create your own taste of Mexico with this tasty seasoning. Great with all Mexican dishes, nachos, burritos, chili con carne, marinade, ribs, pulled chicken, pizza Suitable for Vegans"
+  },
+  {
+    "brandSlug": null,
+    "categorySubquery": "(SELECT id FROM public.categories WHERE slug = 'chili-oil' LIMIT 1)",
+    "name": "Piri Piri & Co, PORTUGAL - Scorpion Chili Oil (Heat Level 8) 100ml",
+    "slug": "piri-piri-co-portugal-scorpion-chili-oil-heat-level-8-100ml",
+    "description": "Portuguese Chili Oil Ingredients: Sunflower oil, Trinidad Scorpion, Ghost Pepper, Habanero, Malagueta Pepper, Lemon, Salt The pepper flavour and heat really shine through in this oil. Using 4 different types of peppers, all grown on their farm in The Algarve. Scorpion, Ghost, Habanero and the traditional Malagueta / Piri Piri. Freshness from the lemon zest, touch of salt. Simple and delicious A compliment to any dish Suitable for Vegans"
+  },
+  {
+    "brandSlug": null,
+    "categorySubquery": "(SELECT id FROM public.categories WHERE slug = 'gift-boxes-sets' LIMIT 1)",
+    "name": "Piri Piri & Co, PORTUGAL - x6 Sauce Gift Box (All Heat levels)",
+    "slug": "piri-piri-co-portugal-x6-sauce-gift-box-all-heat-levels",
+    "description": "OUR FAVOURITES FROM PORTUGAL 50ml travel sized bottles All made with freshly grown Portuguese Peppers Real flavour - Real heat CREATE YOUR OWN \" Hot Ones Challenge \" Fiery Pizza - 50ml - Heat Level 5 Ingredients : Habanero, Wine Vinegar, Balsamic Vinegar (may contain sulphites) , Sugar, Basil, Salt, Garlic, Oregano, Xanthan Gum (natural) Habanero - 50ml - Heat Level 6 Ingredients : Habanero chilli, vinegar (may contain sulphites ), water, garlic, black pepper, thyme, salt, xanthan gum (natural) Scorpion Oil - 50ml - Heat Level 8 Ingredients : Sunflower oil, Trinidad Scorpion, Ghost Pepper, Habanero, Malagueta pepper, Lemon, Salt Bhutzilla - 50ml - Heat Level 9 Ingredients : Habanero chilli, vinegar (may contain sulphites ), water, garlic, black pepper, thyme, salt, xanthan gum (natural) Supernova - 50ml - Heat Level 10 Ingredients : Scorpion Yellow, Vinegar ( may contain sulphites ), Water, Garlic, Salt, Sugar, Ginger, Xanthan Gum (natural) Fogo - 50ml - Heat Level 12 Ingredients; Carolina Reaper , Apple Vinegar (may contain sulphites), Pineapple, Green Mango, Moruga Trinidad Scorpion, Licor Brutal, Muscavado Sugar, Mint All suitable for Vegans"
+  },
+  {
+    "brandSlug": null,
+    "categorySubquery": "(SELECT id FROM public.categories WHERE slug = 'chili-challenges-spicy-snacks' LIMIT 1)",
+    "name": "Blazing Foods - Death Nut Challenge 3.0 (Heat Level - OFF THE SCALE)",
+    "slug": "blazing-foods-death-nut-challenge-3-0-heat-level-off-the-scale",
+    "description": "The All-New Death Nut Challenge - Version 3.0 INGREDIENTS : JUMBO XL VIRGINIA PEANUTS, PURE CANE SUGAR, CAROLINA REAPER PEPPERS, 7-POT PRIMO PEPPERS, PEPPERS (DATIL, SCOTCH BONNET, GHOST (BHUT JOLOKIA), 7-POT BRAIN STRAIN, 7-POT DOUGLAH, TRINIDAD MORUGA SCORPION), 16M PURE ALL NATURAL CAPSAICIN CRYSTALS, SEA SALT, SPICE New peppers, improved flavour variations, triple the peanuts and a brand new Level 5 Death Nut - the Death Nut is made with a new super-hot pepper distillate that is spray-dried into a powder form delivering a whopping 16,000,000 Scoville Heat Units. Each level starts with a base peanut made using Carolina Reaper to establish consistent flavour and heat. Then 5 additional steps to make each level unique and progressively hotter with a load of the world’s hottest peppers, small-batch produced and handcrafted to ensure consistency and quality. Level 1 – Datil Peppers & Scotch Bonnet Level 2 – Ghost Peppers & 7-Pot Brain Strain Level 3 – Double shot of Ghost Peppers & 7-Pot Douglah Level 4 – Double shot of Carolina Reaper, a double shot of 7-Pot Brain Strain & Trinidad Moruga Scorpion Level 5 – Triple shot of Carolina Reaper, a double shot of Trinidad Moruga Scorpion, the explosive 7-Pot Primo Pepper, and our all-new 16 million Scoville Capsaicin Crystals Each challenge is enough for 1-3 brave / crazy players... Heat Level - OFF THE SCALE"
+  },
+  {
+    "brandSlug": "chilisausbe-our-own-range",
+    "categorySubquery": "NULL",
+    "name": "Chilisaus.be - Limited Edition Range - 7Pot Habanero Pineapple (Heat Level 6)",
+    "slug": "chilisaus-be-limited-edition-range-7pot-habanero-pineapple-heat-level-6",
+    "description": "Our New Limited Edition Range In collaboration with Uncle Paul"
+  },
+  {
+    "brandSlug": "chilisausbe-our-own-range",
+    "categorySubquery": "NULL",
+    "name": "Chilisaus.be - Limited Edition Range - Hurtberry Ghost Sriracha (Heat Level 10)",
+    "slug": "chilisaus-be-limited-edition-range-hurtberry-ghost-sriracha-heat-level-10",
+    "description": "Our New Limited Edition Range In collaboration with Uncle Paul"
+  },
+  {
+    "brandSlug": null,
+    "categorySubquery": "(SELECT id FROM public.categories WHERE slug = 'dried-chilies-pods-flakes-powders' LIMIT 1)",
+    "name": "Scotch Bonnet Flakes - 30g (100,000–350,000 Scoville Heat Units)",
+    "slug": "scotch-bonnet-flakes-30g-100000-350000-scoville-heat-units",
+    "description": "The Scotch Bonnet Pepper is originally a cultivar of the Habanero family - often used in the Caribbean kitchen - where it originated and is widely grown. The flavour is fruity and bright, with a bit of sweetness. Jerk Chicken is a typical dish made with Scotch Bonnet"
+  },
+  {
+    "brandSlug": null,
+    "categorySubquery": "(SELECT id FROM public.categories WHERE slug = 'dried-chilies-pods-flakes-powders' LIMIT 1)",
+    "name": "Scotch Bonnet Pods 20g (100,000–350,000 Scoville Heat Units)",
+    "slug": "scotch-bonnet-pods-20g-100000-350000-scoville-heat-units",
+    "description": "The Scotch Bonnet Pepper is originally a cultivar of the Habanero family – often used in the Caribbean kitchen – where it originated and is widely grown. The flavour is fruity and bright, with a bit of sweetness. Jerk Chicken is a typical dish made with Scotch Bonnet’s. West African dishes are typical for using them also. Named for its supposed resemblance to the shape of a Scottish “Tam O’Shanter” bonnet / hat. Fresh Peppers are not always easy to come by, so using dried Scotch Bonnet Peppers can be a quick and easy replacement to add into your dishes. You can just slice them up as they are, crush them into a powder or re-hydrate them by soaking in a bowl of hot water for 10 – 15 minutes until they soften. Suitable for Vegans Scotch Bonnet Flakes - 30g (100,000–350,000 Scoville Heat Units) qua"
+  },
+  {
+    "brandSlug": "chilisausbe-our-own-range",
+    "categorySubquery": "NULL",
+    "name": "Chilisaus.be - The 2024 Edition - Kokos Kerrie / Coconut Curry (Heat Level 8) 200ml",
+    "slug": "the-2024-edition-kokos-kerrie-coconut-curry-heat-level-8",
+    "description": "Chilisaus.be – The 2024 Edition – Coconut Curry Paste with a Twist Ingredients; Peppers - Birds Eye, Madame Jeanette, Lombok - Tomato, Coconut Milk, Onion, Coconut Vinegar, Water, Peanut, Garlic, Coriander, Coconut Sugar, Ginger, Herbs and Spices ( Mustard ), Salt The 4th release from Chilisaus.be - something a little different this time.. A collaboration project with the wonderful “White Whale Sauces” .. We also collab"
+  },
+  {
+    "brandSlug": null,
+    "categorySubquery": "(SELECT id FROM public.categories WHERE slug = 'salts-seasonings-rubs' LIMIT 1)",
+    "name": "Smokin’ Ed’s - Pepper X - Sizzling Steak Seasoning",
+    "slug": "smokin-eds-pepper-x-sizzling-steak-seasoning",
+    "description": "The World’s NEWEST Hot Pepper PEPPER X The Guinness World Record breaking Pepper X reached a crazy level of 2.693 Million Scoville Heat Units Peppers or seeds are not commercially available yet – but damn - these spice mixes are tasty and HOT! Created by crazy genius Ed Currie / The PukkerButt Pepper Company USA (the guys behind The Pepper X and the The Carolina Reaper) We have 3 varieties - while stocks last Spicy Italian - Sizzling Steak - Spicy Garlicious SIZZLING STEAK; Ingredients: Coarse Salt, Spices (Including Black Pepper and Red Pepper), Garlic, Onion, Sunflower Oil, Natural Flavour and Extractives of Paprika, Pepper X. Spice up your steak / tofu / veggies / pasta sauces Suitable for Vegans"
+  },
+  {
+    "brandSlug": null,
+    "categorySubquery": "(SELECT id FROM public.categories WHERE slug = 'salts-seasonings-rubs' LIMIT 1)",
+    "name": "Smokin’ Ed’s - Pepper X - Spicy Italian Seasoning",
+    "slug": "smokin-eds-pepper-x-spicy-italian-seasoning",
+    "description": "The World’s NEWEST Hot Pepper PEPPER X The Guinness World Record breaking Pepper X reached a crazy level of 2.693 Million Scoville Heat Units Peppers or seeds are not commercially available yet – but damn - these spice mixes are tasty and HOT! Created by crazy genius Ed Currie / The PukkerButt Pepper Company USA (the guys behind The Pepper X and the The Carolina Reaper) We have 3 varieties - while stocks last Spicy Italian - Sizzling Steak - Spicy Garlicious SPICY ITALIAN; Ingredients: Spices, Pepper X powder Spice up your pizza, pasta or marinades Suitable for Vegans"
+  },
+  {
+    "brandSlug": null,
+    "categorySubquery": "(SELECT id FROM public.categories WHERE slug = 'salts-seasonings-rubs' LIMIT 1)",
+    "name": "Smokin’ Ed’s - Pepper X - Spicy Garlicious Seasoning",
+    "slug": "smokin-eds-pepper-x-spicy-garlicious-seasoning",
+    "description": "The World’s NEWEST Hot Pepper PEPPER X The Guinness World Record breaking Pepper X reached a crazy level of 2.693 Million Scoville Heat Units Peppers or seeds are not commercially available yet – but damn – these spice mixes are tasty and HOT! Created by crazy genius Ed Currie / The PukkerButt Pepper Company USA (the guys behind The Pepper X and the The Carolina Reaper) We have 3 varieties – while stocks last Spicy Italian – Sizzling Steak – Spicy Garlicious SPICY GARLICIOUS; Ingredients: Salt, Garlic, Chili Pepper Powder, Pepper X Spice up every meal time with a sprinkle of this Garlicky Pepper X Suitable for Vegans"
+  },
+  {
+    "brandSlug": "wiltshire-chilli-farm-uk",
+    "categorySubquery": "(SELECT id FROM public.categories WHERE slug = 'salts-seasonings-rubs' LIMIT 1)",
+    "name": "Cajun Spice Seasoning  (Heat Level 4)",
+    "slug": "cajun-spice-seasoning-heat-level-4",
+    "description": null
+  },
+  {
+    "brandSlug": null,
+    "categorySubquery": "NULL",
+    "name": "Piri Piri & Co, PORTUGAL - FOGO (Heat Level 12)",
+    "slug": "piri-piri-co-portugal-fogo-heat-level-12",
+    "description": "\"FOGO\" with Carolina Reaper and Trinidad Moruga Scorpion Ingredients : Carolina Reaper, Pineapple, water, Apple Vinegar ( may contain sulphites ), Licor Brutal, Green Mango, Moruga Peppers, Muscavado Brown sugar, Salt, Mint, Xanthan gum (natural) The freshness of the Reapers and Scorpions really shine through - farm grown on the sunny Algarve Coast in Portugal - but WOW - they are HOT Peppers.. Fogo in Portuguese translates as FIRE in English Fresh, Vibrant, Fruity (but not too sweet), hint of mint, splash of licor Brutal* before the superhot heat really kicks in.. It"
+  },
+  {
+    "brandSlug": "el-jefes-primo-salsa-nl",
+    "categorySubquery": "NULL",
+    "name": "El Jefe - Verde - Mexican Salsa - (Heat Level 4)",
+    "slug": "el-jefe-verde-mexican-salsa-heat-level-4",
+    "description": "Mexican Style Fresh Green Salsa Ingredients; Tomatillos, Jalapeños, Garlic, Lemon juice, Sunflower oil, Onion powder, Sea Salt \"We call this one our breakfast Salsa because its so light and fresh. Tomatillo gives it a little sour twang, Jalapeno gives it a mild zip. So easy, you could eat it all day long\" \"A classic Salsa Verde, perfected by El Jefe\" Perfect for Nachos, Burrito, Eggs, Pizza Suitable for Vegans Heat Level 4"
+  },
+  {
+    "brandSlug": "grim-reaper-foods-uk",
+    "categorySubquery": "NULL",
+    "name": "The Chilli Alchemist (UK) - \"Dark Matter\" Belgian Chili + Mint Chocolate (Heat Level 4-5) 100g",
+    "slug": "the-chilli-alchemist-dark-matter-belgian-chili-chocolate-heat-level-4-5-100g",
+    "description": "70% Belgian Dark Chili Chocolate, infused with Naga Ghost Pepper, Mint and Candy Pop Rocks Ingredients; Dark Chocolate (Cocoa mass 70%, sugar, cocoa butter, emulsifier - SOYA lecithin, natural vanilla), Popping Candy (sugar, glucose syrup (MAIZE), lactose (MILK), carbon dioxide) (2%), Naga Chilli Powder (0.1%), Essential oil of Mint Smooth, rich, top quality Belgian chocolate, spicy Ghost Pepper, fresh mint followed by little explosions of popping candy. This unique Chili chocolate will tickle your taste buds - perfect after dinner chocolate, grate over ice cream or make your own chili chocolate brownies - mild to medium heat level. Beautifully presented in Chili Alchemist printed packaging, hand tied with coloured ribbon All Natural Ingredients, No Artificial Colours. Produced in the UK under the Grim Reaper Brand. Suitable for Vegetarian (Contains Gluten, Milk, Soy)"
+  },
+  {
+    "brandSlug": "hot-headz-uk",
+    "categorySubquery": "NULL",
+    "name": "Hot Headz - Smoked Chilli + Garlic BACK IN APRIL (Heat Level 5) 185ml",
+    "slug": "hot-headz-smoked-chilli-garlic",
+    "description": "Ingredients; Tomato Paste, Water, Cider Vinegar, Onions, Sugar, Sesame Seeds, Spices, Chipotle, Habanero, Guajillo Chili, Smoked Garlic, Salt Handmade in the UK. This is a fantastic product for any lover of strong smokey and garlicky flavours! Thick and chunky textured, with a deep, rich, full bodied flavour. Garlicky, spicy, sweet, smokey - it really should come with it"
+  },
+  {
+    "brandSlug": null,
+    "categorySubquery": "NULL",
+    "name": "Singularity Sauce Co (UK) - Buffalo Hot Sauce (Heat Level 4) 148ml",
+    "slug": "singularity-sauce-co-buffalo-hot-sauce-148ml-heat-level-4",
+    "description": "Ingredients; Kombucha Souring, Cayenne Mash (Cayenne Pepper, Salt, Acetic Acid), Plant Based Butter (Shea butter, water, coconut oil, rapeseed oil, salt, carrot juice, emulslifer (lecithine), lemon juice, natural flavour), Soft Brown Sugar, Garlic Powder, Salt, Smoked Paprika, Xanthan Gum Buffalo up everything you can with this amazing sauce. Created by the genius brain of Singularity Sauce Co from Aberdeen, Scotland. Last year we introduced you to their Everyday Hot Sauce - this year we wanted to introduce you to their amazing take on a Buffalo Hot Sauce! 4 Years in the making and we just love it! \" If you"
+  },
+  {
+    "brandSlug": "wiltshire-chilli-farm-uk",
+    "categorySubquery": "(SELECT id FROM public.categories WHERE slug = 'salts-seasonings-rubs' LIMIT 1)",
+    "name": "Naga Chili Salt - (Heat Level 9) - 65g",
+    "slug": "naga-chili-salt-heat-level-9-65g",
+    "description": "Ingredients; Sea Salt, White Peppercorns, Naga Chili Fire up your food with the intensely explosive heat combo of dried Naga / Ghost Peppers, good quality Sea Salt and whole White Peppercorns. Sprinkle over anything and everything for serious heat - you won"
+  },
+  {
+    "brandSlug": "hot-headz-uk",
+    "categorySubquery": "NULL",
+    "name": "Hot Headz - Naga Hot Sauce BACK IN APRIL (Heat Level 10) 148ml",
+    "slug": "hot-headz-naga-hot-sauce",
+    "description": "Ingredients; Tomato, water, tomato, sugar cane vinegar, sugar, tomato paste, onion, fresh Naga Bhut Jolokia chilli (4%), SOYBEAN OIL, salt, Habanero chilli pepper, mango, Scorpion chilli pepper, ginger, garlic, oat fibre, acetic acid, xanthan gum (natural thickener), sunflower oil Hot Headz from the UK produce some delicious sauces! With their kitchens in Costa Rica their sauces give powerful bold flavours! \"We"
+  },
+  {
+    "brandSlug": "hot-headz-uk",
+    "categorySubquery": "NULL",
+    "name": "Hot Headz - Chipotle Hot Sauce (Heat Level 5) 148ml",
+    "slug": "hot-headz-chipotle-hot-sauce-heat-level-5-148ml",
+    "description": "Ingredients; Water, apple cider vinegar, Habanero chilli pepper, sugarcane vinegar, salt, paprika, garlic, Cayenne chilli pepper, spices, Chipotle chilli pepper (1.2%), sugar, onion, citric acid, xanthan gum (natural thickener), paprika oleoresin, acetic acid, ascorbic acid Hot Headz from the UK produce some delicious sauces! With their kitchens in Costa Rica their sauces give powerful bold flavours! \"A subtle, not too heavily smoked sauce for adding that smoky edge to all foods. Using the famous smoked jalapeno for depth of flavour. Chipotle lovers adore this sauce\" A truly delicious smooth, well rounded, smokey Hot Sauce. Deep layered flavours, rich and full with a nice warm medium heat. Great for any BBQ foods, burgers, chicken, veggies. Taco"
+  },
+  {
+    "brandSlug": "chilisausbe-our-own-range",
+    "categorySubquery": "NULL",
+    "name": "Chilisaus.be - The 2025 Edition - ROASTED HABANERO (Heat Level 7)",
+    "slug": "chilisaus-be-the-2025-edition-roasted-habanero-heat-level-7",
+    "description": "Ingredients; Habanero Peppers, Fresh Tomato, Apple Juice, Red Onion, Red Peppers, Water, Lime, Apple Cider Vinegar, Red Wine Vinegar, Red Sweet Pointed Peppers, Beetroot, Carrot, Garlic, Olive Oil, Herbs & Spices, Brown Sugar, Salt, Black Tea The 2025 Edition - Our annual sauce release - highlighting our favourite Chili Pepper, The Habanero! A collaboration project with the wonderful White Whale Sauces! Previously launching the 2023 Asian Mango Edition and the 2024 Coconut Curry. Both have become award winning sauces! Kerri is a bit of a perfectionist - the flavour has to be just right, this one took us some time to perfect! Oven Roasted juicy goodness - Habanero"
+  },
+  {
+    "brandSlug": "crazy-bastard-sauce-de",
+    "categorySubquery": "NULL",
+    "name": "Yellow - Habanero & Tomatillo Hot Sauce (Heat Level 7)",
+    "slug": "yellow-habanero-tomatillo-hot-sauce-heat-level-7",
+    "description": "YELLOW - Habanero & Tomatillo Ingredients ; Peppers, Tomatillos (22%), Onions, Habanero Chilies (20%), White Wine Vinegar, Apples, Limes, Garlic, Olive Oil, Sea Salt This was the first ever sauce from the crazy Irish at Crazy B. Mexican inspired, fruity and bright. Made with high-quality ingredients, this sauce packs a rich, balanced, flavorful punch. Sweet, acidic, salty, fruity, and savoury. Goes great with almost everything, especially tacos, pasta, burgers, pizza, pasta, rice dishes, sandwiches, wraps. Heat Level 7 Suitable for Vegans A word from the creator “ At Crazy Bastard Sauce we produce a range of high quality hot sauces, made with oven roasted chilis and fresh natural ingredients. We don’t add refined sugar, bitter extract, thickening agents or dilute with water”"
+  },
+  {
+    "brandSlug": "chilisausbe-our-own-range",
+    "categorySubquery": "(SELECT id FROM public.categories WHERE slug = 'gift-boxes-sets' LIMIT 1)",
+    "name": "Chilisaus.be - Our Own 5 Hot Sauces (Heat Levels 7 - 10)",
+    "slug": "chilisaus-be-our-own-5-hot-sauces-heat-levels-7-10",
+    "description": "Our own Hot Sauce Collection - Different Year, Different Flavour 2020 - Garlic Italian - Heat Level 8 Ingredients ; Rapeseed Oil, Water, White Wine Vinegar, Olive Oil, Red Chilli, Naga Chilli (3%), Garlic Purée, Salt, Spices, Herbs 2022 - Chocolate Smoked - Heat Level 10 Ingredients; Roasted Bell Peppers, Red Wine Vinegar, Carolina Reaper, Smoked Chipotle, Red Onion, Roasted Garlic, Lime, Raw Cacao, Ginger, Olive Oil, Salt, Provençal Herbs 2023 - Asian Mango- Heat Level 10 Ingredients ; Mango, Lime, Orange Bell Peppers, Ghost Peppers, Madame Jeanette Peppers, Cider Vinegar (allergen sulphite) Shallots, Orange juice, Orange rind, Lemongrass, Herbs, Spices, Salt 2024 - Coconut Curry - Heat Level 8 Ingredients ; Peppers – Birds Eye, Madame Jeanette, Lombok – Tomato, Coconut Milk, Onion, Coconut Vinegar, Water, Peanut, Garlic, Coriander, Coconut Sugar, Ginger, Herbs and Spices ( Mustard ), Salt 2025 - Roasted Habanero - Heat Level 7 Ingredients ; Habanero Peppers, Fresh Tomato, Apple Juice, Red Onion, Red Peppers, Water, Lime, Apple Cider Vinegar, Red Wine Vinegar, Red Sweet Pointed Peppers, Beetroot, Carrot, Garlic, Olive Oil, Herbs & Spices, Brown Sugar, Salt, Black Tea Please see individual listings for full descriptions and food pairings"
+  },
+  {
+    "brandSlug": "swet-be",
+    "categorySubquery": "NULL",
+    "name": "SWET Hot Sauce Co - FUMADO, Smoked - (Heat Level 5)",
+    "slug": "swet-hot-sauce-co-fumado-heat-level-5",
+    "description": "Ingredients; Red onions** - Cider vinegar* - Habanero peppers** - Brown sugar** - Pimentón de la Vera - Garlic - Sea salt - Spices* * Organic ** Belgian \"A deep, complex smoky flavoured Hot Sauce from the world"
+  },
+  {
+    "brandSlug": "swet-be",
+    "categorySubquery": "NULL",
+    "name": "SWET Hot Sauce Co - SUNBURN - Mango + Ginger - (Heat Level 6)",
+    "slug": "swet-hot-sauce-co-sunburn-mango-heat-level-6",
+    "description": "Ingredients; Mango - Cider vinegar* - Red onions* - Habanero peppers - Ginger* - Spring water - Lime* - Garlic - Brown sugar** - Guérande salt - Spices * Organic ** Belgian \"As fresh and explosive as a tropical thunderstorm! Yellow Habanero Peppers, grown chemical-free on the rooftops of Brussels. Ripe mangoes, fresh garlic and ginger, organic lime and a complex blend of hand-crushed exotic spices: it"
+  },
+  {
+    "brandSlug": "swet-be",
+    "categorySubquery": "NULL",
+    "name": "SWET Hot Sauce Co - Coffee & Black Garlic :-) (Heat Level 3)",
+    "slug": "swet-hot-sauce-co-coffee-black-garlic-heat-level-3",
+    "description": "Ingredients; Pepper** - Coffee (Bourbon Pimienta) - Passilla - Mulato - Habanero lacto-fermented** - Cider vinegar* - Apple** - Black Garlic* - Pimentòn - Oregano** - Sea Salt * Organic ** Belgian This is a Limited Edition Coffee Collab Sauce from SWET / People Possession \"Dried chillies straight from Mexico - Passilla and Mulato. Blended with our lactic-acid-infused Brussels grown Habanero Peppers. People Possession are madmen of mystical roasting - Deep, Black Coffee - as dense and dark as a fever dream! This is a wonderful blend of flavours. Earthy coffee, black garlic and beautifully fermented Habanero Peppers. Swet are all about the flavour! Based in Brussels, this young, dynamic team create amazingly well balanced sauces using only the finest ingredients. Delicious in a chili con carne, with any roasted meats, burgers, tofu, taco"
+  },
+  {
+    "brandSlug": "swet-be",
+    "categorySubquery": "NULL",
+    "name": "Swet Hot Sauce Co - TEARS - Carolina Reaper + Pear (Heat Level 9)",
+    "slug": "swet-hot-sauce-co-tears-carolina-reaper-pear-heat-level-9",
+    "description": "Ingredients; Ugly Pears** - Cider Vinegar* - Carolina Reaper Peppers ** - Red Onions* - Lemon* - Garlic - Brown Sugar** - Guérande Salt - Spices * Organic ** Belgian \"Using locally grown Pears, Red onions and Carolina Reaper Peppers, (naturally grown on the rooftops in Brussels, without any chemicals) fresh Garlic, Organic Cider Vinegar and a subtle blend of beautifully hand-crushed spices\" This is a great fruity hot sauce without being too sweet - beautifully fermented, light and perfectly balanced. Swet are all about the flavour! Based in Brussels, this young, dynamic team create amazingly well balanced sauces using only the finest ingredients. Great on a burger, with rice, salads, fish, cocktails Suitable for Vegans"
+  },
+  {
+    "brandSlug": "swet-be",
+    "categorySubquery": "NULL",
+    "name": "Swet Hot Sauce Co - NaNa - Trinidad Scorpion + Pineapple (Heat Level 9)",
+    "slug": "swet-hot-sauce-co-nana-trinidad-scorpion-pineapple-heat-level-9",
+    "description": "Ingredients; Pineapple - Apple Cider Vinegar* - Sweet Chili Peppers - Trinidad Moruga Scorpion Chili Peppers - Ginger* - Brown Sugar** - Sea Salt - Spices * Organic ** Belgian A fruity, sweet, zesty flavour bomb. Caribbean Scorpion Peppers (second hottest in the world) paired with juicy Pineapple, sweet paprika"
+  },
+  {
+    "brandSlug": "hot-chip-cz",
+    "categorySubquery": "(SELECT id FROM public.categories WHERE slug = 'chili-challenges-spicy-snacks' LIMIT 1)",
+    "name": "Hot Chip Challenge V2 / 16+",
+    "slug": "hot-chip-challenge-v2-16",
+    "description": "HOT-CHIP Challenge is the Hottest Chip in the World It’s a one-of-a-kind experience that most people will never forget... This is not your average packet of crisps to snack on in front of the TV.. Each chip is handmade separately to guarantee consistent quality and spiciness. This product is packaged in a specially designed coffin-shaped box. Inside the package, you will find one extremely hot chip, specially wrapped to keep the highest spiciness and quality locked in. The package also includes a protective glove, tattoo, sticker and certificate. This product has been on the market for several years, but was temporarily banned by the authorities in 2023, even though it did meet the recommended spiciness (the amount of natural capsaicin in the peppers). However - It is now back, in an improved purple version that complies with the new capsaicin levels considered health-safe by the National Institutes of Health. Suitable for Vegans. Gluten-free. Weight: 2,5 g. Manufacturer: HOT-CHIP s.r.o., 28. října 3346/91, Ostrava, 702 00, Czech Republic. Store in a cool and dry place away from direct sunlight 🌶️ SHU 2 200 000"
+  },
+  {
+    "brandSlug": "skansk-chili-sweden",
+    "categorySubquery": "(SELECT id FROM public.categories WHERE slug = 'hot-honey' LIMIT 1)",
+    "name": "Skånsk - Swedish Black Garlic Hot Honey Original - (Heat Level 5) - 280g",
+    "slug": "skansk-swedish-black-garlic-hot-honey",
+    "description": "Hot Honey & Black Garlic - 2 things that go beautifully together.. Lovingly created on a fully certified Organic Swedish Farm, by Sakura and her family Ingredients : Honey (89%), Glucose Syrup, Black Garlic (4%), Habanero Chili, Vinegar Imagine the classic sweetness of Real Honey, combined with the fruity, fiery Habanero Chili heat. This Hot, Sweet Natural Honey is then rounded out with the Chefs’ top favourite ingredient - umami-oozing Black Garlic. The addictive result is the perfect condiment to drizzle on Pizza, Fried Chicken, Waffles, Ice Cream, Cheese, Salads. Add into the wok (at the end), make sticky rice, sweet and spicy noodles, sticky Rib marinade... Get creative and use it on EVERYTHING !! Squeezy bottle and easy clean cap 280g GOLD award winner at the 2025 European Hot Sauce Awards NOT Suitable For Vegans"
+  },
+  {
+    "brandSlug": "skansk-chili-sweden",
+    "categorySubquery": "(SELECT id FROM public.categories WHERE slug = 'hot-honey' LIMIT 1)",
+    "name": "Skånsk - Swedish Black Garlic Hot Honey - EXTRA Heat - (Heat Level 8) - 280g",
+    "slug": "skansk-swedish-black-garlic-hot-honey-extra-heat",
+    "description": "Hot Honey and Black Garlic - 2 things that go beautifully together.. Lovingly created on a fully certified Organic Swedish farm, by Sakura and her family THE HOTTER VERSION Ingredients : Honey (89%), Glucose Syrup, Black Garlic (4%), Habanero Chili, Vinegar Imagine the classic sweetness of Real Honey, combined with the fruity, fiery Habanero Chili heat. More Habanero"
+  },
+  {
+    "brandSlug": "skansk-chili-sweden",
+    "categorySubquery": "(SELECT id FROM public.categories WHERE slug = 'gift-boxes-sets' LIMIT 1)",
+    "name": "Skånsk, Swedish Hot Sauce Set - (Heat Levels 8 -12)",
+    "slug": "skansk-swedish-hot-sauce",
+    "description": "\"All our chili sauces are made from carefully selected chili varieties that we grow in our Organic Farm in Asmundtorp, Sweden. The chilies are then mixed with various local fruits, berries and vegetables and gently heat-treated to preserve as much of the goodness, the aroma and flavor as possible. We are very proud that our Scorpion Inferno Chili Sauce won a Silver Medal in the prestigious Hot Pepper Awards\" One 40ml bottle of each sauce included Lemon Drop Sauce - Ingredients; Aji Lemon Drop Chili* (50%), Orange Juice*, Grapefruit*, Lemon Juice*, Salt*, Spices*, Agar Agar*, Guar Gum* Nordic Wild Sauce - Ingredients; Peppers*, Vinegar*, Water*, Habanero*, Blueberries*, Lingonberries*, Salt, Garlic*, Guar gum* Habanero Sauce - Ingredients; Caribbean Red Habanero* (50%), Apple Juice*, Lemon Juice*, Vinegar*, Salt, Guar Gum* Inferno Sauce - Ingredients; Yellow Scorpion Chili* (50%), water, Pickled Apricot*(Apricot*, Sugar*, Lemon Juice*), Onion*, Lemon Juice*, Ginger*, Salt, Ascorbic Acid *=EU Organic Ingredient Heat Levels 8, 9, 10 and 12 Suitable for Vegans"
+  },
+  {
+    "brandSlug": "hot-chip-cz",
+    "categorySubquery": "(SELECT id FROM public.categories WHERE slug = 'chili-challenges-spicy-snacks' LIMIT 1)",
+    "name": "Jelly Beans - Spicy Fruit Flavours (Mild Heat) 60g",
+    "slug": "jelly-beans-spicy-fruit-flavours-60g",
+    "description": "A fun and great product from the guys who brought you the Hot Chip Challenge Mild with a nice little kick, crispy shell and juicy, full flavours inside. They are deliciously addictive, we can"
+  },
+  {
+    "brandSlug": "burning-angel",
+    "categorySubquery": "NULL",
+    "name": "Burning Angel Chili Farm - FU2 Carolina Reaper - (Heat Level 12) 40ml",
+    "slug": "burning-angel-fu2-carolina-reaper-heat-level-12-40ml",
+    "description": "Ingredients : Carolina Reaper, Tomatoes, Salt, Vinegar, Spices These great, slightly crazy guys from Slovakia grow their own Peppers, create their own products, fermentations and label everything by hand. They know how to deliver heat well! \"FU2 takes Carolina Reaper to the next level by combining fresh, dried and finely powdered Carolina Reaper Peppers. The result? A three-stage fiery explosion! The spice-forward aroma, delicate fruity-floral undertones and a hint of sweet paprika adds to the long-lasting, exhilarating heat experience. Created to elevate any dish with only a few drops\" 2023 National Chilli Awards - Extra hot - Gold 2023 National Chilli Awards - Extra hot - Category Winner 2023 Great Taste - 1 Star 2024 National Chilli Awards - Extra hot - Silver Heat Level 12 Suitable for Vegans"
+  },
+  {
+    "brandSlug": "burning-angel",
+    "categorySubquery": "(SELECT id FROM public.categories WHERE slug = 'salts-seasonings-rubs' LIMIT 1)",
+    "name": "Burning Angel Chili Farm - Tears of a Vampire Hot Salt (Heat Level 4) 90g",
+    "slug": "burning-angel-tears-of-a-vampire-hot-salt-heat-level-4-90g",
+    "description": "These great, slightly crazy guys from Slovakia grow all their own Peppers, create their own wild range of products, chili fermentations and label everything by hand. They really know how to create big flavours and great products Ingredients : Salt, Trinidad Moruga Scorpion, Habanero, Garlic, Herbs A bold fusion of beautifully fermented Chili"
+  },
+  {
+    "brandSlug": "hot-chip-cz",
+    "categorySubquery": "(SELECT id FROM public.categories WHERE slug = 'chili-challenges-spicy-snacks' LIMIT 1)",
+    "name": "Spicy Caramel Popcorn - (Medium Heat) 120g",
+    "slug": "spicy-caramel-popcorn-medium-heat-120g",
+    "description": "Discover the unique combination of sweet Caramel Popcorn with Habanero Chili Ingredients; Caramel (62%) [sugar, glucose syrup, palm oil, butter ( MILK ) emulsifier (rapeseed lecithin), salt], Popped maize (38%), Habanero Chilli powder (Capsicum chinense) (0.5%) From the creators of the Hot Chip Challenge - this is one super delicious sweet and spicy snack. Almost addictive, but the heat builds.. \"The simplicity of our recipe guarantees a delicious taste. Contains only a few carefully selected ingredients that guarantee great taste and quality. The sweet caramel melts gently on your tongue, while the spiciness of the Habanero Chilli warms you up nicely. Popcorn is air popped without the use of oil. This snack is not only tasty but also addictive\" May also contain Sesame, Peanuts and Nuts NOT Suitable for Vegans"
+  },
+  {
+    "brandSlug": "hot-headz-uk",
+    "categorySubquery": "NULL",
+    "name": "Hot Headz - Trinidad Scorpion Hot Sauce (Heat Level 10) 148ml",
+    "slug": "hot-headz-trinidad-scorpion",
+    "description": "Ingredients; Trinidad Scorpion Chili (57%), water, natural acetic acid, xanthan gum, salt, ascorbic acid Hot Headz from the UK produce some great products! With their kitchens in Costa Rica, this sauces gives power and heat Explosion of flavours - sweet, fruity, salty - it fills your whole mouth and coats your tongue – then the Scorpion Pepper comes in .. aaand it keeps on going.. This Caribbean delight is tasty and Super Hot! Great with noodles, fried chicken, rice, pizza or a burger Suitable for Vegans"
+  },
+  {
+    "brandSlug": null,
+    "categorySubquery": "NULL",
+    "name": "Black Death - Carolina Reaper + Black Garlic BACK IN APRIL (Heat Level 15) 100ml",
+    "slug": "black-death-carolina-reaper-black-garlic-heat-level-15",
+    "description": "Natural SuperHot Sauce (no capsaicin extract used) Ingredients; Balsamic Vinegar (Wine Vinegar ( SULPHITES ), Concentrated Grape Must ( SULPHITES ), Colour (Caramel), Molasses, Black Garlic (8.5%), Carolina Reaper (5.5%), Tomato Powder, Water, Onion, Salt, Black Pepper The star of the this deliciously deadly sauce is the home fermented juicy Black Garlic. Produced and created in the Welsh Valleys of the UK. After a 14 day fermentation process, the garlic changes into a sweet, almost syrup like texture, with flavour hints of balsamic and soy sauce. This sauce will first tickle your taste buds with it"
+  },
+  {
+    "brandSlug": "crazy-bastard-sauce-de",
+    "categorySubquery": "(SELECT id FROM public.categories WHERE slug = 'gift-boxes-sets' LIMIT 1)",
+    "name": "Crazy Bastard Sauce - Caribbean Edition (Heat Levels 4, 8, 10)",
+    "slug": "crazy-bastard-sauce-caribbean-edition",
+    "description": "The Caribbean Box - 3 sauces, 3 different fruity Caribbean chili"
+  },
+  {
+    "brandSlug": "chilisausbe-our-own-range",
+    "categorySubquery": "NULL",
+    "name": "Chilisaus.be - Limited Edition Range - Bad Decision (Heat Level 11)",
+    "slug": "chilisaus-be-limited-edition-range-bad-decision-heat-level-11",
+    "description": "Our New Limited Edition Range Fermented Chili"
+  },
+  {
+    "brandSlug": null,
+    "categorySubquery": "NULL",
+    "name": "Dirty Dick’s (USA) Tropical Twist – (Heat Level 6) 147ml",
+    "slug": "dirty-dicks-usa-tropical-twist",
+    "description": "AS FEATURED ON HOT ONES In the top three best Hot Sauces from the USA, by Chili Pepper Magazine and the National Barbecue Association. Created by an Award Winning BBQ Chef Hot Pepper Sauce with a Tropical Twist \"World"
+  },
+  {
+    "brandSlug": null,
+    "categorySubquery": "NULL",
+    "name": "Firelli - Italian Hot Sauce with Porcini Mushrooms (Heat Level 6) 148ml",
+    "slug": "firelli-italian-hot-sauce-with-porcini-mushrooms-heat-level-6-148ml",
+    "description": "PROUDLY ITALIAN - PORCINI MUSHROOM HOT SAUCE \" From our heritage, to our sourcing, to our taste - Firelli hot sauces are handcrafted in Parma, Italy. With a rich, complex flavour - ALL NATURAL - made with Calabrian Chili Peppers, Cayenne Peppers, Porcini Mushrooms, Balsamic Vinegar, Roasted Red Peppers, Italian Herbs and Spices\" Ingredients; Roasted Red Peppers, Water, Aceto Balsamico Di Modena IPG (11%), Apple Cider Vinegar, Calabrian Chili Peppers, Lemon Juice, Sugar, Cayenne Chili Pepper, Spices, Salt, dried Porcini Mushrooms, Xanthan Gum, Garlic Full flavour, rich with umami goodness and a zesty vinegar tang from the finest Balsamic vinegar from Modena IPG - the origin of the best Balsamic Vinegar in the world .. (insert Italian hand gesture...) A few splashes on your eggs, grilled cheese, spaghetti, pizza, taco"
+  },
+  {
+    "brandSlug": null,
+    "categorySubquery": "NULL",
+    "name": "Firelli - Italian Hot Sauce with Truffles (Heat Level 5) 148ml",
+    "slug": "firelli-italian-hot-sauce-with-truffles-heat-level-5-148ml",
+    "description": "PROUDLY ITALIAN - TRUFFLE HOT SAUCE \"From our heritage, to our sourcing, to our taste - Firelli hot sauces are handcrafted in Parma, Italy\" \" The incredible aroma and flavour of Italian truffles, combined with the finest Calabrian Peppers and Balsamic Vinegar from Modena - it"
+  },
+  {
+    "brandSlug": "chilisausbe-our-own-range",
+    "categorySubquery": "(SELECT id FROM public.categories WHERE slug = 'chili-challenges-spicy-snacks' LIMIT 1)",
+    "name": "High River Sauces - Pepper X - Taco Sauce (Heat Level 15) 148ml",
+    "slug": "high-river-sauces-pepper-x-taco-sauce",
+    "description": "PEPPER X HOT SAUCE FROM THE USA Pepper X is recognized as the World"
+  },
+  {
+    "brandSlug": "wiltshire-chilli-farm-uk",
+    "categorySubquery": "(SELECT id FROM public.categories WHERE slug = 'salts-seasonings-rubs' LIMIT 1)",
+    "name": "Smoky Pepper Seasoning (Heat Level 6) 65g",
+    "slug": "smoky-pepper-seasoning-heat-level-6-65g",
+    "description": "Smoky Pepper Seasoning with Chipotle and Garlic *Now in handy air tight, zip lock packaging Ingredients; Salt, Black Pepper, Garlic, White Peppercorns, Chipotle flakes, Lemon peel, Rosemary, Basic, Citric acid, Thyme, Lemon Verbena, Crushed dried Chillies This is a real secret ingredient in the kitchen. Peppery, garlicky, smokey with a lemon freshness - a sprinkle lifts any meal Use as a bbq marinade with some olive oil, great for a steak. Add into tomato pasta dishes, sprinkle on potatoes or vegetables, pizza, roasted cheese, salads Suitable for Vegans"
+  }
+]

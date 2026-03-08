@@ -70,11 +70,11 @@
     "dashboardWelcomeCopy": "Use the admin panel to add new sauces, edit listings, and keep imagery fresh.",
     "nav": {
       "dashboard": "Dashboard",
-      "products": "Producten",
-      "brands": "Merken",
+      "products": "Products",
+      "brands": "Brands",
       "marketing": "Marketing",
-      "vouchers": "Kortingscodes",
-      "newProduct": "Nieuw product"
+      "vouchers": "Vouchers",
+      "newProduct": "New product"
     },
     "stats": {
       "products": "Products",

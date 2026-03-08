@@ -1,21 +1,67 @@
 {
   "Auth": {
     "SignIn": "Iniciar sesión",
-    "SignUp": "Sign up",
-    "Email": "Email",
-    "Password": "Password",
-    "ConfirmPassword": "Confirm password",
-    "ResetPassword": "Reset password",
+    "SignUp": "Registrarse",
+    "Email": "Correo electrónico",
+    "Password": "Contraseña",
+    "ConfirmPassword": "Confirmar contraseña",
+    "ResetPassword": "Restablecer contraseña",
     "SignOut": "Cerrar sesión"
   },
   "Nav": {
-    "Shop": "Shop",
-    "Cart": "Cart",
-    "Checkout": "Checkout",
-    "Account": "Account",
+    "Shop": "Tienda",
+    "Cart": "Carrito",
+    "Checkout": "Pagar",
+    "Account": "Cuenta",
     "Dashboard": "Panel de control",
     "Scoville": "Scoville",
-    "Videos": "Videos"
+    "Videos": "Vídeos"
+  },
+  "Cart": {
+    "title": "Tu Carrito de Compras",
+    "empty": "Tu carrito está vacío",
+    "continueShopping": "Continuar Comprando",
+    "checkout": "Pasar por Caja",
+    "items": "artículos",
+    "item": "artículo",
+    "summary": "Resumen del Pedido",
+    "subtotal": "Subtotal",
+    "shipping": "Envío",
+    "shippingNote": "El envío se calcula al finalizar la compra.",
+    "total": "Total",
+    "remove": "Eliminar"
+  },
+  "Newsletter": {
+    "title": "¡Obtén un 10% de Descuento!",
+    "description": "Regístrate en nuestra newsletter picante y recibe un cupón de descuento del 10% para tu primer pedido.",
+    "placeholder": "Tu dirección de correo electrónico",
+    "cta": "Reclamar Mi Descuento",
+    "noSpam": "Sin spam, solo picante. Cancela la suscripción en cualquier momento.",
+    "successTitle": "¡Revisa Tu Bandeja de Entrada!",
+    "successDescription": "Hemos enviado un enlace de verificación a tu correo electrónico.",
+    "successAction": "Confirma tu correo para recibir el código."
+  },
+  "CookieConsent": {
+    "title": "Valoramos tu privacidad",
+    "description": "Utilizamos cookies para mejorar tu experiencia de navegación, ofrecer contenido personalizado y analizar nuestro tráfico. Por favor, elige qué cookies aceptas.",
+    "acceptAll": "Aceptar Todas",
+    "rejectAll": "Solo Necesarias",
+    "customize": "Personalizar",
+    "save": "Guardar Preferencias",
+    "categories": {
+      "necessary": {
+        "title": "Estrictamente Necesarias",
+        "description": "Requeridas para que el sitio web funcione (Autenticación, Carrito, Seguridad). No se pueden desactivar."
+      },
+      "functional": {
+        "title": "Funcionales",
+        "description": "Recuerdan tus preferencias, como el cierre de la ventana de la newsletter."
+      },
+      "marketing": {
+        "title": "Marketing y Análisis",
+        "description": "Nos ayuda a entender cómo usas el sitio y a mostrarte ofertas relevantes."
+      }
+    }
   },
   "Admin": {
     "title": "Store admin",
@@ -23,10 +69,12 @@
     "dashboardWelcomeHeading": "You're in control",
     "dashboardWelcomeCopy": "Use the admin panel to add new sauces, edit listings, and keep imagery fresh.",
     "nav": {
-      "dashboard": "Panel de control",
-      "products": "Productos",
-      "brands": "Marcas",
-      "newProduct": "Nuevo producto"
+      "dashboard": "Dashboard",
+      "products": "Products",
+      "brands": "Brands",
+      "marketing": "Marketing",
+      "vouchers": "Vouchers",
+      "newProduct": "New product"
     },
     "stats": {
       "products": "Products",
@@ -83,17 +131,25 @@
       "placeholder": "Buscar productos…",
       "filters": {
         "heatLevel": "Nivel de picante",
+        "heatLevels": {
+          "mild": "Suave",
+          "medium": "Medio",
+          "hot": "Picante",
+          "extreme": "Picante Extremo"
+        },
         "pepper": "Pimienta",
+        "allChilliTypes": "Todas las pimientas",
         "country": "País",
         "allCountries": "Todos los países",
-        "allChilliTypes": "Todas las pimientas",
         "sauceType": "Tipo",
         "allCategories": "Todos los tipos",
         "sort": "Ordenar por",
         "sortNewest": "Más reciente",
         "sortPopular": "Más popular",
         "sortMildToHot": "Suave → Picante",
-        "sortHotToMild": "Picante → Suave"
+        "sortHotToMild": "Picante → Suave",
+        "sortPriceLowHigh": "Precio: Bajo a Alto",
+        "sortPriceHighLow": "Precio: Alto a Bajo"
       }
     },
     "results": {
@@ -122,6 +178,29 @@
       "subtitle": "Encuentra la salsa perfecta para tu próxima comida."
     }
   },
+  "ProductPage": {
+    "breadcrumbShop": "Tienda",
+    "by": "por",
+    "heatLevel": "Nivel de picante",
+    "inStock": "En stock",
+    "outOfStock": "Agotado",
+    "addToCart": "Añadir al carrito",
+    "description": "Descripción",
+    "ingredients": "Ingredientes",
+    "peppers": "Pimientos",
+    "reviewsTitle": "Opiniones de Clientes",
+    "reviewCount": "opinión",
+    "reviewsCount": "opiniones",
+    "writeReview": "Escribir una Opinión",
+    "noReviews": "Aún no hay opiniones. ¡Sé el primero en compartir tu experiencia!",
+    "verifiedPurchase": "Compra Verificada"
+  },
+  "Legal": {
+    "notice": "Aviso Legal",
+    "shipping": "Envíos y Devoluciones",
+    "terms": "Términos de Servicio",
+    "privacy": "Política de Privacidad"
+  },
   "Account": {
     "title": "Mi Cuenta",
     "welcome": "Bienvenido de nuevo, {name}",
@@ -137,48 +216,66 @@
     },
     "profile": {
       "title": "Información del Perfil",
-      "email": "Email",
+      "email": "Correo electrónico",
       "role": "Rol"
     }
-  },
-  "Legal": {
-    "notice": "Aviso Legal",
-    "shipping": "Envíos y Devoluciones",
-    "terms": "Términos de Servicio",
-    "privacy": "Política de Privacidad"
   },
   "Checkout": {
     "title": "Pago",
     "shipping": "Dirección de Envío",
     "payment": "Pago",
     "summary": "Resumen del Pedido",
-    "email": "Correo Electrónico",
+    "email": "Correo electrónico",
     "fullName": "Nombre Completo",
     "street": "Dirección",
     "city": "Ciudad",
     "zip": "Código Postal",
     "country": "País",
     "payNow": "Pagar con Stripe",
+    "freeShipping": "Envío gratuito aplicado",
     "Success": {
       "title": "¡Pedido Confirmado!",
       "description": "Hemos enviado un correo de confirmación a {email}. Tu envío picante se está preparando.",
       "orderNumber": "Número de Pedido",
-      "total": "Total"
+      "subtotal": "Subtotal",
+      "shipping": "Envío",
+      "total": "Total",
+      "shippingInfo": "Envío pronto",
+      "shippingDescription": "Los pedidos suelen despacharse en un plazo de 24-48 horas.",
+      "support": "¿Necesitas ayuda?",
+      "continueShopping": "Continuar Comprando",
+      "backToShop": "Volver a la Tienda",
+      "invalidSession": "Sesión de pago no válida"
     }
   },
   "Scoville": {
     "title": "La Escala Scoville",
-    "intro": "La escala Scoville es una medida del picor de los chiles. Nombrada en honor a su creador Wilbur Scoville, te ayuda a navegar por el mundo del picor sin quemarte, ¡a menos que quieras!"
-  },
-  "ProductPage": {
-    "breadcrumbShop": "Tienda",
-    "by": "por",
-    "heatLevel": "Nivel de picante",
-    "inStock": "En stock",
-    "outOfStock": "Agotado",
-    "addToCart": "Añadir al carrito",
-    "description": "Descripción",
-    "ingredients": "Ingredientes",
-    "peppers": "Pimientos"
+    "intro": "La escala Scoville es una medida del picor de los chiles, registrada en Unidades de Calor Scoville (SHU). Nombrada en honor a su creador, Wilbur Scoville, esta escala te ayuda a navegar por el mundo del picante sin quemarte, ¡a menos que quieras!",
+    "levels": {
+      "mild": {
+        "title": "Suave (0 - 2.500 SHU)",
+        "description": "Perfecto para el sabor de cada día. El pimiento clásico está en cero, mientras que el Banana Pepper ligeramente picante o el Pimento suave añaden solo un toque de calidez."
+      },
+      "medium": {
+        "title": "Medio (2.500 - 10.000 SHU)",
+        "description": "El 'punto de entrada' para los amantes del chile. Este es el dominio del Jalapeño y el Chipotle ahumado. Espera un hormigueo notable que complementa en lugar de dominar."
+      },
+      "hot": {
+        "title": "Picante (10.000 - 50.000 SHU)",
+        "description": "Ahora estamos hablando. Los chiles Serrano y Cayenne viven aquí. Estos chiles proporcionan un calor agudo y claro que perdura en el paladar."
+      },
+      "extraHot": {
+        "title": "Extra Picante (50.000 - 100.000 SHU)",
+        "description": "Abordar con precaución. El chile Thai Bird's Eye y el Malagueta ofrecen un golpe significativo que hará sudar a la mayoría de las personas."
+      },
+      "volcanic": {
+        "title": "Volcánico (100.000 - 350.000 SHU)",
+        "description": "Calor serio para los valientes. Los legendarios chiles Habanero y Scotch Bonnet se encuentran aquí, a menudo acompañados de notas frutales o florales bajo el fuego."
+      },
+      "superhot": {
+        "title": "Super Picante (350.000 - 2.200.000+ SHU)",
+        "description": "La zona de peligro. Desde el Ghost Pepper (Bhut Jolokia) hasta el récord mundial Carolina Reaper, estos chiles contienen cantidades masivas de capsaicina y deben manejarse con extremo cuidado."
+      }
+    }
   }
 }

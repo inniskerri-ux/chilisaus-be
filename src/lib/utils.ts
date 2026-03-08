@@ -5,6 +5,32 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
+export function getLocalizedField<T extends Record<string, unknown>>(
+  obj: T | null | undefined,
+  field: string,
+  locale: string,
+): string {
+  if (!obj) return "";
+
+  const localizedKey = `${field}_${locale}`;
+  const localizedVal = obj[localizedKey];
+
+  if (
+    localizedVal &&
+    typeof localizedVal === "string" &&
+    localizedVal.trim() !== ""
+  ) {
+    return localizedVal;
+  }
+
+  // Fallback to the base field (e.g., description)
+  if (obj[field] && typeof obj[field] === "string") {
+    return obj[field];
+  }
+
+  return "";
+}
+
 export function slugify(text: string): string {
   return text
     .toString()

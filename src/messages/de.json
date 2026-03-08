@@ -17,6 +17,52 @@
     "Scoville": "Scoville",
     "Videos": "Videos"
   },
+  "Cart": {
+    "title": "Dein Warenkorb",
+    "empty": "Dein Warenkorb ist leer",
+    "continueShopping": "Weiter einkaufen",
+    "checkout": "Zur Kasse",
+    "items": "Artikel",
+    "item": "Artikel",
+    "summary": "Bestellübersicht",
+    "subtotal": "Zwischensumme",
+    "shipping": "Versand",
+    "shippingNote": "Versandkosten werden an der Kasse berechnet.",
+    "total": "Gesamt",
+    "remove": "Entfernen"
+  },
+  "Newsletter": {
+    "title": "Sichere dir 10% Rabatt!",
+    "description": "Melde dich für unseren scharfen Newsletter an und erhalte einen 10% Rabattgutschein für deine erste Bestellung.",
+    "placeholder": "Deine E-Mail-Adresse",
+    "cta": "Rabatt sichern",
+    "noSpam": "Kein Spam, nur Schärfe. Jederzeit abbestellbar.",
+    "successTitle": "Prüfe deinen Posteingang!",
+    "successDescription": "Wir haben einen Bestätigungslink an deine E-Mail-Adresse gesendet.",
+    "successAction": "Bestätige deine E-Mail, um den Code zu erhalten."
+  },
+  "CookieConsent": {
+    "title": "Wir schätzen deine Privatsphäre",
+    "description": "Wir verwenden Cookies, um dein Surferlebnis zu verbessern, personalisierte Inhalte anzuzeigen und unseren Datenverkehr zu analysieren. Bitte wähle aus, welche Cookies für dich in Ordnung sind.",
+    "acceptAll": "Alle akzeptieren",
+    "rejectAll": "Nur notwendige",
+    "customize": "Anpassen",
+    "save": "Einstellungen speichern",
+    "categories": {
+      "necessary": {
+        "title": "Unbedingt erforderlich",
+        "description": "Erforderlich für das Funktionieren der Website (Anmeldung, Warenkorb, Sicherheit). Kann nicht deaktiviert werden."
+      },
+      "functional": {
+        "title": "Funktionell",
+        "description": "Speichern deiner Einstellungen, wie z.B. das Ausblenden des Newsletter-Popups."
+      },
+      "marketing": {
+        "title": "Marketing & Analyse",
+        "description": "Hilft uns zu verstehen, wie du die Website nutzt, und relevante Angebote anzuzeigen."
+      }
+    }
+  },
   "Admin": {
     "title": "Store admin",
     "dashboardHeading": "Manage your catalogue",
@@ -24,9 +70,11 @@
     "dashboardWelcomeCopy": "Use the admin panel to add new sauces, edit listings, and keep imagery fresh.",
     "nav": {
       "dashboard": "Dashboard",
-      "products": "Produkte",
-      "brands": "Marken",
-      "newProduct": "Neues Produkt"
+      "products": "Products",
+      "brands": "Brands",
+      "marketing": "Marketing",
+      "vouchers": "Vouchers",
+      "newProduct": "New product"
     },
     "stats": {
       "products": "Products",
@@ -83,17 +131,25 @@
       "placeholder": "Produkte suchen…",
       "filters": {
         "heatLevel": "Schärfegrad",
+        "heatLevels": {
+          "mild": "Mild",
+          "medium": "Mittel",
+          "hot": "Scharf",
+          "extreme": "Extrem Scharf"
+        },
         "pepper": "Pfeffer",
+        "allChilliTypes": "Alle Paprika",
         "country": "Land",
         "allCountries": "Alle Länder",
-        "allChilliTypes": "Alle Paprika",
         "sauceType": "Typ",
         "allCategories": "Alle Typen",
         "sort": "Sortieren nach",
         "sortNewest": "Neueste",
         "sortPopular": "Beliebteste",
         "sortMildToHot": "Mild → Scharf",
-        "sortHotToMild": "Scharf → Mild"
+        "sortHotToMild": "Scharf → Mild",
+        "sortPriceLowHigh": "Preis: Niedrig bis Hoch",
+        "sortPriceHighLow": "Preis: Hoch bis Niedrig"
       }
     },
     "results": {
@@ -122,6 +178,29 @@
       "subtitle": "Finde die perfekte Sauce für deine nächste Mahlzeit."
     }
   },
+  "ProductPage": {
+    "breadcrumbShop": "Shop",
+    "by": "von",
+    "heatLevel": "Schärfegrad",
+    "inStock": "Auf Lager",
+    "outOfStock": "Ausverkauft",
+    "addToCart": "In den Warenkorb",
+    "description": "Beschreibung",
+    "ingredients": "Zutaten",
+    "peppers": "Paprika",
+    "reviewsTitle": "Kundenbewertungen",
+    "reviewCount": "Bewertung",
+    "reviewsCount": "Bewertungen",
+    "writeReview": "Bewertung schreiben",
+    "noReviews": "Noch keine Bewertungen. Sei der Erste, der seine Erfahrungen teilt!",
+    "verifiedPurchase": "Verifizierter Kauf"
+  },
+  "Legal": {
+    "notice": "Impressum",
+    "shipping": "Versand & Rückgabe",
+    "terms": "AGB",
+    "privacy": "Datenschutz"
+  },
   "Account": {
     "title": "Mein Konto",
     "welcome": "Willkommen zurück, {name}",
@@ -141,12 +220,6 @@
       "role": "Rolle"
     }
   },
-  "Legal": {
-    "notice": "Impressum",
-    "shipping": "Versand & Rückgabe",
-    "terms": "AGB",
-    "privacy": "Datenschutz"
-  },
   "Checkout": {
     "title": "Kasse",
     "shipping": "Lieferadresse",
@@ -159,26 +232,50 @@
     "zip": "Postleitzahl",
     "country": "Land",
     "payNow": "Mit Stripe bezahlen",
+    "freeShipping": "Kostenloser Versand angewendet",
     "Success": {
       "title": "Bestellung bestätigt!",
       "description": "Wir haben eine Bestätigungs-E-Mail an {email} gesendet. Deine scharfe Lieferung wird vorbereitet.",
       "orderNumber": "Bestellnummer",
-      "total": "Gesamt"
+      "subtotal": "Zwischensumme",
+      "shipping": "Versand",
+      "total": "Gesamt",
+      "shippingInfo": "Versand in Kürze",
+      "shippingDescription": "Bestellungen werden in der Regel innerhalb von 24-48 Stunden versandt.",
+      "support": "Brauchst du Hilfe?",
+      "continueShopping": "Weiter einkaufen",
+      "backToShop": "Zurück zum Shop",
+      "invalidSession": "Ungültige Zahlungssitzung"
     }
   },
   "Scoville": {
     "title": "Die Scoville-Skala",
-    "intro": "Die Scoville-Skala ist ein Maß für die Schärfe von Chilischoten. Benannt nach ihrem Schöpfer Wilbur Scoville, hilft sie dir, dich in der Welt der Schärfe zurechtzufinden, ohne dich zu verbrennen – es sei denn, du willst es!"
-  },
-  "ProductPage": {
-    "breadcrumbShop": "Shop",
-    "by": "von",
-    "heatLevel": "Schärfegrad",
-    "inStock": "Auf Lager",
-    "outOfStock": "Ausverkauft",
-    "addToCart": "In den Warenkorb",
-    "description": "Beschreibung",
-    "ingredients": "Zutaten",
-    "peppers": "Paprika"
+    "intro": "Die Scoville-Skala ist ein Maß für die Schärfe von Chilischoten, angegeben in Scoville Heat Units (SHU). Benannt nach ihrem Schöpfer Wilbur Scoville, hilft sie dir, dich in der Welt der Schärfe zurechtzufinden, ohne dich zu verbrennen – es sei denn, du willst es!",
+    "levels": {
+      "mild": {
+        "title": "Mild (0 - 2.500 SHU)",
+        "description": "Perfekt für das tägliche Aroma. Die klassische Gemüsepaprika liegt bei Null, während die leicht pikante Banana Pepper oder die milde Pimento nur einen Hauch von Wärme verleihen."
+      },
+      "medium": {
+        "title": "Mittel (2.500 - 10.000 SHU)",
+        "description": "Der 'Einstieg' für Chili-Liebhaber. Dies ist das Reich der Jalapeño und der rauchigen Chipotle. Erwarte ein merkliches Prickeln, das eher ergänzt als überwältigt."
+      },
+      "hot": {
+        "title": "Scharf (10.000 - 50.000 SHU)",
+        "description": "Jetzt wird's ernst. Die Serrano- und Cayenne-Pfeffer leben hier. Diese Schoten bieten eine scharfe, klare Hitze, die am Gaumen verweilt."
+      },
+      "extraHot": {
+        "title": "Extrem Scharf (50.000 - 100.000 SHU)",
+        "description": "Mit Vorsicht genießen. Die Thai Bird's Eye Chili und die Malagueta bieten einen ordentlichen Kick, der die meisten Leute ins Schwitzen bringt."
+      },
+      "volcanic": {
+        "title": "Vulkanisch (100.000 - 350.000 SHU)",
+        "description": "Ernsthafte Schärfe für die Tapferen. Die legendären Habanero- und Scotch Bonnet-Chilis sind hier zu finden, oft begleitet von fruchtigen oder blumigen Noten unter dem Feuer."
+      },
+      "superhot": {
+        "title": "Superscharf (350.000 - 2.200.000+ SHU)",
+        "description": "Die Gefahrenzone. Vom Ghost Pepper (Bhut Jolokia) bis zum Rekordhalter Carolina Reaper – diese Chilis enthalten massive Mengen an Capsaicin und sollten mit äußerster Vorsicht behandelt werden."
+      }
+    }
   }
 }

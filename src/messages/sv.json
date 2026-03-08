@@ -1,65 +1,65 @@
 {
   "Auth": {
-    "SignIn": "Sign in",
-    "SignUp": "Sign up",
-    "Email": "Email",
-    "Password": "Password",
-    "ConfirmPassword": "Confirm password",
-    "ResetPassword": "Reset password",
-    "SignOut": "Sign out"
+    "SignIn": "Logga in",
+    "SignUp": "Registrera dig",
+    "Email": "E-post",
+    "Password": "Lösenord",
+    "ConfirmPassword": "Bekräfta lösenord",
+    "ResetPassword": "Återställ lösenord",
+    "SignOut": "Logga ut"
   },
   "Nav": {
-    "Shop": "Shop",
-    "Cart": "Cart",
-    "Checkout": "Checkout",
-    "Account": "Account",
+    "Shop": "Butik",
+    "Cart": "Varukorg",
+    "Checkout": "Kassa",
+    "Account": "Konto",
     "Dashboard": "Dashboard",
     "Scoville": "Scoville",
-    "Videos": "Videos"
+    "Videos": "Videor"
   },
   "Cart": {
-    "title": "Your Shopping Cart",
-    "empty": "Your cart is empty",
-    "continueShopping": "Continue Shopping",
-    "checkout": "Proceed to Checkout",
-    "items": "items",
-    "item": "item",
-    "summary": "Order Summary",
+    "title": "Din varukorg",
+    "empty": "Din varukorg är tom",
+    "continueShopping": "Fortsätt handla",
+    "checkout": "Gå till kassan",
+    "items": "artiklar",
+    "item": "artikel",
+    "summary": "Orderöversikt",
     "subtotal": "Subtotal",
-    "shipping": "Shipping",
-    "shippingNote": "Shipping is calculated at checkout.",
-    "total": "Total",
-    "remove": "Remove"
+    "shipping": "Frakt",
+    "shippingNote": "Frakt beräknas i kassan.",
+    "total": "Totalt",
+    "remove": "Ta bort"
   },
   "Newsletter": {
-    "title": "Get 10% Off!",
-    "description": "Sign up for our spicy newsletter and receive a 10% discount voucher for your first order.",
-    "placeholder": "Your email address",
-    "cta": "Claim My Discount",
-    "noSpam": "No spam, just heat. Unsubscribe anytime.",
-    "successTitle": "Check Your Inbox!",
-    "successDescription": "We've sent a verification link to your email.",
-    "successAction": "Confirm your email to get the code."
+    "title": "Få 10% rabatt!",
+    "description": "Anmäl dig till vårt heta nyhetsbrev och få en rabattkod på 10% för din första beställning.",
+    "placeholder": "Din e-postadress",
+    "cta": "Hämta min rabatt",
+    "noSpam": "Ingen spam, bara hetta. Avregistrera dig när som helst.",
+    "successTitle": "Kolla din inkorg!",
+    "successDescription": "Vi har skickat en bekräftelselänk till din e-post.",
+    "successAction": "Bekräfta din e-post för att få koden."
   },
   "CookieConsent": {
-    "title": "We value your privacy",
-    "description": "We use cookies to enhance your browsing experience, serve personalized content, and analyze our traffic. Please choose which cookies you're okay with.",
-    "acceptAll": "Accept All",
-    "rejectAll": "Only Necessary",
-    "customize": "Customize",
-    "save": "Save Preferences",
+    "title": "Vi värdesätter din integritet",
+    "description": "Vi använder cookies för att förbättra din användarupplevelse, visa personligt anpassat innehåll och analysera vår trafik. Välj vilka cookies du accepterar.",
+    "acceptAll": "Acceptera alla",
+    "rejectAll": "Endast nödvändiga",
+    "customize": "Anpassa",
+    "save": "Spara inställningar",
     "categories": {
       "necessary": {
-        "title": "Strictly Necessary",
-        "description": "Required for the website to function (Auth, Cart, Security). Cannot be disabled."
+        "title": "Helt nödvändiga",
+        "description": "Krävs för att webbplatsen ska fungera (inloggning, varukorg, säkerhet). Kan inte inaktiveras."
       },
       "functional": {
-        "title": "Functional",
-        "description": "Remembering your preferences, such as the newsletter popup dismissal."
+        "title": "Funktionella",
+        "description": "Kommer ihåg dina inställningar, som t.ex. att stänga nyhetsbrev-popupen."
       },
       "marketing": {
-        "title": "Marketing & Analytics",
-        "description": "Helps us understand how you use the site and show relevant offers."
+        "title": "Marknadsföring & Analys",
+        "description": "Hjälper oss att förstå hur du använder sidan och visa relevanta erbjudanden."
       }
     }
   },
@@ -125,156 +125,156 @@
     }
   },
   "SauceArchive": {
-    "heading": "Our Hot Sauces",
+    "heading": "Våra heta såser",
     "search": {
-      "label": "Search products",
-      "placeholder": "Search products…",
+      "label": "Sök efter produkter",
+      "placeholder": "Sök efter produkter…",
       "filters": {
-        "heatLevel": "Heat Level",
+        "heatLevel": "Styrka",
         "heatLevels": {
           "mild": "Mild",
-          "medium": "Medium",
-          "hot": "Hot",
-          "extreme": "Extreme Heat"
+          "medium": "Mellan",
+          "hot": "Het",
+          "extreme": "Extrem styrka"
         },
-        "pepper": "Pepper",
-        "allChilliTypes": "All peppers",
-        "country": "Country",
-        "allCountries": "All countries",
-        "sauceType": "Type",
-        "allCategories": "All types",
-        "sort": "Sort by",
-        "sortNewest": "Newest",
-        "sortPopular": "Most popular",
-        "sortMildToHot": "Mild → Hot",
-        "sortHotToMild": "Hot → Mild",
-        "sortPriceLowHigh": "Price: Low to High",
-        "sortPriceHighLow": "Price: High to Low"
+        "pepper": "Peppar",
+        "allChilliTypes": "Alla chilifrukter",
+        "country": "Land",
+        "allCountries": "Alla länder",
+        "sauceType": "Typ",
+        "allCategories": "Alla typer",
+        "sort": "Sortera efter",
+        "sortNewest": "Nyaste",
+        "sortPopular": "Mest populära",
+        "sortMildToHot": "Mild → Het",
+        "sortHotToMild": "Het → Mild",
+        "sortPriceLowHigh": "Pris: Lågt till högt",
+        "sortPriceHighLow": "Pris: Högt till lågt"
       }
     },
     "results": {
-      "showing": "Showing",
-      "of": "of",
-      "sauces": "products",
-      "noResults": "No sauces found",
-      "adjustSearch": "Try adjusting your search or filters.",
-      "clearFilters": "Clear filters",
-      "loadMore": "Load more"
+      "showing": "Visar",
+      "of": "av",
+      "sauces": "produkter",
+      "noResults": "Inga såser hittades",
+      "adjustSearch": "Prova att justera din sökning eller dina filter.",
+      "clearFilters": "Rensa filter",
+      "loadMore": "Ladda fler"
     }
   },
   "Landing": {
     "hero": {
-      "welcome": "Welcome to Chilisaus.be/eu",
-      "title": "You Can Never Have Too Much Hot Sauce",
-      "subtitle": "Discover a hand-picked collection of the world's finest chili sauces. From mild everyday flavors to extreme heat.",
-      "cta": "Shop All Sauces"
+      "welcome": "Välkommen till Chilisaus.be/eu",
+      "title": "Man kan aldrig få för mycket chilisås",
+      "subtitle": "Upptäck en handplockad samling av världens finaste chilisåser. Från milda vardagssmaker till extrem styrka.",
+      "cta": "Handla alla såser"
     },
     "maker": {
-      "title": "Meet the Maker",
-      "content": "A lot of you have met me at events across the country. I'm passionate about bringing the best sauces directly to you, keeping it personal and simple. I want to keep it a personal connection, not a faceless corporation. It's all about the sauce and the people who love it."
+      "title": "Möt skaparen",
+      "content": "Många av er har träffat mig på evenemang runt om i landet. Jag brinner för att föra ut de bästa såserna direkt till dig på ett personligt och enkelt sätt. Jag vill bevara den personliga kontakten, inte vara ett ansiktslöst företag. Det handlar om såsen och människorna som älskar den."
     },
     "categories": {
-      "title": "Shop by Category",
-      "subtitle": "Find the perfect sauce for your next meal."
+      "title": "Handla per kategori",
+      "subtitle": "Hitta den perfekta såsen till din nästa måltid."
     }
   },
   "ProductPage": {
-    "breadcrumbShop": "Shop",
-    "by": "by",
-    "heatLevel": "Heat Level",
-    "inStock": "In stock",
-    "outOfStock": "Out of stock",
-    "addToCart": "Add to cart",
-    "description": "Description",
-    "ingredients": "Ingredients",
-    "peppers": "Peppers",
-    "reviewsTitle": "Customer Reviews",
-    "reviewCount": "review",
-    "reviewsCount": "reviews",
-    "writeReview": "Write a Review",
-    "noReviews": "No reviews yet. Be the first to share your experience!",
-    "verifiedPurchase": "Verified Purchase"
+    "breadcrumbShop": "Butik",
+    "by": "av",
+    "heatLevel": "Styrka",
+    "inStock": "I lager",
+    "outOfStock": "Slutsåld",
+    "addToCart": "Lägg i varukorg",
+    "description": "Beskrivning",
+    "ingredients": "Ingredienser",
+    "peppers": "Chilifrukter",
+    "reviewsTitle": "Kundrecensioner",
+    "reviewCount": "recension",
+    "reviewsCount": "recensioner",
+    "writeReview": "Skriv en recension",
+    "noReviews": "Inga recensioner än. Bli den första att dela din erfarenhet!",
+    "verifiedPurchase": "Verifierat köp"
   },
   "Legal": {
-    "notice": "Legal Notice",
-    "shipping": "Shipping & Returns",
-    "terms": "Terms of Service",
-    "privacy": "Privacy Policy"
+    "notice": "Juridisk information",
+    "shipping": "Frakt & Retur",
+    "terms": "Användarvillkor",
+    "privacy": "Integritetspolicy"
   },
   "Account": {
-    "title": "My Account",
-    "welcome": "Welcome back, {name}",
+    "title": "Mitt konto",
+    "welcome": "Välkommen tillbaka, {name}",
     "orders": {
-      "title": "My Orders",
-      "empty": "You haven't placed any orders yet.",
-      "viewAll": "View all orders",
+      "title": "Mina beställningar",
+      "empty": "Du har inte lagt några beställningar än.",
+      "viewAll": "Visa alla beställningar",
       "orderNumber": "Order #",
-      "date": "Date",
+      "date": "Datum",
       "status": "Status",
-      "total": "Total",
-      "details": "View Details"
+      "total": "Totalt",
+      "details": "Visa detaljer"
     },
     "profile": {
-      "title": "Profile Information",
-      "email": "Email",
-      "role": "Role"
+      "title": "Profilinformation",
+      "email": "E-post",
+      "role": "Roll"
     }
   },
   "Checkout": {
-    "title": "Checkout",
-    "shipping": "Shipping Address",
-    "payment": "Payment",
-    "summary": "Order Summary",
-    "email": "Email Address",
-    "fullName": "Full Name",
-    "street": "Street Address",
-    "city": "City",
-    "zip": "ZIP / Postal Code",
-    "country": "Country",
-    "payNow": "Pay with Stripe",
-    "freeShipping": "Free shipping applied",
+    "title": "Kassa",
+    "shipping": "Leveransadress",
+    "payment": "Betalning",
+    "summary": "Orderöversikt",
+    "email": "E-postadress",
+    "fullName": "Fullständigt namn",
+    "street": "Adress",
+    "city": "Stad",
+    "zip": "Postnummer",
+    "country": "Land",
+    "payNow": "Betala med Stripe",
+    "freeShipping": "Gratis frakt tillämpad",
     "Success": {
-      "title": "Order Confirmed!",
-      "description": "We've sent a confirmation email to {email}. Your spicy delivery is being prepared.",
-      "orderNumber": "Order Number",
+      "title": "Order bekräftad!",
+      "description": "Vi har skickat ett bekräftelsemejl till {email}. Din heta leverans förbereds.",
+      "orderNumber": "Ordernummer",
       "subtotal": "Subtotal",
-      "shipping": "Shipping",
-      "total": "Total",
-      "shippingInfo": "Shipping soon",
-      "shippingDescription": "Orders are typically dispatched within 24-48 hours.",
-      "support": "Need help?",
-      "continueShopping": "Continue Shopping",
-      "backToShop": "Back to Shop",
-      "invalidSession": "Invalid checkout session"
+      "shipping": "Frakt",
+      "total": "Totalt",
+      "shippingInfo": "Skickas snart",
+      "shippingDescription": "Beställningar skickas normalt inom 24-48 timmar.",
+      "support": "Behöver du hjälp?",
+      "continueShopping": "Fortsätt handla",
+      "backToShop": "Tillbaka till butiken",
+      "invalidSession": "Ogiltig betalningssession"
     }
   },
   "Scoville": {
-    "title": "The Scoville Scale",
-    "intro": "The Scoville scale is a measurement of the pungency (spiciness or heat) of chili peppers, as recorded in Scoville Heat Units (SHU). Named after its creator, Wilbur Scoville, this scale helps you navigate the world of heat without getting burned—unless you want to!",
+    "title": "Scovilleskalan",
+    "intro": "Scovilleskalan är ett mått på styrkan (hettan) hos chilipeppar, registrerad i Scoville Heat Units (SHU). Skalan är uppkallad efter sin skapare Wilbur Scoville och hjälper dig att navigera i hettans värld utan att bränna dig – om du inte vill det!",
     "levels": {
       "mild": {
-        "title": "Mild (0 - 2,500 SHU)",
-        "description": "Perfect for everyday flavor. The classic Bell Pepper sits at zero, while the slightly zesty Banana Pepper or mild Pimento adds just a hint of warmth."
+        "title": "Mild (0 - 2 500 SHU)",
+        "description": "Perfekt för vardagssmak. Den klassiska paprikan ligger på noll, medan den lätt pirriga Banana Pepper eller milda Pimento bara ger en aning värme."
       },
       "medium": {
-        "title": "Medium (2,500 - 10,000 SHU)",
-        "description": "The 'entry-level' for chili lovers. This is the domain of the Jalapeño and the smoky Chipotle. Expect a noticeable tingle that complements rather than overpowers."
+        "title": "Mellan (2 500 - 10 000 SHU)",
+        "description": "Ingångsporten för chiliälskare. Detta är Jalapeño och den rökta Chipotles domän. Förvänta dig ett märkbart pirr som snarare kompletterar än tar över."
       },
       "hot": {
-        "title": "Hot (10,000 - 50,000 SHU)",
-        "description": "Now we're talking. The Serrano and Cayenne peppers live here. These peppers provide a sharp, clear heat that lingers on the palate."
+        "title": "Het (10 000 - 50 000 SHU)",
+        "description": "Nu börjar det hända saker. Serrano- och cayennepeppar bor här. Dessa pepparsorter ger en skarp, tydlig hetta som dröjer sig kvar i gommen."
       },
       "extraHot": {
-        "title": "Extra Hot (50,000 - 100,000 SHU)",
-        "description": "Approach with caution. The Thai Bird's Eye pepper and the Malagueta offer a significant kick that will make most people break a sweat."
+        "title": "Extra het (50 000 - 100 000 SHU)",
+        "description": "Närma dig med försiktighet. Den thailändska Bird's Eye-chilin och Malagueta ger en rejäl kick som får de flesta att börja svettas."
       },
       "volcanic": {
-        "title": "Volcanic (100,000 - 350,000 SHU)",
-        "description": "Serious heat for the brave. The legendary Habanero and Scotch Bonnet peppers are found here, often accompanied by fruity or floral notes underneath the fire."
+        "title": "Vulkanisk (100 000 - 350 000 SHU)",
+        "description": "Seriös hetta för de modiga. De legendariska Habanero- och Scotch Bonnet-frukterna finns här, ofta tillsammans med fruktiga eller blommiga toner under elden."
       },
       "superhot": {
-        "title": "Superhot (350,000 - 2,200,000+ SHU)",
-        "description": "The danger zone. From the Ghost Pepper (Bhut Jolokia) to the record-breaking Carolina Reaper, these peppers contain massive amounts of capsaicin and should be handled with extreme care."
+        "title": "Superhet (350 000 - 2 200 000+ SHU)",
+        "description": "Farozonen. Från Ghost Pepper (Bhut Jolokia) till rekordhållaren Carolina Reaper – dessa frukter innehåller massiva mängder capsaicin och bör hanteras med extrem försiktighet."
       }
     }
   }

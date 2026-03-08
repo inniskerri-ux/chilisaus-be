@@ -5,9 +5,9 @@ import { getTranslations } from "next-intl/server";
 import { createClient } from "@/lib/supabase/server";
 import { formatPrice } from "@/lib/format";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import AddToCartButton from "@/components/store/AddToCartButton";
 import ProductReviews from "@/components/store/ProductReviews";
+import { getLocalizedField } from "@/lib/utils";
 
 export const dynamic = "force-dynamic";
 
@@ -16,18 +16,22 @@ export async function generateMetadata({
 }: {
   params: Promise<{ locale: string; slug: string }>;
 }) {
-  const { slug } = await params;
+  const { locale, slug } = await params;
   const supabase = await createClient();
-  const { data } = await supabase
+  const isEn = locale === "en";
+  const { data: row } = await supabase
     .from("products")
-    .select("name, description")
+    .select(`name, description ${isEn ? "" : `, description_${locale}`}`)
     .eq("slug", slug)
     .maybeSingle();
 
-  if (!data) return {};
+  if (!row) return {};
+  const product = row as Record<string, any>;
   return {
-    title: data.name,
-    description: data.description?.slice(0, 160) ?? undefined,
+    title: product.name,
+    description:
+      getLocalizedField(product, "description", locale).slice(0, 160) ??
+      undefined,
   };
 }
 
@@ -40,45 +44,66 @@ export default async function ProductPage({
   const t = await getTranslations({ locale, namespace: "ProductPage" });
   const supabase = await createClient();
 
-  const { data: row } = await supabase
-    .from("products")
-    .select(
-      `
-      id, name, slug, description, details,
-      price_cents, currency, heat_level,
-      image_url, capacity_ml, ingredients, stock, is_active,
-      brand:brands ( id, name, slug ),
-      category:categories ( id, name, slug ),
-      chilliTypes:products_chilli_types (
-        chilli_type:chilli_types ( id, name, slug, heat_level )
-      )
-    `,
+  const isEn = locale === "en";
+  const productSelect = `
+    id, name, slug, description, ${isEn ? "" : `description_${locale},`} details, ${isEn ? "" : `details_${locale},`}
+    price_cents, currency, heat_level,
+    image_url, capacity_ml, ingredients, ${isEn ? "" : `ingredients_${locale},`} stock, is_active,
+    brand:brands ( id, name, slug ),
+    category:categories ( id, name, slug ${isEn ? "" : `, name_${locale}`} ),
+    chilliTypes:products_chilli_types (
+      chilli_type:chilli_types ( id, name, slug, heat_level ${isEn ? "" : `, name_${locale}`} )
     )
+  `;
+
+  const { data: row, error } = await supabase
+    .from("products")
+    .select(productSelect)
     .eq("slug", slug)
     .eq("is_active", true)
     .maybeSingle();
 
+  if (error) console.error("Product fetch error:", error);
   if (!row) notFound();
 
-  const product = row as any;
-  const brand = product.brand as {
+  const rawProduct = row as Record<string, any>;
+  const brand = rawProduct.brand as {
     id: string;
     name: string;
     slug: string;
   } | null;
-  const category = product.category as {
-    id: string;
-    name: string;
-    slug: string;
-  } | null;
+  const category = rawProduct.category
+    ? {
+        id: rawProduct.category.id,
+        name: getLocalizedField(
+          rawProduct.category as Record<string, any>,
+          "name",
+          locale,
+        ),
+        slug: rawProduct.category.slug,
+      }
+    : null;
   const chilliTypes: {
     id: string;
     name: string;
     slug: string;
     heat_level: string | null;
-  }[] = (product.chilliTypes ?? [])
+  }[] = (rawProduct.chilliTypes ?? [])
     .map((j: any) => j.chilli_type)
-    .filter(Boolean);
+    .filter(Boolean)
+    .map((ct: any) => ({
+      id: ct.id,
+      name: getLocalizedField(ct as Record<string, any>, "name", locale),
+      slug: ct.slug,
+      heat_level: ct.heat_level,
+    }));
+
+  const product: any = {
+    ...rawProduct,
+    description: getLocalizedField(rawProduct, "description", locale),
+    ingredients: getLocalizedField(rawProduct, "ingredients", locale),
+    details: getLocalizedField(rawProduct, "details", locale),
+  };
 
   const inStock = (product.stock ?? 0) > 0;
 

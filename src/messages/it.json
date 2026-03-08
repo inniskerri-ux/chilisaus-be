@@ -1,65 +1,65 @@
 {
   "Auth": {
-    "SignIn": "Sign in",
-    "SignUp": "Sign up",
+    "SignIn": "Accedi",
+    "SignUp": "Registrati",
     "Email": "Email",
     "Password": "Password",
-    "ConfirmPassword": "Confirm password",
-    "ResetPassword": "Reset password",
-    "SignOut": "Sign out"
+    "ConfirmPassword": "Conferma password",
+    "ResetPassword": "Reimposta password",
+    "SignOut": "Disconnetti"
   },
   "Nav": {
-    "Shop": "Shop",
-    "Cart": "Cart",
-    "Checkout": "Checkout",
+    "Shop": "Negozio",
+    "Cart": "Carrello",
+    "Checkout": "Pagamento",
     "Account": "Account",
     "Dashboard": "Dashboard",
     "Scoville": "Scoville",
-    "Videos": "Videos"
+    "Videos": "Video"
   },
   "Cart": {
-    "title": "Your Shopping Cart",
-    "empty": "Your cart is empty",
-    "continueShopping": "Continue Shopping",
-    "checkout": "Proceed to Checkout",
-    "items": "items",
-    "item": "item",
-    "summary": "Order Summary",
-    "subtotal": "Subtotal",
-    "shipping": "Shipping",
-    "shippingNote": "Shipping is calculated at checkout.",
-    "total": "Total",
-    "remove": "Remove"
+    "title": "Il tuo Carrello",
+    "empty": "Il tuo carrello è vuoto",
+    "continueShopping": "Continua lo Shopping",
+    "checkout": "Vai al Pagamento",
+    "items": "articoli",
+    "item": "articolo",
+    "summary": "Riepilogo Ordine",
+    "subtotal": "Subtotale",
+    "shipping": "Spedizione",
+    "shippingNote": "Le spese di spedizione sono calcolate al momento del pagamento.",
+    "total": "Totale",
+    "remove": "Rimuovi"
   },
   "Newsletter": {
-    "title": "Get 10% Off!",
-    "description": "Sign up for our spicy newsletter and receive a 10% discount voucher for your first order.",
-    "placeholder": "Your email address",
-    "cta": "Claim My Discount",
-    "noSpam": "No spam, just heat. Unsubscribe anytime.",
-    "successTitle": "Check Your Inbox!",
-    "successDescription": "We've sent a verification link to your email.",
-    "successAction": "Confirm your email to get the code."
+    "title": "Ottieni il 10% di Sconto!",
+    "description": "Iscriviti alla nostra newsletter piccante e ricevi un buono sconto del 10% per il tuo primo ordine.",
+    "placeholder": "Il tuo indirizzo email",
+    "cta": "Richiedi il mio Sconto",
+    "noSpam": "Niente spam, solo piccantezza. Disiscriviti quando vuoi.",
+    "successTitle": "Controlla la tua casella di posta!",
+    "successDescription": "Abbiamo inviato un link di verifica alla tua email.",
+    "successAction": "Conferma la tua email per ricevere il codice."
   },
   "CookieConsent": {
-    "title": "We value your privacy",
-    "description": "We use cookies to enhance your browsing experience, serve personalized content, and analyze our traffic. Please choose which cookies you're okay with.",
-    "acceptAll": "Accept All",
-    "rejectAll": "Only Necessary",
-    "customize": "Customize",
-    "save": "Save Preferences",
+    "title": "Apprezziamo la tua privacy",
+    "description": "Utilizziamo i cookie per migliorare la tua esperienza di navigazione, servire contenuti personalizzati e analizzare il nostro traffico. Scegli quali cookie accetti.",
+    "acceptAll": "Accetta Tutti",
+    "rejectAll": "Solo Necessari",
+    "customize": "Personalizza",
+    "save": "Salva Preferenze",
     "categories": {
       "necessary": {
-        "title": "Strictly Necessary",
-        "description": "Required for the website to function (Auth, Cart, Security). Cannot be disabled."
+        "title": "Strettamente Necessari",
+        "description": "Richiesti per il funzionamento del sito (Auth, Carrello, Sicurezza). Non possono essere disabilitati."
       },
       "functional": {
-        "title": "Functional",
-        "description": "Remembering your preferences, such as the newsletter popup dismissal."
+        "title": "Funzionali",
+        "description": "Ricordano le tue preferenze, come la chiusura del popup della newsletter."
       },
       "marketing": {
-        "title": "Marketing & Analytics",
-        "description": "Helps us understand how you use the site and show relevant offers."
+        "title": "Marketing & Analisi",
+        "description": "Ci aiuta a capire come usi il sito e a mostrare offerte pertinenti."
       }
     }
   },
@@ -125,156 +125,156 @@
     }
   },
   "SauceArchive": {
-    "heading": "Our Hot Sauces",
+    "heading": "Le nostre Salse Piccanti",
     "search": {
-      "label": "Search products",
-      "placeholder": "Search products…",
+      "label": "Cerca prodotti",
+      "placeholder": "Cerca prodotti…",
       "filters": {
-        "heatLevel": "Heat Level",
+        "heatLevel": "Grado di Piccantezza",
         "heatLevels": {
-          "mild": "Mild",
-          "medium": "Medium",
-          "hot": "Hot",
-          "extreme": "Extreme Heat"
+          "mild": "Lieve",
+          "medium": "Medio",
+          "hot": "Piccante",
+          "extreme": "Piccantezza Estrema"
         },
-        "pepper": "Pepper",
-        "allChilliTypes": "All peppers",
-        "country": "Country",
-        "allCountries": "All countries",
-        "sauceType": "Type",
-        "allCategories": "All types",
-        "sort": "Sort by",
-        "sortNewest": "Newest",
-        "sortPopular": "Most popular",
-        "sortMildToHot": "Mild → Hot",
-        "sortHotToMild": "Hot → Mild",
-        "sortPriceLowHigh": "Price: Low to High",
-        "sortPriceHighLow": "Price: High to Low"
+        "pepper": "Peperoncino",
+        "allChilliTypes": "Tutti i peperoncini",
+        "country": "Paese",
+        "allCountries": "Tutti i paesi",
+        "sauceType": "Tipo",
+        "allCategories": "Tutti i tipi",
+        "sort": "Ordina per",
+        "sortNewest": "Più recenti",
+        "sortPopular": "I più popolari",
+        "sortMildToHot": "Lieve → Piccante",
+        "sortHotToMild": "Piccante → Lieve",
+        "sortPriceLowHigh": "Prezzo: dal più basso",
+        "sortPriceHighLow": "Prezzo: dal più alto"
       }
     },
     "results": {
-      "showing": "Showing",
-      "of": "of",
-      "sauces": "products",
-      "noResults": "No sauces found",
-      "adjustSearch": "Try adjusting your search or filters.",
-      "clearFilters": "Clear filters",
-      "loadMore": "Load more"
+      "showing": "Risultati",
+      "of": "di",
+      "sauces": "prodotti",
+      "noResults": "Nessuna salsa trovata",
+      "adjustSearch": "Prova a regolare la ricerca o i filtri.",
+      "clearFilters": "Cancella filtri",
+      "loadMore": "Carica altri"
     }
   },
   "Landing": {
     "hero": {
-      "welcome": "Welcome to Chilisaus.be/eu",
-      "title": "You Can Never Have Too Much Hot Sauce",
-      "subtitle": "Discover a hand-picked collection of the world's finest chili sauces. From mild everyday flavors to extreme heat.",
-      "cta": "Shop All Sauces"
+      "welcome": "Benvenuti su Chilisaus.be/eu",
+      "title": "La salsa piccante non è mai troppa",
+      "subtitle": "Scopri una collezione selezionata delle migliori salse al peperoncino del mondo. Dai sapori delicati per ogni giorno al calore estremo.",
+      "cta": "Acquista tutte le salse"
     },
     "maker": {
-      "title": "Meet the Maker",
-      "content": "A lot of you have met me at events across the country. I'm passionate about bringing the best sauces directly to you, keeping it personal and simple. I want to keep it a personal connection, not a faceless corporation. It's all about the sauce and the people who love it."
+      "title": "Incontra il Produttore",
+      "content": "Molti di voi mi hanno incontrato a vari eventi in tutto il paese. La mia passione è portarvi direttamente le migliori salse, mantenendo un rapporto personale e semplice. Voglio mantenere una connessione umana, non essere un'azienda senza volto. Tutto ruota intorno alla salsa e alle persone che la amano."
     },
     "categories": {
-      "title": "Shop by Category",
-      "subtitle": "Find the perfect sauce for your next meal."
+      "title": "Acquista per Categoria",
+      "subtitle": "Trova la salsa perfetta per il tuo prossimo pasto."
     }
   },
   "ProductPage": {
-    "breadcrumbShop": "Shop",
-    "by": "by",
-    "heatLevel": "Heat Level",
-    "inStock": "In stock",
-    "outOfStock": "Out of stock",
-    "addToCart": "Add to cart",
-    "description": "Description",
-    "ingredients": "Ingredients",
-    "peppers": "Peppers",
-    "reviewsTitle": "Customer Reviews",
-    "reviewCount": "review",
-    "reviewsCount": "reviews",
-    "writeReview": "Write a Review",
-    "noReviews": "No reviews yet. Be the first to share your experience!",
-    "verifiedPurchase": "Verified Purchase"
+    "breadcrumbShop": "Negozio",
+    "by": "di",
+    "heatLevel": "Grado di Piccantezza",
+    "inStock": "Disponibile",
+    "outOfStock": "Esaurito",
+    "addToCart": "Aggiungi al carrello",
+    "description": "Descrizione",
+    "ingredients": "Ingredienti",
+    "peppers": "Peperoncini",
+    "reviewsTitle": "Recensioni dei Clienti",
+    "reviewCount": "recensione",
+    "reviewsCount": "recensioni",
+    "writeReview": "Scrivi una Recensione",
+    "noReviews": "Ancora nessuna recensione. Sii il primo a condividere la tua esperienza!",
+    "verifiedPurchase": "Acquisto Verificato"
   },
   "Legal": {
-    "notice": "Legal Notice",
-    "shipping": "Shipping & Returns",
-    "terms": "Terms of Service",
-    "privacy": "Privacy Policy"
+    "notice": "Note Legali",
+    "shipping": "Spedizioni e Resi",
+    "terms": "Termini di Servizio",
+    "privacy": "Informativa sulla Privacy"
   },
   "Account": {
-    "title": "My Account",
-    "welcome": "Welcome back, {name}",
+    "title": "Il mio Account",
+    "welcome": "Bentornato, {name}",
     "orders": {
-      "title": "My Orders",
-      "empty": "You haven't placed any orders yet.",
-      "viewAll": "View all orders",
-      "orderNumber": "Order #",
-      "date": "Date",
-      "status": "Status",
-      "total": "Total",
-      "details": "View Details"
+      "title": "I miei Ordini",
+      "empty": "Non hai ancora effettuato ordini.",
+      "viewAll": "Visualizza tutti gli ordini",
+      "orderNumber": "Ordine n.",
+      "date": "Data",
+      "status": "Stato",
+      "total": "Totale",
+      "details": "Visualizza Dettagli"
     },
     "profile": {
-      "title": "Profile Information",
+      "title": "Informazioni sul Profilo",
       "email": "Email",
-      "role": "Role"
+      "role": "Ruolo"
     }
   },
   "Checkout": {
-    "title": "Checkout",
-    "shipping": "Shipping Address",
-    "payment": "Payment",
-    "summary": "Order Summary",
-    "email": "Email Address",
-    "fullName": "Full Name",
-    "street": "Street Address",
-    "city": "City",
-    "zip": "ZIP / Postal Code",
-    "country": "Country",
-    "payNow": "Pay with Stripe",
-    "freeShipping": "Free shipping applied",
+    "title": "Pagamento",
+    "shipping": "Indirizzo di Spedizione",
+    "payment": "Pagamento",
+    "summary": "Riepilogo Ordine",
+    "email": "Indirizzo Email",
+    "fullName": "Nome Completo",
+    "street": "Indirizzo",
+    "city": "Città",
+    "zip": "CAP",
+    "country": "Paese",
+    "payNow": "Paga con Stripe",
+    "freeShipping": "Spedizione gratuita applicata",
     "Success": {
-      "title": "Order Confirmed!",
-      "description": "We've sent a confirmation email to {email}. Your spicy delivery is being prepared.",
-      "orderNumber": "Order Number",
-      "subtotal": "Subtotal",
-      "shipping": "Shipping",
-      "total": "Total",
-      "shippingInfo": "Shipping soon",
-      "shippingDescription": "Orders are typically dispatched within 24-48 hours.",
-      "support": "Need help?",
-      "continueShopping": "Continue Shopping",
-      "backToShop": "Back to Shop",
-      "invalidSession": "Invalid checkout session"
+      "title": "Ordine Confermato!",
+      "description": "Abbiamo inviato un'email di conferma a {email}. La tua consegna piccante è in preparazione.",
+      "orderNumber": "Numero Ordine",
+      "subtotal": "Subtotale",
+      "shipping": "Spedizione",
+      "total": "Totale",
+      "shippingInfo": "In spedizione",
+      "shippingDescription": "Gli ordini vengono solitamente spediti entro 24-48 ore.",
+      "support": "Serve aiuto?",
+      "continueShopping": "Continua lo Shopping",
+      "backToShop": "Torna al Negozio",
+      "invalidSession": "Sessione di pagamento non valida"
     }
   },
   "Scoville": {
-    "title": "The Scoville Scale",
-    "intro": "The Scoville scale is a measurement of the pungency (spiciness or heat) of chili peppers, as recorded in Scoville Heat Units (SHU). Named after its creator, Wilbur Scoville, this scale helps you navigate the world of heat without getting burned—unless you want to!",
+    "title": "La Scala Scoville",
+    "intro": "La scala Scoville è una misura della piccantezza dei peperoncini, registrata in Unità di Calore Scoville (SHU). Prende il nome dal suo creatore, Wilbur Scoville, e aiuta a navigare nel mondo del piccante senza scottarsi, a meno che non sia quello che vuoi!",
     "levels": {
       "mild": {
-        "title": "Mild (0 - 2,500 SHU)",
-        "description": "Perfect for everyday flavor. The classic Bell Pepper sits at zero, while the slightly zesty Banana Pepper or mild Pimento adds just a hint of warmth."
+        "title": "Lieve (0 - 2.500 SHU)",
+        "description": "Perfetto per il sapore di ogni giorno. Il classico peperone dolce è a zero, mentre il Banana Pepper leggermente frizzante o il Pimento dolce aggiungono solo un tocco di calore."
       },
       "medium": {
-        "title": "Medium (2,500 - 10,000 SHU)",
-        "description": "The 'entry-level' for chili lovers. This is the domain of the Jalapeño and the smoky Chipotle. Expect a noticeable tingle that complements rather than overpowers."
+        "title": "Medio (2.500 - 10.000 SHU)",
+        "description": "Il punto d'ingresso per gli amanti del peperoncino. È il regno dello Jalapeño e del Chipotle affumicato. Aspettati un formicolio evidente che completa invece di sovrastare."
       },
       "hot": {
-        "title": "Hot (10,000 - 50,000 SHU)",
-        "description": "Now we're talking. The Serrano and Cayenne peppers live here. These peppers provide a sharp, clear heat that lingers on the palate."
+        "title": "Piccante (10.000 - 50.000 SHU)",
+        "description": "Qui si inizia a fare sul serio. Il Serrano e il Cayenna vivono qui. Questi peperoncini offrono un calore nitido e chiaro che persiste al palato."
       },
       "extraHot": {
-        "title": "Extra Hot (50,000 - 100,000 SHU)",
-        "description": "Approach with caution. The Thai Bird's Eye pepper and the Malagueta offer a significant kick that will make most people break a sweat."
+        "title": "Molto Piccante (50.000 - 100.000 SHU)",
+        "description": "Avvicinati con cautela. Il peperoncino Thai Bird's Eye e il Malagueta offrono un colpo significativo che farà sudare la maggior parte delle persone."
       },
       "volcanic": {
-        "title": "Volcanic (100,000 - 350,000 SHU)",
-        "description": "Serious heat for the brave. The legendary Habanero and Scotch Bonnet peppers are found here, often accompanied by fruity or floral notes underneath the fire."
+        "title": "Vulcanico (100.000 - 350.000 SHU)",
+        "description": "Calore serio per i coraggiosi. I leggendari peperoncini Habanero e Scotch Bonnet si trovano qui, spesso accompagnati da note fruttate o floreali sotto il fuoco."
       },
       "superhot": {
-        "title": "Superhot (350,000 - 2,200,000+ SHU)",
-        "description": "The danger zone. From the Ghost Pepper (Bhut Jolokia) to the record-breaking Carolina Reaper, these peppers contain massive amounts of capsaicin and should be handled with extreme care."
+        "title": "Super Piccante (350.000 - 2.200.000+ SHU)",
+        "description": "La zona di pericolo. Dal Ghost Pepper (Bhut Jolokia) al detentore del record Carolina Reaper, questi peperoncini contengono quantità massicce di capsaicina e devono essere maneggiati con estrema cura."
       }
     }
   }

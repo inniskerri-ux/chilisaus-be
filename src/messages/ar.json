@@ -1,66 +1,65 @@
 {
   "Auth": {
-    "SignIn": "Sign in",
-    "SignUp": "Sign up",
-    "Email": "Email",
-    "Password": "Password",
-    "ConfirmPassword": "Confirm password",
-    "ResetPassword": "Reset password",
-    "SignOut": "Sign out"
+    "SignIn": "تسجيل الدخول",
+    "SignUp": "إنشاء حساب",
+    "Email": "البريد الإلكتروني",
+    "Password": "كلمة المرور",
+    "ConfirmPassword": "تأكيد كلمة المرور",
+    "ResetPassword": "إعادة تعيين كلمة المرور",
+    "SignOut": "تسجيل الخروج"
   },
   "Nav": {
-    "dir": "rtl",
-    "Shop": "Shop",
-    "Cart": "Cart",
-    "Checkout": "Checkout",
-    "Account": "Account",
-    "Dashboard": "Dashboard",
-    "Scoville": "Scoville",
-    "Videos": "Videos"
+    "Shop": "المتجر",
+    "Cart": "السلة",
+    "Checkout": "الدفع",
+    "Account": "الحساب",
+    "Dashboard": "لوحة التحكم",
+    "Scoville": "سكوفيل",
+    "Videos": "الفيديوهات"
   },
   "Cart": {
-    "title": "Your Shopping Cart",
-    "empty": "Your cart is empty",
-    "continueShopping": "Continue Shopping",
-    "checkout": "Proceed to Checkout",
-    "items": "items",
-    "item": "item",
-    "summary": "Order Summary",
-    "subtotal": "Subtotal",
-    "shipping": "Shipping",
-    "shippingNote": "Shipping is calculated at checkout.",
-    "total": "Total",
-    "remove": "Remove"
+    "title": "سلة التسوق الخاصة بك",
+    "empty": "سلة التسوق فارغة",
+    "continueShopping": "مواصلة التسوق",
+    "checkout": "إتمام عملية الشراء",
+    "items": "عناصر",
+    "item": "عنصر",
+    "summary": "ملخص الطلب",
+    "subtotal": "المجموع الفرعي",
+    "shipping": "الشحن",
+    "shippingNote": "يتم حساب الشحن عند الدفع.",
+    "total": "الإجمالي",
+    "remove": "إزالة"
   },
   "Newsletter": {
-    "title": "Get 10% Off!",
-    "description": "Sign up for our spicy newsletter and receive a 10% discount voucher for your first order.",
-    "placeholder": "Your email address",
-    "cta": "Claim My Discount",
-    "noSpam": "No spam, just heat. Unsubscribe anytime.",
-    "successTitle": "Check Your Inbox!",
-    "successDescription": "We've sent a verification link to your email.",
-    "successAction": "Confirm your email to get the code."
+    "title": "احصل على خصم 10%!",
+    "description": "اشترك في نشرتنا الإخبارية الحارة واحصل على قسيمة خصم 10% لطلبك الأول.",
+    "placeholder": "عنوان بريدك الإلكتروني",
+    "cta": "احصل على الخصم",
+    "noSpam": "لا رسائل مزعجة، فقط حرارة. يمكنك إلغاء الاشتراك في أي وقت.",
+    "successTitle": "تحقق من بريدك الوارد!",
+    "successDescription": "لقد أرسلنا رابط تفعيل إلى بريدك الإلكتروني.",
+    "successAction": "قم بتأكيد بريدك الإلكتروني للحصول على الكود."
   },
   "CookieConsent": {
-    "title": "We value your privacy",
-    "description": "We use cookies to enhance your browsing experience, serve personalized content, and analyze our traffic. Please choose which cookies you're okay with.",
-    "acceptAll": "Accept All",
-    "rejectAll": "Only Necessary",
-    "customize": "Customize",
-    "save": "Save Preferences",
+    "title": "نحن نقدر خصوصيتك",
+    "description": "نحن نستخدم ملفات تعريف الارتباط لتحسين تجربة التصفح الخاصة بك، وتقديم محتوى مخصص، وتحليل حركة المرور لدينا. يرجى اختيار ملفات تعريف الارتباط التي توافق عليها.",
+    "acceptAll": "قبول الكل",
+    "rejectAll": "الضرورية فقط",
+    "customize": "تخصيص",
+    "save": "حفظ التفضيلات",
     "categories": {
       "necessary": {
-        "title": "Strictly Necessary",
-        "description": "Required for the website to function (Auth, Cart, Security). Cannot be disabled."
+        "title": "الضرورية للغاية",
+        "description": "مطلوبة لكي يعمل الموقع (تسجيل الدخول، السلة، الأمان). لا يمكن تعطيلها."
       },
       "functional": {
-        "title": "Functional",
-        "description": "Remembering your preferences, such as the newsletter popup dismissal."
+        "title": "الوظيفية",
+        "description": "تذكر تفضيلاتك، مثل إغلاق نافذة النشرة الإخبارية المنبثقة."
       },
       "marketing": {
-        "title": "Marketing & Analytics",
-        "description": "Helps us understand how you use the site and show relevant offers."
+        "title": "التسويق والتحليلات",
+        "description": "تساعدنا على فهم كيفية استخدامك للموقع وعرض العروض ذات الصلة."
       }
     }
   },
@@ -126,156 +125,156 @@
     }
   },
   "SauceArchive": {
-    "heading": "Our Hot Sauces",
+    "heading": "صلصاتنا الحارة",
     "search": {
-      "label": "Search products",
-      "placeholder": "Search products…",
+      "label": "البحث عن المنتجات",
+      "placeholder": "البحث عن المنتجات…",
       "filters": {
-        "heatLevel": "Heat Level",
+        "heatLevel": "مستوى الحرارة",
         "heatLevels": {
-          "mild": "Mild",
-          "medium": "Medium",
-          "hot": "Hot",
-          "extreme": "Extreme Heat"
+          "mild": "خفيف",
+          "medium": "متوسط",
+          "hot": "حار",
+          "extreme": "حرارة قصوى"
         },
-        "pepper": "Pepper",
-        "allChilliTypes": "All peppers",
-        "country": "Country",
-        "allCountries": "All countries",
-        "sauceType": "Type",
-        "allCategories": "All types",
-        "sort": "Sort by",
-        "sortNewest": "Newest",
-        "sortPopular": "Most popular",
-        "sortMildToHot": "Mild → Hot",
-        "sortHotToMild": "Hot → Mild",
-        "sortPriceLowHigh": "Price: Low to High",
-        "sortPriceHighLow": "Price: High to Low"
+        "pepper": "فلفل",
+        "allChilliTypes": "جميع أنواع الفلفل",
+        "country": "البلد",
+        "allCountries": "جميع البلدان",
+        "sauceType": "النوع",
+        "allCategories": "جميع الأنواع",
+        "sort": "فرز حسب",
+        "sortNewest": "الأحدث",
+        "sortPopular": "الأكثر شهرة",
+        "sortMildToHot": "من الخفيف إلى الحار",
+        "sortHotToMild": "من الحار إلى الخفيف",
+        "sortPriceLowHigh": "السعر: من الأقل إلى الأعلى",
+        "sortPriceHighLow": "السعر: من الأعلى إلى الأقل"
       }
     },
     "results": {
-      "showing": "Showing",
-      "of": "of",
-      "sauces": "products",
-      "noResults": "No sauces found",
-      "adjustSearch": "Try adjusting your search or filters.",
-      "clearFilters": "Clear filters",
-      "loadMore": "Load more"
+      "showing": "عرض",
+      "of": "من",
+      "sauces": "منتجات",
+      "noResults": "لم يتم العثور على صلصات",
+      "adjustSearch": "حاول تعديل البحث أو الفلاتر.",
+      "clearFilters": "مسح الفلاتر",
+      "loadMore": "تحميل المزيد"
     }
   },
   "Landing": {
     "hero": {
-      "welcome": "Welcome to Chilisaus.be/eu",
-      "title": "You Can Never Have Too Much Hot Sauce",
-      "subtitle": "Discover a hand-picked collection of the world's finest chili sauces. From mild everyday flavors to extreme heat.",
-      "cta": "Shop All Sauces"
+      "welcome": "مرحباً بكم في Chilisaus.be/eu",
+      "title": "لا يمكنك أبداً الحصول على الكثير من الصلصة الحارة",
+      "subtitle": "اكتشف مجموعة مختارة بعناية من أفضل صلصات الفلفل الحار في العالم. من النكهات الخفيفة اليومية إلى الحرارة القصوى.",
+      "cta": "تسوق جميع الصلصات"
     },
     "maker": {
-      "title": "Meet the Maker",
-      "content": "A lot of you have met me at events across the country. I'm passionate about bringing the best sauces directly to you, keeping it personal and simple. I want to keep it a personal connection, not a faceless corporation. It's all about the sauce and the people who love it."
+      "title": "تعرف على صانع الصلصة",
+      "content": "لقد التقى الكثير منكم بي في الفعاليات في جميع أنحاء البلاد. أنا شغوف بتقديم أفضل الصلصات إليكم مباشرة، وبطريقة شخصية وبسيطة. أريد الحفاظ على اتصال شخصي، وليس شركة بلا وجه. الأمر كله يتعلق بالصلصة والأشخاص الذين يحبونها."
     },
     "categories": {
-      "title": "Shop by Category",
-      "subtitle": "Find the perfect sauce for your next meal."
+      "title": "تسوق حسب الفئة",
+      "subtitle": "جد الصلصة المثالية لوجبتك القادمة."
     }
   },
   "ProductPage": {
-    "breadcrumbShop": "Shop",
-    "by": "by",
-    "heatLevel": "Heat Level",
-    "inStock": "In stock",
-    "outOfStock": "Out of stock",
-    "addToCart": "Add to cart",
-    "description": "Description",
-    "ingredients": "Ingredients",
-    "peppers": "Peppers",
-    "reviewsTitle": "Customer Reviews",
-    "reviewCount": "review",
-    "reviewsCount": "reviews",
-    "writeReview": "Write a Review",
-    "noReviews": "No reviews yet. Be the first to share your experience!",
-    "verifiedPurchase": "Verified Purchase"
+    "breadcrumbShop": "المتجر",
+    "by": "بواسطة",
+    "heatLevel": "مستوى الحرارة",
+    "inStock": "متوفر",
+    "outOfStock": "نفذت الكمية",
+    "addToCart": "أضف إلى السلة",
+    "description": "الوصف",
+    "ingredients": "المكونات",
+    "peppers": "الفلفل",
+    "reviewsTitle": "آراء العملاء",
+    "reviewCount": "مراجعة",
+    "reviewsCount": "مراجعات",
+    "writeReview": "اكتب مراجعة",
+    "noReviews": "لا توجد مراجعات بعد. كن أول من يشارك تجربته!",
+    "verifiedPurchase": "شراء مؤكد"
   },
   "Legal": {
-    "notice": "Legal Notice",
-    "shipping": "Shipping & Returns",
-    "terms": "Terms of Service",
-    "privacy": "Privacy Policy"
+    "notice": "إشعار قانوني",
+    "shipping": "الشحن والإرجاع",
+    "terms": "شروط الخدمة",
+    "privacy": "سياسة الخصوصية"
   },
   "Account": {
-    "title": "My Account",
-    "welcome": "Welcome back, {name}",
+    "title": "حسابي",
+    "welcome": "مرحباً بعودتك، {name}",
     "orders": {
-      "title": "My Orders",
-      "empty": "You haven't placed any orders yet.",
-      "viewAll": "View all orders",
-      "orderNumber": "Order #",
-      "date": "Date",
-      "status": "Status",
-      "total": "Total",
-      "details": "View Details"
+      "title": "طلباتي",
+      "empty": "لم تقم بإجراء أي طلبات بعد.",
+      "viewAll": "عرض جميع الطلبات",
+      "orderNumber": "طلب رقم #",
+      "date": "التاريخ",
+      "status": "الحالة",
+      "total": "الإجمالي",
+      "details": "عرض التفاصيل"
     },
     "profile": {
-      "title": "Profile Information",
-      "email": "Email",
-      "role": "Role"
+      "title": "معلومات الملف الشخصي",
+      "email": "البريد الإلكتروني",
+      "role": "الدور"
     }
   },
   "Checkout": {
-    "title": "Checkout",
-    "shipping": "Shipping Address",
-    "payment": "Payment",
-    "summary": "Order Summary",
-    "email": "Email Address",
-    "fullName": "Full Name",
-    "street": "Street Address",
-    "city": "City",
-    "zip": "ZIP / Postal Code",
-    "country": "Country",
-    "payNow": "Pay with Stripe",
-    "freeShipping": "Free shipping applied",
+    "title": "الدفع",
+    "shipping": "عنوان الشحن",
+    "payment": "الدفع",
+    "summary": "ملخص الطلب",
+    "email": "عنوان البريد الإلكتروني",
+    "fullName": "الاسم الكامل",
+    "street": "عنوان الشارع",
+    "city": "المدينة",
+    "zip": "الرمز البريدي",
+    "country": "البلد",
+    "payNow": "الدفع بواسطة Stripe",
+    "freeShipping": "تم تطبيق الشحن المجاني",
     "Success": {
-      "title": "Order Confirmed!",
-      "description": "We've sent a confirmation email to {email}. Your spicy delivery is being prepared.",
-      "orderNumber": "Order Number",
-      "subtotal": "Subtotal",
-      "shipping": "Shipping",
-      "total": "Total",
-      "shippingInfo": "Shipping soon",
-      "shippingDescription": "Orders are typically dispatched within 24-48 hours.",
-      "support": "Need help?",
-      "continueShopping": "Continue Shopping",
-      "backToShop": "Back to Shop",
-      "invalidSession": "Invalid checkout session"
+      "title": "تم تأكيد الطلب!",
+      "description": "لقد أرسلنا بريداً إلكترونياً للتأكيد إلى {email}. يتم الآن تجهيز طلبك الحار.",
+      "orderNumber": "رقم الطلب",
+      "subtotal": "المجموع الفرعي",
+      "shipping": "الشحن",
+      "total": "الإجمالي",
+      "shippingInfo": "سيتم الشحن قريباً",
+      "shippingDescription": "عادة ما يتم إرسال الطلبات في غضون 24-48 ساعة.",
+      "support": "هل تحتاج إلى مساعدة؟",
+      "continueShopping": "مواصلة التسوق",
+      "backToShop": "العودة إلى المتجر",
+      "invalidSession": "جلسة دفع غير صالحة"
     }
   },
   "Scoville": {
-    "title": "The Scoville Scale",
-    "intro": "The Scoville scale is a measurement of the pungency (spiciness or heat) of chili peppers, as recorded in Scoville Heat Units (SHU). Named after its creator, Wilbur Scoville, this scale helps you navigate the world of heat without getting burned—unless you want to!",
+    "title": "مقياس سكوفيل",
+    "intro": "مقياس سكوفيل هو قياس لمدى حرارة فلفل تشيلي، كما هو مسجل في وحدات حرارة سكوفيل (SHU). سمي على اسم مبتكره، ويلبر سكوفيل، يساعدك هذا المقياس على التنقل في عالم الحرارة دون التعرض للحرق - إلا إذا كنت تريد ذلك!",
     "levels": {
       "mild": {
-        "title": "Mild (0 - 2,500 SHU)",
-        "description": "Perfect for everyday flavor. The classic Bell Pepper sits at zero, while the slightly zesty Banana Pepper or mild Pimento adds just a hint of warmth."
+        "title": "خفيف (0 - 2,500 SHU)",
+        "description": "مثالي للنكهة اليومية. الفلفل الرومي الكلاسيكي يقع عند الصفر، بينما يضيف فلفل الموز الحار قليلاً أو فلفل البيمنتو الخفيف لمسة من الدفء."
       },
       "medium": {
-        "title": "Medium (2,500 - 10,000 SHU)",
-        "description": "The 'entry-level' for chili lovers. This is the domain of the Jalapeño and the smoky Chipotle. Expect a noticeable tingle that complements rather than overpowers."
+        "title": "متوسط (2,500 - 10,000 SHU)",
+        "description": "مستوى الدخول لمحبي الفلفل الحار. هذا هو مجال فلفل الهالبينو والشيبوتلي المدخن. توقع وخزاً ملحوظاً يكمل النكهة بدلاً من أن يطغى عليها."
       },
       "hot": {
-        "title": "Hot (10,000 - 50,000 SHU)",
-        "description": "Now we're talking. The Serrano and Cayenne peppers live here. These peppers provide a sharp, clear heat that lingers on the palate."
+        "title": "حار (10,000 - 50,000 SHU)",
+        "description": "الآن بدأنا نتحدث بجدية. يعيش فلفل سيرانو وكايين هنا. يوفر هذا الفلفل حرارة حادة وواضحة تستمر في الحنك."
       },
       "extraHot": {
-        "title": "Extra Hot (50,000 - 100,000 SHU)",
-        "description": "Approach with caution. The Thai Bird's Eye pepper and the Malagueta offer a significant kick that will make most people break a sweat."
+        "title": "حار جداً (50,000 - 100,000 SHU)",
+        "description": "اقترب بحذر. فلفل عين الطائر التايلاندي وفلفل المالاغويتا يقدمان ركلة قوية ستجعل معظم الناس يتصببون عرقاً."
       },
       "volcanic": {
-        "title": "Volcanic (100,000 - 350,000 SHU)",
-        "description": "Serious heat for the brave. The legendary Habanero and Scotch Bonnet peppers are found here, often accompanied by fruity or floral notes underneath the fire."
+        "title": "بركاني (100,000 - 350,000 SHU)",
+        "description": "حرارة جادة للشجعان. يوجد فلفل الهابانيرو الأسطوري وفلفل سكوتش بونيت هنا، وغالباً ما تصاحبها نكهات فاكهية أو زهرية تحت النار."
       },
       "superhot": {
-        "title": "Superhot (350,000 - 2,200,000+ SHU)",
-        "description": "The danger zone. From the Ghost Pepper (Bhut Jolokia) to the record-breaking Carolina Reaper, these peppers contain massive amounts of capsaicin and should be handled with extreme care."
+        "title": "حرارة خارقة (350,000 - 2,200,000+ SHU)",
+        "description": "منطقة الخطر. من فلفل الشبح (بوت جولوكيا) إلى فلفل كارولينا ريبر الذي حطم الأرقام القياسية، يحتوي هذا الفلفل على كميات هائلة من الكابسيسين ويجب التعامل معه بحذر شديد."
       }
     }
   }
