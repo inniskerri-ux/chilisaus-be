@@ -4,11 +4,17 @@ import { Montserrat } from "next/font/google";
 import Script from "next/script";
 import "../globals.css";
 import type { ReactNode } from "react";
+import type { Viewport } from "next";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { MessageCircle } from "lucide-react";
 import NewsletterPopup from "@/components/store/NewsletterPopup";
 import CookieConsent from "@/components/store/CookieConsent";
+import WhatsAppButton from "@/components/WhatsAppButton";
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+};
 
 const fontSans = Montserrat({
   variable: "--font-montserrat",
@@ -70,21 +76,12 @@ export default async function LocaleLayout({
       >
         <NextIntlClientProvider messages={messages}>
           <Header locale={locale} />
-          <main className="flex-grow">{children}</main>
+          <main className="flex-grow w-full min-w-0">{children}</main>
           <Footer locale={locale} />
           <NewsletterPopup locale={locale} />
           <CookieConsent />
 
-          {/* Floating WhatsApp Button */}
-          <a
-            href={`https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="fixed bottom-8 right-8 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-2xl transition-all hover:scale-110 active:scale-95"
-            aria-label="Chat on WhatsApp"
-          >
-            <MessageCircle size={32} />
-          </a>
+          <WhatsAppButton number={process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? ""} />
         </NextIntlClientProvider>
       </body>
     </html>

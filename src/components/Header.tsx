@@ -4,6 +4,7 @@ import { createClient } from "@/lib/supabase/server";
 import { Instagram, MessageCircle, Search } from "lucide-react";
 import { getTranslations } from "next-intl/server";
 import LocaleSwitcher from "./store/LocaleSwitcher";
+import CartButton from "./CartButton";
 
 export default async function Header({ locale }: { locale: string }) {
   const supabase = await createClient();
@@ -33,7 +34,8 @@ export default async function Header({ locale }: { locale: string }) {
             width={123}
             height={48}
             quality={100}
-            className="h-12 w-auto object-contain"
+            style={{ height: "48px", width: "auto" }}
+            className="object-contain"
             priority
           />
         </Link>
@@ -117,12 +119,7 @@ export default async function Header({ locale }: { locale: string }) {
 
             <LocaleSwitcher />
 
-            <Link
-              href={`/${locale}/cart`}
-              className="rounded-full bg-brand-black px-5 py-2 text-white hover:bg-brand-red transition-all"
-            >
-              {tNav("Cart")}
-            </Link>
+            <CartButton locale={locale} label={tNav("Cart")} />
           </nav>
         </div>
       </div>
