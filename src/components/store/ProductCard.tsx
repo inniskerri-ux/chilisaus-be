@@ -3,6 +3,7 @@
 import { useLocale, useTranslations } from "next-intl";
 import Image from "next/image";
 import Link from "next/link";
+import { Star } from "lucide-react";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { formatPrice } from "@/lib/format";
@@ -101,6 +102,22 @@ export default function ProductCard({
               </p>
             )}
           </div>
+
+          {(product.reviewCount ?? 0) > 0 && (
+            <div className="flex items-center gap-1.5">
+              <div className="flex text-orange-400">
+                {[...Array(5)].map((_, i) => (
+                  <Star
+                    key={i}
+                    size={13}
+                    fill={i < Math.round(product.avgRating ?? 0) ? "currentColor" : "none"}
+                    className={i < Math.round(product.avgRating ?? 0) ? "" : "text-zinc-200"}
+                  />
+                ))}
+              </div>
+              <span className="text-xs text-zinc-500">({product.reviewCount})</span>
+            </div>
+          )}
 
           <div className="mt-4 flex items-center gap-2">
             {hasDiscount && (

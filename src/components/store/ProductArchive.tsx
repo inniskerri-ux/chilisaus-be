@@ -184,8 +184,10 @@ function ProductArchiveContent({
         return bDate - aDate;
       });
     } else {
-      // Default / popular
-      filtered = [...filtered];
+      // Popular — sort by historical WooCommerce unit sales descending
+      filtered = [...filtered].sort(
+        (a, b) => (b.wc_total_sales ?? 0) - (a.wc_total_sales ?? 0),
+      );
     }
 
     return filtered;
@@ -256,6 +258,15 @@ function ProductArchiveContent({
     return chilliTypes.find((ct) => ct.id.toString() === selectedChilliType);
   }, [selectedChilliType, chilliTypes]);
 
+  const hasActiveFilters =
+    !!searchTerm ||
+    !!selectedHeatLevel ||
+    !!selectedChilliType ||
+    !!selectedCategory ||
+    !!selectedBrand ||
+    !!selectedCountry ||
+    sortBy !== "popular";
+
   const clearAllFilters = () => {
     setSearchTerm("");
     setSelectedHeatLevel("");
@@ -263,6 +274,7 @@ function ProductArchiveContent({
     setSelectedCategory("");
     setSelectedBrand("");
     setSelectedCountry("");
+    setSortBy("popular");
   };
 
   const displayedProducts = filteredAndSortedProducts.slice(0, displayCount);
@@ -410,41 +422,33 @@ function ProductArchiveContent({
           {(activeFilters.length > 0 || selectedPepper) && (
             <div className="mt-3 flex flex-wrap gap-2 items-center">
               {selectedPepper && (
-                <Chip
-                  variant="filter"
-                  onRemove={() => setSelectedChilliType("")}
-                >
+                <Chip variant="filter" onRemove={() => setSelectedChilliType("")}>
                   {selectedPepper.name}
-                  {selectedPepper.heatLevel
-                    ? ` • ${selectedPepper.heatLevel}`
-                    : ""}
+                  {selectedPepper.heatLevel ? ` • ${selectedPepper.heatLevel}` : ""}
                 </Chip>
               )}
-              {activeFilters.map((filter, idx) => (
-                <Chip
-                  key={filter.value}
-                  variant="filter"
-                  onRemove={filter.clear}
-                >
+              {activeFilters.map((filter) => (
+                <Chip key={filter.value} variant="filter" onRemove={filter.clear}>
                   {filter.label}
                 </Chip>
               ))}
-              {(activeFilters.length > 0 || selectedPepper) &&
-                activeFilters.length + (selectedPepper ? 1 : 0) > 1 && (
-                  <button
-                    onClick={clearAllFilters}
-                    className="text-xs font-medium text-foreground underline-offset-4 hover:text-brand-red hover:underline"
-                  >
-                    {t("results.clearFilters")}
-                  </button>
-                )}
             </div>
           )}
 
-          {/* Results Count */}
-          <div className="mt-3 text-sm text-text-muted">
-            {t("results.showing")} {displayedProducts.length} {t("results.of")}{" "}
-            {filteredAndSortedProducts.length} {t("results.sauces")}
+          {/* Results count + reset */}
+          <div className="mt-3 flex items-center justify-between">
+            <p className="text-sm text-text-muted">
+              {t("results.showing")} {displayedProducts.length} {t("results.of")}{" "}
+              {filteredAndSortedProducts.length} {t("results.sauces")}
+            </p>
+            {hasActiveFilters && (
+              <button
+                onClick={clearAllFilters}
+                className="text-xs font-semibold text-brand-red hover:underline underline-offset-4"
+              >
+                {t("results.clearFilters")}
+              </button>
+            )}
           </div>
         </section>
 

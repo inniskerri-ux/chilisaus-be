@@ -33,24 +33,24 @@ export default async function AdminLayout({
   } = await supabase.auth.getUser();
 
   return (
-    <div className="min-h-screen bg-roh-dust-white">
+    <div className="min-h-screen w-full bg-roh-dust-white">
       <header className="border-b border-border bg-white">
-        <div className="max-w-6xl mx-auto flex flex-col gap-4 px-4 py-6 md:flex-row md:items-center md:justify-between">
+        <div className="max-w-6xl mx-auto flex flex-col gap-3 px-4 py-4 md:flex-row md:items-center md:justify-between md:py-6">
           <div>
             <p className="text-xs uppercase tracking-wide text-roh-military-olive font-semibold">
               {t("title")}
             </p>
-            <h1 className="text-2xl font-bold text-foreground">
+            <h1 className="text-xl font-bold text-foreground md:text-2xl">
               {t("dashboardHeading")}
             </h1>
           </div>
-          <div className="flex items-center gap-4">
-            <nav className="flex flex-wrap items-center gap-3 text-sm">
+          <div className="flex items-center gap-3">
+            <nav className="flex items-center gap-2 text-sm overflow-x-auto pb-1 md:pb-0 md:flex-wrap md:gap-3 scrollbar-none">
               {NAV_ITEMS.map((item) => (
                 <Link
                   key={item.key}
                   href={`/${locale}/admin${item.path}`}
-                  className="rounded-full border border-border px-4 py-1.5 hover:border-brand-red hover:text-brand-red transition-colors"
+                  className="rounded-full border border-border px-3 py-1 text-xs whitespace-nowrap hover:border-brand-red hover:text-brand-red transition-colors md:px-4 md:py-1.5 md:text-sm"
                 >
                   {t(`nav.${item.key}`)}
                 </Link>
@@ -60,7 +60,7 @@ export default async function AdminLayout({
           </div>
         </div>
       </header>
-      <main className="max-w-6xl mx-auto px-4 py-8">{children}</main>
+      <main className="max-w-6xl mx-auto px-4 py-4 md:py-8">{children}</main>
     </div>
   );
 }

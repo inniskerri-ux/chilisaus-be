@@ -24,7 +24,7 @@ export default async function ShopPage({
   const isEn = locale === "en";
   const productSelect = `
     id, name, slug, description, ${isEn ? "" : `description_${locale},`} price_cents, currency,
-    heat_level, image_url, stock, is_active, created_at,
+    heat_level, image_url, stock, is_active, created_at, wc_total_sales,
     brand:brands ( id, name, slug, country, description ${isEn ? "" : `, description_${locale}`} ),
     category:categories ( id, name, slug ${isEn ? "" : `, name_${locale}`} ),
     chilliTypes:products_chilli_types ( 
@@ -32,7 +32,7 @@ export default async function ShopPage({
     )
   `;
 
-  const [productsRes, categoriesRes, chilliTypesRes, brandsRes] =
+  const [productsRes, categoriesRes, chilliTypesRes, brandsRes, ratingsRes] =
     await Promise.all([
       supabase
         .from("products")
@@ -56,9 +56,15 @@ export default async function ShopPage({
           `id, name, slug, country, description ${isEn ? "" : `, description_${locale}`}`,
         )
         .order("name"),
+
+      supabase
+        .from("product_ratings")
+        .select("product_id, avg_rating, review_count"),
     ]);
 
   // Log errors if they occur
+  if (ratingsRes.error)
+    console.error("Ratings fetch error:", ratingsRes.error);
   if (productsRes.error)
     console.error("Products fetch error:", productsRes.error);
   if (categoriesRes.error)
@@ -67,8 +73,13 @@ export default async function ShopPage({
     console.error("ChilliTypes fetch error:", chilliTypesRes.error);
   if (brandsRes.error) console.error("Brands fetch error:", brandsRes.error);
 
+  const ratingsMap = new Map(
+    (ratingsRes.data ?? []).map((r: any) => [r.product_id, r]),
+  );
+
   const products: StoreProduct[] = (productsRes.data ?? []).map((row) => {
     const r = row as any; // Temporary cast to bypass complex Supabase join types for now, but better than Record<string, any> in map
+    const rating = ratingsMap.get(r.id);
     return {
       id: r.id,
       name: r.name,
@@ -81,6 +92,9 @@ export default async function ShopPage({
       stock: r.stock,
       is_active: r.is_active,
       created_at: r.created_at,
+      avgRating: rating ? Number(rating.avg_rating) : null,
+      reviewCount: rating ? Number(rating.review_count) : 0,
+      wc_total_sales: r.wc_total_sales ?? 0,
       brand: r.brand
         ? {
             id: r.brand.id,

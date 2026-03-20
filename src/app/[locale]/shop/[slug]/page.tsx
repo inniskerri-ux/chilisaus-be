@@ -4,6 +4,7 @@ import Link from "next/link";
 import { getTranslations } from "next-intl/server";
 import { createClient } from "@/lib/supabase/server";
 import { formatPrice } from "@/lib/format";
+import { Star } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import AddToCartButton from "@/components/store/AddToCartButton";
 import ProductReviews from "@/components/store/ProductReviews";
@@ -65,6 +66,15 @@ export default async function ProductPage({
 
   if (error) console.error("Product fetch error:", error);
   if (!row) notFound();
+
+  const { data: ratingRow } = await supabase
+    .from("product_ratings")
+    .select("avg_rating, review_count")
+    .eq("product_id", (row as any).id)
+    .maybeSingle();
+
+  const avgRating = ratingRow ? Number((ratingRow as any).avg_rating) : null;
+  const reviewCount = ratingRow ? Number((ratingRow as any).review_count) : 0;
 
   const rawProduct = row as Record<string, any>;
   const brand = rawProduct.brand as {
@@ -171,6 +181,24 @@ export default async function ProductPage({
                 {brand.name}
               </span>
             </p>
+          )}
+
+          {reviewCount > 0 && (
+            <div className="flex items-center gap-2">
+              <div className="flex text-orange-400">
+                {[...Array(5)].map((_, i) => (
+                  <Star
+                    key={i}
+                    size={16}
+                    fill={i < Math.round(avgRating ?? 0) ? "currentColor" : "none"}
+                    className={i < Math.round(avgRating ?? 0) ? "" : "text-zinc-200"}
+                  />
+                ))}
+              </div>
+              <span className="text-sm text-zinc-500">
+                {avgRating?.toFixed(1)} ({reviewCount} {reviewCount === 1 ? t("reviewCount") : t("reviewsCount")})
+              </span>
+            </div>
           )}
 
           <p className="text-3xl font-bold text-foreground">

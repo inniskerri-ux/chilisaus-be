@@ -9,7 +9,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Loader2, CheckCircle2 } from "lucide-react";
+import { Loader2, CheckCircle2, PackageSearch } from "lucide-react";
 
 export default function SignUpPage({ params }: { params: { locale: string } }) {
   const t = useTranslations("Auth");
@@ -84,6 +84,16 @@ export default function SignUpPage({ params }: { params: { locale: string } }) {
 
   return (
     <main className="mx-auto max-w-md px-4 py-20">
+      {/* Legacy customer banner */}
+      <div className="mb-6 flex gap-3 rounded-xl border border-orange-200 bg-orange-50 px-4 py-4">
+        <PackageSearch className="mt-0.5 h-5 w-5 shrink-0 text-orange-500" />
+        <p className="text-sm text-orange-800">
+          <span className="font-bold">Ordered from us before?</span> Sign up with
+          the same email address you used and your full order history will be
+          waiting for you automatically.
+        </p>
+      </div>
+
       <Card className="shadow-xl border-zinc-100">
         <CardHeader className="space-y-1 pb-8">
           <CardTitle className="text-3xl font-black uppercase tracking-tight text-center">

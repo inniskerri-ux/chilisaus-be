@@ -38,3 +38,13 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
 }
+
+
+/* Hide scrollbar for overflow-x-auto horizontal scroll areas */
+.scrollbar-none {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}

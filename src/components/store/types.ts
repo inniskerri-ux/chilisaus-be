@@ -38,4 +38,7 @@ export interface StoreProduct {
   stock?: number;
   is_active?: boolean;
   created_at?: string;
+  avgRating?: number | null;
+  reviewCount?: number;
+  wc_total_sales?: number;
 }

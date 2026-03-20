@@ -108,7 +108,7 @@ export default function SignInPage() {
               {t("SignIn")}
             </Button>
 
-            <div className="text-center pt-4">
+            <div className="text-center pt-4 space-y-2">
               <p className="text-sm text-zinc-500">
                 Don&apos;t have an account?{" "}
                 <Link
@@ -117,6 +117,10 @@ export default function SignInPage() {
                 >
                   {t("SignUp")}
                 </Link>
+              </p>
+              <p className="text-xs text-zinc-400">
+                Ordered from us before? Use your original email when signing up
+                to restore your order history.
               </p>
             </div>
           </form>
