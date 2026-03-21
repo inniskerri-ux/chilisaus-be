@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
 import { sendEmail } from "@/lib/emails/client";
 import { getNewsletterWelcomeHtml } from "@/lib/emails/templates";
-import { subscribeUser } from "@/lib/marketing/mailchimp";
+import { subscribeToMailingList } from "@/lib/marketing/mailing-list";
 
 const supabaseAdmin = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -46,10 +46,10 @@ export async function GET(req: NextRequest) {
       .update({ confirmed_at: new Date().toISOString() })
       .eq("id", signup.id);
 
-    // 3. Subscribe to Mailchimp
-    await subscribeUser({
+    // 3. Add to mailing list
+    await subscribeToMailingList({
       email: signup.email,
-      tags: ["newsletter", "confirmed"],
+      source: "newsletter_signup",
     });
 
     // 4. Send Welcome Email with Voucher Code

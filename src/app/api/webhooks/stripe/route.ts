@@ -7,7 +7,7 @@ import {
   getOrderConfirmationHtml,
   getLowStockEmailHtml,
 } from "@/lib/emails/templates";
-import { subscribeUser } from "@/lib/marketing/mailchimp";
+import { subscribeToMailingList } from "@/lib/marketing/mailing-list";
 import { calculateTaxFromTotal } from "@/lib/checkout/pricing";
 
 const stripe = getStripeServerClient();
@@ -219,11 +219,11 @@ async function handleOrderCompleted(session: any) {
     html: getOrderConfirmationHtml(emailPayload),
   });
 
-  // 7. Sync to Mailchimp
-  await subscribeUser({
+  // 7. Add to mailing list
+  await subscribeToMailingList({
     email: order.customer_email,
     firstName: order.shipping_name.split(" ")[0],
-    tags: ["customer", "purchaser"],
+    source: "order",
   });
 
   // 8. Clean up cart (optional but recommended)
