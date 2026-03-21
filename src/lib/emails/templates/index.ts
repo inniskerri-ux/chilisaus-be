@@ -255,20 +255,24 @@ export function getNewsletterVerificationHtml(confirmUrl: string): string {
 /**
  * Newsletter Welcome Email with Voucher
  */
-export function getNewsletterWelcomeHtml(voucherCode: string): string {
-  return `
-    <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; color: #333; text-align: center;">
-      <h1 style="color: #000;">Welcome to the family! 🌶️</h1>
+export function getNewsletterWelcomeHtml(voucherCode: string | null): string {
+  const voucherBlock = voucherCode
+    ? `
       <p>Your email has been confirmed. As promised, here is your spicy discount:</p>
-      
       <div style="background: #f9f9f9; border: 2px dashed #d32f2f; padding: 30px; margin: 30px 0; border-radius: 12px;">
         <p style="text-transform: uppercase; font-size: 0.9em; letter-spacing: 1px; margin-bottom: 10px; color: #666;">Use this code at checkout:</p>
         <span style="font-family: monospace; font-size: 2.5em; font-bold; color: #d32f2f; letter-spacing: 2px;">${voucherCode}</span>
         <p style="margin-top: 15px; font-size: 1.1em; font-weight: bold;">10% OFF YOUR NEXT ORDER</p>
-      </div>
+      </div>`
+    : `<p>Your email has been confirmed. You're now subscribed to the spiciest newsletter in Belgium!</p>`;
+
+  return `
+    <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; color: #333; text-align: center;">
+      <h1 style="color: #000;">Welcome to the family! 🌶️</h1>
+      ${voucherBlock}
 
       <p>Get ready for recipes, new arrivals, and limited edition drops.</p>
-      
+
       <div style="margin-top: 40px;">
         <a href="https://chilisaus.be/shop" style="background: #000; color: #fff; padding: 12px 24px; text-decoration: none; border-radius: 4px; font-weight: bold;">
           Start Shopping

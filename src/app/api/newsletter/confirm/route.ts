@@ -52,14 +52,22 @@ export async function GET(req: NextRequest) {
       source: "newsletter_signup",
     });
 
-    // 4. Send Welcome Email with Voucher Code
-    // We assume WELCOME10 exists in Stripe/Vouchers
-    const voucherCode = "WELCOME10";
-    await sendEmail({
-      to: signup.email,
-      subject: "Welcome! Here is your 10% discount code 🎁",
-      html: getNewsletterWelcomeHtml(voucherCode),
-    });
+    // 4. Send Welcome Email — only include WELCOME10 voucher if they haven't
+    // already used a discount in the legacy WooCommerce store.
+    if (!signup.legacy_discount_used) {
+      const voucherCode = "WELCOME10";
+      await sendEmail({
+        to: signup.email,
+        subject: "Welcome! Here is your 10% discount code 🎁",
+        html: getNewsletterWelcomeHtml(voucherCode),
+      });
+    } else {
+      await sendEmail({
+        to: signup.email,
+        subject: "Welcome to the Chilisaus.be newsletter! 🌶️",
+        html: getNewsletterWelcomeHtml(null),
+      });
+    }
 
     // 5. Redirect to home with success state
     return NextResponse.redirect(

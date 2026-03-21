@@ -75,8 +75,11 @@ async function handleOrderCompleted(session: any) {
   const userId = metadata?.user_id;
 
   // Check if a promotion code was used
-  const promoCodeId =
-    total_details?.breakdown?.discounts?.[0]?.discount?.promotion_code;
+  const discount = total_details?.breakdown?.discounts?.[0]?.discount;
+  const promoCodeId = discount?.promotion_code;
+  const promoCodeStr = discount?.promotion_code
+    ? (await stripe.promotionCodes.retrieve(discount.promotion_code)).code
+    : null;
   if (promoCodeId) {
     // Increment redemption count in Supabase
     await supabaseAdmin.rpc("increment_voucher_redemption", {
@@ -105,6 +108,7 @@ async function handleOrderCompleted(session: any) {
       stripe_session_id: session.id,
       stripe_payment_intent_id: session.payment_intent,
       status: "paid",
+      voucher_code: promoCodeStr,
       subtotal_cents: subtotalCents,
       shipping_cents: shippingCents,
       tax_cents: taxCents,
