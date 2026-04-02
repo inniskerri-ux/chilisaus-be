@@ -15,7 +15,8 @@
     "Account": "Konto",
     "Dashboard": "Dashboard",
     "Scoville": "Scoville",
-    "Videos": "Videoer"
+    "Reviews": "Reviews",
+    "Events" : "Events"
   },
   "Cart": {
     "title": "Din indkøbskurv",
@@ -74,6 +75,8 @@
       "brands": "Brands",
       "marketing": "Marketing",
       "vouchers": "Vouchers",
+      "events": "Events",
+      "video_reviews": "Video Reviews",
       "newProduct": "New product"
     },
     "stats": {
@@ -132,10 +135,11 @@
       "filters": {
         "heatLevel": "Styrke",
         "heatLevels": {
-          "mild": "Mild",
-          "medium": "Middel",
-          "hot": "Stærk",
-          "extreme": "Ekstrem styrke"
+          "mild": "Mild 1-4",
+          "medium": "Medium 5-7",
+          "hot": "Stærk 8-9",
+          "veryHot": "Meget Stærk 10",
+          "superHot": "Super Stærk 11-20"
         },
         "pepper": "Peber",
         "allChilliTypes": "Alle chilier",
@@ -186,6 +190,7 @@
     "outOfStock": "Udsolgt",
     "addToCart": "Læg i kurv",
     "description": "Beskrivelse",
+    "pairing": "Serveringsforslag",
     "ingredients": "Ingredienser",
     "peppers": "Chilier",
     "reviewsTitle": "Kundeanmeldelser",
@@ -193,7 +198,43 @@
     "reviewsCount": "anmeldelser",
     "writeReview": "Skriv en anmeldelse",
     "noReviews": "Ingen anmeldelser endnu. Vær den første til at dele din oplevelse!",
-    "verifiedPurchase": "Bekræftet køb"
+    "verifiedPurchase": "Bekræftet køb",
+    "signInToReview": "Log ind for at anmelde",
+    "showMore": "Vis alle",
+    "showLess": "Vis færre",
+    "purchaseRequired": "Køb dette produkt for at skrive en anmeldelse"
+  },
+  "Events": {
+    "title": "Upcoming Events",
+    "subtitle": "Meet us in person at these chili festivals and markets across Europe.",
+    "intro": "A lot of you have met me at events across the country. I'm passionate about bringing the best sauces directly to you, keeping it personal and simple. Check out where we'll be next!",
+    "locations": {
+      "brussels": "Brussels Winterpret (Brussels, BE)",
+      "gent": "Gentse Winterfeesten (Gent, BE)",
+      "eindhoven": "Feel Good Market (Eindhoven, NL)",
+      "amsterdam": "Pure Markt (Amsterdam, NL)",
+      "ham": "Chilifest.be / Chilli Fair EU (Ham, BE)",
+      "berlin": "Berlin Chili Fest (Berlin, DE)",
+      "dutch": "Dutch Chili Fest (Eindhoven, NL)",
+      "antwerp": "Antwerp Chili Fest (Antwerp, BE)",
+      "landgraaf": "El Mundo Fantasia (Landgraaf, NL)"
+    }
+  },
+  "Reviews": {
+    "title": "Hot Sauce Reviews",
+    "subtitle": "Watch the experts take on our spicy collection.",
+    "featured": "Featured Reviews",
+    "items": {
+      "pepperX": "High River Sauces - Pepper X Taco Sauce",
+      "edition2023": "Johnny Scoville - Chilisaus.be 2023 Edition",
+      "edition2022": "Johnny Scoville - Chilisaus.be 2022 Edition",
+      "rabbit": "Frank (Inland Rabbit) - Chilisaus.be 2020 & 2022",
+      "evilOne": "Clifton Chilli Club - Evil One (Heat Level 10)",
+      "hotOnes": "Hot Ones - Trinidad Scorpion Feature",
+      "stoneCold": "Stone Cold Steve Austin - Trinidad Scorpion Reaction",
+      "happyHatter": "Johnny Scoville & UK Queen - Happy Hatter Original",
+      "limonhello": "Johnny Scoville - White Whale Limonhello"
+    }
   },
   "Legal": {
     "notice": "Juridisk meddelelse",

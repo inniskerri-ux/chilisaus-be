@@ -49,7 +49,9 @@ export default async function ProductPage({
   const productSelect = `
     id, name, slug, description, ${isEn ? "" : `description_${locale},`} details, ${isEn ? "" : `details_${locale},`}
     price_cents, currency, heat_level,
-    image_url, capacity_ml, ingredients, ${isEn ? "" : `ingredients_${locale},`} stock, is_active,
+    image_url, capacity_ml, ingredients, ${isEn ? "" : `ingredients_${locale},`}
+    pairing, ${isEn ? "" : `pairing_${locale},`}
+    stock, is_active,
     brand:brands ( id, name, slug ),
     category:categories ( id, name, slug ${isEn ? "" : `, name_${locale}`} ),
     chilliTypes:products_chilli_types (
@@ -112,6 +114,7 @@ export default async function ProductPage({
     ...rawProduct,
     description: getLocalizedField(rawProduct, "description", locale),
     ingredients: getLocalizedField(rawProduct, "ingredients", locale),
+    pairing: getLocalizedField(rawProduct, "pairing", locale),
     details: getLocalizedField(rawProduct, "details", locale),
   };
 
@@ -232,6 +235,18 @@ export default async function ProductPage({
               </h2>
               <p className="text-sm text-text-muted leading-relaxed whitespace-pre-line">
                 {product.description}
+              </p>
+            </div>
+          )}
+
+          {/* Pairing */}
+          {product.pairing && (
+            <div className="border-t border-border pt-4">
+              <h2 className="text-sm font-semibold text-foreground mb-2">
+                {t("pairing")}
+              </h2>
+              <p className="text-sm text-text-muted leading-relaxed whitespace-pre-line">
+                {product.pairing}
               </p>
             </div>
           )}

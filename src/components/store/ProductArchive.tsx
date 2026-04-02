@@ -27,8 +27,8 @@ const HEAT_BAND_SLUGS = new Set([
   "mild",
   "medium",
   "hot",
-  "very-hot",
-  "superhot",
+  "veryHot",
+  "superHot",
 ]);
 
 const resolveHeatRank = (value?: string | number | null): number | null => {
@@ -41,10 +41,11 @@ const resolveHeatRank = (value?: string | number | null): number | null => {
 
 const resolveHeatCategory = (rank: number | null): string | null => {
   if (rank === null) return null;
-  if (rank <= 3) return "mild";
+  if (rank <= 4) return "mild";
   if (rank <= 7) return "medium";
-  if (rank <= 10) return "hot";
-  return "extreme";
+  if (rank <= 9) return "hot";
+  if (rank === 10) return "veryHot";
+  return "superHot";
 };
 
 function ProductArchiveContent({
@@ -123,8 +124,7 @@ function ProductArchiveContent({
       const productHeatCategory = resolveHeatCategory(productHeatRank);
 
       const matchesHeatLevel =
-        !selectedHeatLevel ||
-        productHeatCategory === selectedHeatLevel.toLowerCase();
+        !selectedHeatLevel || productHeatCategory === selectedHeatLevel;
 
       const matchesChilliType =
         !selectedChilliType ||
@@ -309,11 +309,13 @@ function ProductArchiveContent({
                          focus:outline-none focus:ring-2 focus:ring-brand-red"
               >
                 <option value="">All Heat Levels</option>
-                {["mild", "medium", "hot", "extreme"].map((level) => (
-                  <option key={level} value={level}>
-                    {t(`search.filters.heatLevels.${level}`)}
-                  </option>
-                ))}
+                {["mild", "medium", "hot", "veryHot", "superHot"].map(
+                  (level) => (
+                    <option key={level} value={level}>
+                      {t(`search.filters.heatLevels.${level}`)}
+                    </option>
+                  ),
+                )}
               </select>
             </label>
 

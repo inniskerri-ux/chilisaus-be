@@ -15,7 +15,8 @@
     "Account": "Konto",
     "Dashboard": "Dashboard",
     "Scoville": "Scoville",
-    "Videos": "Videos"
+    "Reviews": "Bewertungen",
+    "Events": "Events"
   },
   "Cart": {
     "title": "Dein Warenkorb",
@@ -74,6 +75,8 @@
       "brands": "Brands",
       "marketing": "Marketing",
       "vouchers": "Vouchers",
+      "events": "Events",
+      "video_reviews": "Video-Bewertungen",
       "newProduct": "New product"
     },
     "stats": {
@@ -132,10 +135,11 @@
       "filters": {
         "heatLevel": "Schärfegrad",
         "heatLevels": {
-          "mild": "Mild",
-          "medium": "Mittel",
-          "hot": "Scharf",
-          "extreme": "Extrem Scharf"
+          "mild": "Mild 1-4",
+          "medium": "Mittelscharf 5-7",
+          "hot": "Scharf 8-9",
+          "veryHot": "Sehr Scharf 10",
+          "superHot": "Extrem Scharf 11-20"
         },
         "pepper": "Pfeffer",
         "allChilliTypes": "Alle Paprika",
@@ -186,6 +190,7 @@
     "outOfStock": "Ausverkauft",
     "addToCart": "In den Warenkorb",
     "description": "Beschreibung",
+    "pairing": "Serviervorschläge",
     "ingredients": "Zutaten",
     "peppers": "Paprika",
     "reviewsTitle": "Kundenbewertungen",
@@ -193,7 +198,43 @@
     "reviewsCount": "Bewertungen",
     "writeReview": "Bewertung schreiben",
     "noReviews": "Noch keine Bewertungen. Sei der Erste, der seine Erfahrungen teilt!",
-    "verifiedPurchase": "Verifizierter Kauf"
+    "verifiedPurchase": "Verifizierter Kauf",
+    "signInToReview": "Anmelden, um eine Bewertung abzugeben",
+    "showMore": "Alle anzeigen",
+    "showLess": "Weniger anzeigen",
+    "purchaseRequired": "Kaufen Sie dieses Produkt, um eine Bewertung abzugeben"
+  },
+  "Events": {
+    "title": "Zukünftige Veranstaltungen",
+    "subtitle": "Treffen Sie uns persönlich auf diesen Chili-Festivals und Märkten in ganz Europa.",
+    "intro": "Viele von euch haben mich bei Veranstaltungen im ganzen Land getroffen. Ich brenne dafür, euch die besten Saucen direkt zu bringen, persönlich und einfach. Schaut nach, wo wir als Nächstes sind!",
+    "locations": {
+      "brussels": "Brussels Winterpret (Brüssel, BE)",
+      "gent": "Gentse Winterfeesten (Gent, BE)",
+      "eindhoven": "Feel Good Market (Eindhoven, NL)",
+      "amsterdam": "Pure Markt (Amsterdam, NL)",
+      "ham": "Chilifest.be / Chilli Fair EU (Ham, BE)",
+      "berlin": "Berlin Chili Fest (Berlin, DE)",
+      "dutch": "Dutch Chili Fest (Eindhoven, NL)",
+      "antwerp": "Antwerp Chili Fest (Antwerpen, BE)",
+      "landgraaf": "El Mundo Fantasia (Landgraaf, NL)"
+    }
+  },
+  "Reviews": {
+    "title": "Bewertungen scharfer Saucen",
+    "subtitle": "Sehen Sie zu, wie Experten unsere scharfe Kollektion probieren.",
+    "featured": "Ausgewählte Bewertungen",
+    "items": {
+      "pepperX": "High River Sauces - Pepper X Taco Sauce",
+      "edition2023": "Johnny Scoville - Chilisaus.be 2023 Edition",
+      "edition2022": "Johnny Scoville - Chilisaus.be 2022 Edition",
+      "rabbit": "Frank (Inland Rabbit) - Chilisaus.be 2020 & 2022",
+      "evilOne": "Clifton Chilli Club - Evil One (Schärfegrad 10)",
+      "hotOnes": "Hot Ones - Trinidad Scorpion Feature",
+      "stoneCold": "Stone Cold Steve Austin - Trinidad Scorpion Reaction",
+      "happyHatter": "Johnny Scoville & UK Queen - Happy Hatter Original",
+      "limonhello": "Johnny Scoville - White Whale Limonhello"
+    }
   },
   "Legal": {
     "notice": "Impressum",

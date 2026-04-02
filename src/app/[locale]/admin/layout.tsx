@@ -14,9 +14,10 @@ const NAV_ITEMS = [
   { key: "dashboard", path: "" },
   { key: "products", path: "/products" },
   { key: "brands", path: "/brands" },
+  { key: "events", path: "/events" },
+  { key: "video_reviews", path: "/reviews" },
   { key: "marketing", path: "/marketing" },
   { key: "vouchers", path: "/vouchers" },
-  { key: "newProduct", path: "/products/new" },
 ];
 
 export default async function AdminLayout({

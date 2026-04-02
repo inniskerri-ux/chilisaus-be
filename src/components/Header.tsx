@@ -40,12 +40,24 @@ export default async function Header({ locale }: { locale: string }) {
           />
         </Link>
 
-        <nav className="hidden md:flex items-center gap-8 text-sm font-bold uppercase tracking-widest">
+        <nav className="hidden lg:flex items-center gap-8 text-sm font-bold uppercase tracking-widest">
           <Link
             href={`/${locale}/shop`}
             className="text-zinc-600 hover:text-brand-red transition-colors"
           >
             {tNav("Shop")}
+          </Link>
+          <Link
+            href={`/${locale}/events`}
+            className="text-zinc-600 hover:text-brand-red transition-colors"
+          >
+            {tNav("Events") || "Events"}
+          </Link>
+          <Link
+            href={`/${locale}/reviews`}
+            className="text-zinc-600 hover:text-brand-red transition-colors"
+          >
+            {tNav("Reviews") || "Reviews"}
           </Link>
           <Link
             href={`/${locale}/scoville-scale`}

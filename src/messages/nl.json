@@ -15,7 +15,8 @@
     "Account": "Account",
     "Dashboard": "Dashboard",
     "Scoville": "Scoville",
-    "Videos": "Video's"
+    "Reviews": "Reviews",
+    "Events": "Events"
   },
   "Cart": {
     "title": "Je Winkelwagen",
@@ -70,11 +71,13 @@
     "dashboardWelcomeCopy": "Use the admin panel to add new sauces, edit listings, and keep imagery fresh.",
     "nav": {
       "dashboard": "Dashboard",
-      "products": "Products",
-      "brands": "Brands",
+      "products": "Producten",
+      "brands": "Merken",
       "marketing": "Marketing",
-      "vouchers": "Vouchers",
-      "newProduct": "New product"
+      "vouchers": "Waardebonnen",
+      "events": "Evenementen",
+      "video_reviews": "Video Reviews",
+      "newProduct": "Nieuw product"
     },
     "stats": {
       "products": "Products",
@@ -132,10 +135,11 @@
       "filters": {
         "heatLevel": "Heetheid",
         "heatLevels": {
-          "mild": "Mild",
-          "medium": "Medium",
-          "hot": "Heet",
-          "extreme": "Extreem Heet"
+          "mild": "Mild 1-4",
+          "medium": "Medium 5-7",
+          "hot": "Heet 8-9",
+          "veryHot": "Zeer Heet 10",
+          "superHot": "Super Heet 11-20"
         },
         "pepper": "Peper",
         "allChilliTypes": "Alle pepers",
@@ -186,6 +190,7 @@
     "outOfStock": "Uitverkocht",
     "addToCart": "In winkelwagen",
     "description": "Beschrijving",
+    "pairing": "Serveersuggesties",
     "ingredients": "Ingrediënten",
     "peppers": "Pepers",
     "reviewsTitle": "Klantenbeoordelingen",
@@ -193,7 +198,43 @@
     "reviewsCount": "beoordelingen",
     "writeReview": "Schrijf een beoordeling",
     "noReviews": "Nog geen beoordelingen. Deel als eerste je ervaring!",
-    "verifiedPurchase": "Geverifieerde aankoop"
+    "verifiedPurchase": "Geverifieerde aankoop",
+    "signInToReview": "Log in om een beoordeling te schrijven",
+    "showMore": "Toon alles",
+    "showLess": "Toon minder",
+    "purchaseRequired": "Koop dit product om een beoordeling achter te laten"
+  },
+  "Events": {
+    "title": "Aankomende Evenementen",
+    "subtitle": "Ontmoet ons persoonlijk op deze chilifestivals en markten in heel Europa.",
+    "intro": "Velen van jullie hebben me ontmoet op evenementen door het hele land. Ik ben gepassioneerd over het rechtstreeks naar jou brengen van de beste sauzen, op een persoonlijke en eenvoudige manier. Bekijk waar we de volgende keer zijn!",
+    "locations": {
+      "brussels": "Brussels Winterpret (Brussel, BE)",
+      "gent": "Gentse Winterfeesten (Gent, BE)",
+      "eindhoven": "Feel Good Market (Eindhoven, NL)",
+      "amsterdam": "Pure Markt (Amsterdam, NL)",
+      "ham": "Chilifest.be / Chilli Fair EU (Ham, BE)",
+      "berlin": "Berlin Chili Fest (Berlijn, DE)",
+      "dutch": "Dutch Chili Fest (Eindhoven, NL)",
+      "antwerp": "Antwerpen Chili Fest (Antwerpen, BE)",
+      "landgraaf": "El Mundo Fantasia (Landgraaf, NL)"
+    }
+  },
+  "Reviews": {
+    "title": "Hete Saus Reviews",
+    "subtitle": "Bekijk hoe de experts onze pittige collectie beoordelen.",
+    "featured": "Uitgelichte Reviews",
+    "items": {
+      "pepperX": "High River Sauces - Pepper X Taco Sauce",
+      "edition2023": "Johnny Scoville - Chilisaus.be 2023 Edition",
+      "edition2022": "Johnny Scoville - Chilisaus.be 2022 Edition",
+      "rabbit": "Frank (Inland Rabbit) - Chilisaus.be 2020 & 2022",
+      "evilOne": "Clifton Chilli Club - Evil One (Heat Level 10)",
+      "hotOnes": "Hot Ones - Trinidad Scorpion Feature",
+      "stoneCold": "Stone Cold Steve Austin - Trinidad Scorpion Reaction",
+      "happyHatter": "Johnny Scoville & UK Queen - Happy Hatter Original",
+      "limonhello": "Johnny Scoville - White Whale Limonhello"
+    }
   },
   "Legal": {
     "notice": "Colofon",
@@ -264,7 +305,7 @@
         "title": "Heet (10.000 - 50.000 SHU)",
         "description": "Nu begint het echte werk. De Serrano- en Cayennepepers wonen hier. Deze pepers geven een scherpe, heldere hitte die lang op de tong blijft hangen."
       },
-      "extraHot": {
+      "extraHeet": {
         "title": "Extra Heet (50.000 - 100.000 SHU)",
         "description": "Met voorzichtigheid benaderen. De Thaise Bird's Eye-peper en de Malagueta bieden een flinke kick waar de meeste mensen van gaan zweten."
       },
@@ -272,7 +313,7 @@
         "title": "Vulkanisch (100.000 - 350.000 SHU)",
         "description": "Serieuze hitte voor de dapperen. De legendarische Habanero en Scotch Bonnet pepers zijn hier te vinden, vaak met fruitige of bloemige tonen onder het vuur."
       },
-      "superhot": {
+      "superheet": {
         "title": "Superheet (350.000 - 2.200.000+ SHU)",
         "description": "De gevarenzone. Van de Ghost Pepper (Bhut Jolokia) tot de wereldrecordhouder Carolina Reaper; deze pepers bevatten enorme hoeveelheden capsaïcine."
       }

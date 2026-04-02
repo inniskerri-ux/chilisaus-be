@@ -15,7 +15,8 @@
     "Account": "Профіль",
     "Dashboard": "Панель",
     "Scoville": "Сковіл",
-    "Videos": "Відео"
+    "Reviews": "Reviews",
+    "Events" : "Events"
   },
   "Cart": {
     "title": "Ваш кошик",
@@ -74,6 +75,8 @@
       "brands": "Brands",
       "marketing": "Marketing",
       "vouchers": "Vouchers",
+      "events": "Events",
+      "video_reviews": "Video Reviews",
       "newProduct": "New product"
     },
     "stats": {
@@ -132,10 +135,11 @@
       "filters": {
         "heatLevel": "Рівень гостроти",
         "heatLevels": {
-          "mild": "Лагідний",
-          "medium": "Середній",
-          "hot": "Гострий",
-          "extreme": "Екстремально гострий"
+          "mild": "Лагідний 1-4",
+          "medium": "Середній 5-7",
+          "hot": "Гострий 8-9",
+          "veryHot": "Дуже Гострий 10",
+          "superHot": "Супер Гострий 11-20"
         },
         "pepper": "Перець",
         "allChilliTypes": "Всі перці",
@@ -184,8 +188,9 @@
     "heatLevel": "Рівень гостроти",
     "inStock": "В наявності",
     "outOfStock": "Немає в наявності",
-    "addToCart": "Додати в кошик",
+    "addToCart": "Додати в колишк",
     "description": "Опис",
+    "pairing": "Поєднання зі стравами",
     "ingredients": "Інгредієнти",
     "peppers": "Перці",
     "reviewsTitle": "Відгуки клієнтів",
@@ -193,7 +198,43 @@
     "reviewsCount": "відгуків",
     "writeReview": "Написати відгук",
     "noReviews": "Відгуків ще немає. Будьте першими, хто поділиться враженнями!",
-    "verifiedPurchase": "Підтверджена покупка"
+    "verifiedPurchase": "Підтверджена покупка",
+    "signInToReview": "Увійдіть, щоб залишити відгук",
+    "showMore": "Показати все",
+    "showLess": "Показати менше",
+    "purchaseRequired": "Придбайте цей товар, щоб залишити відгук"
+  },
+  "Events": {
+    "title": "Upcoming Events",
+    "subtitle": "Meet us in person at these chili festivals and markets across Europe.",
+    "intro": "A lot of you have met me at events across the country. I'm passionate about bringing the best sauces directly to you, keeping it personal and simple. Check out where we'll be next!",
+    "locations": {
+      "brussels": "Brussels Winterpret (Brussels, BE)",
+      "gent": "Gentse Winterfeesten (Gent, BE)",
+      "eindhoven": "Feel Good Market (Eindhoven, NL)",
+      "amsterdam": "Pure Markt (Amsterdam, NL)",
+      "ham": "Chilifest.be / Chilli Fair EU (Ham, BE)",
+      "berlin": "Berlin Chili Fest (Berlin, DE)",
+      "dutch": "Dutch Chili Fest (Eindhoven, NL)",
+      "antwerp": "Antwerp Chili Fest (Antwerp, BE)",
+      "landgraaf": "El Mundo Fantasia (Landgraaf, NL)"
+    }
+  },
+  "Reviews": {
+    "title": "Hot Sauce Reviews",
+    "subtitle": "Watch the experts take on our spicy collection.",
+    "featured": "Featured Reviews",
+    "items": {
+      "pepperX": "High River Sauces - Pepper X Taco Sauce",
+      "edition2023": "Johnny Scoville - Chilisaus.be 2023 Edition",
+      "edition2022": "Johnny Scoville - Chilisaus.be 2022 Edition",
+      "rabbit": "Frank (Inland Rabbit) - Chilisaus.be 2020 & 2022",
+      "evilOne": "Clifton Chilli Club - Evil One (Heat Level 10)",
+      "hotOnes": "Hot Ones - Trinidad Scorpion Feature",
+      "stoneCold": "Stone Cold Steve Austin - Trinidad Scorpion Reaction",
+      "happyHatter": "Johnny Scoville & UK Queen - Happy Hatter Original",
+      "limonhello": "Johnny Scoville - White Whale Limonhello"
+    }
   },
   "Legal": {
     "notice": "Юридична інформація",
