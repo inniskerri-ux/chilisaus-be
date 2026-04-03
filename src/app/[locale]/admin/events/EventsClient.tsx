@@ -125,27 +125,23 @@ export default function EventsClient({ events: initialEvents }: { events: any[] 
             <CardContent className="pt-6">
               {editingId === event.id ? (
                 <div className="space-y-3">
-                  <Input 
-                    size="sm"
-                    value={editForm.name} 
+                  <Input
+                    value={editForm.name}
                     onChange={e => setEditForm({...editForm, name: e.target.value})}
                     placeholder="Name"
                   />
-                  <Input 
-                    size="sm"
-                    value={editForm.location} 
+                  <Input
+                    value={editForm.location}
                     onChange={e => setEditForm({...editForm, location: e.target.value})}
                     placeholder="Location"
                   />
-                  <Input 
-                    size="sm"
-                    value={editForm.date_info} 
+                  <Input
+                    value={editForm.date_info}
                     onChange={e => setEditForm({...editForm, date_info: e.target.value})}
                     placeholder="Date Info"
                   />
-                  <Input 
-                    size="sm"
-                    value={editForm.website_url} 
+                  <Input
+                    value={editForm.website_url}
                     onChange={e => setEditForm({...editForm, website_url: e.target.value})}
                     placeholder="Website URL"
                   />

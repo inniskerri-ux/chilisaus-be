@@ -116,21 +116,18 @@ export default function ReviewsClient({ reviews: initialReviews }: { reviews: an
             <CardContent className="pt-6">
               {editingId === review.id ? (
                 <div className="space-y-3">
-                  <Input 
-                    size="sm"
-                    value={editForm.title} 
+                  <Input
+                    value={editForm.title}
                     onChange={e => setEditForm({...editForm, title: e.target.value})}
                     placeholder="Title"
                   />
-                  <Input 
-                    size="sm"
-                    value={editForm.reviewer} 
+                  <Input
+                    value={editForm.reviewer}
                     onChange={e => setEditForm({...editForm, reviewer: e.target.value})}
                     placeholder="Reviewer"
                   />
-                  <Input 
-                    size="sm"
-                    value={editForm.youtube_id} 
+                  <Input
+                    value={editForm.youtube_id}
                     onChange={e => setEditForm({...editForm, youtube_id: e.target.value})}
                     placeholder="YouTube ID"
                   />
