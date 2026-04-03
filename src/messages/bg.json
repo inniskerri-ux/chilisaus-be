@@ -15,8 +15,8 @@
     "Account": "Профил",
     "Dashboard": "Табло",
     "Scoville": "Сковил",
-    "Reviews": "Reviews",
-    "Events" : "Events"
+    "Reviews": "Ревюта",
+    "Events": "Събития"
   },
   "Cart": {
     "title": "Вашата количка",
@@ -189,6 +189,7 @@
     "inStock": "В наличност",
     "outOfStock": "Изчерпан",
     "addToCart": "Добави в количката",
+    "buyNow": "Купи сега",
     "description": "Описание",
     "pairing": "Предложения за сервиране",
     "ingredients": "Съставки",

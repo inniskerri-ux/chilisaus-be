@@ -15,8 +15,8 @@
     "Account": "Konto",
     "Dashboard": "Dashboard",
     "Scoville": "Scoville",
-    "Reviews": "Reviews",
-    "Events" : "Events"
+    "Reviews": "Recensioner",
+    "Events": "Evenemang"
   },
   "Cart": {
     "title": "Din varukorg",
@@ -189,6 +189,7 @@
     "inStock": "I lager",
     "outOfStock": "Slutsåld",
     "addToCart": "Lägg i varukorg",
+    "buyNow": "Köp nu",
     "description": "Beskrivning",
     "pairing": "Serveringsförslag",
     "ingredients": "Ingredienser",

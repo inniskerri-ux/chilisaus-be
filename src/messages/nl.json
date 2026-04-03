@@ -15,8 +15,8 @@
     "Account": "Account",
     "Dashboard": "Dashboard",
     "Scoville": "Scoville",
-    "Reviews": "Reviews",
-    "Events": "Events"
+    "Reviews": "Beoordelingen",
+    "Events": "Evenementen"
   },
   "Cart": {
     "title": "Je Winkelwagen",
@@ -189,6 +189,7 @@
     "inStock": "Op voorraad",
     "outOfStock": "Uitverkocht",
     "addToCart": "In winkelwagen",
+    "buyNow": "Direct kopen",
     "description": "Beschrijving",
     "pairing": "Serveersuggesties",
     "ingredients": "Ingrediënten",

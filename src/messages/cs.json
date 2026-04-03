@@ -15,8 +15,8 @@
     "Account": "Účet",
     "Dashboard": "Přehled",
     "Scoville": "Scoville",
-    "Reviews": "Reviews",
-    "Events" : "Events"
+    "Reviews": "Recenze",
+    "Events": "Akce"
   },
   "Cart": {
     "title": "Váš Nákupní Košík",
@@ -189,6 +189,7 @@
     "inStock": "Skladem",
     "outOfStock": "Vyprodáno",
     "addToCart": "Přidat do košíku",
+    "buyNow": "Koupit nyní",
     "description": "Popis",
     "pairing": "Doporučené párování",
     "ingredients": "Ingredience",

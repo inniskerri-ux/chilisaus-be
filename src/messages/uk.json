@@ -15,8 +15,8 @@
     "Account": "Профіль",
     "Dashboard": "Панель",
     "Scoville": "Сковіл",
-    "Reviews": "Reviews",
-    "Events" : "Events"
+    "Reviews": "Відгуки",
+    "Events": "Події"
   },
   "Cart": {
     "title": "Ваш кошик",
@@ -189,6 +189,7 @@
     "inStock": "В наявності",
     "outOfStock": "Немає в наявності",
     "addToCart": "Додати в колишк",
+    "buyNow": "Купити зараз",
     "description": "Опис",
     "pairing": "Поєднання зі стравами",
     "ingredients": "Інгредієнти",

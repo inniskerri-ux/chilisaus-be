@@ -3,6 +3,7 @@ import Image from "next/image";
 import { createClient } from "@/lib/supabase/server";
 import { Instagram, MessageCircle, Search } from "lucide-react";
 import { getTranslations } from "next-intl/server";
+import { cookies } from "next/headers";
 import LocaleSwitcher from "./store/LocaleSwitcher";
 import CartButton from "./CartButton";
 
@@ -22,6 +23,16 @@ export default async function Header({ locale }: { locale: string }) {
       .eq("id", user.id)
       .single();
     isShopOwner = profile?.role === "shop_owner";
+  }
+
+  let cartCount = 0;
+  const cartSessionId = (await cookies()).get("cart_session_id")?.value;
+  if (cartSessionId) {
+    const { data: cartItems } = await supabase
+      .from("cart_items")
+      .select("quantity")
+      .eq("cart_session_id", cartSessionId);
+    cartCount = cartItems?.reduce((acc, item) => acc + item.quantity, 0) ?? 0;
   }
 
   return (
@@ -51,14 +62,14 @@ export default async function Header({ locale }: { locale: string }) {
             href={`/${locale}/events`}
             className="text-zinc-600 hover:text-brand-red transition-colors"
           >
-            {tNav("Events") || "Events"}
-          </Link>
+            {tNav("Events")}
+</Link>
           <Link
             href={`/${locale}/reviews`}
             className="text-zinc-600 hover:text-brand-red transition-colors"
           >
-            {tNav("Reviews") || "Reviews"}
-          </Link>
+            {tNav("Reviews")}
+</Link>
           <Link
             href={`/${locale}/scoville-scale`}
             className="text-zinc-600 hover:text-brand-red transition-colors"
@@ -131,7 +142,7 @@ export default async function Header({ locale }: { locale: string }) {
 
             <LocaleSwitcher />
 
-            <CartButton locale={locale} label={tNav("Cart")} />
+            <CartButton locale={locale} label={tNav("Cart")} cartCount={cartCount} />
           </nav>
         </div>
       </div>

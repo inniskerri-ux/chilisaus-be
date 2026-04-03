@@ -15,8 +15,8 @@
     "Account": "Conta",
     "Dashboard": "Painel",
     "Scoville": "Scoville",
-    "Reviews": "Reviews",
-    "Events" : "Events"
+    "Reviews": "Avaliações",
+    "Events": "Eventos"
   },
   "Cart": {
     "title": "O seu Carrinho",
@@ -189,6 +189,7 @@
     "inStock": "Em stock",
     "outOfStock": "Esgotado",
     "addToCart": "Adicionar ao carrinho",
+    "buyNow": "Comprar agora",
     "description": "Descrição",
     "pairing": "Sugestões de acompanhamento",
     "ingredients": "Ingredientes",

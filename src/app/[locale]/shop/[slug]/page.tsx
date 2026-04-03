@@ -222,8 +222,9 @@ export default async function ProductPage({
           {/* Add to Cart */}
           <AddToCartButton
             productId={product.id}
-            disabled={!inStock}
+            outOfStock={!inStock}
             label={t("addToCart")}
+            outOfStockLabel={t("outOfStock")}
             className="w-full sm:w-auto bg-brand-red hover:bg-brand-red/90 text-white"
           />
 

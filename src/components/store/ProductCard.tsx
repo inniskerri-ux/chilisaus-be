@@ -7,7 +7,24 @@ import { Star } from "lucide-react";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { formatPrice } from "@/lib/format";
+import AddToCartButton from "./AddToCartButton";
 import type { StoreProduct } from "./types";
+
+const getHeatPillStyle = (level: number) => {
+  if (level <= 4) return "bg-lime-100 text-lime-800 border border-lime-300";
+  if (level <= 7) return "bg-yellow-100 text-yellow-800 border border-yellow-300";
+  if (level <= 9) return "bg-orange-100 text-orange-800 border border-orange-300";
+  if (level === 10) return "bg-red-100 text-red-800 border border-red-300";
+  return "bg-rose-100 text-rose-900 border border-rose-300";
+};
+
+const getHeatEmoji = (level: number) => {
+  if (level <= 4) return "🌶";
+  if (level <= 7) return "🌶🌶";
+  if (level <= 9) return "🌶🌶🌶";
+  if (level === 10) return "🌶🌶🌶🌶";
+  return "💀";
+};
 
 interface ProductCardProps {
   product: StoreProduct;
@@ -48,23 +65,24 @@ export default function ProductCard({
   specialPrice,
 }: ProductCardProps) {
   const locale = useLocale();
-  const t = useTranslations("UI");
+  const t = useTranslations("ProductPage");
 
   const displayPrice = specialPrice ?? product.price_cents;
   const hasDiscount = specialPrice && specialPrice < product.price_cents;
   const productUrl = `/${locale}/shop/${product.slug}`;
+  const outOfStock = (product.stock ?? 1) === 0;
 
   return (
-    <Link href={productUrl}>
-      <Card className="group overflow-hidden transition-all hover:shadow-lg h-full flex flex-col">
-        <CardHeader className="p-0">
+    <Card className="group overflow-hidden transition-all hover:shadow-lg h-full flex flex-col">
+      <CardHeader className="p-0">
+        <Link href={productUrl} className="block">
           <div className="relative aspect-square w-full overflow-hidden bg-zinc-100 dark:bg-zinc-800">
             {product.image_url ? (
               <Image
                 src={product.image_url}
                 alt={product.name}
                 fill
-                className="object-contain p-4 transition-transform group-hover:scale-105"
+                className={`object-contain p-4 transition-transform group-hover:scale-105 ${outOfStock ? "opacity-50" : ""}`}
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               />
             ) : (
@@ -72,67 +90,97 @@ export default function ProductCard({
                 <span className="text-4xl">🌶️</span>
               </div>
             )}
-          </div>
-        </CardHeader>
-        <CardContent className="p-4 flex flex-col flex-1">
-          <div className="space-y-2 flex-1">
-            <div className="flex items-center justify-between gap-2">
-              {product.category && (
-                <Badge
-                  variant="outline"
-                  className={`font-normal border ${getCategoryColor(product.category.slug)}`}
-                >
-                  {product.category.name}
-                </Badge>
-              )}
-              {product.heatLevel && (
-                <span className="text-xs font-bold text-orange-600 uppercase">
-                  Level {product.heatLevel}
+            {outOfStock && (
+              <div className="absolute inset-0 flex items-center justify-center">
+                <span className="bg-zinc-800/70 text-white text-xs font-semibold px-3 py-1 rounded-full">
+                  {t("outOfStock")}
                 </span>
-              )}
-            </div>
+              </div>
+            )}
+          </div>
+        </Link>
+      </CardHeader>
+      <CardContent className="p-4 flex flex-col flex-1">
+        <div className="space-y-2 flex-1">
+          <div className="flex items-center justify-between gap-2">
+            {product.category && (
+              <Badge
+                variant="outline"
+                className={`font-normal border ${getCategoryColor(product.category.slug)}`}
+              >
+                {product.category.name}
+              </Badge>
+            )}
+            {product.heatLevel && (
+              <span className={`inline-flex items-center gap-1 text-xs font-semibold px-2 py-0.5 rounded-full ${getHeatPillStyle(product.heatLevel)}`}>
+                {getHeatEmoji(product.heatLevel)} {product.heatLevel}/20
+              </span>
+            )}
+          </div>
 
+          <Link href={productUrl} className="block">
             <h3 className="text-lg font-semibold line-clamp-1 group-hover:text-orange-600 transition-colors">
               {product.name}
             </h3>
+          </Link>
 
-            {product.description && (
-              <p className="line-clamp-2 text-sm text-zinc-600 dark:text-zinc-400">
-                {product.description}
-              </p>
-            )}
-          </div>
-
-          {(product.reviewCount ?? 0) > 0 && (
-            <div className="flex items-center gap-1.5">
-              <div className="flex text-orange-400">
-                {[...Array(5)].map((_, i) => (
-                  <Star
-                    key={i}
-                    size={13}
-                    fill={i < Math.round(product.avgRating ?? 0) ? "currentColor" : "none"}
-                    className={i < Math.round(product.avgRating ?? 0) ? "" : "text-zinc-200"}
-                  />
-                ))}
-              </div>
-              <span className="text-xs text-zinc-500">({product.reviewCount})</span>
-            </div>
+          {product.description && (
+            <p className="line-clamp-2 text-sm text-zinc-600 dark:text-zinc-400">
+              {product.description}
+            </p>
           )}
+        </div>
 
-          <div className="mt-4 flex items-center gap-2">
-            {hasDiscount && (
-              <span className="text-sm text-zinc-500 line-through">
-                {formatPrice(product.price_cents, product.currency, locale)}
-              </span>
-            )}
-            <span
-              className={`text-lg font-bold ${hasDiscount ? "text-orange-600" : ""}`}
-            >
-              {formatPrice(displayPrice, product.currency, locale)}
-            </span>
+        {(product.reviewCount ?? 0) > 0 && (
+          <div className="flex items-center gap-1.5 mt-2">
+            <div className="flex text-orange-400">
+              {[...Array(5)].map((_, i) => (
+                <Star
+                  key={i}
+                  size={13}
+                  fill={i < Math.round(product.avgRating ?? 0) ? "currentColor" : "none"}
+                  className={i < Math.round(product.avgRating ?? 0) ? "" : "text-zinc-200"}
+                />
+              ))}
+            </div>
+            <span className="text-xs text-zinc-500">({product.reviewCount})</span>
           </div>
-        </CardContent>
-      </Card>
-    </Link>
+        )}
+
+        <div className="mt-4 flex items-center gap-2">
+          {hasDiscount && (
+            <span className="text-sm text-zinc-500 line-through">
+              {formatPrice(product.price_cents, product.currency, locale)}
+            </span>
+          )}
+          <span
+            className={`text-lg font-bold ${hasDiscount ? "text-orange-600" : ""}`}
+          >
+            {formatPrice(displayPrice, product.currency, locale)}
+          </span>
+        </div>
+
+        <div className="mt-3 flex gap-2">
+          <AddToCartButton
+            productId={String(product.id)}
+            outOfStock={outOfStock}
+            label={t("addToCart")}
+            outOfStockLabel={t("outOfStock")}
+            size="sm"
+            variant="outline"
+            className="flex-1 border-brand-black text-brand-black hover:bg-brand-black hover:text-white"
+          />
+          {!outOfStock && (
+            <AddToCartButton
+              productId={String(product.id)}
+              label={t("buyNow")}
+              size="sm"
+              className="flex-1 bg-brand-red hover:bg-brand-red/90 text-white"
+              redirectTo={`/${locale}/checkout`}
+            />
+          )}
+        </div>
+      </CardContent>
+    </Card>
   );
 }

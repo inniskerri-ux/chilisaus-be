@@ -15,8 +15,8 @@
     "Account": "الحساب",
     "Dashboard": "لوحة التحكم",
     "Scoville": "سكوفيل",
-    "Reviews": "Reviews",
-    "Events" : "Events"
+    "Reviews": "التقييمات",
+    "Events": "الفعاليات"
   },
   "Cart": {
     "title": "سلة التسوق الخاصة بك",
@@ -189,6 +189,7 @@
     "inStock": "متوفر",
     "outOfStock": "نفذت الكمية",
     "addToCart": "أضف إلى السلة",
+    "buyNow": "اشترِ الآن",
     "description": "الوصف",
     "pairing": "اقتراحات التقديم",
     "ingredients": "المكونات",

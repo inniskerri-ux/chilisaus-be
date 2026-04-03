@@ -9,7 +9,9 @@ import { useRouter } from "next/navigation";
 interface AddToCartButtonProps {
   productId: string;
   disabled?: boolean;
+  outOfStock?: boolean;
   label: string;
+  outOfStockLabel?: string;
   variant?:
     | "default"
     | "destructive"
@@ -19,17 +21,19 @@ interface AddToCartButtonProps {
     | "link";
   size?: "default" | "sm" | "lg" | "icon";
   className?: string;
-  redirectToCart?: boolean;
+  redirectTo?: string;
 }
 
 export default function AddToCartButton({
   productId,
   disabled,
+  outOfStock = false,
   label,
+  outOfStockLabel = "Out of Stock",
   variant = "default",
   size = "default",
   className,
-  redirectToCart = false,
+  redirectTo,
 }: AddToCartButtonProps) {
   const [isPending, setIsPending] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
@@ -39,12 +43,10 @@ export default function AddToCartButton({
     setIsPending(true);
     try {
       await addToCart(productId, 1);
-      setIsSuccess(true);
-
-      if (redirectToCart) {
-        router.push("/cart");
+      if (redirectTo) {
+        router.push(redirectTo);
       } else {
-        // Reset success state after 2 seconds
+        setIsSuccess(true);
         setTimeout(() => setIsSuccess(false), 2000);
       }
     } catch (error) {
@@ -52,6 +54,19 @@ export default function AddToCartButton({
     } finally {
       setIsPending(false);
     }
+  }
+
+  if (outOfStock) {
+    return (
+      <Button
+        disabled
+        variant="secondary"
+        size={size}
+        className={`cursor-not-allowed opacity-60 ${className ?? ""}`}
+      >
+        {outOfStockLabel}
+      </Button>
+    );
   }
 
   return (
