@@ -153,7 +153,9 @@
         "sortMildToHot": "Jemné → Pálivé",
         "sortHotToMild": "Pálivé → Jemné",
         "sortPriceLowHigh": "Cena: Od nejlevnějšího",
-        "sortPriceHighLow": "Cena: Od nejdražšího"
+        "sortPriceHighLow": "Cena: Od nejdražšího",
+        "showOutOfStock": "Zobrazit vyprodané",
+        "hideOutOfStock": "Skrýt vyprodané"
       }
     },
     "results": {
@@ -163,7 +165,8 @@
       "noResults": "Nebyly nalezeny žádné omáčky",
       "adjustSearch": "Zkuste upravit hledání nebo filtry.",
       "clearFilters": "Vymazat filtry",
-      "loadMore": "Načíst další"
+      "loadMore": "Načíst další",
+      "noMerchandise": "Žádný merchandise zatím není k dispozici!"
     }
   },
   "Landing": {
@@ -175,7 +178,8 @@
     },
     "maker": {
       "title": "Poznejte výrobce",
-      "content": "Mnoho z vás mě potkalo na akcích po celé zemi. Mojí vášní je přinášet vám ty nejlepší omáčky přímo, osobně a jednoduše. Chci si zachovat osobní vztah, nebýt neosobní korporací. Vše je o omáčce a lidech, kteří ji milují."
+      "content": "Mnoho z vás mě potkalo na akcích po celé zemi. Mojí vášní je přinášet vám ty nejlepší omáčky přímo, osobně a jednoduše. Chci si zachovat osobní vztah, nebýt neosobní korporací. Vše je o omáčce a lidech, kteří ji milují.",
+      "exploreCta": "Prozkoumat omáčky →"
     },
     "categories": {
       "title": "Nakupovat podle kategorie",

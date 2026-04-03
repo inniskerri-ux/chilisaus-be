@@ -111,7 +111,7 @@ export default async function HomePage({
                   href={`/${locale}/shop?brand=chilisausbe-our-own-range`}
                   className="text-base font-bold text-brand-red hover:text-black transition-colors"
                 >
-                  Explore the sauces &rarr;
+                  {t("maker.exploreCta")}
                 </Link>
               </div>
             </div>

@@ -153,7 +153,9 @@
         "sortMildToHot": "Mild → Sterk",
         "sortHotToMild": "Sterk → Mild",
         "sortPriceLowHigh": "Pris: Lav til høy",
-        "sortPriceHighLow": "Pris: Høy til lav"
+        "sortPriceHighLow": "Pris: Høy til lav",
+        "showOutOfStock": "Vis utsolgte",
+        "hideOutOfStock": "Skjul utsolgte"
       }
     },
     "results": {
@@ -163,7 +165,8 @@
       "noResults": "Ingen sauser funnet",
       "adjustSearch": "Prøv å justere søket eller filtrene.",
       "clearFilters": "Tøm filtre",
-      "loadMore": "Last flere"
+      "loadMore": "Last flere",
+      "noMerchandise": "Ingen merchandise tilgjengelig — ennå!"
     }
   },
   "Landing": {
@@ -175,7 +178,8 @@
     },
     "maker": {
       "title": "Møt skaperen",
-      "content": "Mange av dere har møtt meg på arrangementer over hele landet. Jeg brenner for å bringe de beste sausene direkte til deg på en personlig og enkel måte. Jeg ønsker å bevare den personlige forbindelsen, ikke være et ansiktsløst firma. Det handler om sausen og menneskene som elsker den."
+      "content": "Mange av dere har møtt meg på arrangementer over hele landet. Jeg brenner for å bringe de beste sausene direkte til deg på en personlig og enkel måte. Jeg ønsker å bevare den personlige forbindelsen, ikke være et ansiktsløst firma. Det handler om sausen og menneskene som elsker den.",
+      "exploreCta": "Utforsk sausene →"
     },
     "categories": {
       "title": "Handle etter kategori",

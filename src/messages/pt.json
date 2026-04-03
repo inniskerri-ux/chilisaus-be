@@ -153,7 +153,9 @@
         "sortMildToHot": "Suave → Picante",
         "sortHotToMild": "Picante → Suave",
         "sortPriceLowHigh": "Preço: Mais baixo",
-        "sortPriceHighLow": "Preço: Mais alto"
+        "sortPriceHighLow": "Preço: Mais alto",
+        "showOutOfStock": "Mostrar esgotados",
+        "hideOutOfStock": "Ocultar esgotados"
       }
     },
     "results": {
@@ -163,7 +165,8 @@
       "noResults": "Nenhum molho encontrado",
       "adjustSearch": "Tente ajustar a sua procura ou filtros.",
       "clearFilters": "Limpar filtros",
-      "loadMore": "Carregar mais"
+      "loadMore": "Carregar mais",
+      "noMerchandise": "Nenhum merchandise disponível — ainda!"
     }
   },
   "Landing": {
@@ -175,7 +178,8 @@
     },
     "maker": {
       "title": "Conheça o Criador",
-      "content": "Muitos de vós já me conheceram em eventos por todo o país. Sou apaixonado por trazer-vos os melhores molhos diretamente, de forma pessoal e simples. Quero manter uma ligação pessoal, não ser uma empresa sem rosto. É tudo sobre o molho e as pessoas que o adoram."
+      "content": "Muitos de vós já me conheceram em eventos por todo o país. Sou apaixonado por trazer-vos os melhores molhos diretamente, de forma pessoal e simples. Quero manter uma ligação pessoal, não ser uma empresa sem rosto. É tudo sobre o molho e as pessoas que o adoram.",
+      "exploreCta": "Explorar os molhos →"
     },
     "categories": {
       "title": "Comprar por Categoria",

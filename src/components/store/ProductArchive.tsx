@@ -1,8 +1,8 @@
 "use client";
 
-import { useState, useMemo, useEffect, Suspense } from "react";
+import { useState, useMemo, useEffect, Suspense, useCallback } from "react";
 import { useTranslations } from "next-intl";
-import { useSearchParams } from "next/navigation";
+import { useSearchParams, useRouter, usePathname } from "next/navigation";
 import type { StoreProduct, ChilliType, Category, StoreBrand } from "./types";
 import ProductCard from "./ProductCard";
 import Chip from "./Chip";
@@ -57,9 +57,18 @@ function ProductArchiveContent({
 }: ProductArchiveProps) {
   const t = useTranslations("SauceArchive");
   const searchParams = useSearchParams();
+  const router = useRouter();
+  const pathname = usePathname();
   const initialCategory = searchParams.get("category");
   const initialHeat = searchParams.get("heat");
   const initialBrand = searchParams.get("brand");
+
+  const clearUrlParams = useCallback((...keys: string[]) => {
+    const params = new URLSearchParams(searchParams.toString());
+    keys.forEach((k) => params.delete(k));
+    const qs = params.toString();
+    router.replace(qs ? `${pathname}?${qs}` : pathname, { scroll: false });
+  }, [searchParams, router, pathname]);
 
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedHeatLevel, setSelectedHeatLevel] = useState(initialHeat || "");
@@ -71,6 +80,7 @@ function ProductArchiveContent({
   const [selectedCountry, setSelectedCountry] = useState("");
   const [sortBy, setSortBy] = useState<SortOption>("popular");
   const [displayCount, setDisplayCount] = useState(12);
+  const [hideOutOfStock, setHideOutOfStock] = useState(true);
 
   // Build type categories: replace heat band entries with a single "Sauces" option
   const typeCategories = useMemo(() => {
@@ -151,13 +161,16 @@ function ProductArchiveContent({
       const matchesCountry =
         !selectedCountry || product.brand?.country === selectedCountry;
 
+      const matchesStock = !hideOutOfStock || (product.stock ?? 1) > 0;
+
       return (
         matchesSearch &&
         matchesHeatLevel &&
         matchesChilliType &&
         matchesCategory &&
         matchesBrand &&
-        matchesCountry
+        matchesCountry &&
+        matchesStock
       );
     });
 
@@ -200,6 +213,7 @@ function ProductArchiveContent({
     selectedBrand,
     selectedCountry,
     sortBy,
+    hideOutOfStock,
   ]);
 
   const activeFilters = useMemo(() => {
@@ -209,7 +223,7 @@ function ProductArchiveContent({
       filters.push({
         label: `Heat: ${selectedHeatLevel}`,
         value: `heat-${selectedHeatLevel}`,
-        clear: () => setSelectedHeatLevel(""),
+        clear: () => { setSelectedHeatLevel(""); clearUrlParams("heat"); },
       });
     }
     if (selectedCategory) {
@@ -222,7 +236,7 @@ function ProductArchiveContent({
       filters.push({
         label: `Type: ${catName}`,
         value: `cat-${selectedCategory}`,
-        clear: () => setSelectedCategory(""),
+        clear: () => { setSelectedCategory(""); clearUrlParams("category"); },
       });
     }
     if (selectedBrand) {
@@ -233,7 +247,7 @@ function ProductArchiveContent({
       filters.push({
         label: `Producer: ${brandName}`,
         value: `brand-${selectedBrand}`,
-        clear: () => setSelectedBrand(""),
+        clear: () => { setSelectedBrand(""); clearUrlParams("brand"); },
       });
     }
     if (selectedCountry) {
@@ -275,6 +289,7 @@ function ProductArchiveContent({
     setSelectedBrand("");
     setSelectedCountry("");
     setSortBy("popular");
+    clearUrlParams("category", "heat", "brand");
   };
 
   const displayedProducts = filteredAndSortedProducts.slice(0, displayCount);
@@ -420,6 +435,21 @@ function ProductArchiveContent({
             </label>
           </div>
 
+          {/* Out of stock toggle */}
+          <div className="mt-3">
+            <button
+              onClick={() => setHideOutOfStock(!hideOutOfStock)}
+              className={`inline-flex items-center gap-2 text-xs font-medium px-3 py-1.5 rounded-full border transition-colors ${
+                hideOutOfStock
+                  ? "bg-zinc-100 border-zinc-300 text-zinc-500 hover:border-brand-red hover:text-brand-red"
+                  : "bg-brand-red/10 border-brand-red text-brand-red"
+              }`}
+            >
+              <span className={`w-2 h-2 rounded-full ${hideOutOfStock ? "bg-zinc-400" : "bg-brand-red"}`} />
+              {hideOutOfStock ? t("search.filters.showOutOfStock") : t("search.filters.hideOutOfStock")}
+            </button>
+          </div>
+
           {/* Active Filter Chips */}
           {(activeFilters.length > 0 || selectedPepper) && (
             <div className="mt-3 flex flex-wrap gap-2 items-center">
@@ -456,18 +486,24 @@ function ProductArchiveContent({
 
         {filteredAndSortedProducts.length === 0 && (
           <div className="text-center py-12">
-            <div className="text-6xl mb-4">🌶️</div>
+            <div className="text-6xl mb-4">{selectedCategory === "merchandise" ? "👕" : "🌶️"}</div>
             <h3 className="text-xl font-bold text-foreground mb-4">
-              {t("results.noResults")}
+              {selectedCategory === "merchandise"
+                ? t("results.noMerchandise")
+                : t("results.noResults")}
             </h3>
-            <p className="text-text-muted">{t("results.adjustSearch")}</p>
-            <button
-              onClick={clearAllFilters}
-              className="mt-4 px-4 py-2 rounded-lg border border-border bg-card text-foreground
-                       transition-colors hover:border-brand-red hover:bg-brand-red/10"
-            >
-              {t("results.clearFilters")}
-            </button>
+            {selectedCategory !== "merchandise" && (
+              <>
+                <p className="text-text-muted">{t("results.adjustSearch")}</p>
+                <button
+                  onClick={clearAllFilters}
+                  className="mt-4 px-4 py-2 rounded-lg border border-border bg-card text-foreground
+                           transition-colors hover:border-brand-red hover:bg-brand-red/10"
+                >
+                  {t("results.clearFilters")}
+                </button>
+              </>
+            )}
           </div>
         )}
 

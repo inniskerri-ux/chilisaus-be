@@ -153,7 +153,9 @@
         "sortMildToHot": "Mild → Heet",
         "sortHotToMild": "Heet → Mild",
         "sortPriceLowHigh": "Prijs: Laag naar Hoog",
-        "sortPriceHighLow": "Prijs: Hoog naar Laag"
+        "sortPriceHighLow": "Prijs: Hoog naar Laag",
+        "showOutOfStock": "Uitverkocht tonen",
+        "hideOutOfStock": "Uitverkocht verbergen"
       }
     },
     "results": {
@@ -163,7 +165,8 @@
       "noResults": "Geen sauzen gevonden",
       "adjustSearch": "Pas uw zoekopdracht of filters aan.",
       "clearFilters": "Filters wissen",
-      "loadMore": "Meer laden"
+      "loadMore": "Meer laden",
+      "noMerchandise": "Nog geen merchandise beschikbaar!"
     }
   },
   "Landing": {
@@ -175,7 +178,8 @@
     },
     "maker": {
       "title": "Ontmoet de Maker",
-      "content": "Velen van jullie hebben me ontmoet op evenementen door het hele land. Ik ben gepassioneerd over het rechtstreeks naar jou brengen van de beste sauzen, op een persoonlijke en eenvoudige manier. Ik wil die persoonlijke band behouden, geen gezichtsloos bedrijf zijn. Het draait allemaal om de saus en de mensen die ervan houden."
+      "content": "Velen van jullie hebben me ontmoet op evenementen door het hele land. Ik ben gepassioneerd over het rechtstreeks naar jou brengen van de beste sauzen, op een persoonlijke en eenvoudige manier. Ik wil die persoonlijke band behouden, geen gezichtsloos bedrijf zijn. Het draait allemaal om de saus en de mensen die ervan houden.",
+      "exploreCta": "Ontdek de sauzen →"
     },
     "categories": {
       "title": "Winkel per Categorie",

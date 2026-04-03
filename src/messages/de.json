@@ -153,7 +153,9 @@
         "sortMildToHot": "Mild → Scharf",
         "sortHotToMild": "Scharf → Mild",
         "sortPriceLowHigh": "Preis: Niedrig bis Hoch",
-        "sortPriceHighLow": "Preis: Hoch bis Niedrig"
+        "sortPriceHighLow": "Preis: Hoch bis Niedrig",
+        "showOutOfStock": "Nicht verfügbare anzeigen",
+        "hideOutOfStock": "Nicht verfügbare ausblenden"
       }
     },
     "results": {
@@ -163,7 +165,8 @@
       "noResults": "Keine Saucen gefunden",
       "adjustSearch": "Passen Sie Ihre Suche oder Filter an.",
       "clearFilters": "Filter löschen",
-      "loadMore": "Mehr laden"
+      "loadMore": "Mehr laden",
+      "noMerchandise": "Noch keine Merchandise-Artikel verfügbar!"
     }
   },
   "Landing": {
@@ -175,7 +178,8 @@
     },
     "maker": {
       "title": "Triff den Macher",
-      "content": "Viele von euch haben mich bei Veranstaltungen im ganzen Land getroffen. Ich brenne dafür, euch die besten Saucen direkt zu bringen, persönlich und einfach. Ich möchte eine persönliche Verbindung halten, kein gesichtsloses Unternehmen sein. Es dreht sich alles um die Sauce und die Menschen, die sie lieben."
+      "content": "Viele von euch haben mich bei Veranstaltungen im ganzen Land getroffen. Ich brenne dafür, euch die besten Saucen direkt zu bringen, persönlich und einfach. Ich möchte eine persönliche Verbindung halten, kein gesichtsloses Unternehmen sein. Es dreht sich alles um die Sauce und die Menschen, die sie lieben.",
+      "exploreCta": "Die Saucen entdecken →"
     },
     "categories": {
       "title": "Nach Kategorie shoppen",

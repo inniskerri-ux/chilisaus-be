@@ -153,7 +153,9 @@
         "sortMildToHot": "Mild → Het",
         "sortHotToMild": "Het → Mild",
         "sortPriceLowHigh": "Pris: Lågt till högt",
-        "sortPriceHighLow": "Pris: Högt till lågt"
+        "sortPriceHighLow": "Pris: Högt till lågt",
+        "showOutOfStock": "Visa slutsålda",
+        "hideOutOfStock": "Dölj slutsålda"
       }
     },
     "results": {
@@ -163,7 +165,8 @@
       "noResults": "Inga såser hittades",
       "adjustSearch": "Prova att justera din sökning eller dina filter.",
       "clearFilters": "Rensa filter",
-      "loadMore": "Ladda fler"
+      "loadMore": "Ladda fler",
+      "noMerchandise": "Ingen merchandise tillgänglig — ännu!"
     }
   },
   "Landing": {
@@ -175,7 +178,8 @@
     },
     "maker": {
       "title": "Möt skaparen",
-      "content": "Många av er har träffat mig på evenemang runt om i landet. Jag brinner för att föra ut de bästa såserna direkt till dig på ett personligt och enkelt sätt. Jag vill bevara den personliga kontakten, inte vara ett ansiktslöst företag. Det handlar om såsen och människorna som älskar den."
+      "content": "Många av er har träffat mig på evenemang runt om i landet. Jag brinner för att föra ut de bästa såserna direkt till dig på ett personligt och enkelt sätt. Jag vill bevara den personliga kontakten, inte vara ett ansiktslöst företag. Det handlar om såsen och människorna som älskar den.",
+      "exploreCta": "Utforska sauserna →"
     },
     "categories": {
       "title": "Handla per kategori",

@@ -153,7 +153,9 @@
         "sortMildToHot": "Mild → Stærk",
         "sortHotToMild": "Stærk → Mild",
         "sortPriceLowHigh": "Pris: Lav til høj",
-        "sortPriceHighLow": "Pris: Høj til lav"
+        "sortPriceHighLow": "Pris: Høj til lav",
+        "showOutOfStock": "Vis udsolgte",
+        "hideOutOfStock": "Skjul udsolgte"
       }
     },
     "results": {
@@ -163,7 +165,8 @@
       "noResults": "Ingen saucer fundet",
       "adjustSearch": "Prøv at justere din søgning eller dine filtre.",
       "clearFilters": "Ryd filtre",
-      "loadMore": "Indlæs flere"
+      "loadMore": "Indlæs flere",
+      "noMerchandise": "Ingen merchandise tilgængelig — endnu!"
     }
   },
   "Landing": {
@@ -175,7 +178,8 @@
     },
     "maker": {
       "title": "Mød manden bag",
-      "content": "Mange af jer har mødt mig til arrangementer rundt om i landet. Jeg brænder for at bringe de bedste saucer direkte til dig på en personlig og enkel måde. Jeg ønsker at bevare den personlige forbindelse, ikke være et ansigtsløst firma. Det handler om saucen og de mennesker, der elsker den."
+      "content": "Mange af jer har mødt mig til arrangementer rundt om i landet. Jeg brænder for at bringe de bedste saucer direkte til dig på en personlig og enkel måde. Jeg ønsker at bevare den personlige forbindelse, ikke være et ansigtsløst firma. Det handler om saucen og de mennesker, der elsker den.",
+      "exploreCta": "Udforsk saucerne →"
     },
     "categories": {
       "title": "Shop efter kategori",

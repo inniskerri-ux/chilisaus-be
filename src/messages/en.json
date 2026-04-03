@@ -16,7 +16,7 @@
     "Dashboard": "Dashboard",
     "Scoville": "Scoville",
     "Reviews": "Reviews",
-    "Events" : "Events"
+    "Events": "Events"
   },
   "Cart": {
     "title": "Your Shopping Cart",
@@ -153,7 +153,9 @@
         "sortMildToHot": "Mild → Hot",
         "sortHotToMild": "Hot → Mild",
         "sortPriceLowHigh": "Price: Low to High",
-        "sortPriceHighLow": "Price: High to Low"
+        "sortPriceHighLow": "Price: High to Low",
+        "showOutOfStock": "Show out of stock",
+        "hideOutOfStock": "Hide out of stock"
       }
     },
     "results": {
@@ -163,7 +165,8 @@
       "noResults": "No sauces found",
       "adjustSearch": "Try adjusting your search or filters.",
       "clearFilters": "Clear filters",
-      "loadMore": "Load more"
+      "loadMore": "Load more",
+      "noMerchandise": "No merchandise available — yet!"
     }
   },
   "Landing": {
@@ -175,7 +178,8 @@
     },
     "maker": {
       "title": "Meet the Maker",
-      "content": "A lot of you have met me at events across the country. I'm passionate about bringing the best sauces directly to you, keeping it personal and simple. I want to keep it a personal connection, not a faceless corporation. It's all about the sauce and the people who love it."
+      "content": "A lot of you have met me at events across the country. I'm passionate about bringing the best sauces directly to you, keeping it personal and simple. I want to keep it a personal connection, not a faceless corporation. It's all about the sauce and the people who love it.",
+      "exploreCta": "Explore the sauces →"
     },
     "categories": {
       "title": "Shop by Category",

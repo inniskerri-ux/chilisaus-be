@@ -153,7 +153,9 @@
         "sortMildToHot": "Łagodne → Ostre",
         "sortHotToMild": "Ostre → Łagodne",
         "sortPriceLowHigh": "Cena: od najniższej",
-        "sortPriceHighLow": "Cena: od najwyższej"
+        "sortPriceHighLow": "Cena: od najwyższej",
+        "showOutOfStock": "Pokaż niedostępne",
+        "hideOutOfStock": "Ukryj niedostępne"
       }
     },
     "results": {
@@ -163,7 +165,8 @@
       "noResults": "Nie znaleziono sosów",
       "adjustSearch": "Spróbuj dostosować wyszukiwanie lub filtry.",
       "clearFilters": "Wyczyść filtry",
-      "loadMore": "Załaduj więcej"
+      "loadMore": "Załaduj więcej",
+      "noMerchandise": "Brak dostępnych produktów — na razie!"
     }
   },
   "Landing": {
@@ -175,7 +178,8 @@
     },
     "maker": {
       "title": "Poznaj twórcę",
-      "content": "Wielu z Was spotkało mnie na wydarzeniach w całym kraju. Moją pasją jest dostarczanie Wam najlepszych sosów bezpośrednio, w sposób osobisty i prosty. Chcę zachować osobistą relację, a nie być bezduszną korporacją. Chodzi przede wszystkim o sos i ludzi, którzy go kochają."
+      "content": "Wielu z Was spotkało mnie na wydarzeniach w całym kraju. Moją pasją jest dostarczanie Wam najlepszych sosów bezpośrednio, w sposób osobisty i prosty. Chcę zachować osobistą relację, a nie być bezduszną korporacją. Chodzi przede wszystkim o sos i ludzi, którzy go kochają.",
+      "exploreCta": "Odkryj sosy →"
     },
     "categories": {
       "title": "Kupuj według kategorii",

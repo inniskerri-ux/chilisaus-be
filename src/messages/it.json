@@ -153,7 +153,9 @@
         "sortMildToHot": "Lieve → Piccante",
         "sortHotToMild": "Piccante → Lieve",
         "sortPriceLowHigh": "Prezzo: dal più basso",
-        "sortPriceHighLow": "Prezzo: dal più alto"
+        "sortPriceHighLow": "Prezzo: dal più alto",
+        "showOutOfStock": "Mostra esauriti",
+        "hideOutOfStock": "Nascondi esauriti"
       }
     },
     "results": {
@@ -163,7 +165,8 @@
       "noResults": "Nessuna salsa trovata",
       "adjustSearch": "Prova a regolare la ricerca o i filtri.",
       "clearFilters": "Cancella filtri",
-      "loadMore": "Carica altri"
+      "loadMore": "Carica altri",
+      "noMerchandise": "Nessun merchandise disponibile — ancora!"
     }
   },
   "Landing": {
@@ -175,7 +178,8 @@
     },
     "maker": {
       "title": "Incontra il Produttore",
-      "content": "Molti di voi mi hanno incontrato a vari eventi in tutto il paese. La mia passione è portarvi direttamente le migliori salse, mantenendo un rapporto personale e semplice. Voglio mantenere una connessione umana, non essere un'azienda senza volto. Tutto ruota intorno alla salsa e alle persone che la amano."
+      "content": "Molti di voi mi hanno incontrato a vari eventi in tutto il paese. La mia passione è portarvi direttamente le migliori salse, mantenendo un rapporto personale e semplice. Voglio mantenere una connessione umana, non essere un'azienda senza volto. Tutto ruota intorno alla salsa e alle persone che la amano.",
+      "exploreCta": "Scopri le salse →"
     },
     "categories": {
       "title": "Acquista per Categoria",

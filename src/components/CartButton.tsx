@@ -2,18 +2,35 @@
 
 import { usePathname } from "next/navigation";
 import Link from "next/link";
+import { ShoppingCart } from "lucide-react";
 
 export default function CartButton({
   locale,
   label,
   cartCount,
+  iconOnly = false,
 }: {
   locale: string;
   label: string;
   cartCount?: number;
+  iconOnly?: boolean;
 }) {
   const pathname = usePathname();
   if (pathname.includes("/admin")) return null;
+
+  if (iconOnly) {
+    return (
+      <Link href={`/${locale}/cart`} className="relative p-2 text-zinc-800 hover:text-brand-red transition-colors" aria-label={label}>
+        <ShoppingCart size={22} />
+        {cartCount != null && cartCount > 0 && (
+          <span className="absolute -top-0.5 -right-0.5 flex h-4 w-4 items-center justify-center rounded-full bg-brand-red text-[9px] font-bold text-white leading-none ring-1 ring-white">
+            {cartCount > 99 ? "99+" : cartCount}
+          </span>
+        )}
+      </Link>
+    );
+  }
+
   return (
     <Link
       href={`/${locale}/cart`}

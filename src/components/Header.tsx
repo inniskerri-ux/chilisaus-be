@@ -6,6 +6,7 @@ import { getTranslations } from "next-intl/server";
 import { cookies } from "next/headers";
 import LocaleSwitcher from "./store/LocaleSwitcher";
 import CartButton from "./CartButton";
+import MobileMenu from "./MobileMenu";
 
 export default async function Header({ locale }: { locale: string }) {
   const supabase = await createClient();
@@ -38,6 +39,7 @@ export default async function Header({ locale }: { locale: string }) {
   return (
     <header className="sticky top-0 z-50 border-b border-zinc-100 bg-white/80 backdrop-blur-md">
       <div className="mx-auto max-w-7xl flex items-center justify-between px-6 py-4">
+        {/* Logo */}
         <Link href={`/${locale}`} className="flex items-center">
           <Image
             src="/images/logo.png"
@@ -51,34 +53,24 @@ export default async function Header({ locale }: { locale: string }) {
           />
         </Link>
 
+        {/* Desktop nav */}
         <nav className="hidden lg:flex items-center gap-8 text-sm font-bold uppercase tracking-widest">
-          <Link
-            href={`/${locale}/shop`}
-            className="text-zinc-600 hover:text-brand-red transition-colors"
-          >
+          <Link href={`/${locale}/shop`} className="text-zinc-600 hover:text-brand-red transition-colors">
             {tNav("Shop")}
           </Link>
-          <Link
-            href={`/${locale}/events`}
-            className="text-zinc-600 hover:text-brand-red transition-colors"
-          >
+          <Link href={`/${locale}/events`} className="text-zinc-600 hover:text-brand-red transition-colors">
             {tNav("Events")}
-</Link>
-          <Link
-            href={`/${locale}/reviews`}
-            className="text-zinc-600 hover:text-brand-red transition-colors"
-          >
+          </Link>
+          <Link href={`/${locale}/reviews`} className="text-zinc-600 hover:text-brand-red transition-colors">
             {tNav("Reviews")}
-</Link>
-          <Link
-            href={`/${locale}/scoville-scale`}
-            className="text-zinc-600 hover:text-brand-red transition-colors"
-          >
+          </Link>
+          <Link href={`/${locale}/scoville-scale`} className="text-zinc-600 hover:text-brand-red transition-colors">
             {tNav("Scoville")}
           </Link>
         </nav>
 
-        <div className="flex items-center gap-4">
+        {/* Desktop right section */}
+        <div className="hidden lg:flex items-center gap-4">
           <div className="flex items-center gap-2 border-r border-zinc-100 pr-4 mr-2">
             <Link
               href={`/${locale}/shop`}
@@ -94,10 +86,7 @@ export default async function Header({ locale }: { locale: string }) {
               className="p-2 transition-colors"
               style={{ color: "#E1306C" }}
             >
-              <Instagram
-                size={20}
-                className="hover:opacity-80 transition-opacity"
-              />
+              <Instagram size={20} className="hover:opacity-80 transition-opacity" />
             </a>
             <a
               href={`https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER}`}
@@ -106,10 +95,7 @@ export default async function Header({ locale }: { locale: string }) {
               className="p-2 transition-colors"
               style={{ color: "#25D366" }}
             >
-              <MessageCircle
-                size={20}
-                className="hover:opacity-80 transition-opacity"
-              />
+              <MessageCircle size={20} className="hover:opacity-80 transition-opacity" />
             </a>
           </div>
 
@@ -123,19 +109,13 @@ export default async function Header({ locale }: { locale: string }) {
                   {isShopOwner ? tNav("Dashboard") : tNav("Account")}
                 </Link>
                 <form action={`/api/auth/sign-out`} method="POST">
-                  <button
-                    type="submit"
-                    className="text-zinc-500 hover:text-brand-red transition-colors"
-                  >
+                  <button type="submit" className="text-zinc-500 hover:text-brand-red transition-colors">
                     {tAuth("SignOut")}
                   </button>
                 </form>
               </>
             ) : (
-              <Link
-                href={`/${locale}/auth/sign-in`}
-                className="text-zinc-900 hover:text-brand-red transition-colors"
-              >
+              <Link href={`/${locale}/auth/sign-in`} className="text-zinc-900 hover:text-brand-red transition-colors">
                 {tAuth("SignIn")}
               </Link>
             )}
@@ -144,6 +124,27 @@ export default async function Header({ locale }: { locale: string }) {
 
             <CartButton locale={locale} label={tNav("Cart")} cartCount={cartCount} />
           </nav>
+        </div>
+
+        {/* Mobile right section */}
+        <div className="flex lg:hidden items-center gap-1">
+          <CartButton locale={locale} label={tNav("Cart")} cartCount={cartCount} iconOnly />
+          <MobileMenu
+            locale={locale}
+            isLoggedIn={!!user}
+            isShopOwner={isShopOwner}
+            whatsappNumber={process.env.NEXT_PUBLIC_WHATSAPP_NUMBER}
+            labels={{
+              shop: tNav("Shop"),
+              events: tNav("Events"),
+              reviews: tNav("Reviews"),
+              scoville: tNav("Scoville"),
+              account: tNav("Account"),
+              dashboard: tNav("Dashboard"),
+              signIn: tAuth("SignIn"),
+              signOut: tAuth("SignOut"),
+            }}
+          />
         </div>
       </div>
     </header>
