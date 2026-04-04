@@ -1,11 +1,6 @@
 import { notFound } from "next/navigation";
 import { getTranslations } from "next-intl/server";
-import type {
-  StoreProduct,
-  Category,
-  ChilliType,
-  StoreBrand,
-} from "@/components/store/types";
+import type { Category, ChilliType, StoreBrand } from "@/components/store/types";
 import { requireShopOwner } from "../../lib/auth";
 import ProductForm from "../../components/ProductForm";
 import { updateProduct } from "../../actions/updateProduct";
@@ -30,8 +25,15 @@ export default async function EditProductPage({ params }: ProductPageProps) {
       price_cents,
       currency,
       description,
+      details,
       image_url,
       heat_level,
+      capacity_ml,
+      weight_grams,
+      stock,
+      is_active,
+      ingredients,
+      nutrition_info,
       category_id,
       brand_id,
       brand:brands ( id, name, slug ),
@@ -91,28 +93,30 @@ export default async function EditProductPage({ params }: ProductPageProps) {
     })) ?? [];
 
   const row = productRow as any;
-  const product: StoreProduct & { id: string } = {
+  const product = {
     id: row.id,
     name: row.name,
     slug: row.slug,
     price_cents: row.price_cents,
     currency: row.currency,
     description: row.description,
+    details: row.details,
     image_url: row.image_url,
+    heat_level: row.heat_level,
     heatLevel: row.heat_level,
+    capacity_ml: row.capacity_ml,
+    weight_grams: row.weight_grams,
+    stock: row.stock,
+    is_active: row.is_active,
+    ingredients: row.ingredients,
+    nutrition_info: row.nutrition_info,
+    category_id: row.category_id,
+    brand_id: row.brand_id,
     brand: row.brand
-      ? {
-          id: row.brand.id,
-          name: row.brand.name,
-          slug: row.brand.slug || "",
-        }
+      ? { id: row.brand.id, name: row.brand.name, slug: row.brand.slug || "" }
       : null,
     category: row.category
-      ? {
-          id: row.category.id,
-          name: row.category.name,
-          slug: row.category.slug || "",
-        }
+      ? { id: row.category.id, name: row.category.name, slug: row.category.slug || "" }
       : null,
     chilliTypes:
       row.products_chilli_types?.map((ct: any) => ({
