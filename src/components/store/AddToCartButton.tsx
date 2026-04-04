@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation";
 
 interface AddToCartButtonProps {
   productId: string;
+  variantId?: string;
   disabled?: boolean;
   outOfStock?: boolean;
   label: string;
@@ -26,6 +27,7 @@ interface AddToCartButtonProps {
 
 export default function AddToCartButton({
   productId,
+  variantId,
   disabled,
   outOfStock = false,
   label,
@@ -42,7 +44,7 @@ export default function AddToCartButton({
   async function handleAddToCart() {
     setIsPending(true);
     try {
-      await addToCart(productId, 1);
+      await addToCart(productId, 1, undefined, undefined, variantId);
       if (redirectTo) {
         router.push(redirectTo);
       } else {

@@ -53,6 +53,7 @@ export default async function EditProductPage({ params }: ProductPageProps) {
     { data: categoriesData },
     { data: chilliTypesData },
     { data: brandsData },
+    { data: variantsData },
   ] = await Promise.all([
     supabase.from("categories").select("id, name, slug").order("name"),
     supabase
@@ -60,6 +61,13 @@ export default async function EditProductPage({ params }: ProductPageProps) {
       .select("id, name, slug, heat_level")
       .order("name"),
     supabase.from("brands").select("id, name, slug").order("name"),
+    supabase
+      .from("product_variants")
+      .select("id, label, price_cents, weight_grams, stock, sort_order")
+      .eq("product_id", id)
+      .eq("is_active", true)
+      .order("sort_order")
+      .order("price_cents"),
   ]);
 
   const categories: Category[] =
@@ -113,6 +121,7 @@ export default async function EditProductPage({ params }: ProductPageProps) {
         slug: ct.chilli_types?.slug || "",
         heatLevel: ct.chilli_types?.heat_level,
       })) ?? [],
+    variants: variantsData ?? [],
   };
 
   const defaultBrandId = brands[0]?.id;

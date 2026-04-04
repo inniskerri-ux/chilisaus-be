@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import Image from "next/image";
 import Link from "next/link";
@@ -67,10 +68,26 @@ export default function ProductCard({
   const locale = useLocale();
   const t = useTranslations("ProductPage");
 
-  const displayPrice = specialPrice ?? product.price_cents;
-  const hasDiscount = specialPrice && specialPrice < product.price_cents;
+  const activeVariants = (product.variants ?? []).filter((v) => v.stock > 0 || (product.variants?.length ?? 0) > 0);
+  const hasVariants = activeVariants.length > 1;
+
+  const [selectedVariantId, setSelectedVariantId] = useState<string>(
+    activeVariants[0]?.id ?? "",
+  );
+  const selectedVariant = hasVariants
+    ? activeVariants.find((v) => v.id === selectedVariantId)
+    : null;
+
+  const basePrice = specialPrice ?? product.price_cents;
+  const displayPrice = selectedVariant?.price_cents ?? basePrice;
+  const lowestVariantPrice = hasVariants
+    ? Math.min(...activeVariants.map((v) => v.price_cents))
+    : null;
+  const hasDiscount = !hasVariants && specialPrice && specialPrice < product.price_cents;
   const productUrl = `/${locale}/shop/${product.slug}`;
-  const outOfStock = (product.stock ?? 1) === 0;
+  const outOfStock = hasVariants
+    ? (selectedVariant?.stock ?? 0) === 0
+    : (product.stock ?? 1) === 0;
 
   return (
     <Card className="group overflow-hidden transition-all hover:shadow-lg h-full flex flex-col">
@@ -156,13 +173,37 @@ export default function ProductCard({
           <span
             className={`text-lg font-bold ${hasDiscount ? "text-orange-600" : ""}`}
           >
-            {formatPrice(displayPrice, product.currency, locale)}
+            {hasVariants && !selectedVariant
+              ? `${t("from")} ${formatPrice(lowestVariantPrice!, product.currency, locale)}`
+              : formatPrice(displayPrice, product.currency, locale)}
           </span>
         </div>
+
+        {hasVariants && (
+          <div className="mt-2 flex flex-wrap gap-1">
+            {activeVariants.map((v) => (
+              <button
+                key={v.id}
+                type="button"
+                onClick={() => setSelectedVariantId(v.id)}
+                className={`px-2 py-0.5 rounded text-xs font-medium border transition-all ${
+                  selectedVariantId === v.id
+                    ? "border-brand-red bg-brand-red text-white"
+                    : v.stock === 0
+                      ? "border-zinc-200 text-zinc-400 opacity-60"
+                      : "border-zinc-300 text-zinc-700 hover:border-brand-red"
+                }`}
+              >
+                {v.label}
+              </button>
+            ))}
+          </div>
+        )}
 
         <div className="mt-3 flex gap-2">
           <AddToCartButton
             productId={String(product.id)}
+            variantId={hasVariants ? selectedVariantId : undefined}
             outOfStock={outOfStock}
             label={t("addToCart")}
             outOfStockLabel={t("outOfStock")}
@@ -173,6 +214,7 @@ export default function ProductCard({
           {!outOfStock && (
             <AddToCartButton
               productId={String(product.id)}
+              variantId={hasVariants ? selectedVariantId : undefined}
               label={t("buyNow")}
               size="sm"
               className="flex-1 bg-brand-red hover:bg-brand-red/90 text-white"

@@ -18,6 +18,14 @@ import { ImageUploader } from "./ImageUploader";
 import { slugify } from "@/lib/utils";
 import type { ChilliType } from "@/components/store/types";
 
+interface ProductVariantDraft {
+  id?: string;
+  label: string;
+  price_euros: string;
+  weight_grams: string;
+  stock: string;
+}
+
 interface Product {
   id: string;
   name: string;
@@ -39,6 +47,7 @@ interface Product {
   color_options?: string[] | null;
   stock?: number | null;
   chilliTypes?: ChilliType[];
+  variants?: Array<{ id: string; label: string; price_cents: number; weight_grams?: number | null; stock: number; sort_order: number }>;
 }
 
 interface Category {
@@ -84,6 +93,15 @@ export default function ProductForm({
     (product?.chilliTypes ?? []).map((ct) => String(ct.id)),
   );
   const [slug, setSlug] = useState(product?.slug || "");
+  const [variants, setVariants] = useState<ProductVariantDraft[]>(
+    (product?.variants ?? []).map((v) => ({
+      id: v.id,
+      label: v.label,
+      price_euros: (v.price_cents / 100).toFixed(2),
+      weight_grams: v.weight_grams != null ? String(v.weight_grams) : "",
+      stock: String(v.stock),
+    })),
+  );
 
   const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!product) {
@@ -137,6 +155,19 @@ export default function ProductForm({
     selectedChilliTypes.forEach((id) => {
       formData.append("chilliTypeIds", id);
     });
+
+    // Serialize variants
+    const variantPayload = variants
+      .filter((v) => v.label.trim())
+      .map((v, i) => ({
+        id: v.id,
+        label: v.label.trim(),
+        price_cents: Math.round(parseFloat(v.price_euros || "0") * 100),
+        weight_grams: v.weight_grams ? parseInt(v.weight_grams) : null,
+        stock: parseInt(v.stock || "0"),
+        sort_order: i,
+      }));
+    formData.set("variants", JSON.stringify(variantPayload));
 
     try {
       const result = await onSubmit(formData);
@@ -338,7 +369,7 @@ export default function ProductForm({
                     id="weight_grams"
                     name="weight_grams"
                     type="number"
-                    defaultValue={product?.weight_grams || ""}
+                    defaultValue={product?.weight_grams ?? ""}
                     placeholder="e.g. 280"
                   />
                 </div>
@@ -423,31 +454,77 @@ export default function ProductForm({
 
           <Card>
             <CardHeader>
-              <CardTitle>Variants</CardTitle>
+              <CardTitle>Size / Weight Variants</CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
-              <div className="space-y-2">
-                <Label htmlFor="size_options">
-                  Size Options (comma separated)
-                </Label>
-                <Input
-                  id="size_options"
-                  name="size_options"
-                  defaultValue={product?.size_options?.join(", ") || ""}
-                  placeholder="S, M, L, XL"
-                />
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="color_options">
-                  Color Options (comma separated)
-                </Label>
-                <Input
-                  id="color_options"
-                  name="color_options"
-                  defaultValue={product?.color_options?.join(", ") || ""}
-                  placeholder="Red, Blue, Black"
-                />
-              </div>
+              <p className="text-xs text-muted-foreground">
+                Add variants if this product comes in different sizes/weights with different prices. Leave empty for single-option products.
+              </p>
+
+              {variants.length > 0 && (
+                <div className="space-y-2">
+                  <div className="grid grid-cols-[1fr_1fr_80px_80px_36px] gap-2 text-xs font-medium text-muted-foreground px-1">
+                    <span>Label (e.g. 10g)</span>
+                    <span>Price (€)</span>
+                    <span>Weight (g)</span>
+                    <span>Stock</span>
+                    <span />
+                  </div>
+                  {variants.map((v, i) => (
+                    <div key={i} className="grid grid-cols-[1fr_1fr_80px_80px_36px] gap-2 items-center">
+                      <Input
+                        value={v.label}
+                        onChange={(e) => setVariants((prev) => prev.map((row, idx) => idx === i ? { ...row, label: e.target.value } : row))}
+                        placeholder="10g"
+                        className="h-8 text-sm"
+                      />
+                      <Input
+                        value={v.price_euros}
+                        onChange={(e) => setVariants((prev) => prev.map((row, idx) => idx === i ? { ...row, price_euros: e.target.value } : row))}
+                        type="number"
+                        step="0.01"
+                        min="0"
+                        placeholder="2.99"
+                        className="h-8 text-sm"
+                      />
+                      <Input
+                        value={v.weight_grams}
+                        onChange={(e) => setVariants((prev) => prev.map((row, idx) => idx === i ? { ...row, weight_grams: e.target.value } : row))}
+                        type="number"
+                        min="0"
+                        placeholder="10"
+                        className="h-8 text-sm"
+                      />
+                      <Input
+                        value={v.stock}
+                        onChange={(e) => setVariants((prev) => prev.map((row, idx) => idx === i ? { ...row, stock: e.target.value } : row))}
+                        type="number"
+                        min="0"
+                        placeholder="0"
+                        className="h-8 text-sm"
+                      />
+                      <Button
+                        type="button"
+                        variant="ghost"
+                        size="sm"
+                        className="h-8 w-8 p-0 text-zinc-400 hover:text-red-600"
+                        onClick={() => setVariants((prev) => prev.filter((_, idx) => idx !== i))}
+                      >
+                        ×
+                      </Button>
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              <Button
+                type="button"
+                variant="outline"
+                size="sm"
+                onClick={() => setVariants((prev) => [...prev, { label: "", price_euros: "", weight_grams: "", stock: "0" }])}
+              >
+                + Add Variant
+              </Button>
             </CardContent>
           </Card>
 

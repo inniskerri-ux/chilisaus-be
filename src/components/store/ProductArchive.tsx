@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo, useEffect, Suspense, useCallback } from "react";
+import { useState, useMemo, useEffect, Suspense } from "react";
 import { useTranslations } from "next-intl";
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
 import type { StoreProduct, ChilliType, Category, StoreBrand } from "./types";
@@ -59,28 +59,32 @@ function ProductArchiveContent({
   const searchParams = useSearchParams();
   const router = useRouter();
   const pathname = usePathname();
-  const initialCategory = searchParams.get("category");
-  const initialHeat = searchParams.get("heat");
-  const initialBrand = searchParams.get("brand");
+  const [searchTerm, setSearchTerm] = useState(searchParams.get("q") || "");
+  const [selectedHeatLevel, setSelectedHeatLevel] = useState(searchParams.get("heat") || "");
+  const [selectedChilliType, setSelectedChilliType] = useState(searchParams.get("chilli") || "");
+  const [selectedCategory, setSelectedCategory] = useState(searchParams.get("category") || "");
+  const [selectedBrand, setSelectedBrand] = useState(searchParams.get("brand") || "");
+  const [selectedCountry, setSelectedCountry] = useState(searchParams.get("country") || "");
+  const [sortBy, setSortBy] = useState<SortOption>((searchParams.get("sort") as SortOption) || "popular");
+  const [displayCount, setDisplayCount] = useState(Number(searchParams.get("limit")) || 12);
+  const [hideOutOfStock, setHideOutOfStock] = useState(searchParams.get("inStock") !== "0");
 
-  const clearUrlParams = useCallback((...keys: string[]) => {
-    const params = new URLSearchParams(searchParams.toString());
-    keys.forEach((k) => params.delete(k));
+  // Sync all filter state to URL so it persists when navigating back
+  useEffect(() => {
+    const params = new URLSearchParams();
+    if (searchTerm) params.set("q", searchTerm);
+    if (selectedHeatLevel) params.set("heat", selectedHeatLevel);
+    if (selectedChilliType) params.set("chilli", selectedChilliType);
+    if (selectedCategory) params.set("category", selectedCategory);
+    if (selectedBrand) params.set("brand", selectedBrand);
+    if (selectedCountry) params.set("country", selectedCountry);
+    if (sortBy !== "popular") params.set("sort", sortBy);
+    if (displayCount !== 12) params.set("limit", String(displayCount));
+    if (!hideOutOfStock) params.set("inStock", "0");
     const qs = params.toString();
     router.replace(qs ? `${pathname}?${qs}` : pathname, { scroll: false });
-  }, [searchParams, router, pathname]);
+  }, [searchTerm, selectedHeatLevel, selectedChilliType, selectedCategory, selectedBrand, selectedCountry, sortBy, displayCount, hideOutOfStock, pathname, router]);
 
-  const [searchTerm, setSearchTerm] = useState("");
-  const [selectedHeatLevel, setSelectedHeatLevel] = useState(initialHeat || "");
-  const [selectedChilliType, setSelectedChilliType] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState(
-    initialCategory || "",
-  );
-  const [selectedBrand, setSelectedBrand] = useState(initialBrand || "");
-  const [selectedCountry, setSelectedCountry] = useState("");
-  const [sortBy, setSortBy] = useState<SortOption>("popular");
-  const [displayCount, setDisplayCount] = useState(12);
-  const [hideOutOfStock, setHideOutOfStock] = useState(true);
 
   // Build type categories: replace heat band entries with a single "Sauces" option
   const typeCategories = useMemo(() => {
@@ -102,25 +106,6 @@ function ProductArchiveContent({
     return Array.from(uniqueCountries).sort();
   }, [brands]);
 
-  // Sync state if URL changes (e.g. back button)
-  useEffect(() => {
-    if (initialCategory !== null && initialCategory !== selectedCategory) {
-      setSelectedCategory(initialCategory);
-    }
-    if (initialHeat !== null && initialHeat !== selectedHeatLevel) {
-      setSelectedHeatLevel(initialHeat);
-    }
-    if (initialBrand !== null && initialBrand !== selectedBrand) {
-      setSelectedBrand(initialBrand);
-    }
-  }, [
-    initialCategory,
-    initialHeat,
-    initialBrand,
-    selectedCategory,
-    selectedHeatLevel,
-    selectedBrand,
-  ]);
 
   const filteredAndSortedProducts = useMemo(() => {
     let filtered = products.filter((product) => {
@@ -223,7 +208,7 @@ function ProductArchiveContent({
       filters.push({
         label: `Heat: ${selectedHeatLevel}`,
         value: `heat-${selectedHeatLevel}`,
-        clear: () => { setSelectedHeatLevel(""); clearUrlParams("heat"); },
+        clear: () => setSelectedHeatLevel(""),
       });
     }
     if (selectedCategory) {
@@ -236,7 +221,7 @@ function ProductArchiveContent({
       filters.push({
         label: `Type: ${catName}`,
         value: `cat-${selectedCategory}`,
-        clear: () => { setSelectedCategory(""); clearUrlParams("category"); },
+        clear: () => setSelectedCategory(""),
       });
     }
     if (selectedBrand) {
@@ -247,7 +232,7 @@ function ProductArchiveContent({
       filters.push({
         label: `Producer: ${brandName}`,
         value: `brand-${selectedBrand}`,
-        clear: () => { setSelectedBrand(""); clearUrlParams("brand"); },
+        clear: () => setSelectedBrand(""),
       });
     }
     if (selectedCountry) {
@@ -289,7 +274,8 @@ function ProductArchiveContent({
     setSelectedBrand("");
     setSelectedCountry("");
     setSortBy("popular");
-    clearUrlParams("category", "heat", "brand");
+    setDisplayCount(12);
+    setHideOutOfStock(true);
   };
 
   const displayedProducts = filteredAndSortedProducts.slice(0, displayCount);

@@ -41,7 +41,7 @@ export async function updateProduct(
     : null;
   const weightGrams = formData.get("weight_grams")
     ? Number(formData.get("weight_grams"))
-    : 0;
+    : null;
   const stock = formData.get("stock") ? Number(formData.get("stock")) : 0;
   const isActive = formData.get("is_active") === "true";
   const nutritionInfoRaw = formData.get("nutrition_info")?.toString();
@@ -130,6 +130,27 @@ export async function updateProduct(
       .insert(rows);
     if (insertError) {
       return { error: insertError.message };
+    }
+  }
+
+  // Save variants: delete existing, re-insert
+  const variantsRaw = formData.get("variants")?.toString();
+  if (variantsRaw) {
+    await supabase.from("product_variants").delete().eq("product_id", productId);
+    const variantRows = JSON.parse(variantsRaw) as Array<{
+      label: string;
+      price_cents: number;
+      weight_grams: number | null;
+      stock: number;
+      sort_order: number;
+    }>;
+    if (variantRows.length > 0) {
+      const { error: variantError } = await supabase
+        .from("product_variants")
+        .insert(variantRows.map((v) => ({ ...v, product_id: productId })));
+      if (variantError) {
+        return { error: variantError.message };
+      }
     }
   }
 

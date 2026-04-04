@@ -23,14 +23,14 @@ export default async function CartPage({
   if (cartSessionId) {
     const { data } = await supabase
       .from("cart_items")
-      .select("*, product:products(*)")
+      .select("*, product:products(*), variant:product_variants(id, label, price_cents, weight_grams)")
       .eq("cart_session_id", cartSessionId)
       .order("created_at", { ascending: true });
     cartItems = data || [];
   }
 
   const subtotal = cartItems.reduce(
-    (acc, item) => acc + item.product.price_cents * item.quantity,
+    (acc, item) => acc + ((item.variant as any)?.price_cents ?? item.product.price_cents) * item.quantity,
     0,
   );
   const itemCount = cartItems.reduce((acc, item) => acc + item.quantity, 0);
@@ -100,11 +100,15 @@ export default async function CartPage({
                       </button>
                     </form>
                   </div>
-                  {item.product.capacity_ml && (
+                  {(item.variant as any)?.label ? (
+                    <p className="text-xs text-zinc-500 font-medium">
+                      {(item.variant as any).label}
+                    </p>
+                  ) : item.product.capacity_ml ? (
                     <p className="text-xs text-zinc-500">
                       {item.product.capacity_ml} ml
                     </p>
-                  )}
+                  ) : null}
                 </div>
 
                 <div className="flex justify-between items-end mt-2">
@@ -141,7 +145,7 @@ export default async function CartPage({
                   </div>
                   <p className="font-bold text-lg">
                     {formatPrice(
-                      item.product.price_cents * item.quantity,
+                      ((item.variant as any)?.price_cents ?? item.product.price_cents) * item.quantity,
                       item.product.currency,
                       locale,
                     )}

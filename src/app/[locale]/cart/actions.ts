@@ -9,6 +9,7 @@ export async function addToCart(
   quantity: number = 1,
   size?: string,
   color?: string,
+  variantId?: string,
 ) {
   const supabase = await createClient();
   const cookieStore = await cookies();
@@ -25,13 +26,20 @@ export async function addToCart(
     });
   }
 
-  // Check if item already exists in cart
-  const { data: existingItem } = await supabase
+  // Check if identical item already exists in cart (same product + same variant)
+  let query = supabase
     .from("cart_items")
     .select("id, quantity")
     .eq("cart_session_id", cartSessionId)
-    .eq("product_id", productId)
-    .maybeSingle();
+    .eq("product_id", productId);
+
+  if (variantId) {
+    query = query.eq("variant_id", variantId);
+  } else {
+    query = query.is("variant_id", null);
+  }
+
+  const { data: existingItem } = await query.maybeSingle();
 
   if (existingItem) {
     const { error } = await supabase
@@ -47,6 +55,7 @@ export async function addToCart(
       quantity: quantity,
       selected_size: size,
       selected_color: color,
+      variant_id: variantId ?? null,
     });
 
     if (error) throw error;

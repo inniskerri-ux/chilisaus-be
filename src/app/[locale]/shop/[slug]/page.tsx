@@ -7,6 +7,7 @@ import { formatPrice } from "@/lib/format";
 import { Star } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import AddToCartButton from "@/components/store/AddToCartButton";
+import ProductVariantSelector from "@/components/store/ProductVariantSelector";
 import ProductReviews from "@/components/store/ProductReviews";
 import { getLocalizedField } from "@/lib/utils";
 
@@ -65,6 +66,14 @@ export default async function ProductPage({
     .eq("slug", slug)
     .eq("is_active", true)
     .maybeSingle();
+
+  const { data: variantsData } = await supabase
+    .from("product_variants")
+    .select("id, label, price_cents, weight_grams, stock, sort_order")
+    .eq("product_id", (row as any)?.id ?? "")
+    .eq("is_active", true)
+    .order("sort_order")
+    .order("price_cents");
 
   if (error) console.error("Product fetch error:", error);
   if (!row) notFound();
@@ -204,29 +213,40 @@ export default async function ProductPage({
             </div>
           )}
 
-          <p className="text-3xl font-bold text-foreground">
-            {formatPrice(product.price_cents, product.currency, locale)}
-          </p>
-
           {product.capacity_ml && (
             <p className="text-sm text-text-muted">{product.capacity_ml} ml</p>
           )}
 
-          {/* Stock */}
-          <p
-            className={`text-sm font-medium ${inStock ? "text-green-600" : "text-red-500"}`}
-          >
-            {inStock ? t("inStock") : t("outOfStock")}
-          </p>
+          {variantsData && variantsData.length > 0 ? (
+            <ProductVariantSelector
+              productId={product.id}
+              variants={variantsData}
+              basePriceCents={product.price_cents}
+              currency={product.currency}
+              outOfStock={!inStock}
+            />
+          ) : (
+            <>
+              <p className="text-3xl font-bold text-foreground">
+                {formatPrice(product.price_cents, product.currency, locale)}
+              </p>
 
-          {/* Add to Cart */}
-          <AddToCartButton
-            productId={product.id}
-            outOfStock={!inStock}
-            label={t("addToCart")}
-            outOfStockLabel={t("outOfStock")}
-            className="w-full sm:w-auto bg-brand-red hover:bg-brand-red/90 text-white"
-          />
+              {/* Stock */}
+              <p
+                className={`text-sm font-medium ${inStock ? "text-green-600" : "text-red-500"}`}
+              >
+                {inStock ? t("inStock") : t("outOfStock")}
+              </p>
+
+              <AddToCartButton
+                productId={product.id}
+                outOfStock={!inStock}
+                label={t("addToCart")}
+                outOfStockLabel={t("outOfStock")}
+                className="w-full sm:w-auto bg-brand-red hover:bg-brand-red/90 text-white"
+              />
+            </>
+          )}
 
           {/* Description */}
           {product.description && (

@@ -24,7 +24,7 @@ export async function createCheckoutSession(formData: FormData) {
   // 2. Fetch cart items
   const { data: cartItems, error } = await supabase
     .from("cart_items")
-    .select("*, product:products(*)")
+    .select("*, product:products(*), variant:product_variants(id, label, price_cents, weight_grams)")
     .eq("cart_session_id", cartSessionId);
 
   if (error || !cartItems?.length) {
@@ -38,12 +38,12 @@ export async function createCheckoutSession(formData: FormData) {
     quantity: item.quantity,
     capacityMl: item.product.capacity_ml,
     selectedSize: item.selected_size,
-    weightGrams: item.product.weight_grams,
+    weightGrams: (item.variant as any)?.weight_grams ?? item.product.weight_grams,
   }));
 
   const weightKg = calculatePackageWeight(itemsForWeight);
   const subtotalCents = cartItems.reduce(
-    (acc, item) => acc + item.product.price_cents * item.quantity,
+    (acc, item) => acc + ((item.variant as any)?.price_cents ?? item.product.price_cents) * item.quantity,
     0,
   );
   const shippingCents = calculateShippingCost(
@@ -56,18 +56,21 @@ export async function createCheckoutSession(formData: FormData) {
   const origin = (await headers()).get("origin");
   const locale = (formData.get("locale") as string) || "en";
 
-  const lineItems = cartItems.map((item) => ({
-    price_data: {
-      currency: "eur",
-      product_data: {
-        name: item.product.name,
-        description: item.product.description || "",
-        images: item.product.image_url ? [item.product.image_url] : [],
+  const lineItems = cartItems.map((item) => {
+    const variantLabel = (item.variant as any)?.label;
+    return {
+      price_data: {
+        currency: "eur",
+        product_data: {
+          name: variantLabel ? `${item.product.name} (${variantLabel})` : item.product.name,
+          description: item.product.description || "",
+          images: item.product.image_url ? [item.product.image_url] : [],
+        },
+        unit_amount: (item.variant as any)?.price_cents ?? item.product.price_cents,
       },
-      unit_amount: item.product.price_cents,
-    },
-    quantity: item.quantity,
-  }));
+      quantity: item.quantity,
+    };
+  });
 
   // Add shipping as a line item if not free
   if (shippingCents > 0) {

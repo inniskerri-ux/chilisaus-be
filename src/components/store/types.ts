@@ -1,5 +1,14 @@
 export type DbId = string | number;
 
+export interface ProductVariant {
+  id: string;
+  label: string;
+  price_cents: number;
+  weight_grams?: number | null;
+  stock: number;
+  sort_order: number;
+}
+
 export interface ChilliType {
   id: DbId;
   name: string;
@@ -41,4 +50,5 @@ export interface StoreProduct {
   avgRating?: number | null;
   reviewCount?: number;
   wc_total_sales?: number;
+  variants?: ProductVariant[];
 }

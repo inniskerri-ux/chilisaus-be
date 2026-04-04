@@ -27,9 +27,10 @@ export default async function ShopPage({
     heat_level, image_url, stock, is_active, created_at, wc_total_sales,
     brand:brands ( id, name, slug, country, description ${isEn ? "" : `, description_${locale}`} ),
     category:categories ( id, name, slug ${isEn ? "" : `, name_${locale}`} ),
-    chilliTypes:products_chilli_types ( 
-      chilli_type:chilli_types ( id, name, slug, heat_level ${isEn ? "" : `, name_${locale}`} ) 
-    )
+    chilliTypes:products_chilli_types (
+      chilli_type:chilli_types ( id, name, slug, heat_level ${isEn ? "" : `, name_${locale}`} )
+    ),
+    variants:product_variants ( id, label, price_cents, weight_grams, stock, sort_order )
   `;
 
   const [productsRes, categoriesRes, chilliTypesRes, brandsRes, ratingsRes] =
@@ -119,6 +120,17 @@ export default async function ShopPage({
           name: getLocalizedField(ct, "name", locale),
           slug: ct.slug,
           heatLevel: ct.heat_level,
+        })),
+      variants: (r.variants ?? [])
+        .filter((v: any) => v.is_active !== false)
+        .sort((a: any, b: any) => a.sort_order - b.sort_order || a.price_cents - b.price_cents)
+        .map((v: any) => ({
+          id: v.id,
+          label: v.label,
+          price_cents: v.price_cents,
+          weight_grams: v.weight_grams,
+          stock: v.stock,
+          sort_order: v.sort_order,
         })),
     };
   });

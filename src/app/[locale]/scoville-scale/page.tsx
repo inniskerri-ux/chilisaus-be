@@ -1,6 +1,10 @@
 import { setRequestLocale, getTranslations } from "next-intl/server";
 import Image from "next/image";
-import { Flame, AlertTriangle, Info } from "lucide-react";
+import Link from "next/link";
+import { Flame, AlertTriangle, Info, Download } from "lucide-react";
+
+const SCOVILLE_PDF_URL =
+  "https://hkflfhbzfsentkkwzqnd.supabase.co/storage/v1/object/public/product-images/scoville-scale.pdf";
 
 export default async function ScovilleScalePage({
   params,
@@ -31,6 +35,15 @@ export default async function ScovilleScalePage({
 
       {/* Main Scoville Image */}
       <div className="relative mb-16 overflow-hidden rounded-3xl border border-zinc-100 bg-zinc-50 shadow-2xl">
+        <Link
+          href={SCOVILLE_PDF_URL}
+          download="scoville-scale.pdf"
+          target="_blank"
+          className="absolute top-4 right-4 z-10 inline-flex items-center gap-2 rounded-lg bg-brand-red px-4 py-2 text-sm font-semibold text-white shadow-lg hover:bg-brand-red/90 transition-colors"
+        >
+          <Download size={16} />
+          Download PDF
+        </Link>
         <Image
           src="/images/scoville new.jpg"
           alt="Scoville Scale Heat Chart"
