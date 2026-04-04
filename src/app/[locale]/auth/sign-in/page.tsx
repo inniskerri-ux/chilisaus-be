@@ -26,7 +26,7 @@ export default function SignInPage() {
     setErr(null);
 
     try {
-      const { error } = await supabase.auth.signInWithPassword({
+      const { data, error } = await supabase.auth.signInWithPassword({
         email,
         password,
       });
@@ -34,7 +34,13 @@ export default function SignInPage() {
       if (error) {
         setErr(error.message);
       } else {
-        router.push(`/${locale}/account`);
+        const { data: profile } = await supabase
+          .from("profiles")
+          .select("role")
+          .eq("id", data.user.id)
+          .single();
+        const dest = profile?.role === "shop_owner" ? `/${locale}/admin` : `/${locale}/account`;
+        router.push(dest);
         router.refresh();
       }
     } catch (error) {

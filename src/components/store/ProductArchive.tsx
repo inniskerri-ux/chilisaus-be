@@ -27,8 +27,8 @@ const HEAT_BAND_SLUGS = new Set([
   "mild",
   "medium",
   "hot",
-  "veryHot",
-  "superHot",
+  "very-hot",
+  "superhot",
 ]);
 
 const resolveHeatRank = (value?: string | number | null): number | null => {
@@ -266,13 +266,17 @@ function ProductArchiveContent({
     !!selectedCountry ||
     sortBy !== "popular";
 
-  const clearAllFilters = () => {
+  const clearActiveFilters = () => {
     setSearchTerm("");
     setSelectedHeatLevel("");
     setSelectedChilliType("");
     setSelectedCategory("");
     setSelectedBrand("");
     setSelectedCountry("");
+  };
+
+  const clearAllFilters = () => {
+    clearActiveFilters();
     setSortBy("popular");
     setDisplayCount(12);
     setHideOutOfStock(true);
@@ -294,7 +298,10 @@ function ProductArchiveContent({
                 type="search"
                 placeholder={t("search.placeholder")}
                 value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
+                onChange={(e) => {
+                  clearActiveFilters();
+                  setSearchTerm(e.target.value);
+                }}
                 className="mt-1 w-full rounded-lg border border-border bg-card px-3 py-2 text-foreground
                          focus:outline-none focus:ring-2 focus:ring-brand-red"
               />
@@ -305,7 +312,10 @@ function ProductArchiveContent({
               {t("search.filters.heatLevel")}
               <select
                 value={selectedHeatLevel}
-                onChange={(e) => setSelectedHeatLevel(e.target.value)}
+                onChange={(e) => {
+                  clearActiveFilters();
+                  setSelectedHeatLevel(e.target.value);
+                }}
                 className="mt-1 w-full rounded-lg border border-border bg-card px-3 py-2 text-foreground
                          focus:outline-none focus:ring-2 focus:ring-brand-red"
               >
@@ -325,7 +335,10 @@ function ProductArchiveContent({
               Producer
               <select
                 value={selectedBrand}
-                onChange={(e) => setSelectedBrand(e.target.value)}
+                onChange={(e) => {
+                  clearActiveFilters();
+                  setSelectedBrand(e.target.value);
+                }}
                 className="mt-1 w-full rounded-lg border border-border bg-card px-3 py-2 text-foreground
                          focus:outline-none focus:ring-2 focus:ring-brand-red"
               >
@@ -343,7 +356,10 @@ function ProductArchiveContent({
               {t("search.filters.country")}
               <select
                 value={selectedCountry}
-                onChange={(e) => setSelectedCountry(e.target.value)}
+                onChange={(e) => {
+                  clearActiveFilters();
+                  setSelectedCountry(e.target.value);
+                }}
                 className="mt-1 w-full rounded-lg border border-border bg-card px-3 py-2 text-foreground
                          focus:outline-none focus:ring-2 focus:ring-brand-red"
               >
@@ -361,7 +377,10 @@ function ProductArchiveContent({
               {t("search.filters.sauceType")}
               <select
                 value={selectedCategory}
-                onChange={(e) => setSelectedCategory(e.target.value)}
+                onChange={(e) => {
+                  clearActiveFilters();
+                  setSelectedCategory(e.target.value);
+                }}
                 className="mt-1 w-full rounded-lg border border-border bg-card px-3 py-2 text-foreground
                          focus:outline-none focus:ring-2 focus:ring-brand-red"
               >
@@ -407,7 +426,10 @@ function ProductArchiveContent({
               {t("search.filters.pepper")}
               <select
                 value={selectedChilliType}
-                onChange={(e) => setSelectedChilliType(e.target.value)}
+                onChange={(e) => {
+                  clearActiveFilters();
+                  setSelectedChilliType(e.target.value);
+                }}
                 className="mt-1 w-full rounded-lg border border-border bg-card px-3 py-2 text-foreground
                          focus:outline-none focus:ring-2 focus:ring-brand-red"
               >
