@@ -9,8 +9,7 @@ import type {
   StoreBrand,
 } from "@/components/store/types";
 
-export const dynamic = "force-dynamic";
-export const revalidate = 0;
+export const revalidate = 300;
 
 export default async function ShopPage({
   params,

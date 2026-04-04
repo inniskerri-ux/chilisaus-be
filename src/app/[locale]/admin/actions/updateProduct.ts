@@ -156,6 +156,7 @@ export async function updateProduct(
 
   revalidatePath(`/${context.locale}/admin/products`);
   revalidatePath(`/${context.locale}/admin/products/${productId}`);
+  revalidatePath("/", "layout"); // bust ISR cache for shop pages across all locales
 
   return { success: "updated" };
 }

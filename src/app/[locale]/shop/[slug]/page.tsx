@@ -11,7 +11,7 @@ import ProductVariantSelector from "@/components/store/ProductVariantSelector";
 import ProductReviews from "@/components/store/ProductReviews";
 import { getLocalizedField } from "@/lib/utils";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 300;
 
 export async function generateMetadata({
   params,

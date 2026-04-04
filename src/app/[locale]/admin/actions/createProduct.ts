@@ -141,6 +141,7 @@ export async function createProduct(
   }
 
   revalidatePath(`/${context.locale}/admin/products`);
+  revalidatePath("/", "layout");
 
   return { success: "created", productId: product.id };
 }

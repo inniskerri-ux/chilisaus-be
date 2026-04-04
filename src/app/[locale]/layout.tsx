@@ -19,12 +19,10 @@ export const viewport: Viewport = {
 const fontSans = Montserrat({
   variable: "--font-montserrat",
   subsets: ["latin"],
-  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+  weight: ["400", "600", "700", "800"],
 });
 
 const RTL_LOCALES = new Set(["ar", "fa", "he", "ur"]);
-
-export const dynamic = "force-dynamic";
 
 export default async function LocaleLayout({
   children,

@@ -1,40 +1,12 @@
 import Link from "next/link";
 import Image from "next/image";
-import { createClient } from "@/lib/supabase/server";
 import { Instagram, MessageCircle, Search } from "lucide-react";
 import { getTranslations } from "next-intl/server";
-import { cookies } from "next/headers";
-import LocaleSwitcher from "./store/LocaleSwitcher";
-import CartButton from "./CartButton";
-import MobileMenu from "./MobileMenu";
+import HeaderActions from "./HeaderActions";
 
 export default async function Header({ locale }: { locale: string }) {
-  const supabase = await createClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
   const tAuth = await getTranslations("Auth");
   const tNav = await getTranslations("Nav");
-
-  let isShopOwner = false;
-  if (user) {
-    const { data: profile } = await supabase
-      .from("profiles")
-      .select("role")
-      .eq("id", user.id)
-      .single();
-    isShopOwner = profile?.role === "shop_owner";
-  }
-
-  let cartCount = 0;
-  const cartSessionId = (await cookies()).get("cart_session_id")?.value;
-  if (cartSessionId) {
-    const { data: cartItems } = await supabase
-      .from("cart_items")
-      .select("quantity")
-      .eq("cart_session_id", cartSessionId);
-    cartCount = cartItems?.reduce((acc, item) => acc + item.quantity, 0) ?? 0;
-  }
 
   return (
     <header className="sticky top-0 z-50 border-b border-zinc-100 bg-white/80 backdrop-blur-md">
@@ -69,7 +41,7 @@ export default async function Header({ locale }: { locale: string }) {
           </Link>
         </nav>
 
-        {/* Desktop right section */}
+        {/* Desktop social icons */}
         <div className="hidden lg:flex items-center gap-4">
           <div className="flex items-center gap-2 border-r border-zinc-100 pr-4 mr-2">
             <Link
@@ -99,50 +71,38 @@ export default async function Header({ locale }: { locale: string }) {
             </a>
           </div>
 
-          <nav className="flex items-center gap-4 text-sm font-bold uppercase tracking-wider">
-            {user ? (
-              <>
-                <Link
-                  href={isShopOwner ? `/${locale}/admin` : `/${locale}/account`}
-                  className="text-zinc-900 hover:text-brand-red transition-colors"
-                >
-                  {isShopOwner ? tNav("Dashboard") : tNav("Account")}
-                </Link>
-                <form action={`/api/auth/sign-out`} method="POST">
-                  <button type="submit" className="text-zinc-500 hover:text-brand-red transition-colors">
-                    {tAuth("SignOut")}
-                  </button>
-                </form>
-              </>
-            ) : (
-              <Link href={`/${locale}/auth/sign-in`} className="text-zinc-900 hover:text-brand-red transition-colors">
-                {tAuth("SignIn")}
-              </Link>
-            )}
-
-            <LocaleSwitcher />
-
-            <CartButton locale={locale} label={tNav("Cart")} cartCount={cartCount} />
-          </nav>
-        </div>
-
-        {/* Mobile right section */}
-        <div className="flex lg:hidden items-center gap-1">
-          <CartButton locale={locale} label={tNav("Cart")} cartCount={cartCount} iconOnly />
-          <MobileMenu
+          <HeaderActions
             locale={locale}
-            isLoggedIn={!!user}
-            isShopOwner={isShopOwner}
             whatsappNumber={process.env.NEXT_PUBLIC_WHATSAPP_NUMBER}
             labels={{
-              shop: tNav("Shop"),
-              events: tNav("Events"),
-              reviews: tNav("Reviews"),
-              scoville: tNav("Scoville"),
+              cart: tNav("Cart"),
               account: tNav("Account"),
               dashboard: tNav("Dashboard"),
               signIn: tAuth("SignIn"),
               signOut: tAuth("SignOut"),
+              shop: tNav("Shop"),
+              events: tNav("Events"),
+              reviews: tNav("Reviews"),
+              scoville: tNav("Scoville"),
+            }}
+          />
+        </div>
+
+        {/* Mobile — HeaderActions handles cart icon + hamburger */}
+        <div className="flex lg:hidden">
+          <HeaderActions
+            locale={locale}
+            whatsappNumber={process.env.NEXT_PUBLIC_WHATSAPP_NUMBER}
+            labels={{
+              cart: tNav("Cart"),
+              account: tNav("Account"),
+              dashboard: tNav("Dashboard"),
+              signIn: tAuth("SignIn"),
+              signOut: tAuth("SignOut"),
+              shop: tNav("Shop"),
+              events: tNav("Events"),
+              reviews: tNav("Reviews"),
+              scoville: tNav("Scoville"),
             }}
           />
         </div>
