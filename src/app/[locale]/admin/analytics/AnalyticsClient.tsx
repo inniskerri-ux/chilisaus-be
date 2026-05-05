@@ -485,9 +485,10 @@ export default function AnalyticsClient({ years, allProducts }: Props) {
                         <th className="px-4 py-2.5 text-left text-xs font-bold text-zinc-500 uppercase tracking-wider">#</th>
                         <th className="px-4 py-2.5 text-left text-xs font-bold text-zinc-500 uppercase tracking-wider">Product</th>
                         <th className="px-4 py-2.5 text-right text-xs font-bold text-zinc-500 uppercase tracking-wider">Units (A)</th>
+                        {dataB && <th className="px-4 py-2.5 text-right text-xs font-bold text-zinc-500 uppercase tracking-wider">Units (B)</th>}
                         <th className="px-4 py-2.5 text-right text-xs font-bold text-zinc-500 uppercase tracking-wider">Revenue (A)</th>
                         {dataB && <th className="px-4 py-2.5 text-right text-xs font-bold text-zinc-500 uppercase tracking-wider">Revenue (B)</th>}
-                        {dataB && <th className="px-4 py-2.5 text-right text-xs font-bold text-zinc-500 uppercase tracking-wider">Δ</th>}
+                        {dataB && <th className="px-4 py-2.5 text-right text-xs font-bold text-zinc-500 uppercase tracking-wider">Δ Revenue</th>}
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-zinc-100">
@@ -503,6 +504,11 @@ export default function AnalyticsClient({ years, allProducts }: Props) {
                             <td className="px-4 py-3 text-xs font-black text-zinc-300 w-8">{i + 1}</td>
                             <td className="px-4 py-3 font-medium text-zinc-900 max-w-xs truncate">{p.product_name}</td>
                             <td className="px-4 py-3 text-right text-zinc-600">{p.units.toLocaleString()}</td>
+                            {dataB && (
+                              <td className="px-4 py-3 text-right text-zinc-400">
+                                {periodBProduct ? periodBProduct.units.toLocaleString() : "—"}
+                              </td>
+                            )}
                             <td className="px-4 py-3 text-right font-bold text-zinc-900">{formatPrice(p.revenue)}</td>
                             {dataB && (
                               <td className="px-4 py-3 text-right text-zinc-400">
