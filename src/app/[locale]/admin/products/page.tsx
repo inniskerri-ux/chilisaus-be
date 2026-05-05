@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { getTranslations } from "next-intl/server";
 import type { StoreProduct } from "@/components/store/types";
 import { requireShopOwner } from "../lib/auth";
@@ -61,24 +62,26 @@ export default async function ProductsPage({
   }));
 
   return (
-    <ProductsClient
-      products={products}
-      categories={categories}
-      locale={locale}
-      labels={{
-        heading: t("products.heading"),
-        subheading: t("products.subheading"),
-        newProduct: t("products.newProduct"),
-        name: t("products.name"),
-        category: t("products.category"),
-        brand: t("products.brand"),
-        heat: t("products.heat"),
-        price: t("products.price"),
-        actions: t("products.actions"),
-        edit: t("products.edit"),
-        notSet: t("form.notSet"),
-        empty: t("products.empty"),
-      }}
-    />
+    <Suspense>
+      <ProductsClient
+        products={products}
+        categories={categories}
+        locale={locale}
+        labels={{
+          heading: t("products.heading"),
+          subheading: t("products.subheading"),
+          newProduct: t("products.newProduct"),
+          name: t("products.name"),
+          category: t("products.category"),
+          brand: t("products.brand"),
+          heat: t("products.heat"),
+          price: t("products.price"),
+          actions: t("products.actions"),
+          edit: t("products.edit"),
+          notSet: t("form.notSet"),
+          empty: t("products.empty"),
+        }}
+      />
+    </Suspense>
   );
 }

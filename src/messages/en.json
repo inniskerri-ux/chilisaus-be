@@ -15,7 +15,7 @@
     "Account": "Account",
     "Dashboard": "Dashboard",
     "Scoville": "Scoville",
-    "Reviews": "Reviews",
+    "Reviews": "YouTube Sauce Reviews",
     "Events": "Events"
   },
   "Cart": {
@@ -77,6 +77,7 @@
       "vouchers": "Vouchers",
       "events": "Events",
       "video_reviews": "Video Reviews",
+      "analytics": "Sales Analytics",
       "newProduct": "New product"
     },
     "stats": {
@@ -228,7 +229,7 @@
     }
   },
   "Reviews": {
-    "title": "Hot Sauce Reviews",
+    "title": "YouTube Sauce Reviews",
     "subtitle": "Watch the experts take on our spicy collection.",
     "featured": "Featured Reviews",
     "items": {

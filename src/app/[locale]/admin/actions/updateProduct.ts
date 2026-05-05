@@ -29,6 +29,7 @@ export async function updateProduct(
   const priceCents = Number(formData.get("price_cents"));
   const currency = formData.get("currency")?.toString() || "GBP";
   const description = formData.get("description")?.toString() || "";
+  const pairing = formData.get("pairing")?.toString() || null;
   const heatLevel = formData.get("heat_level")?.toString() || null;
   const categoryId = formData.get("category_id")?.toString() || null;
   const brandId =
@@ -96,6 +97,7 @@ export async function updateProduct(
       price_cents: priceCents,
       currency,
       description,
+      pairing,
       image_url: imageUrl,
       heat_level: heatLevel,
       category_id: categoryId,

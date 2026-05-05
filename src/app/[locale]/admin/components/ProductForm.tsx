@@ -32,6 +32,7 @@ interface Product {
   slug: string;
   description?: string | null;
   details?: string | null;
+  pairing?: string | null;
   price_cents: number;
   currency: string;
   category_id?: string | null;
@@ -241,17 +242,31 @@ export default function ProductForm({
                   rows={2}
                   placeholder="Short tagline shown below product name"
                 />
+                <p className="text-[10px] text-muted-foreground">Use **text** for bold, *text* for italic</p>
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="details">Full Details (Tabs)</Label>
+                <Label htmlFor="details">Full Details</Label>
                 <Textarea
                   id="details"
                   name="details"
                   defaultValue={product?.details || ""}
                   rows={4}
-                  placeholder="Detailed product information for the Details tab"
+                  placeholder="Detailed product information"
                 />
+                <p className="text-[10px] text-muted-foreground">Use **text** for bold, *text* for italic</p>
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="pairing">Good With</Label>
+                <Textarea
+                  id="pairing"
+                  name="pairing"
+                  defaultValue={product?.pairing || ""}
+                  rows={2}
+                  placeholder="e.g. Grilled meats, BBQ, cheese"
+                />
+                <p className="text-[10px] text-muted-foreground">Use **text** for bold, *text* for italic</p>
               </div>
 
               <div className="grid gap-4 sm:grid-cols-3">

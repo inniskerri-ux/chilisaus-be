@@ -50,7 +50,7 @@ export default function LegacyStatsPanel({ years, reviewCount }: LegacyStatsPane
     <section className="space-y-4">
       <h2 className="text-lg font-bold flex items-center gap-2">
         <History className="h-5 w-5 text-purple-600" />
-        Legacy History
+        Sales History
       </h2>
 
       {/* Year selector */}

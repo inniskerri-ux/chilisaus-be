@@ -16,6 +16,7 @@ const NAV_ITEMS = [
   { key: "brands", path: "/brands" },
   { key: "events", path: "/events" },
   { key: "video_reviews", path: "/reviews" },
+  { key: "analytics", path: "/analytics" },
   { key: "marketing", path: "/marketing" },
   { key: "vouchers", path: "/vouchers" },
 ];

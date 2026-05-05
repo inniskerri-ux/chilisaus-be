@@ -9,6 +9,7 @@ import { Badge } from "@/components/ui/badge";
 import AddToCartButton from "@/components/store/AddToCartButton";
 import ProductVariantSelector from "@/components/store/ProductVariantSelector";
 import ProductReviews from "@/components/store/ProductReviews";
+import { SimpleMarkdown } from "@/components/ui/simple-markdown";
 import { getLocalizedField } from "@/lib/utils";
 
 export const revalidate = 300;
@@ -255,7 +256,7 @@ export default async function ProductPage({
                 {t("description")}
               </h2>
               <p className="text-sm text-text-muted leading-relaxed whitespace-pre-line">
-                {product.description}
+                <SimpleMarkdown>{product.description}</SimpleMarkdown>
               </p>
             </div>
           )}
@@ -267,7 +268,7 @@ export default async function ProductPage({
                 {t("pairing")}
               </h2>
               <p className="text-sm text-text-muted leading-relaxed whitespace-pre-line">
-                {product.pairing}
+                <SimpleMarkdown>{product.pairing}</SimpleMarkdown>
               </p>
             </div>
           )}
