@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { useLocale } from "next-intl";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -83,6 +84,7 @@ export default function ProductForm({
   successRedirectPath,
 }: ProductFormProps) {
   const router = useRouter();
+  const locale = useLocale();
   const [loading, setLoading] = useState(false);
   const [selectedCategoryIds, setSelectedCategoryIds] = useState<string[]>(
     product?.categoryIds ??
@@ -194,11 +196,25 @@ export default function ProductForm({
           {product ? "Edit Product" : "New Product"}
         </h1>
         <div className="flex gap-2">
+          {product?.slug && (
+            <Button
+              type="button"
+              variant="outline"
+              onClick={() => window.open(`/${locale}/shop/${product.slug}`, "_blank")}
+            >
+              View listing
+            </Button>
+          )}
           {onDelete && (
             <Button
               type="button"
               variant="destructive"
-              onClick={onDelete}
+              onClick={() => {
+                if (!confirm("Delete this product? This cannot be undone.")) return;
+                const fd = new FormData();
+                fd.append("product_id", String(product!.id));
+                onDelete(fd);
+              }}
               disabled={loading}
             >
               Delete

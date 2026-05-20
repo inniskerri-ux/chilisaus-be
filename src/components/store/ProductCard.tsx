@@ -11,21 +11,6 @@ import { formatPrice } from "@/lib/format";
 import AddToCartButton from "./AddToCartButton";
 import type { StoreProduct } from "./types";
 
-const getHeatPillStyle = (level: number) => {
-  if (level <= 4) return "bg-lime-100 text-lime-800 border border-lime-300";
-  if (level <= 7) return "bg-yellow-100 text-yellow-800 border border-yellow-300";
-  if (level <= 9) return "bg-orange-100 text-orange-800 border border-orange-300";
-  if (level === 10) return "bg-red-100 text-red-800 border border-red-300";
-  return "bg-rose-100 text-rose-900 border border-rose-300";
-};
-
-const getHeatEmoji = (level: number) => {
-  if (level <= 4) return "🌶";
-  if (level <= 7) return "🌶🌶";
-  if (level <= 9) return "🌶🌶🌶";
-  if (level === 10) return "🌶🌶🌶🌶";
-  return "💀";
-};
 
 interface ProductCardProps {
   product: StoreProduct;
@@ -43,7 +28,6 @@ const getCategoryColor = (slug?: string) => {
     "very-hot": "bg-red-100 text-red-800 border-red-200",
     superhot: "bg-rose-100 text-rose-800 border-rose-200",
     // Product types
-    "bbq-products": "bg-amber-100 text-amber-800 border-amber-200",
     "chili-challenges": "bg-purple-100 text-purple-800 border-purple-200",
     "chili-extracts": "bg-rose-100 text-rose-800 border-rose-200",
     "chili-oils": "bg-yellow-100 text-yellow-800 border-yellow-200",
@@ -119,24 +103,8 @@ export default function ProductCard({
       </CardHeader>
       <CardContent className="p-4 flex flex-col flex-1">
         <div className="space-y-2 flex-1">
-          <div className="flex items-center justify-between gap-2">
-            {product.category && (
-              <Badge
-                variant="outline"
-                className={`font-normal border ${getCategoryColor(product.category.slug)}`}
-              >
-                {product.category.name}
-              </Badge>
-            )}
-            {product.heatLevel && (
-              <span className={`inline-flex items-center gap-1 text-xs font-semibold px-2 py-0.5 rounded-full ${getHeatPillStyle(product.heatLevel)}`}>
-                {getHeatEmoji(product.heatLevel)} {product.heatLevel}/20
-              </span>
-            )}
-          </div>
-
           <Link href={productUrl} className="block">
-            <h3 className="text-lg font-semibold line-clamp-1 group-hover:text-orange-600 transition-colors">
+            <h3 className="text-lg font-semibold line-clamp-2 group-hover:text-orange-600 transition-colors">
               {product.name}
             </h3>
           </Link>
@@ -164,19 +132,29 @@ export default function ProductCard({
           </div>
         )}
 
-        <div className="mt-4 flex items-center gap-2">
-          {hasDiscount && (
-            <span className="text-sm text-zinc-500 line-through">
-              {formatPrice(product.price_cents, product.currency, locale)}
+        <div className="mt-4 flex items-center justify-between gap-2">
+          <div className="flex items-center gap-2">
+            {hasDiscount && (
+              <span className="text-sm text-zinc-500 line-through">
+                {formatPrice(product.price_cents, product.currency, locale)}
+              </span>
+            )}
+            <span
+              className={`text-lg font-bold ${hasDiscount ? "text-orange-600" : ""}`}
+            >
+              {hasVariants && !selectedVariant
+                ? `${t("from")} ${formatPrice(lowestVariantPrice!, product.currency, locale)}`
+                : formatPrice(displayPrice, product.currency, locale)}
             </span>
+          </div>
+          {product.category && (
+            <Badge
+              variant="outline"
+              className={`font-normal border shrink-0 ${getCategoryColor(product.category.slug)}`}
+            >
+              {product.category.name}
+            </Badge>
           )}
-          <span
-            className={`text-lg font-bold ${hasDiscount ? "text-orange-600" : ""}`}
-          >
-            {hasVariants && !selectedVariant
-              ? `${t("from")} ${formatPrice(lowestVariantPrice!, product.currency, locale)}`
-              : formatPrice(displayPrice, product.currency, locale)}
-          </span>
         </div>
 
         {hasVariants && (
