@@ -1,5 +1,4 @@
 import { notFound } from "next/navigation";
-import Image from "next/image";
 import Link from "next/link";
 import { getTranslations } from "next-intl/server";
 import { createClient } from "@/lib/supabase/server";
@@ -9,6 +8,7 @@ import { Badge } from "@/components/ui/badge";
 import AddToCartButton from "@/components/store/AddToCartButton";
 import ProductVariantSelector from "@/components/store/ProductVariantSelector";
 import ProductReviews from "@/components/store/ProductReviews";
+import { ProductImageCarousel } from "@/components/store/ProductImageCarousel";
 import { SimpleMarkdown } from "@/components/ui/simple-markdown";
 import { getLocalizedField } from "@/lib/utils";
 
@@ -68,27 +68,42 @@ export default async function ProductPage({
     .eq("is_active", true)
     .maybeSingle();
 
-  const { data: variantsData } = await supabase
-    .from("product_variants")
-    .select("id, label, price_cents, weight_grams, stock, sort_order")
-    .eq("product_id", (row as any)?.id ?? "")
-    .eq("is_active", true)
-    .order("sort_order")
-    .order("price_cents");
-
   if (error) console.error("Product fetch error:", error);
   if (!row) notFound();
 
-  const { data: ratingRow } = await supabase
-    .from("product_ratings")
-    .select("avg_rating, review_count")
-    .eq("product_id", (row as any).id)
-    .maybeSingle();
+  const productId = (row as any).id;
+
+  const [{ data: variantsData }, { data: ratingRow }, { data: productImagesData }] =
+    await Promise.all([
+      supabase
+        .from("product_variants")
+        .select("id, label, price_cents, weight_grams, stock, sort_order")
+        .eq("product_id", productId)
+        .eq("is_active", true)
+        .order("sort_order")
+        .order("price_cents"),
+      supabase
+        .from("product_ratings")
+        .select("avg_rating, review_count")
+        .eq("product_id", productId)
+        .maybeSingle(),
+      supabase
+        .from("product_images")
+        .select("url")
+        .eq("product_id", productId)
+        .order("position"),
+    ]);
 
   const avgRating = ratingRow ? Number((ratingRow as any).avg_rating) : null;
   const reviewCount = ratingRow ? Number((ratingRow as any).review_count) : 0;
 
   const rawProduct = row as Record<string, any>;
+  const carouselImages: string[] =
+    productImagesData && productImagesData.length > 0
+      ? (productImagesData as any[]).map((r) => r.url)
+      : rawProduct.image_url
+        ? [rawProduct.image_url]
+        : [];
   const brand = rawProduct.brand as {
     id: string;
     name: string;
@@ -152,22 +167,7 @@ export default async function ProductPage({
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
         {/* Image */}
-        <div className="relative aspect-square w-full overflow-hidden rounded-2xl bg-zinc-50 border border-zinc-100 p-8">
-          {product.image_url ? (
-            <Image
-              src={product.image_url}
-              alt={product.name}
-              fill
-              className="object-contain"
-              sizes="(max-width: 768px) 100vw, 50vw"
-              priority
-            />
-          ) : (
-            <div className="flex h-full items-center justify-center text-6xl">
-              🌶️
-            </div>
-          )}
-        </div>
+        <ProductImageCarousel images={carouselImages} alt={product.name} />
 
         {/* Details */}
         <div className="flex flex-col gap-4">

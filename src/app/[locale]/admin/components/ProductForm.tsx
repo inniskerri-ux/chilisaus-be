@@ -15,7 +15,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { ImageUploader } from "./ImageUploader";
+import { ProductImageGallery } from "./ProductImageGallery";
 import { slugify } from "@/lib/utils";
 import type { ChilliType } from "@/components/store/types";
 
@@ -43,6 +43,7 @@ interface Product {
   weight_grams?: number | null;
   heat_level?: string | null;
   image_url?: string | null;
+  imageUrls?: string[];
   ingredients?: string | null;
   nutrition_info?: Record<string, number> | null;
   is_active?: boolean;
@@ -92,8 +93,8 @@ export default function ProductForm({
       (product?.category_id ? [product.category_id] : []),
   );
   const [brandValue, setBrandValue] = useState(product?.brand_id || "none");
-  const [imageUrl, setImageUrl] = useState<string | null>(
-    product?.image_url || null,
+  const [imageUrls, setImageUrls] = useState<string[]>(
+    product?.imageUrls ?? (product?.image_url ? [product.image_url] : []),
   );
   const [selectedChilliTypes, setSelectedChilliTypes] = useState<string[]>(
     (product?.chilliTypes ?? []).map((ct) => String(ct.id)),
@@ -150,7 +151,7 @@ export default function ProductForm({
     // Append multi-select category IDs
     selectedCategoryIds.forEach((id) => formData.append("categoryIds", id));
     formData.set("brand_id", brandValue === "none" ? "" : String(brandValue));
-    if (imageUrl) formData.set("image_url", imageUrl);
+    imageUrls.forEach((url) => formData.append("imageUrls", url));
     if (Object.keys(cleanedNutrition).length > 0) {
       formData.set("nutrition_info", JSON.stringify(cleanedNutrition));
     }
@@ -488,10 +489,10 @@ export default function ProductForm({
               <CardTitle>Media</CardTitle>
             </CardHeader>
             <CardContent>
-              <ImageUploader
-                imageUrl={imageUrl}
-                onUpload={(url) => setImageUrl(url)}
-                onRemove={() => setImageUrl(null)}
+              <ProductImageGallery
+                initialImages={imageUrls}
+                productSlug={slug || undefined}
+                onChange={setImageUrls}
               />
             </CardContent>
           </Card>

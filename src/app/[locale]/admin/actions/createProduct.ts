@@ -34,7 +34,11 @@ export async function createProduct(
   const brandId =
     formData.get("brand_id")?.toString() ||
     (context.defaultBrandId ? String(context.defaultBrandId) : null);
-  const imageUrl = formData.get("image_url")?.toString() || null;
+  const imageUrls = formData
+    .getAll("imageUrls")
+    .map((u) => u.toString())
+    .filter(Boolean);
+  const imageUrl = imageUrls[0] || null;
   const ingredients = formData.get("ingredients")?.toString() || null;
   const capacityMl = formData.get("capacity_ml")
     ? Number(formData.get("capacity_ml"))
@@ -114,6 +118,12 @@ export async function createProduct(
 
   if (insertError || !product) {
     return { error: insertError?.message || "Unable to create product" };
+  }
+
+  if (imageUrls.length > 0) {
+    await supabase.from("product_images").insert(
+      imageUrls.map((url, position) => ({ product_id: product.id, url, position })),
+    );
   }
 
   if (chilliTypeIds.length > 0) {

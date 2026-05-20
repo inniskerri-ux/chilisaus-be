@@ -58,6 +58,7 @@ export default async function EditProductPage({ params }: ProductPageProps) {
     { data: brandsData },
     { data: variantsData },
     { data: productCategoriesData },
+    { data: productImagesData },
   ] = await Promise.all([
     supabase.from("categories").select("id, name, slug").order("name"),
     supabase
@@ -76,6 +77,11 @@ export default async function EditProductPage({ params }: ProductPageProps) {
       .from("product_categories")
       .select("category_id")
       .eq("product_id", id),
+    supabase
+      .from("product_images")
+      .select("url")
+      .eq("product_id", id)
+      .order("position"),
   ]);
 
   const categories: Category[] =
@@ -119,6 +125,7 @@ export default async function EditProductPage({ params }: ProductPageProps) {
     nutrition_info: row.nutrition_info,
     category_id: row.category_id,
     categoryIds: (productCategoriesData ?? []).map((pc: any) => String(pc.category_id)),
+    imageUrls: (productImagesData ?? []).map((pi: any) => pi.url),
     brand_id: row.brand_id,
     brand: row.brand
       ? { id: row.brand.id, name: row.brand.name, slug: row.brand.slug || "" }
