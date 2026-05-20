@@ -249,15 +249,19 @@ export default async function ProductPage({
             </>
           )}
 
-          {/* Description */}
-          {product.description && (
+          {/* Chilli types */}
+          {chilliTypes.length > 0 && (
             <div className="mt-2 border-t border-border pt-4">
               <h2 className="text-sm font-semibold text-foreground mb-2">
-                {t("description")}
+                {t("peppers")}
               </h2>
-              <p className="text-sm text-text-muted leading-relaxed whitespace-pre-line">
-                <SimpleMarkdown>{product.description}</SimpleMarkdown>
-              </p>
+              <div className="flex flex-wrap gap-2">
+                {chilliTypes.map((ct) => (
+                  <Badge key={ct.id} variant="outline">
+                    {ct.name}
+                  </Badge>
+                ))}
+              </div>
             </div>
           )}
 
@@ -271,6 +275,18 @@ export default async function ProductPage({
             </div>
           )}
 
+          {/* Description */}
+          {product.description && (
+            <div className="border-t border-border pt-4">
+              <h2 className="text-sm font-semibold text-foreground mb-2">
+                {t("description")}
+              </h2>
+              <p className="text-sm text-text-muted leading-relaxed whitespace-pre-line">
+                <SimpleMarkdown>{product.description}</SimpleMarkdown>
+              </p>
+            </div>
+          )}
+
           {/* Pairing */}
           {product.pairing && (
             <div className="border-t border-border pt-4">
@@ -280,22 +296,6 @@ export default async function ProductPage({
               <p className="text-sm text-text-muted leading-relaxed whitespace-pre-line">
                 <SimpleMarkdown>{product.pairing}</SimpleMarkdown>
               </p>
-            </div>
-          )}
-
-          {/* Chilli types */}
-          {chilliTypes.length > 0 && (
-            <div className="border-t border-border pt-4">
-              <h2 className="text-sm font-semibold text-foreground mb-2">
-                {t("peppers")}
-              </h2>
-              <div className="flex flex-wrap gap-2">
-                {chilliTypes.map((ct) => (
-                  <Badge key={ct.id} variant="outline">
-                    {ct.name}
-                  </Badge>
-                ))}
-              </div>
             </div>
           )}
         </div>
