@@ -45,6 +45,12 @@ export async function POST(req: NextRequest) {
     );
   } catch (err: any) {
     console.error(`[Webhook] Signature verification failed: ${err.message}`);
+    await supabaseAdmin.from("webhook_logs").insert({
+      source: "stripe",
+      status: "failed",
+      error: `Signature verification failed: ${err.message}`,
+      payload: { raw_body_length: body.length },
+    });
     return NextResponse.json(
       { error: `Webhook Error: ${err.message}` },
       { status: 400 },
@@ -53,6 +59,21 @@ export async function POST(req: NextRequest) {
 
   console.log(`[Webhook] Event verified: ${event.type} (${event.id})`);
 
+  // Log receipt immediately so we have a record even if processing fails
+  const { data: logEntry } = await supabaseAdmin
+    .from("webhook_logs")
+    .insert({
+      source: "stripe",
+      event_id: event.id,
+      event_type: event.type,
+      status: "received",
+      payload: event.data.object,
+    })
+    .select("id")
+    .single();
+
+  const logId = logEntry?.id;
+
   if (event.type === "checkout.session.completed") {
     const session = event.data.object as any;
     console.log(`[Webhook] Processing checkout.session.completed — session: ${session.id}, total: ${session.amount_total}`);
@@ -60,9 +81,11 @@ export async function POST(req: NextRequest) {
     try {
       await handleOrderCompleted(session);
       console.log(`[Webhook] Order processing complete for session ${session.id}`);
+      if (logId) await supabaseAdmin.from("webhook_logs").update({ status: "processed" }).eq("id", logId);
       return NextResponse.json({ received: true });
-    } catch (error) {
+    } catch (error: any) {
       console.error("[Webhook] Order processing failed:", error);
+      if (logId) await supabaseAdmin.from("webhook_logs").update({ status: "failed", error: error?.message ?? String(error) }).eq("id", logId);
       return NextResponse.json(
         { error: "Order processing failed" },
         { status: 500 },
@@ -71,6 +94,7 @@ export async function POST(req: NextRequest) {
   }
 
   console.log(`[Webhook] Unhandled event type: ${event.type} — ignoring`);
+  if (logId) await supabaseAdmin.from("webhook_logs").update({ status: "processed" }).eq("id", logId);
   return NextResponse.json({ received: true });
 }
 
