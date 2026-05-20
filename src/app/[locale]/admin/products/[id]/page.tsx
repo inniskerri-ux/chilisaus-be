@@ -57,6 +57,7 @@ export default async function EditProductPage({ params }: ProductPageProps) {
     { data: chilliTypesData },
     { data: brandsData },
     { data: variantsData },
+    { data: productCategoriesData },
   ] = await Promise.all([
     supabase.from("categories").select("id, name, slug").order("name"),
     supabase
@@ -71,6 +72,10 @@ export default async function EditProductPage({ params }: ProductPageProps) {
       .eq("is_active", true)
       .order("sort_order")
       .order("price_cents"),
+    supabase
+      .from("product_categories")
+      .select("category_id")
+      .eq("product_id", id),
   ]);
 
   const categories: Category[] =
@@ -113,6 +118,7 @@ export default async function EditProductPage({ params }: ProductPageProps) {
     ingredients: row.ingredients,
     nutrition_info: row.nutrition_info,
     category_id: row.category_id,
+    categoryIds: (productCategoriesData ?? []).map((pc: any) => String(pc.category_id)),
     brand_id: row.brand_id,
     brand: row.brand
       ? { id: row.brand.id, name: row.brand.name, slug: row.brand.slug || "" }

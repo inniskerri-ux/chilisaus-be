@@ -15,7 +15,7 @@
     "Account": "Account",
     "Dashboard": "Dashboard",
     "Scoville": "Scoville",
-    "Reviews": "YouTube Sauce Reviews",
+    "Reviews": "YouTube Reviews",
     "Events": "Events"
   },
   "Cart": {
@@ -229,7 +229,7 @@
     }
   },
   "Reviews": {
-    "title": "YouTube Sauce Reviews",
+    "title": "YouTube Reviews",
     "subtitle": "Watch the experts take on our spicy collection.",
     "featured": "Featured Reviews",
     "items": {

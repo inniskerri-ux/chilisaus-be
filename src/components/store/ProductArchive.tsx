@@ -130,13 +130,20 @@ function ProductArchiveContent({
               ct?.name === selectedChilliType,
           ));
 
+      const allCategories = product.categories?.length
+        ? product.categories
+        : product.category
+          ? [product.category]
+          : [];
       const matchesCategory =
         !selectedCategory ||
         (selectedCategory === "sauces"
-          ? product.category?.slug != null &&
-            HEAT_BAND_SLUGS.has(product.category.slug)
-          : product.category?.id?.toString() === selectedCategory ||
-            product.category?.slug === selectedCategory);
+          ? allCategories.some((c) => HEAT_BAND_SLUGS.has(c.slug))
+          : allCategories.some(
+              (c) =>
+                c.id?.toString() === selectedCategory ||
+                c.slug === selectedCategory,
+            ));
 
       const matchesBrand =
         !selectedBrand ||

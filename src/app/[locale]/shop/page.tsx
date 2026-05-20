@@ -26,6 +26,9 @@ export default async function ShopPage({
     heat_level, image_url, stock, is_active, created_at, wc_total_sales,
     brand:brands ( id, name, slug, country, description ${isEn ? "" : `, description_${locale}`} ),
     category:categories ( id, name, slug ${isEn ? "" : `, name_${locale}`} ),
+    productCategories:product_categories (
+      category:categories ( id, name, slug ${isEn ? "" : `, name_${locale}`} )
+    ),
     chilliTypes:products_chilli_types (
       chilli_type:chilli_types ( id, name, slug, heat_level ${isEn ? "" : `, name_${locale}`} )
     ),
@@ -111,6 +114,14 @@ export default async function ShopPage({
             slug: r.category.slug,
           }
         : null,
+      categories: (r.productCategories ?? [])
+        .map((j: { category: any }) => j.category)
+        .filter(Boolean)
+        .map((c: any) => ({
+          id: c.id,
+          name: getLocalizedField(c, "name", locale),
+          slug: c.slug,
+        })),
       chilliTypes: (r.chilliTypes ?? [])
         .map((j: { chilli_type: any }) => j.chilli_type)
         .filter(Boolean)

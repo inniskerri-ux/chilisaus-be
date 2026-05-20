@@ -26,7 +26,11 @@ export async function createProduct(
   const description = formData.get("description")?.toString() || "";
   const pairing = formData.get("pairing")?.toString() || null;
   const heatLevel = formData.get("heat_level")?.toString() || null;
-  const categoryId = formData.get("category_id")?.toString() || null;
+  const categoryIds = formData
+    .getAll("categoryIds")
+    .map((id) => id.toString())
+    .filter(Boolean);
+  const categoryId = categoryIds[0] || null;
   const brandId =
     formData.get("brand_id")?.toString() ||
     (context.defaultBrandId ? String(context.defaultBrandId) : null);
@@ -122,6 +126,19 @@ export async function createProduct(
       .insert(joinRows);
     if (joinError) {
       return { error: joinError.message };
+    }
+  }
+
+  if (categoryIds.length > 0) {
+    const catRows = categoryIds.map((catId) => ({
+      product_id: product.id,
+      category_id: catId,
+    }));
+    const { error: catError } = await supabase
+      .from("product_categories")
+      .insert(catRows);
+    if (catError) {
+      return { error: catError.message };
     }
   }
 

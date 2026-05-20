@@ -42,6 +42,7 @@ export interface StoreProduct {
   heatLevel?: number | null;
   chilliTypes?: ChilliType[];
   category?: Category | null;
+  categories?: Category[];
   brandId?: DbId;
   brand?: StoreBrand | null;
   stock?: number;

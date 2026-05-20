@@ -261,6 +261,16 @@ export default async function ProductPage({
             </div>
           )}
 
+          {/* Ingredients */}
+          {product.ingredients && (
+            <div className="border-t border-border pt-4">
+              <h2 className="text-sm font-semibold text-foreground mb-2">
+                {t("ingredients")}
+              </h2>
+              <p className="text-sm text-text-muted">{product.ingredients}</p>
+            </div>
+          )}
+
           {/* Pairing */}
           {product.pairing && (
             <div className="border-t border-border pt-4">
@@ -270,16 +280,6 @@ export default async function ProductPage({
               <p className="text-sm text-text-muted leading-relaxed whitespace-pre-line">
                 <SimpleMarkdown>{product.pairing}</SimpleMarkdown>
               </p>
-            </div>
-          )}
-
-          {/* Ingredients */}
-          {product.ingredients && (
-            <div className="border-t border-border pt-4">
-              <h2 className="text-sm font-semibold text-foreground mb-2">
-                {t("ingredients")}
-              </h2>
-              <p className="text-sm text-text-muted">{product.ingredients}</p>
             </div>
           )}
 

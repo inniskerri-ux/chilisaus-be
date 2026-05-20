@@ -36,6 +36,7 @@ interface Product {
   price_cents: number;
   currency: string;
   category_id?: string | null;
+  categoryIds?: string[];
   brand_id?: string | null;
   capacity_ml?: number | null;
   weight_grams?: number | null;
@@ -83,8 +84,9 @@ export default function ProductForm({
 }: ProductFormProps) {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
-  const [categoryValue, setCategoryValue] = useState(
-    product?.category_id || "none",
+  const [selectedCategoryIds, setSelectedCategoryIds] = useState<string[]>(
+    product?.categoryIds ??
+      (product?.category_id ? [product.category_id] : []),
   );
   const [brandValue, setBrandValue] = useState(product?.brand_id || "none");
   const [imageUrl, setImageUrl] = useState<string | null>(
@@ -110,11 +112,10 @@ export default function ProductForm({
     }
   };
 
-  const selectedCategory = categories.find((cat) => cat.id === categoryValue);
-  // Example logic for variants (adjust as needed for specific store)
-  const isMerchCategory =
-    selectedCategory?.slug === "merch" ||
-    selectedCategory?.slug?.includes("clothing");
+  const isMerchCategory = selectedCategoryIds.some((id) => {
+    const cat = categories.find((c) => String(c.id) === id);
+    return cat?.slug === "merch" || cat?.slug?.includes("clothing");
+  });
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -141,11 +142,8 @@ export default function ProductForm({
       Object.entries(nutritionInfo).filter(([, value]) => value !== undefined),
     );
 
-    // Append additional data to FormData
-    formData.set(
-      "category_id",
-      categoryValue === "none" ? "" : String(categoryValue),
-    );
+    // Append multi-select category IDs
+    selectedCategoryIds.forEach((id) => formData.append("categoryIds", id));
     formData.set("brand_id", brandValue === "none" ? "" : String(brandValue));
     if (imageUrl) formData.set("image_url", imageUrl);
     if (Object.keys(cleanedNutrition).length > 0) {
@@ -312,23 +310,30 @@ export default function ProductForm({
 
               <div className="grid gap-4 sm:grid-cols-2">
                 <div className="space-y-2">
-                  <Label>Category</Label>
-                  <Select
-                    value={categoryValue}
-                    onValueChange={setCategoryValue}
-                  >
-                    <SelectTrigger>
-                      <SelectValue placeholder="Select category" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="none">No Category</SelectItem>
-                      {categories.map((cat) => (
-                        <SelectItem key={cat.id} value={String(cat.id)}>
+                  <Label>Categories</Label>
+                  <div className="border rounded-md p-3 space-y-2 max-h-48 overflow-y-auto">
+                    {categories.map((cat) => {
+                      const id = String(cat.id);
+                      const checked = selectedCategoryIds.includes(id);
+                      return (
+                        <label key={id} className="flex items-center gap-2 cursor-pointer text-sm">
+                          <input
+                            type="checkbox"
+                            checked={checked}
+                            onChange={() =>
+                              setSelectedCategoryIds((prev) =>
+                                checked
+                                  ? prev.filter((x) => x !== id)
+                                  : [...prev, id],
+                              )
+                            }
+                            className="h-4 w-4 rounded border-gray-300"
+                          />
                           {cat.name}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
+                        </label>
+                      );
+                    })}
+                  </div>
                 </div>
 
                 <div className="space-y-2">
