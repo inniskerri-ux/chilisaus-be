@@ -38,11 +38,17 @@ export default function HeaderActions({
     cartCount: 0,
   });
 
-  useEffect(() => {
+  const fetchSession = () => {
     fetch("/api/session")
       .then((r) => r.json())
       .then(setSession)
       .catch(() => {});
+  };
+
+  useEffect(() => {
+    fetchSession();
+    window.addEventListener("cart:updated", fetchSession);
+    return () => window.removeEventListener("cart:updated", fetchSession);
   }, []);
 
   const { isLoggedIn, isShopOwner, cartCount } = session;

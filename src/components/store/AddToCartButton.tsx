@@ -45,6 +45,7 @@ export default function AddToCartButton({
     setIsPending(true);
     try {
       await addToCart(productId, 1, undefined, undefined, variantId);
+      window.dispatchEvent(new Event("cart:updated"));
       if (redirectTo) {
         router.push(redirectTo);
       } else {
