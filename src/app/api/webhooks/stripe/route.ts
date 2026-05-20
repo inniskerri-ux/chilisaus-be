@@ -31,7 +31,7 @@ export async function POST(req: NextRequest) {
     event = stripe.webhooks.constructEvent(
       body,
       signature,
-      process.env.STRIPE_WEBHOOK_SECRET!,
+      (process.env.STRIPE_WEBHOOK_SECRET_STAGING ?? process.env.STRIPE_WEBHOOK_SECRET)!,
     );
   } catch (err: any) {
     console.error(`[Stripe Webhook] Error: ${err.message}`);
