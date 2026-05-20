@@ -163,13 +163,13 @@ export const SHIPPING_RATES: Record<string, ShippingRate[]> = {
   BE: [
     {
       provider: "Bpost",
-      rateCents: 595, // €5.95 placeholder
+      rateCents: 0, // €5.95 — zeroed for staging test
       minWeightKg: 0,
       maxWeightKg: 2,
     },
     {
       provider: "Bpost",
-      rateCents: 895, // €8.95 placeholder
+      rateCents: 0, // €8.95 — zeroed for staging test
       minWeightKg: 2,
       maxWeightKg: 10,
     },
@@ -177,13 +177,13 @@ export const SHIPPING_RATES: Record<string, ShippingRate[]> = {
   DEFAULT: [
     {
       provider: "PostNL",
-      rateCents: 1295, // €12.95 placeholder for EU
+      rateCents: 0, // €12.95 — zeroed for staging test
       minWeightKg: 0,
       maxWeightKg: 2,
     },
     {
       provider: "PostNL",
-      rateCents: 1895, // €18.95 placeholder for EU
+      rateCents: 0, // €18.95 — zeroed for staging test
       minWeightKg: 2,
       maxWeightKg: 10,
     },

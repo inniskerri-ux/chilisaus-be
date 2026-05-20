@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { useLocale } from "next-intl";
 import { Button } from "@/components/ui/button";
@@ -86,6 +86,7 @@ export default function ProductForm({
   const router = useRouter();
   const locale = useLocale();
   const [loading, setLoading] = useState(false);
+  const submitting = useRef(false);
   const [selectedCategoryIds, setSelectedCategoryIds] = useState<string[]>(
     product?.categoryIds ??
       (product?.category_id ? [product.category_id] : []),
@@ -121,6 +122,8 @@ export default function ProductForm({
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (submitting.current) return;
+    submitting.current = true;
     setLoading(true);
 
     const formData = new FormData(e.currentTarget);
@@ -177,6 +180,7 @@ export default function ProductForm({
         router.refresh();
       }
     } finally {
+      submitting.current = false;
       setLoading(false);
     }
   };
@@ -209,11 +213,15 @@ export default function ProductForm({
             <Button
               type="button"
               variant="destructive"
-              onClick={() => {
+              onClick={async () => {
                 if (!confirm("Delete this product? This cannot be undone.")) return;
                 const fd = new FormData();
                 fd.append("product_id", String(product!.id));
-                onDelete(fd);
+                const result = await onDelete(fd);
+                if (result?.success && successRedirectPath) {
+                  router.push(successRedirectPath);
+                  router.refresh();
+                }
               }}
               disabled={loading}
             >
