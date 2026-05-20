@@ -55,7 +55,7 @@ export default async function ProductPage({
     pairing, ${isEn ? "" : `pairing_${locale},`}
     stock, is_active,
     brand:brands ( id, name, slug ),
-    category:categories ( id, name, slug ${isEn ? "" : `, name_${locale}`} ),
+    category:categories!category_id ( id, name, slug ${isEn ? "" : `, name_${locale}`} ),
     chilliTypes:products_chilli_types (
       chilli_type:chilli_types ( id, name, slug, heat_level ${isEn ? "" : `, name_${locale}`} )
     )

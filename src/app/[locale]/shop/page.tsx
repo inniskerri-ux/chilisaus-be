@@ -25,7 +25,7 @@ export default async function ShopPage({
     id, name, slug, description, ${isEn ? "" : `description_${locale},`} price_cents, currency,
     heat_level, image_url, stock, is_active, created_at, wc_total_sales,
     brand:brands ( id, name, slug, country, description ${isEn ? "" : `, description_${locale}`} ),
-    category:categories ( id, name, slug ${isEn ? "" : `, name_${locale}`} ),
+    category:categories!category_id ( id, name, slug ${isEn ? "" : `, name_${locale}`} ),
     chilliTypes:products_chilli_types (
       chilli_type:chilli_types ( id, name, slug, heat_level ${isEn ? "" : `, name_${locale}`} )
     ),

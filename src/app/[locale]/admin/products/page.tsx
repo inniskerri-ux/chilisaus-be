@@ -28,7 +28,7 @@ export default async function ProductsPage({
         heat_level,
         image_url,
         brand:brands ( id, name, slug ),
-        category:categories ( id, name, slug )
+        category:categories!category_id ( id, name, slug )
       `,
       )
       .order("name", { ascending: true }),

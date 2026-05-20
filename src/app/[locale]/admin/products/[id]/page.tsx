@@ -38,7 +38,7 @@ export default async function EditProductPage({ params }: ProductPageProps) {
       category_id,
       brand_id,
       brand:brands ( id, name, slug ),
-      category:categories ( id, name, slug ),
+      category:categories!category_id ( id, name, slug ),
       products_chilli_types (
         chilli_type_id,
         chilli_types ( id, name, slug, heat_level )

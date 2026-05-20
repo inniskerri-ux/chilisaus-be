@@ -21,7 +21,7 @@ export async function GET() {
       stock,
       is_active,
       brand:brands(name),
-      category:categories(name)
+      category:categories!category_id(name)
     `,
     )
     .eq("is_active", true);
