@@ -51,28 +51,30 @@ export default function ProductVariantSelector({
         {formatPrice(displayPrice, currency, locale)}
       </p>
 
-      <div className="space-y-2">
-        <p className="text-sm font-medium text-foreground">{t("selectSize")}</p>
-        <div className="flex flex-wrap gap-2">
-          {activeVariants.map((variant) => (
-            <button
-              key={variant.id}
-              type="button"
-              onClick={() => setSelectedVariantId(variant.id)}
-              className={`px-4 py-2 rounded-lg border text-sm font-medium transition-all ${
-                selectedVariantId === variant.id
-                  ? "border-brand-red bg-brand-red text-white"
-                  : variant.stock === 0
-                    ? "border-zinc-200 text-zinc-400 cursor-not-allowed opacity-60"
-                    : "border-zinc-300 text-foreground hover:border-brand-red"
-              }`}
-              disabled={variant.stock === 0 && selectedVariantId !== variant.id}
-            >
-              {variant.label}
-            </button>
-          ))}
+      {activeVariants.length > 1 && (
+        <div className="space-y-2">
+          <p className="text-sm font-medium text-foreground">{t("selectSize")}</p>
+          <div className="flex flex-wrap gap-2">
+            {activeVariants.map((variant) => (
+              <button
+                key={variant.id}
+                type="button"
+                onClick={() => setSelectedVariantId(variant.id)}
+                className={`px-4 py-2 rounded-lg border text-sm font-medium transition-all ${
+                  selectedVariantId === variant.id
+                    ? "border-brand-red bg-brand-red text-white"
+                    : variant.stock === 0
+                      ? "border-zinc-200 text-zinc-400 cursor-not-allowed opacity-60"
+                      : "border-zinc-300 text-foreground hover:border-brand-red"
+                }`}
+                disabled={variant.stock === 0 && selectedVariantId !== variant.id}
+              >
+                {variant.label}
+              </button>
+            ))}
+          </div>
         </div>
-      </div>
+      )}
 
       <AddToCartButton
         productId={productId}
