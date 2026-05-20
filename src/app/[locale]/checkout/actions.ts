@@ -63,7 +63,7 @@ export async function createCheckoutSession(formData: FormData) {
         currency: "eur",
         product_data: {
           name: variantLabel ? `${item.product.name} (${variantLabel})` : item.product.name,
-          description: item.product.description || "",
+          ...(item.product.description ? { description: item.product.description } : {}),
           images: item.product.image_url ? [item.product.image_url] : [],
         },
         unit_amount: (item.variant as any)?.price_cents ?? item.product.price_cents,
@@ -79,7 +79,6 @@ export async function createCheckoutSession(formData: FormData) {
         currency: "eur",
         product_data: {
           name: "Shipping",
-          description: "",
           images: [],
         },
         unit_amount: shippingCents,
