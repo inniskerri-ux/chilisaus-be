@@ -1,3 +1,5 @@
+"use server";
+
 import { NextRequest, NextResponse } from "next/server";
 import { getStripeServerClient } from "@/lib/stripe/server";
 import { createClient } from "@supabase/supabase-js";
@@ -19,12 +21,20 @@ const supabaseAdmin = createClient(
 );
 
 export async function POST(req: NextRequest) {
+  console.log("[Webhook] POST received");
+
   const body = await req.text();
   const signature = req.headers.get("stripe-signature");
 
   if (!signature) {
+    console.error("[Webhook] Missing stripe-signature header");
     return NextResponse.json({ error: "No signature" }, { status: 400 });
   }
+
+  const secretInUse = process.env.STRIPE_WEBHOOK_SECRET_STAGING
+    ? "STRIPE_WEBHOOK_SECRET_STAGING"
+    : "STRIPE_WEBHOOK_SECRET";
+  console.log(`[Webhook] Verifying signature using ${secretInUse}`);
 
   let event;
   try {
@@ -34,22 +44,25 @@ export async function POST(req: NextRequest) {
       (process.env.STRIPE_WEBHOOK_SECRET_STAGING ?? process.env.STRIPE_WEBHOOK_SECRET)!,
     );
   } catch (err: any) {
-    console.error(`[Stripe Webhook] Error: ${err.message}`);
+    console.error(`[Webhook] Signature verification failed: ${err.message}`);
     return NextResponse.json(
       { error: `Webhook Error: ${err.message}` },
       { status: 400 },
     );
   }
 
+  console.log(`[Webhook] Event verified: ${event.type} (${event.id})`);
+
   if (event.type === "checkout.session.completed") {
     const session = event.data.object as any;
+    console.log(`[Webhook] Processing checkout.session.completed — session: ${session.id}, total: ${session.amount_total}`);
 
     try {
-      // 1. Process the order
       await handleOrderCompleted(session);
+      console.log(`[Webhook] Order processing complete for session ${session.id}`);
       return NextResponse.json({ received: true });
     } catch (error) {
-      console.error("[Stripe Webhook] Error processing order:", error);
+      console.error("[Webhook] Order processing failed:", error);
       return NextResponse.json(
         { error: "Order processing failed" },
         { status: 500 },
@@ -57,6 +70,7 @@ export async function POST(req: NextRequest) {
     }
   }
 
+  console.log(`[Webhook] Unhandled event type: ${event.type} — ignoring`);
   return NextResponse.json({ received: true });
 }
 
@@ -73,34 +87,41 @@ async function handleOrderCompleted(session: any) {
 
   const cartSessionId = metadata?.cart_session_id;
   const userId = metadata?.user_id;
+  console.log(`[Webhook] cart_session_id: ${cartSessionId}, user_id: ${userId || "guest"}`);
 
   // Check if a promotion code was used
   const discount = total_details?.breakdown?.discounts?.[0]?.discount;
   const promoCodeId = discount?.promotion_code;
-  const promoCodeStr = discount?.promotion_code
-    ? (await stripe.promotionCodes.retrieve(discount.promotion_code)).code
+  const promoCodeStr = promoCodeId
+    ? (await stripe.promotionCodes.retrieve(promoCodeId)).code
     : null;
+
   if (promoCodeId) {
-    // Increment redemption count in Supabase
-    await supabaseAdmin.rpc("increment_voucher_redemption", {
+    console.log(`[Webhook] Promo code used: ${promoCodeStr}`);
+    const { error: rpcError } = await supabaseAdmin.rpc("increment_voucher_redemption", {
       p_promo_code_id: promoCodeId,
     });
+    if (rpcError) console.error("[Webhook] Failed to increment voucher redemption:", rpcError);
   }
 
-  // 2. Fetch full session with line items
+  // Fetch full session with line items
+  console.log(`[Webhook] Fetching full session with line items for ${session.id}`);
   const fullSession = await stripe.checkout.sessions.retrieve(session.id, {
     expand: ["line_items.data.price.product"],
   });
 
   const lineItems = fullSession.line_items?.data || [];
+  console.log(`[Webhook] Line items fetched: ${lineItems.length} item(s)`);
 
-  // 3. Prepare order data
+  // Prepare order data
   const subtotalCents = amount_subtotal || 0;
   const shippingCents = shipping_cost?.amount_total || 0;
   const totalCents = amount_total || 0;
   const taxCents = calculateTaxFromTotal(subtotalCents);
+  console.log(`[Webhook] Order totals — subtotal: ${subtotalCents}, shipping: ${shippingCents}, tax: ${taxCents}, total: ${totalCents}`);
 
-  // 4. Store order in database
+  // Store order in database
+  console.log("[Webhook] Inserting order into DB");
   const { data: order, error: orderError } = await supabaseAdmin
     .from("orders")
     .insert({
@@ -124,58 +145,63 @@ async function handleOrderCompleted(session: any) {
     .select()
     .single();
 
-  if (orderError) throw orderError;
+  if (orderError) {
+    console.error("[Webhook] Order insert failed:", orderError);
+    throw orderError;
+  }
+  console.log(`[Webhook] Order created: ${order.id}`);
 
-  // 5. Store order items
+  // Store order items
   const orderItems = lineItems
     .filter((item: any) => item.price.product.name !== "Shipping")
     .map((item: any) => ({
       order_id: order.id,
       product_name: item.price.product.name,
       quantity: item.quantity,
-      price_cents: item.amount_total, // Note: this is quantity * unit_amount
+      price_cents: item.amount_total,
       tax_cents: calculateTaxFromTotal(item.amount_total),
     }));
 
+  console.log(`[Webhook] Inserting ${orderItems.length} order item(s)`);
   const { error: itemsError } = await supabaseAdmin
     .from("order_items")
     .insert(orderItems);
-  if (itemsError) throw itemsError;
+  if (itemsError) {
+    console.error("[Webhook] Order items insert failed:", itemsError);
+    throw itemsError;
+  }
+  console.log("[Webhook] Order items inserted");
 
-  // 6. Update Inventory and Check for Low Stock
+  // Update inventory and check for low stock
   for (const item of lineItems as any[]) {
     const productName = item.price?.product?.name;
     if (!productName || productName === "Shipping") continue;
 
-    const quantitySold = item.quantity;
-
-    // Use a transaction-like update with RPC or separate calls
+    console.log(`[Webhook] Reducing stock: "${productName}" x${item.quantity}`);
     const { data: updatedProduct, error: stockError } = await supabaseAdmin.rpc(
       "reduce_stock",
-      {
-        p_name: productName,
-        p_quantity: quantitySold,
-      },
+      { p_name: productName, p_quantity: item.quantity },
     );
 
-    if (!stockError && updatedProduct) {
-      // Check for low stock alert
+    if (stockError) {
+      console.error(`[Webhook] Stock reduction failed for "${productName}":`, stockError);
+    } else if (updatedProduct) {
+      console.log(`[Webhook] Stock updated for "${productName}": ${updatedProduct.stock} remaining`);
+
       if (updatedProduct.stock <= updatedProduct.low_stock_threshold) {
-        // 6a. Send Low Stock Email
+        console.log(`[Webhook] Low stock alert for "${productName}" (${updatedProduct.stock} left)`);
         await sendEmail({
           to: SELLER_EMAIL,
           subject: `⚠️ Low Stock Alert: ${productName}`,
           html: getLowStockEmailHtml(productName, updatedProduct.stock),
         });
 
-        // 6b. Create In-App Notification
-        // First find the shop owner(s)
         const { data: owners } = await supabaseAdmin
           .from("profiles")
           .select("id")
           .eq("role", "shop_owner");
 
-        if (owners) {
+        if (owners?.length) {
           const notifications = owners.map((owner) => ({
             user_id: owner.id,
             title: "Low Stock Alert",
@@ -188,7 +214,7 @@ async function handleOrderCompleted(session: any) {
     }
   }
 
-  // 7. Send Emails
+  // Send emails
   const emailPayload = {
     id: order.id,
     customerEmail: order.customer_email,
@@ -209,32 +235,41 @@ async function handleOrderCompleted(session: any) {
     })),
   };
 
-  // 6a. Packing Slip to Seller
-  await sendEmail({
+  console.log(`[Webhook] Sending packing slip to seller (${SELLER_EMAIL})`);
+  const packingSlipResult = await sendEmail({
     to: SELLER_EMAIL,
     subject: `[Packing Slip] Order #${order.id} - ${order.shipping_name}`,
     html: getPackingSlipHtml(emailPayload),
   });
+  console.log(`[Webhook] Packing slip result:`, packingSlipResult.success ? "sent" : `failed — ${packingSlipResult.error}`);
 
-  // 6b. Confirmation to Purchaser
-  await sendEmail({
+  console.log(`[Webhook] Sending order confirmation to customer`);
+  const confirmationResult = await sendEmail({
     to: order.customer_email,
     subject: `Order Confirmation - Chilisaus.be (#${order.id})`,
     html: getOrderConfirmationHtml(emailPayload),
   });
+  console.log(`[Webhook] Confirmation result:`, confirmationResult.success ? "sent" : `failed — ${confirmationResult.error}`);
 
-  // 7. Add to mailing list
-  await subscribeToMailingList({
+  // Add to mailing list
+  console.log("[Webhook] Subscribing customer to mailing list");
+  const mailingResult = await subscribeToMailingList({
     email: order.customer_email,
     firstName: order.shipping_name.split(" ")[0],
     source: "order",
   });
+  console.log(`[Webhook] Mailing list result:`, mailingResult.success ? "subscribed" : `failed — ${mailingResult.error}`);
 
-  // 8. Clean up cart (optional but recommended)
+  // Clean up cart
   if (cartSessionId) {
-    await supabaseAdmin
+    console.log(`[Webhook] Clearing cart for session ${cartSessionId}`);
+    const { error: cartError } = await supabaseAdmin
       .from("cart_items")
       .delete()
       .eq("cart_session_id", cartSessionId);
+    if (cartError) console.error("[Webhook] Cart cleanup failed:", cartError);
+    else console.log("[Webhook] Cart cleared");
+  } else {
+    console.log("[Webhook] No cart_session_id in metadata — skipping cart cleanup");
   }
 }

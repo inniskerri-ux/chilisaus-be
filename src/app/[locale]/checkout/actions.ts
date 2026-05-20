@@ -8,6 +8,7 @@ import { headers, cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
 export async function createCheckoutSession(formData: FormData) {
+  console.log("[Checkout] createCheckoutSession called");
   const stripe = getStripeServerClient();
   const supabase = await createClient();
 
@@ -18,8 +19,10 @@ export async function createCheckoutSession(formData: FormData) {
   const cartSessionId = (await cookies()).get("cart_session_id")?.value;
 
   if (!cartSessionId) {
+    console.error("[Checkout] No cart_session_id cookie found");
     throw new Error("No cart found");
   }
+  console.log(`[Checkout] cart_session_id: ${cartSessionId}, user: ${session?.user?.id || "guest"}`);
 
   // 2. Fetch cart items
   const { data: cartItems, error } = await supabase
@@ -28,8 +31,10 @@ export async function createCheckoutSession(formData: FormData) {
     .eq("cart_session_id", cartSessionId);
 
   if (error || !cartItems?.length) {
+    console.error("[Checkout] Cart fetch failed or empty:", error);
     throw new Error("Cart is empty");
   }
+  console.log(`[Checkout] Cart has ${cartItems.length} item(s)`);
 
   // 3. Calculate shipping (assume default/local for now, or get from form)
   const countryCode = (formData.get("country") as string) || "BEL";
@@ -51,6 +56,7 @@ export async function createCheckoutSession(formData: FormData) {
     weightKg,
     subtotalCents,
   );
+  console.log(`[Checkout] country: ${countryCode}, weight: ${weightKg}kg, subtotal: ${subtotalCents}, shipping: ${shippingCents}`);
 
   // 4. Create Stripe Session
   const origin = (await headers()).get("origin");
@@ -118,8 +124,10 @@ export async function createCheckoutSession(formData: FormData) {
   });
 
   if (!stripeSession.url) {
+    console.error("[Checkout] Stripe session created but no URL returned");
     throw new Error("Failed to create stripe session");
   }
 
+  console.log(`[Checkout] Stripe session created: ${stripeSession.id} — redirecting`);
   redirect(stripeSession.url);
 }
