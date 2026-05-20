@@ -24,21 +24,21 @@ const SHIPPING_RATES: Record<string, ShippingRate> = {
   // Germany
   DEU: {
     name: "Germany (National)",
-    basePriceCents: 590, // 5.90 EUR
+    basePriceCents: 0, // 590 — zeroed for staging test
     perKgCents: 0,
-    freeShippingThresholdCents: 5000, // Free over 50 EUR
+    freeShippingThresholdCents: 5000,
   },
   // EU Zone 1 (Netherlands, Austria, etc.)
   EU1: {
     name: "EU Zone 1",
-    basePriceCents: 1290,
+    basePriceCents: 0, // 1290 — zeroed for staging test
     perKgCents: 0,
   },
   // Default / Rest of World
   DEFAULT: {
     name: "International Shipping",
-    basePriceCents: 1990,
-    perKgCents: 200, // +2 EUR per kg
+    basePriceCents: 0, // 1990 — zeroed for staging test
+    perKgCents: 0, // 200 — zeroed for staging test
   },
 };
 
