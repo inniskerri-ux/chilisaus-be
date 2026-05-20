@@ -26,16 +26,13 @@ export default async function ShopPage({
     heat_level, image_url, stock, is_active, created_at, wc_total_sales,
     brand:brands ( id, name, slug, country, description ${isEn ? "" : `, description_${locale}`} ),
     category:categories ( id, name, slug ${isEn ? "" : `, name_${locale}`} ),
-    productCategories:product_categories (
-      category:categories ( id, name, slug ${isEn ? "" : `, name_${locale}`} )
-    ),
     chilliTypes:products_chilli_types (
       chilli_type:chilli_types ( id, name, slug, heat_level ${isEn ? "" : `, name_${locale}`} )
     ),
     variants:product_variants ( id, label, price_cents, weight_grams, stock, sort_order )
   `;
 
-  const [productsRes, categoriesRes, chilliTypesRes, brandsRes, ratingsRes] =
+  const [productsRes, categoriesRes, chilliTypesRes, brandsRes, ratingsRes, productCategoriesRes] =
     await Promise.all([
       supabase
         .from("products")
@@ -63,6 +60,10 @@ export default async function ShopPage({
       supabase
         .from("product_ratings")
         .select("product_id, avg_rating, review_count"),
+
+      supabase
+        .from("product_categories")
+        .select("product_id, category_id"),
     ]);
 
   // Log errors if they occur
@@ -79,6 +80,21 @@ export default async function ShopPage({
   const ratingsMap = new Map(
     (ratingsRes.data ?? []).map((r: any) => [r.product_id, r]),
   );
+
+  // Build category lookup and per-product category lists from the flat junction query
+  const categoriesRaw = (categoriesRes.data as any[] ?? []);
+  const categoryById = new Map(
+    categoriesRaw.map((c) => [
+      String(c.id),
+      { id: c.id, name: getLocalizedField(c, "name", locale), slug: c.slug } as Category,
+    ]),
+  );
+  const productCategoryIds = new Map<string, string[]>();
+  for (const pc of (productCategoriesRes.data ?? []) as any[]) {
+    const list = productCategoryIds.get(pc.product_id) ?? [];
+    list.push(String(pc.category_id));
+    productCategoryIds.set(pc.product_id, list);
+  }
 
   const products: StoreProduct[] = (productsRes.data ?? []).map((row) => {
     const r = row as any; // Temporary cast to bypass complex Supabase join types for now, but better than Record<string, any> in map
@@ -114,14 +130,9 @@ export default async function ShopPage({
             slug: r.category.slug,
           }
         : null,
-      categories: (r.productCategories ?? [])
-        .map((j: { category: any }) => j.category)
-        .filter(Boolean)
-        .map((c: any) => ({
-          id: c.id,
-          name: getLocalizedField(c, "name", locale),
-          slug: c.slug,
-        })),
+      categories: (productCategoryIds.get(String(r.id)) ?? [])
+        .map((catId) => categoryById.get(catId))
+        .filter(Boolean) as Category[],
       chilliTypes: (r.chilliTypes ?? [])
         .map((j: { chilli_type: any }) => j.chilli_type)
         .filter(Boolean)
@@ -145,11 +156,7 @@ export default async function ShopPage({
     };
   });
 
-  const categories: Category[] = (categoriesRes.data as any[] ?? []).map((c) => ({
-    id: c.id,
-    name: getLocalizedField(c, "name", locale),
-    slug: (c as any).slug,
-  }));
+  const categories: Category[] = Array.from(categoryById.values());
 
   const chilliTypes: ChilliType[] = (chilliTypesRes.data as any[] ?? []).map((ct) => ({
     id: ct.id,
