@@ -124,7 +124,14 @@ export default async function EditProductPage({ params }: ProductPageProps) {
     ingredients: row.ingredients,
     nutrition_info: row.nutrition_info,
     category_id: row.category_id,
-    categoryIds: (productCategoriesData ?? []).map((pc: any) => String(pc.category_id)),
+    categoryIds: (() => {
+      const fromJunction = (productCategoriesData ?? []).map((pc: any) => String(pc.category_id));
+      return fromJunction.length > 0
+        ? fromJunction
+        : row.category_id
+          ? [String(row.category_id)]
+          : [];
+    })(),
     imageUrls: (productImagesData ?? []).map((pi: any) => pi.url),
     brand_id: row.brand_id,
     brand: row.brand

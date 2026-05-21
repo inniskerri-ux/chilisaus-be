@@ -24,6 +24,7 @@ export async function createProduct(
   const priceCents = Number(formData.get("price_cents"));
   const currency = formData.get("currency")?.toString() || "GBP";
   const description = formData.get("description")?.toString() || "";
+  const details = formData.get("details")?.toString() || null;
   const pairing = formData.get("pairing")?.toString() || null;
   const heatLevel = formData.get("heat_level")?.toString() || null;
   const categoryIds = formData
@@ -99,6 +100,7 @@ export async function createProduct(
       price_cents: priceCents,
       currency,
       description,
+      details,
       pairing,
       image_url: imageUrl,
       heat_level: heatLevel,

@@ -161,6 +161,13 @@ export default function ProductForm({
       formData.append("chilliTypeIds", id);
     });
 
+    // Tell the server how many variants were loaded (so it can distinguish
+    // "user intentionally cleared all" from "form loaded empty due to query failure")
+    formData.set(
+      "variants_initial_count",
+      String((product?.variants ?? []).length),
+    );
+
     // Serialize variants
     const variantPayload = variants
       .filter((v) => v.label.trim())

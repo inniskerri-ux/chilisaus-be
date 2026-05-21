@@ -29,6 +29,7 @@ export async function updateProduct(
   const priceCents = Number(formData.get("price_cents"));
   const currency = formData.get("currency")?.toString() || "GBP";
   const description = formData.get("description")?.toString() || "";
+  const details = formData.get("details")?.toString() || null;
   const pairing = formData.get("pairing")?.toString() || null;
   const heatLevel = formData.get("heat_level")?.toString() || null;
   const categoryIds = formData
@@ -66,6 +67,11 @@ export async function updateProduct(
     .split(",")
     .map((s) => s.trim())
     .filter(Boolean);
+
+  const variantsInitialCount = parseInt(
+    formData.get("variants_initial_count")?.toString() ?? "-1",
+    10,
+  );
 
   const chilliTypeIds = formData
     .getAll("chilliTypeIds")
@@ -105,6 +111,7 @@ export async function updateProduct(
       price_cents: priceCents,
       currency,
       description,
+      details,
       pairing,
       image_url: imageUrl,
       heat_level: heatLevel,
@@ -169,21 +176,50 @@ export async function updateProduct(
     }
   }
 
-  // Save variants: delete existing, re-insert
+  // Save variants: upsert existing, insert new, delete removed
   const variantsRaw = formData.get("variants")?.toString();
   if (variantsRaw) {
-    await supabase.from("product_variants").delete().eq("product_id", productId);
-    const variantRows = JSON.parse(variantsRaw) as Array<{
+    type VariantPayload = {
+      id?: string;
       label: string;
       price_cents: number;
       weight_grams: number | null;
       stock: number;
       sort_order: number;
-    }>;
-    if (variantRows.length > 0) {
+    };
+    const incoming = JSON.parse(variantsRaw) as VariantPayload[];
+    const keptIds = incoming
+      .map((v) => v.id)
+      .filter((id): id is string => Boolean(id));
+
+    if (keptIds.length > 0) {
+      // Delete only variants the user explicitly removed (not in kept list)
+      await supabase
+        .from("product_variants")
+        .delete()
+        .eq("product_id", productId)
+        .not("id", "in", `(${keptIds.join(",")})`);
+    } else if (incoming.length === 0 && variantsInitialCount > 0) {
+      // User saw N variants and removed them all intentionally
+      await supabase.from("product_variants").delete().eq("product_id", productId);
+    }
+    // If form loaded empty (variantsInitialCount <= 0) and incoming is empty,
+    // don't delete — protects against silent query failures wiping real data.
+
+    if (incoming.length > 0) {
       const { error: variantError } = await supabase
         .from("product_variants")
-        .insert(variantRows.map((v) => ({ ...v, product_id: productId })));
+        .upsert(
+          incoming.map((v, i) => ({
+            ...(v.id ? { id: v.id } : {}),
+            product_id: productId,
+            label: v.label,
+            price_cents: v.price_cents,
+            weight_grams: v.weight_grams,
+            stock: v.stock,
+            sort_order: i,
+          })),
+        );
       if (variantError) {
         return { error: variantError.message };
       }
