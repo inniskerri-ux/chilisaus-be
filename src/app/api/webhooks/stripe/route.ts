@@ -34,7 +34,8 @@ export async function POST(req: NextRequest) {
   const secretInUse = process.env.STRIPE_WEBHOOK_SECRET_STAGING
     ? "STRIPE_WEBHOOK_SECRET_STAGING"
     : "STRIPE_WEBHOOK_SECRET";
-  console.log(`[Webhook] Verifying signature using ${secretInUse}`);
+  const activeSecret = (process.env.STRIPE_WEBHOOK_SECRET_STAGING ?? process.env.STRIPE_WEBHOOK_SECRET)!;
+  console.log(`[Webhook] Verifying signature using ${secretInUse} (ends: ...${activeSecret.slice(-6)})`);
 
   let event;
   try {
