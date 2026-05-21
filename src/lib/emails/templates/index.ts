@@ -8,10 +8,12 @@ interface OrderItem {
   name: string;
   quantity: number;
   priceCents: number;
+  imageUrl?: string;
 }
 
 interface OrderDetails {
   id: string;
+  orderNumber?: number;
   customerEmail: string;
   shippingName: string;
   shippingStreet: string;
@@ -23,6 +25,7 @@ interface OrderDetails {
   totalCents: number;
   items: OrderItem[];
   paymentMethod?: string;
+  orderedAt?: string;
 }
 
 /**
@@ -33,7 +36,12 @@ export function getPackingSlipHtml(order: OrderDetails): string {
     .map(
       (item) => `
     <tr>
-      <td style="padding: 10px; border-bottom: 1px solid #eee;">${item.name}</td>
+      <td style="padding: 10px; border-bottom: 1px solid #eee;">
+        <div style="display: flex; align-items: center; gap: 10px;">
+          ${item.imageUrl ? `<img src="${item.imageUrl}" width="50" height="50" style="object-fit: contain; border: 1px solid #eee; border-radius: 4px; flex-shrink: 0;" />` : `<div style="width: 50px; height: 50px; background: #f5f5f5; border: 1px solid #eee; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 20px;">🌶️</div>`}
+          <span>${item.name}</span>
+        </div>
+      </td>
       <td style="padding: 10px; border-bottom: 1px solid #eee; text-align: center;">${item.quantity}</td>
       <td style="padding: 10px; border-bottom: 1px solid #eee; text-align: right;">${formatPrice(item.priceCents)}</td>
     </tr>
@@ -44,9 +52,11 @@ export function getPackingSlipHtml(order: OrderDetails): string {
   return `
     <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; color: #333;">
       <h1 style="color: #d32f2f;">New Order: Packing Slip</h1>
-      <p>Order ID: <strong>${order.id}</strong></p>
+      <p>Order: <strong>#${order.orderNumber ?? order.id.slice(0, 8).toUpperCase()}</strong></p>
+      ${order.orderedAt ? `<p>Order Date: <strong>${order.orderedAt}</strong></p>` : ""}
       <p>Customer: ${order.shippingName} (${order.customerEmail})</p>
-      
+      ${order.paymentMethod ? `<p>Payment: <strong>${order.paymentMethod}</strong></p>` : ""}
+
       <h3>Shipping Address:</h3>
       <p>
         ${order.shippingName}<br>
@@ -120,7 +130,7 @@ export function getOrderConfirmationHtml(order: OrderDetails): string {
         <h2 style="font-size: 1.5em; font-weight: bold; color: #000; border-bottom: 2px solid #000; padding-bottom: 10px; margin-bottom: 20px;">
           Order summary
         </h2>
-        <p style="color: #666; margin-bottom: 20px;">Order #${order.id}</p>
+        <p style="color: #666; margin-bottom: 20px;">Order #${order.orderNumber ?? order.id.slice(0, 8).toUpperCase()}</p>
         
         <table style="width: 100%; border-collapse: collapse; margin-bottom: 30px;">
           <thead>

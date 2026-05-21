@@ -70,7 +70,7 @@ export default async function SuccessPage({
                 {t("orderNumber")}
               </span>
               <span className="font-mono font-bold text-red-600">
-                #{order.id.slice(0, 8).toUpperCase()}
+                #{(order as any).order_number ?? order.id.slice(0, 8).toUpperCase()}
               </span>
             </div>
 

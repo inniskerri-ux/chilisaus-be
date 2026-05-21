@@ -69,7 +69,7 @@ export default async function OrdersPage({
                       {t("orders.orderNumber")}
                     </p>
                     <p className="text-sm font-mono font-bold text-zinc-900 uppercase">
-                      {order.id.split("-")[0]}
+                      #{(order as any).order_number ?? order.id.split("-")[0]}
                     </p>
                   </div>
                   <div>

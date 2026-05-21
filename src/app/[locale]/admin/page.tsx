@@ -47,7 +47,7 @@ export default async function AdminDashboard({
     supabase.from("orders").select("total_cents").eq("status", "paid"),
     supabase
       .from("orders")
-      .select("id, customer_email, total_cents, status, created_at")
+      .select("id, order_number, customer_email, total_cents, status, created_at")
       .order("created_at", { ascending: false })
       .limit(5),
     supabase
@@ -291,7 +291,7 @@ export default async function AdminDashboard({
                         </div>
                         <div className="min-w-0">
                           <p className="font-bold text-xs text-zinc-900 md:text-sm">
-                            #{order.id.slice(0, 8).toUpperCase()}
+                            #{(order as any).order_number ?? order.id.slice(0, 8).toUpperCase()}
                           </p>
                           <p className="text-[10px] text-zinc-500 truncate max-w-[130px] md:text-xs md:max-w-none">{order.customer_email}</p>
                         </div>

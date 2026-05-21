@@ -145,11 +145,21 @@ async function handleOrderCompleted(session: any) {
   // Fetch full session with line items
   console.log(`[Webhook] Fetching full session with line items for ${session.id}`);
   const fullSession = await stripe.checkout.sessions.retrieve(session.id, {
-    expand: ["line_items.data.price.product"],
+    expand: ["line_items.data.price.product", "payment_intent.payment_method"],
   });
 
   const lineItems = fullSession.line_items?.data || [];
   console.log(`[Webhook] Line items fetched: ${lineItems.length} item(s)`);
+
+  const PAYMENT_METHOD_LABELS: Record<string, string> = {
+    card: "Credit / Debit Card", ideal: "iDEAL", bancontact: "Bancontact",
+    paypal: "PayPal", mobilepay: "MobilePay", revolut_pay: "Revolut Pay",
+    blik: "BLIK", eps: "EPS", sepa_debit: "SEPA Direct Debit",
+    apple_pay: "Apple Pay", google_pay: "Google Pay",
+  };
+  const pi = (fullSession as any).payment_intent;
+  const pmType: string = pi?.payment_method?.type ?? "";
+  const paymentMethod = PAYMENT_METHOD_LABELS[pmType] || pmType || "Card";
 
   // Prepare order data
   const subtotalCents = amount_subtotal || 0;
@@ -199,6 +209,7 @@ async function handleOrderCompleted(session: any) {
       quantity: item.quantity,
       price_cents: item.amount_total,
       tax_cents: calculateTaxFromTotal(item.amount_total),
+      image_url: item.price?.product?.images?.[0] ?? null,
     }));
 
   console.log(`[Webhook] Inserting ${orderItems.length} order item(s)`);
@@ -256,6 +267,7 @@ async function handleOrderCompleted(session: any) {
   // Send emails
   const emailPayload = {
     id: order.id,
+    orderNumber: order.order_number,
     customerEmail: order.customer_email,
     shippingName: order.shipping_name,
     shippingStreet: order.shipping_street,
@@ -266,18 +278,25 @@ async function handleOrderCompleted(session: any) {
     shippingCents: order.shipping_cents,
     taxCents: order.tax_cents,
     totalCents: order.total_cents,
+    paymentMethod,
+    orderedAt: new Date(order.created_at).toLocaleString("en-GB", {
+      day: "2-digit", month: "long", year: "numeric",
+      hour: "2-digit", minute: "2-digit", timeZone: "Europe/Brussels",
+    }),
     items: orderItems.map((item: any) => ({
       name: item.product_name,
       quantity: item.quantity,
       priceCents: item.price_cents,
       taxCents: item.tax_cents,
+      imageUrl: item.image_url,
     })),
   };
 
+  const orderRef = order.order_number ?? order.id.slice(0, 8).toUpperCase();
   console.log(`[Webhook] Sending packing slip to seller (${SELLER_EMAIL})`);
   const packingSlipResult = await sendEmail({
     to: SELLER_EMAIL,
-    subject: `[Packing Slip] Order #${order.id} - ${order.shipping_name}`,
+    subject: `[Packing Slip] Order #${orderRef} - ${order.shipping_name}`,
     html: getPackingSlipHtml(emailPayload),
   });
   console.log(`[Webhook] Packing slip result:`, packingSlipResult.success ? "sent" : `failed — ${packingSlipResult.error}`);
@@ -285,7 +304,7 @@ async function handleOrderCompleted(session: any) {
   console.log(`[Webhook] Sending order confirmation to customer`);
   const confirmationResult = await sendEmail({
     to: order.customer_email,
-    subject: `Order Confirmation - Chilisaus.be (#${order.id})`,
+    subject: `Order Confirmation - Chilisaus.be (#${orderRef})`,
     html: getOrderConfirmationHtml(emailPayload),
   });
   console.log(`[Webhook] Confirmation result:`, confirmationResult.success ? "sent" : `failed — ${confirmationResult.error}`);
