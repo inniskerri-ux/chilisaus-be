@@ -7,6 +7,11 @@ import { calculatePackageWeight } from "@/lib/shipping/config";
 import { headers, cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
+const COUNTRY_CODE_MAP: Record<string, string> = {
+  BEL: "BE", NLD: "NL", DEU: "DE", FRA: "FR", LUX: "LU",
+  AUT: "AT", DNK: "DK", ITA: "IT", ESP: "ES", POL: "PL", CZE: "CZ",
+};
+
 export async function createCheckoutSession(formData: FormData) {
   console.log("[Checkout] createCheckoutSession called");
   const stripe = getStripeServerClient();
@@ -24,7 +29,16 @@ export async function createCheckoutSession(formData: FormData) {
   }
   console.log(`[Checkout] cart_session_id: ${cartSessionId}, user: ${session?.user?.id || "guest"}`);
 
-  // 2. Fetch cart items
+  // 2. Collect address from form
+  const countryCode = (formData.get("country") as string) || "BEL";
+  const country2 = COUNTRY_CODE_MAP[countryCode] || countryCode;
+  const shippingName = (formData.get("name") as string) || "";
+  const shippingStreet = (formData.get("street") as string) || "";
+  const shippingCity = (formData.get("city") as string) || "";
+  const shippingPostalCode = (formData.get("zip") as string) || "";
+  const customerEmail = (formData.get("email") as string) || session?.user?.email || "";
+
+  // 3. Fetch cart items
   const { data: cartItems, error } = await supabase
     .from("cart_items")
     .select("*, product:products(*), variant:product_variants(id, label, price_cents, weight_grams)")
@@ -36,8 +50,7 @@ export async function createCheckoutSession(formData: FormData) {
   }
   console.log(`[Checkout] Cart has ${cartItems.length} item(s)`);
 
-  // 3. Calculate shipping (assume default/local for now, or get from form)
-  const countryCode = (formData.get("country") as string) || "BEL";
+  // 4. Calculate shipping
   const itemsForWeight = cartItems.map((item) => ({
     productName: item.product.name,
     quantity: item.quantity,
@@ -51,14 +64,10 @@ export async function createCheckoutSession(formData: FormData) {
     (acc, item) => acc + ((item.variant as any)?.price_cents ?? item.product.price_cents) * item.quantity,
     0,
   );
-  const shippingCents = calculateShippingCost(
-    countryCode,
-    weightKg,
-    subtotalCents,
-  );
+  const shippingCents = calculateShippingCost(countryCode, weightKg, subtotalCents);
   console.log(`[Checkout] country: ${countryCode}, weight: ${weightKg}kg, subtotal: ${subtotalCents}, shipping: ${shippingCents}`);
 
-  // 4. Create Stripe Session
+  // 5. Build line items
   const origin = (await headers()).get("origin");
   const locale = (formData.get("locale") as string) || "en";
 
@@ -78,57 +87,35 @@ export async function createCheckoutSession(formData: FormData) {
     };
   });
 
-  // Add shipping as a line item if not free
   if (shippingCents > 0) {
     lineItems.push({
       price_data: {
         currency: "eur",
-        product_data: {
-          name: "Shipping",
-          images: [],
-        },
+        product_data: { name: "Shipping", images: [] },
         unit_amount: shippingCents,
       },
       quantity: 1,
     });
   }
 
+  // 6. Create Stripe session — address collected on our form, not in Stripe
+  // Omitting payment_method_types lets Stripe show all Dashboard-enabled methods automatically
   const stripeSession = await stripe.checkout.sessions.create({
-    payment_method_types: [
-      "card",        // includes Cartes Bancaires, Apple Pay, Google Pay
-      "ideal",
-      "bancontact",
-      "paypal",
-      "mobilepay",
-      "revolut_pay",
-      "blik",
-      "eps",
-    ],
     line_items: lineItems,
     mode: "payment",
     allow_promotion_codes: true,
     success_url: `${origin}/${locale}/checkout/success?session_id={CHECKOUT_SESSION_ID}`,
     cancel_url: `${origin}/${locale}/cart`,
-    customer_email: session?.user?.email,
+    customer_email: customerEmail || undefined,
     metadata: {
       cart_session_id: cartSessionId,
       user_id: session?.user?.id || "",
       locale,
-    },
-    shipping_address_collection: {
-      allowed_countries: [
-        "BE",
-        "NL",
-        "DE",
-        "FR",
-        "LU",
-        "AT",
-        "ES",
-        "IT",
-        "DK",
-        "PL",
-        "CZ",
-      ],
+      shipping_name: shippingName,
+      shipping_street: shippingStreet,
+      shipping_city: shippingCity,
+      shipping_postal_code: shippingPostalCode,
+      shipping_country: country2,
     },
   });
 

@@ -108,11 +108,20 @@ async function handleOrderCompleted(session: any) {
     total_details,
   } = session;
 
-  // Stripe API version determines where shipping lives:
-  // - 2026-03-25.dahlia: session.collected_information.shipping_details
-  // - 2022+: session.shipping_details
-  // - pre-2022: session.shipping
-  const shipping_details = session.shipping_details ?? session.shipping ?? session.collected_information?.shipping_details;
+  // Shipping address: prefer metadata (passed from our form), fall back to Stripe-collected fields
+  const shippingFromMeta = metadata?.shipping_name ? {
+    name: metadata.shipping_name,
+    address: {
+      line1: metadata.shipping_street,
+      city: metadata.shipping_city,
+      postal_code: metadata.shipping_postal_code,
+      country: metadata.shipping_country,
+    },
+  } : null;
+  const shipping_details = shippingFromMeta
+    ?? session.shipping_details
+    ?? session.shipping
+    ?? session.collected_information?.shipping_details;
 
   const cartSessionId = metadata?.cart_session_id;
   const userId = metadata?.user_id;
