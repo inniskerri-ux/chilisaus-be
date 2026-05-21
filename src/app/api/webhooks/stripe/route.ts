@@ -85,7 +85,8 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ received: true });
     } catch (error: any) {
       console.error("[Webhook] Order processing failed:", error);
-      if (logId) await supabaseAdmin.from("webhook_logs").update({ status: "failed", error: error?.message ?? String(error) }).eq("id", logId);
+      const errDetail = `${error?.message ?? String(error)} | stack: ${error?.stack?.split("\n").slice(0, 3).join(" | ")}`;
+      if (logId) await supabaseAdmin.from("webhook_logs").update({ status: "failed", error: errDetail }).eq("id", logId);
       return NextResponse.json(
         { error: "Order processing failed" },
         { status: 500 },
