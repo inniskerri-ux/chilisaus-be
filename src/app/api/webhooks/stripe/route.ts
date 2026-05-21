@@ -162,7 +162,7 @@ async function handleOrderCompleted(session: any) {
   const { data: order, error: orderError } = await supabaseAdmin
     .from("orders")
     .insert({
-      user_id: userId,
+      user_id: userId || null,
       stripe_session_id: session.id,
       stripe_payment_intent_id: session.payment_intent,
       status: "paid",
