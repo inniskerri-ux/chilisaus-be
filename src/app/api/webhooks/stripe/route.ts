@@ -100,6 +100,8 @@ export async function POST(req: NextRequest) {
 }
 
 async function handleOrderCompleted(session: any) {
+  let step = "init";
+  try {
   const {
     customer_details,
     metadata,
@@ -111,12 +113,15 @@ async function handleOrderCompleted(session: any) {
 
   // shipping_details is the current field name; older API versions use session.shipping
   const shipping_details = session.shipping_details ?? session.shipping;
+  step = "destructure";
+  console.log(`[Webhook] shipping_details present: ${!!shipping_details}, keys: ${shipping_details ? Object.keys(shipping_details).join(",") : "none"}`);
 
   const cartSessionId = metadata?.cart_session_id;
   const userId = metadata?.user_id;
   console.log(`[Webhook] cart_session_id: ${cartSessionId}, user_id: ${userId || "guest"}`);
 
   // Check if a promotion code was used
+  step = "promo-code";
   const discount = total_details?.breakdown?.discounts?.[0]?.discount;
   const promoCodeId = discount?.promotion_code;
   const promoCodeStr = promoCodeId
@@ -132,6 +137,7 @@ async function handleOrderCompleted(session: any) {
   }
 
   // Fetch full session with line items
+  step = "fetch-session";
   console.log(`[Webhook] Fetching full session with line items for ${session.id}`);
   const fullSession = await stripe.checkout.sessions.retrieve(session.id, {
     expand: ["line_items.data.price.product"],
@@ -148,6 +154,7 @@ async function handleOrderCompleted(session: any) {
   console.log(`[Webhook] Order totals — subtotal: ${subtotalCents}, shipping: ${shippingCents}, tax: ${taxCents}, total: ${totalCents}`);
 
   // Store order in database
+  step = "insert-order";
   console.log("[Webhook] Inserting order into DB");
   const { data: order, error: orderError } = await supabaseAdmin
     .from("orders")
@@ -189,6 +196,7 @@ async function handleOrderCompleted(session: any) {
       tax_cents: calculateTaxFromTotal(item.amount_total),
     }));
 
+  step = "insert-items";
   console.log(`[Webhook] Inserting ${orderItems.length} order item(s)`);
   const { error: itemsError } = await supabaseAdmin
     .from("order_items")
@@ -200,6 +208,7 @@ async function handleOrderCompleted(session: any) {
   console.log("[Webhook] Order items inserted");
 
   // Update inventory and check for low stock
+  step = "inventory";
   for (const item of lineItems as any[]) {
     const productName = item.price?.product?.name;
     if (!productName || productName === "Shipping") continue;
@@ -242,6 +251,7 @@ async function handleOrderCompleted(session: any) {
   }
 
   // Send emails
+  step = "send-emails";
   const emailPayload = {
     id: order.id,
     customerEmail: order.customer_email,
@@ -298,5 +308,8 @@ async function handleOrderCompleted(session: any) {
     else console.log("[Webhook] Cart cleared");
   } else {
     console.log("[Webhook] No cart_session_id in metadata — skipping cart cleanup");
+  }
+  } catch (e: any) {
+    throw new Error(`[step:${step}] ${e.message}`);
   }
 }
