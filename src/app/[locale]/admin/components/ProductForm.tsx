@@ -6,7 +6,6 @@ import { useLocale } from "next-intl";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
 import {
   Select,
   SelectContent,
@@ -16,6 +15,7 @@ import {
 } from "@/components/ui/select";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ProductImageGallery } from "./ProductImageGallery";
+import { RichTextEditor } from "./RichTextEditor";
 import { slugify } from "@/lib/utils";
 import type { ChilliType } from "@/components/store/types";
 
@@ -257,39 +257,33 @@ export default function ProductForm({
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="description">Short Description</Label>
-                <Textarea
-                  id="description"
+                <Label>Short Description</Label>
+                <RichTextEditor
                   name="description"
                   defaultValue={product?.description || ""}
                   rows={2}
                   placeholder="Short tagline shown below product name"
                 />
-                <p className="text-[10px] text-muted-foreground">Use **text** for bold, *text* for italic</p>
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="details">Full Details</Label>
-                <Textarea
-                  id="details"
+                <Label>Full Details</Label>
+                <RichTextEditor
                   name="details"
                   defaultValue={product?.details || ""}
                   rows={4}
                   placeholder="Detailed product information"
                 />
-                <p className="text-[10px] text-muted-foreground">Use **text** for bold, *text* for italic</p>
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="pairing">Good With</Label>
-                <Textarea
-                  id="pairing"
+                <Label>Good With</Label>
+                <RichTextEditor
                   name="pairing"
                   defaultValue={product?.pairing || ""}
                   rows={2}
                   placeholder="e.g. Grilled meats, BBQ, cheese"
                 />
-                <p className="text-[10px] text-muted-foreground">Use **text** for bold, *text* for italic</p>
               </div>
 
               <div className="grid gap-4 sm:grid-cols-3">
@@ -431,9 +425,8 @@ export default function ProductForm({
                 </div>
               </div>
               <div className="space-y-2">
-                <Label htmlFor="ingredients">Ingredients</Label>
-                <Textarea
-                  id="ingredients"
+                <Label>Ingredients</Label>
+                <RichTextEditor
                   name="ingredients"
                   defaultValue={product?.ingredients || ""}
                   rows={3}

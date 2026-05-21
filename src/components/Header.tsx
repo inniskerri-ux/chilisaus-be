@@ -2,11 +2,25 @@ import Link from "next/link";
 import Image from "next/image";
 import { Instagram, MessageCircle, Search } from "lucide-react";
 import { getTranslations } from "next-intl/server";
+import { createClient } from "@/lib/supabase/server";
 import HeaderActions from "./HeaderActions";
 
 export default async function Header({ locale }: { locale: string }) {
   const tAuth = await getTranslations("Auth");
   const tNav = await getTranslations("Nav");
+
+  const supabase = await createClient();
+  const { data: { user } } = await supabase.auth.getUser();
+  let isShopOwner = false;
+  if (user) {
+    const { data: profile } = await supabase
+      .from("profiles")
+      .select("role")
+      .eq("id", user.id)
+      .single();
+    isShopOwner = profile?.role === "shop_owner";
+  }
+  const initialSession = { isLoggedIn: !!user, isShopOwner };
 
   return (
     <header className="sticky top-0 z-50 border-b border-zinc-100 bg-white/80 backdrop-blur-md">
@@ -73,6 +87,7 @@ export default async function Header({ locale }: { locale: string }) {
 
           <HeaderActions
             locale={locale}
+            initialSession={initialSession}
             whatsappNumber={process.env.NEXT_PUBLIC_WHATSAPP_NUMBER}
             labels={{
               cart: tNav("Cart"),
@@ -92,6 +107,7 @@ export default async function Header({ locale }: { locale: string }) {
         <div className="flex lg:hidden">
           <HeaderActions
             locale={locale}
+            initialSession={initialSession}
             whatsappNumber={process.env.NEXT_PUBLIC_WHATSAPP_NUMBER}
             labels={{
               cart: tNav("Cart"),

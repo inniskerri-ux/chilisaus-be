@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
 import Link from "next/link";
 import CartButton from "./CartButton";
 import MobileMenu from "./MobileMenu";
@@ -13,6 +14,7 @@ interface SessionData {
 
 interface HeaderActionsProps {
   locale: string;
+  initialSession?: { isLoggedIn: boolean; isShopOwner: boolean };
   whatsappNumber?: string;
   labels: {
     cart: string;
@@ -29,19 +31,22 @@ interface HeaderActionsProps {
 
 export default function HeaderActions({
   locale,
+  initialSession,
   whatsappNumber,
   labels,
 }: HeaderActionsProps) {
   const [session, setSession] = useState<SessionData>({
-    isLoggedIn: false,
-    isShopOwner: false,
+    isLoggedIn: initialSession?.isLoggedIn ?? false,
+    isShopOwner: initialSession?.isShopOwner ?? false,
     cartCount: 0,
   });
+
+  const pathname = usePathname();
 
   const fetchSession = () => {
     fetch("/api/session")
       .then((r) => r.json())
-      .then(setSession)
+      .then((data) => setSession(data))
       .catch(() => {});
   };
 
@@ -49,7 +54,7 @@ export default function HeaderActions({
     fetchSession();
     window.addEventListener("cart:updated", fetchSession);
     return () => window.removeEventListener("cart:updated", fetchSession);
-  }, []);
+  }, [pathname]); // re-fetch on every route change (catches sign-in / sign-out redirects)
 
   const { isLoggedIn, isShopOwner, cartCount } = session;
 

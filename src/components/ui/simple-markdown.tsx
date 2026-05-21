@@ -1,6 +1,20 @@
 import React from "react";
 
+// Render product rich text content. Accepts HTML (from the editor) or legacy **bold**/*italic* markdown.
 export function SimpleMarkdown({ children, className }: { children: string; className?: string }) {
+  if (!children) return null;
+
+  // HTML content from the rich text editor — render directly
+  if (/<\/?[a-z][\s\S]*>/i.test(children)) {
+    return (
+      <span
+        className={className}
+        dangerouslySetInnerHTML={{ __html: children }}
+      />
+    );
+  }
+
+  // Legacy markdown fallback
   const lines = children.split("\n");
 
   function parseLine(line: string, lineKey: number): React.ReactNode {

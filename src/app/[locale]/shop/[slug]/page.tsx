@@ -271,7 +271,9 @@ export default async function ProductPage({
               <h2 className="text-sm font-semibold text-foreground mb-2">
                 {t("ingredients")}
               </h2>
-              <p className="text-sm text-text-muted">{product.ingredients}</p>
+              <p className="text-sm text-text-muted">
+                <SimpleMarkdown>{product.ingredients}</SimpleMarkdown>
+              </p>
             </div>
           )}
 
