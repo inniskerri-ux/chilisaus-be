@@ -156,6 +156,7 @@ async function handleOrderCompleted(session: any) {
   // Store order in database
   step = "insert-order";
   console.log("[Webhook] Inserting order into DB");
+  console.log(`[Webhook] DEBUG shipping: ${JSON.stringify({ sd: session.shipping_details, s: session.shipping, ci: session.collected_information?.shipping_details }).substring(0, 200)}`);
   const { data: order, error: orderError } = await supabaseAdmin
     .from("orders")
     .insert({
@@ -310,6 +311,7 @@ async function handleOrderCompleted(session: any) {
     console.log("[Webhook] No cart_session_id in metadata — skipping cart cleanup");
   }
   } catch (e: any) {
-    throw new Error(`[step:${step}] ${e.message}`);
+    const sdDebug = JSON.stringify({ sd: session.shipping_details, s: session.shipping, ci: session.collected_information?.shipping_details }).substring(0, 300);
+    throw new Error(`[step:${step}] ${e.message} | shipping_fields: ${sdDebug}`);
   }
 }
