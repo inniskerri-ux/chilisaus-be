@@ -7,6 +7,7 @@ export function SimpleMarkdown({ children, className }: { children: string; clas
   // HTML content from the rich text editor — normalize div/p block structure to <br> then render
   if (/<\/?[a-z][\s\S]*>/i.test(children)) {
     const normalized = children
+      .replace(/[\r\n]+/g, "")
       .replace(/<(div|p)><br\s*\/?><\/(div|p)>/gi, "<br><br>")
       .replace(/<\/(div|p)>\s*<(div|p)[^>]*>/gi, "<br>")
       .replace(/<(div|p)[^>]*>/gi, "")
