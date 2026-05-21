@@ -101,13 +101,15 @@ export async function POST(req: NextRequest) {
 async function handleOrderCompleted(session: any) {
   const {
     customer_details,
-    shipping_details,
     metadata,
     amount_total,
     amount_subtotal,
     shipping_cost,
     total_details,
   } = session;
+
+  // shipping_details is the current field name; older API versions use session.shipping
+  const shipping_details = session.shipping_details ?? session.shipping;
 
   const cartSessionId = metadata?.cart_session_id;
   const userId = metadata?.user_id;
