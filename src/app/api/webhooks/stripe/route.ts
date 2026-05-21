@@ -34,8 +34,7 @@ export async function POST(req: NextRequest) {
   const secretInUse = process.env.STRIPE_WEBHOOK_SECRET_STAGING
     ? "STRIPE_WEBHOOK_SECRET_STAGING"
     : "STRIPE_WEBHOOK_SECRET";
-  const activeSecret = (process.env.STRIPE_WEBHOOK_SECRET_STAGING ?? process.env.STRIPE_WEBHOOK_SECRET)!;
-  console.log(`[Webhook] Verifying signature using ${secretInUse} (ends: ...${activeSecret.slice(-6)})`);
+  console.log(`[Webhook] Verifying signature using ${secretInUse}`);
 
   let event;
   try {
@@ -178,10 +177,10 @@ async function handleOrderCompleted(session: any) {
 
   // Store order items
   const orderItems = lineItems
-    .filter((item: any) => item.price.product.name !== "Shipping")
+    .filter((item: any) => item.price?.product?.name !== "Shipping")
     .map((item: any) => ({
       order_id: order.id,
-      product_name: item.price.product.name,
+      product_name: item.price?.product?.name ?? item.description,
       quantity: item.quantity,
       price_cents: item.amount_total,
       tax_cents: calculateTaxFromTotal(item.amount_total),
