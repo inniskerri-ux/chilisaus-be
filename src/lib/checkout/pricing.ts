@@ -13,75 +13,108 @@ export const STANDARD_TAX_RATE = 0.06;
 
 // ==================== SHIPPING RATES ====================
 
-interface ShippingRate {
+interface WeightBracket {
+  /** Upper bound in kg (exclusive). Use Infinity for the last bracket. */
+  maxWeightKg: number;
+  priceCents: number;
+}
+
+interface ShippingZone {
   name: string;
-  basePriceCents: number;
-  perKgCents: number;
+  brackets: WeightBracket[];
   freeShippingThresholdCents?: number;
 }
 
-const SHIPPING_RATES: Record<string, ShippingRate> = {
-  // Germany
+const SHIPPING_ZONES: Record<string, ShippingZone> = {
+  // ── Belgium (Bpost) ──────────────────────────────────────────────────────
+  BEL: {
+    name: "Belgium (Bpost)",
+    brackets: [
+      { maxWeightKg: 2,        priceCents: 710 },  // €7.10
+      { maxWeightKg: 5,        priceCents: 785 },  // €7.85
+      { maxWeightKg: Infinity, priceCents: 865 },  // €8.65 (5–10 kg)
+    ],
+  },
+
+  // ── Netherlands (PostNL) ─────────────────────────────────────────────────
+  NLD: {
+    name: "Netherlands (PostNL)",
+    brackets: [
+      { maxWeightKg: Infinity, priceCents: 695 },  // €6.95 flat
+    ],
+  },
+
+  // ── TODO: rates below are placeholders pending PostNL rate card ──────────
+  // Client to confirm exact rates per weight bracket.
+  // Consider connecting the PostNL API for automatic rate lookup.
+
+  // Germany (PostNL)
   DEU: {
-    name: "Germany (National)",
-    basePriceCents: 0, // 590 — zeroed for staging test
-    perKgCents: 0,
-    freeShippingThresholdCents: 5000,
+    name: "Germany (PostNL)",
+    brackets: [
+      { maxWeightKg: Infinity, priceCents: 0 },    // TODO: add real rate
+    ],
   },
-  // EU Zone 1 (Netherlands, Austria, etc.)
+
+  // EU Zone 1 — FR, LU, AT, DK, CZ, PL (PostNL)
   EU1: {
-    name: "EU Zone 1",
-    basePriceCents: 0, // 1290 — zeroed for staging test
-    perKgCents: 0,
+    name: "EU Zone 1 (PostNL)",
+    brackets: [
+      { maxWeightKg: Infinity, priceCents: 0 },    // TODO: add real rate
+    ],
   },
-  // Default / Rest of World
+
+  // Default / Rest of World (PostNL)
   DEFAULT: {
-    name: "International Shipping",
-    basePriceCents: 0, // 1990 — zeroed for staging test
-    perKgCents: 0, // 200 — zeroed for staging test
+    name: "International (PostNL)",
+    brackets: [
+      { maxWeightKg: Infinity, priceCents: 0 },    // TODO: add real rate
+    ],
   },
 };
 
 /**
- * Get rate zone for a country ISO code
+ * Map a 2-letter or 3-letter ISO country code to a zone key
  */
-function getRateZone(countryCode: string): string {
+function getZoneKey(countryCode: string): string {
   const code = countryCode.toUpperCase();
 
+  if (code === "BEL" || code === "BE") return "BEL";
+  if (code === "NLD" || code === "NL") return "NLD";
   if (code === "DEU" || code === "DE") return "DEU";
 
-  const euZone1 = ["AUT", "BEL", "CZE", "DNK", "FRA", "LUX", "NLD", "POL"];
-  if (euZone1.includes(code)) return "EU1";
+  const eu1 = ["AUT", "AT", "CZE", "CZ", "DNK", "DK", "FRA", "FR", "LUX", "LU", "POL", "PL"];
+  if (eu1.includes(code)) return "EU1";
 
   return "DEFAULT";
 }
 
 /**
- * Calculate total shipping cost in cents
+ * Calculate total shipping cost in cents based on country and package weight
  */
 export function calculateShippingCost(
   countryCode: string,
   weightKg: number,
   subtotalCents: number = 0,
 ): number {
-  const zone = getRateZone(countryCode);
-  const rate = SHIPPING_RATES[zone] || SHIPPING_RATES.DEFAULT;
+  const zoneKey = getZoneKey(countryCode);
+  const zone = SHIPPING_ZONES[zoneKey] ?? SHIPPING_ZONES.DEFAULT;
 
-  // Check free shipping threshold
-  if (
-    rate.freeShippingThresholdCents &&
-    subtotalCents >= rate.freeShippingThresholdCents
-  ) {
+  // Free shipping threshold (if configured for this zone)
+  if (zone.freeShippingThresholdCents && subtotalCents >= zone.freeShippingThresholdCents) {
     return 0;
   }
 
-  const cost = rate.basePriceCents + Math.ceil(weightKg) * rate.perKgCents;
-  return cost;
+  // Find the matching weight bracket
+  const bracket = zone.brackets.find((b) => weightKg < b.maxWeightKg)
+    ?? zone.brackets[zone.brackets.length - 1];
+
+  return bracket.priceCents;
 }
 
 /**
  * Calculate the tax portion from a VAT-inclusive total
- * (e.g. 10.00 EUR total inc 6% VAT -> Tax = 10.00 - (10.00 / 1.06))
+ * (e.g. €10.00 inc 6% VAT → tax = €10.00 − (€10.00 / 1.06))
  */
 export function calculateTaxFromTotal(
   totalCents: number,
