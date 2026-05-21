@@ -56,6 +56,9 @@ export default async function ProductPage({
     stock, is_active,
     brand:brands ( id, name, slug ),
     category:categories!category_id ( id, name, slug ${isEn ? "" : `, name_${locale}`} ),
+    allCategories:product_categories (
+      category:categories ( id, name, slug ${isEn ? "" : `, name_${locale}`} )
+    ),
     chilliTypes:products_chilli_types (
       chilli_type:chilli_types ( id, name, slug, heat_level ${isEn ? "" : `, name_${locale}`} )
     )
@@ -120,6 +123,17 @@ export default async function ProductPage({
         slug: rawProduct.category.slug,
       }
     : null;
+
+  const allCategories: { id: string; name: string; slug: string }[] = (
+    (rawProduct.allCategories ?? []) as Array<{ category: Record<string, any> }>
+  )
+    .map((j) => j.category)
+    .filter(Boolean)
+    .map((cat) => ({
+      id: cat.id,
+      name: getLocalizedField(cat, "name", locale),
+      slug: cat.slug,
+    }));
   const chilliTypes: {
     id: string;
     name: string;
@@ -172,7 +186,9 @@ export default async function ProductPage({
         {/* Details */}
         <div className="flex flex-col gap-4">
           <div className="flex flex-wrap items-center gap-2">
-            {category && <Badge variant="secondary">{category.name}</Badge>}
+            {(allCategories.length > 0 ? allCategories : category ? [category] : []).map((cat) => (
+              <Badge key={cat.id} variant="secondary">{cat.name}</Badge>
+            ))}
             {product.heat_level && (
               <Badge
                 variant="outline"
