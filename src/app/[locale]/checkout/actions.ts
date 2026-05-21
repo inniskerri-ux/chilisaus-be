@@ -94,7 +94,16 @@ export async function createCheckoutSession(formData: FormData) {
   }
 
   const stripeSession = await stripe.checkout.sessions.create({
-    payment_method_types: ["card", "ideal", "bancontact"],
+    payment_method_types: [
+      "card",        // includes Cartes Bancaires, Apple Pay, Google Pay
+      "ideal",
+      "bancontact",
+      "paypal",
+      "mobilepay",
+      "revolut_pay",
+      "blik",
+      "eps",
+    ],
     line_items: lineItems,
     mode: "payment",
     allow_promotion_codes: true,
