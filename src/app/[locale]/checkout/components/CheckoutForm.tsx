@@ -140,20 +140,62 @@ export default function CheckoutForm({
             {t("payment")}
           </h2>
 
-          <div className="bg-zinc-50 p-4 rounded-lg border flex items-center justify-between mb-6">
-            <div className="flex items-center gap-3">
-              <CreditCard className="text-zinc-400" />
+          <div className="bg-zinc-50 p-4 rounded-lg border mb-6">
+            <div className="flex items-center gap-2 mb-3">
+              <CreditCard className="text-zinc-400 w-4 h-4" />
               <span className="text-sm font-medium">Stripe Secure Payment</span>
             </div>
-            <div className="flex gap-1">
-              <div className="bg-white px-1 border rounded h-5 flex items-center">
-                <span className="text-[8px] font-bold">VISA</span>
+            <div className="flex flex-wrap gap-1.5">
+              {/* Visa */}
+              <div className="bg-white border rounded px-2 h-6 flex items-center">
+                <span className="text-[11px] font-black italic" style={{ color: "#1A1F71", fontFamily: "serif", letterSpacing: "-0.5px" }}>VISA</span>
               </div>
-              <div className="bg-white px-1 border rounded h-5 flex items-center">
-                <span className="text-[8px] font-bold">iDEAL</span>
+              {/* Mastercard */}
+              <div className="bg-white border rounded px-1.5 h-6 flex items-center gap-0.5">
+                <svg width="13" height="9" viewBox="0 0 13 9"><circle cx="4.5" cy="4.5" r="4.5" fill="#EB001B"/><circle cx="8.5" cy="4.5" r="4.5" fill="#F79E1B" fillOpacity="0.85"/></svg>
+                <span className="text-[8px] font-bold text-zinc-600">MC</span>
               </div>
-              <div className="bg-white px-1 border rounded h-5 flex items-center">
-                <span className="text-[8px] font-bold">Bancontact</span>
+              {/* Cartes Bancaires */}
+              <div className="h-6 flex items-center rounded px-1.5 border" style={{ background: "#0066CC" }}>
+                <span className="text-[10px] font-black text-white tracking-tight">CB</span>
+              </div>
+              {/* Apple Pay */}
+              <div className="bg-black border border-zinc-700 rounded px-2 h-6 flex items-center gap-1">
+                <svg width="9" height="11" viewBox="0 0 9 11" fill="white"><path d="M7.5 5.8c0-1.4 1.1-2 1.1-2S7.7 2 6.3 2c-.8 0-1.4.5-1.8.5C4.1 2.5 3.4 2 2.7 2 1.2 2 0 3.3 0 5.5c0 2.3 1.5 5.5 2.7 5.5.6 0 1-.4 1.7-.4.7 0 1 .4 1.8.4C7.6 11 9 7.9 9 7.9S7.5 7.2 7.5 5.8zM5.7.8C6.1.3 6.3-.1 6.2 0c0 0-.2 1-.9 1.6-.7.6-1.4.5-1.4.5S3.6 1.4 5.7.8z"/></svg>
+                <span className="text-[9px] font-semibold text-white">Pay</span>
+              </div>
+              {/* Google Pay */}
+              <div className="bg-white border rounded px-2 h-6 flex items-center gap-0.5">
+                <svg width="9" height="9" viewBox="0 0 9 9"><text x="0" y="8" fontSize="9" fontWeight="bold" fill="#4285F4">G</text></svg>
+                <span className="text-[9px] font-medium text-zinc-700">Pay</span>
+              </div>
+              {/* PayPal */}
+              <div className="bg-white border rounded px-2 h-6 flex items-center">
+                <span className="text-[10px] font-extrabold" style={{ color: "#003087" }}>Pay</span><span className="text-[10px] font-extrabold" style={{ color: "#009CDE" }}>Pal</span>
+              </div>
+              {/* iDEAL */}
+              <div className="bg-white border rounded px-2 h-6 flex items-center">
+                <span className="text-[10px] font-black italic" style={{ color: "#C06" }}>i</span><span className="text-[10px] font-bold text-zinc-800">DEAL</span>
+              </div>
+              {/* Bancontact */}
+              <div className="h-6 flex items-center rounded px-2 border" style={{ background: "#005498" }}>
+                <span className="text-[9px] font-bold text-white">Bancontact</span>
+              </div>
+              {/* Revolut Pay */}
+              <div className="h-6 flex items-center rounded px-2 border bg-black">
+                <span className="text-[9px] font-bold text-white tracking-tight">Revolut Pay</span>
+              </div>
+              {/* MobilePay */}
+              <div className="h-6 flex items-center rounded px-2 border" style={{ background: "#5A78FF" }}>
+                <span className="text-[9px] font-bold text-white">MobilePay</span>
+              </div>
+              {/* BLIK */}
+              <div className="h-6 flex items-center rounded px-2 border" style={{ background: "#E3000B" }}>
+                <span className="text-[10px] font-black text-white tracking-widest">BLIK</span>
+              </div>
+              {/* EPS */}
+              <div className="h-6 flex items-center rounded px-2 border" style={{ background: "#C8002D" }}>
+                <span className="text-[10px] font-bold text-white">EPS</span>
               </div>
             </div>
           </div>
