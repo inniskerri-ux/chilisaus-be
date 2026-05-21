@@ -10,6 +10,16 @@ interface RichTextEditorProps {
   rows?: number;
 }
 
+// Collapse div/p block structure from contentEditable into clean <br> markup
+function normalizeEditorHtml(html: string): string {
+  return html
+    .replace(/<(div|p)><br\s*\/?><\/(div|p)>/gi, "<br><br>")
+    .replace(/<\/(div|p)>\s*<(div|p)[^>]*>/gi, "<br>")
+    .replace(/<(div|p)[^>]*>/gi, "")
+    .replace(/<\/(div|p)>/gi, "")
+    .replace(/^<br>/i, "");
+}
+
 // Converts legacy **bold** / *italic* markdown to HTML for display in the editor
 function markdownToHtml(text: string): string {
   if (!text) return "";
@@ -62,7 +72,7 @@ export function RichTextEditor({
   );
 
   const handleInput = useCallback(() => {
-    setHtml(editorRef.current?.innerHTML ?? "");
+    setHtml(normalizeEditorHtml(editorRef.current?.innerHTML ?? ""));
     syncFormats();
   }, [syncFormats]);
 

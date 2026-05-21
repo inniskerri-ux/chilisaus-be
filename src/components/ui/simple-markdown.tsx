@@ -4,12 +4,18 @@ import React from "react";
 export function SimpleMarkdown({ children, className }: { children: string; className?: string }) {
   if (!children) return null;
 
-  // HTML content from the rich text editor — render directly
+  // HTML content from the rich text editor — normalize div/p block structure to <br> then render
   if (/<\/?[a-z][\s\S]*>/i.test(children)) {
+    const normalized = children
+      .replace(/<(div|p)><br\s*\/?><\/(div|p)>/gi, "<br><br>")
+      .replace(/<\/(div|p)>\s*<(div|p)[^>]*>/gi, "<br>")
+      .replace(/<(div|p)[^>]*>/gi, "")
+      .replace(/<\/(div|p)>/gi, "")
+      .replace(/^<br>/i, "");
     return (
       <span
         className={className}
-        dangerouslySetInnerHTML={{ __html: children }}
+        dangerouslySetInnerHTML={{ __html: normalized }}
       />
     );
   }
