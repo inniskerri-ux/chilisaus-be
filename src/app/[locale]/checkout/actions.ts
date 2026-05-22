@@ -10,6 +10,10 @@ import { redirect } from "next/navigation";
 const COUNTRY_CODE_MAP: Record<string, string> = {
   BEL: "BE", NLD: "NL", DEU: "DE", FRA: "FR", LUX: "LU",
   AUT: "AT", DNK: "DK", ITA: "IT", ESP: "ES", POL: "PL", CZE: "CZ",
+  SWE: "SE", PRT: "PT", GBR: "GB", IRL: "IE", MLT: "MT",
+  NOR: "NO", FIN: "FI", BGR: "BG", ROU: "RO", SVK: "SK",
+  SVN: "SI", LTU: "LT", LVA: "LV", CYP: "CY", GRC: "GR",
+  USA: "US",
 };
 
 export async function createCheckoutSession(formData: FormData) {

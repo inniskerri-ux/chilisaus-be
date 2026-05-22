@@ -118,15 +118,39 @@ export default function CheckoutForm({
               >
                 <option value="BEL">Belgium</option>
                 <option value="NLD">Netherlands</option>
-                <option value="DEU">Germany</option>
-                <option value="FRA">France</option>
-                <option value="LUX">Luxembourg</option>
-                <option value="AUT">Austria</option>
-                <option value="DNK">Denmark</option>
-                <option value="ITA">Italy</option>
-                <option value="ESP">Spain</option>
-                <option value="POL">Poland</option>
-                <option value="CZE">Czech Republic</option>
+                <optgroup label="EU Zone 1">
+                  <option value="AUT">Austria</option>
+                  <option value="DNK">Denmark</option>
+                  <option value="FRA">France</option>
+                  <option value="DEU">Germany</option>
+                  <option value="ITA">Italy</option>
+                  <option value="LUX">Luxembourg</option>
+                  <option value="ESP">Spain</option>
+                  <option value="SWE">Sweden</option>
+                </optgroup>
+                <optgroup label="Zone 2">
+                  <option value="IRL">Ireland</option>
+                  <option value="PRT">Portugal</option>
+                  <option value="GBR">United Kingdom</option>
+                </optgroup>
+                <optgroup label="Zone 3">
+                  <option value="BGR">Bulgaria</option>
+                  <option value="CYP">Cyprus</option>
+                  <option value="CZE">Czech Republic</option>
+                  <option value="FIN">Finland</option>
+                  <option value="GRC">Greece</option>
+                  <option value="LVA">Latvia</option>
+                  <option value="LTU">Lithuania</option>
+                  <option value="NOR">Norway</option>
+                  <option value="ROU">Romania</option>
+                  <option value="SVK">Slovakia</option>
+                  <option value="SVN">Slovenia</option>
+                </optgroup>
+                <optgroup label="Other">
+                  <option value="MLT">Malta</option>
+                  <option value="POL">Poland</option>
+                  <option value="USA">United States</option>
+                </optgroup>
               </select>
             </div>
           </div>

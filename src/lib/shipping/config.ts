@@ -13,9 +13,13 @@ export const BOX_CONFIG = {
     width: 155,
     height: 90,
   },
-  /** Empty box weight in grams */
-  weightGrams: 100,
 } as const;
+
+/** Packaging weight in grams based on product weight (before packaging) */
+export function getPackagingWeight(productWeightGrams: number): number {
+  if (productWeightGrams < 2000) return 200;
+  return 250;
+}
 
 // ==================== PRODUCT WEIGHTS ====================
 
@@ -130,18 +134,14 @@ export function getProductWeight(item: OrderItem): number {
  * Returns weight in kilograms
  */
 export function calculatePackageWeight(items: OrderItem[]): number {
-  let totalGrams = BOX_CONFIG.weightGrams; // Start with box weight
+  let productGrams = 0;
 
   for (const item of items) {
-    const itemWeight = getProductWeight(item);
-    totalGrams += itemWeight * item.quantity;
+    productGrams += getProductWeight(item) * item.quantity;
   }
 
-  // Convert to kg and round to 2 decimal places
-  const weightKg = Math.round(totalGrams) / 1000;
-
-  // Minimum weight is 0.01 kg
-  return Math.max(0.01, weightKg);
+  const totalGrams = productGrams + getPackagingWeight(productGrams);
+  return Math.max(0.01, Math.round(totalGrams) / 1000);
 }
 
 // ==================== SHIPPING RATES & PROVIDERS ====================
