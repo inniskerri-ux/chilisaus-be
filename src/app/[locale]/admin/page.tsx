@@ -47,6 +47,7 @@ export default async function AdminDashboard({
     supabase
       .from("products")
       .select("name, stock, low_stock_threshold")
+      .eq("is_archived", false)
       .lte("stock", 2)
       .order("stock", { ascending: true })
       .limit(200),

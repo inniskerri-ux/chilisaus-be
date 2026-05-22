@@ -1,8 +1,11 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useState, useTransition } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { Archive } from "lucide-react";
 import type { StoreProduct } from "@/components/store/types";
+import { archiveProduct } from "../actions/archiveProduct";
 
 interface Category {
   id: number;
@@ -36,12 +39,16 @@ export default function ProductsClient({
   locale,
   labels,
 }: ProductsClientProps) {
+  const router = useRouter();
   const [search, setSearch] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("");
+  const [localProducts, setLocalProducts] = useState(products);
+  const [archivingId, setArchivingId] = useState<string | null>(null);
+  const [, startTransition] = useTransition();
 
   const filtered = useMemo(() => {
     const q = search.toLowerCase();
-    return products.filter((p) => {
+    return localProducts.filter((p) => {
       const matchesSearch =
         !q ||
         p.name.toLowerCase().includes(q) ||
@@ -52,23 +59,50 @@ export default function ProductsClient({
         p.category?.slug === selectedCategory;
       return matchesSearch && matchesCategory;
     });
-  }, [products, search, selectedCategory]);
+  }, [localProducts, search, selectedCategory]);
+
+  function handleArchive(product: StoreProduct) {
+    if (!confirm(`Archive "${product.name}"? It will be hidden from this list and the dashboard. You can reinstate it at any time.`)) return;
+
+    setLocalProducts((prev) => prev.filter((p) => p.id !== product.id));
+    setArchivingId(product.id as string);
+
+    startTransition(async () => {
+      const result = await archiveProduct(product.id as string, locale);
+      setArchivingId(null);
+      if (result.error) {
+        setLocalProducts(products);
+        alert(`Failed to archive: ${result.error}`);
+      } else {
+        router.refresh();
+      }
+    });
+  }
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between gap-4">
         <div>
           <h2 className="text-xl font-semibold text-foreground">
             {labels.heading}
           </h2>
           <p className="text-sm text-text-muted">{labels.subheading}</p>
         </div>
-        <Link
-          href={`/${locale}/admin/products/new`}
-          className="inline-flex items-center rounded-full bg-brand-red px-4 py-2 text-sm font-semibold text-white"
-        >
-          {labels.newProduct}
-        </Link>
+        <div className="flex items-center gap-2 shrink-0">
+          <Link
+            href={`/${locale}/admin/products/archived`}
+            className="inline-flex items-center gap-1.5 rounded-full border border-zinc-200 bg-white px-4 py-2 text-sm font-semibold text-zinc-600 hover:bg-zinc-50 transition-colors"
+          >
+            <Archive className="h-4 w-4" />
+            Archived
+          </Link>
+          <Link
+            href={`/${locale}/admin/products/new`}
+            className="inline-flex items-center rounded-full bg-brand-red px-4 py-2 text-sm font-semibold text-white"
+          >
+            {labels.newProduct}
+          </Link>
+        </div>
       </div>
 
       {/* Search + filter bar */}
@@ -103,7 +137,7 @@ export default function ProductsClient({
       </div>
 
       <p className="text-xs text-text-muted">
-        Showing {filtered.length} of {products.length} products
+        Showing {filtered.length} of {localProducts.length} products
       </p>
 
       <div className="overflow-x-auto rounded-2xl border border-border bg-white shadow-sm">
@@ -120,7 +154,7 @@ export default function ProductsClient({
           </thead>
           <tbody className="divide-y divide-border text-sm">
             {filtered.map((product) => (
-              <tr key={product.id}>
+              <tr key={product.id} className={archivingId === product.id ? "opacity-40" : ""}>
                 <td className="px-4 py-3 font-medium text-foreground">
                   {product.name}
                 </td>
@@ -138,19 +172,28 @@ export default function ProductsClient({
                   })}
                 </td>
                 <td className="px-4 py-3 text-right">
-                  <Link
-                    href={`/${locale}/admin/products/${product.id}`}
-                    className="text-sm font-semibold text-brand-red hover:underline"
-                  >
-                    {labels.edit}
-                  </Link>
+                  <div className="flex items-center justify-end gap-3">
+                    <Link
+                      href={`/${locale}/admin/products/${product.id}`}
+                      className="text-sm font-semibold text-brand-red hover:underline"
+                    >
+                      {labels.edit}
+                    </Link>
+                    <button
+                      onClick={() => handleArchive(product)}
+                      className="text-sm font-semibold text-zinc-400 hover:text-zinc-700 transition-colors"
+                      title="Archive product"
+                    >
+                      Archive
+                    </button>
+                  </div>
                 </td>
               </tr>
             ))}
             {filtered.length === 0 && (
               <tr>
                 <td colSpan={6} className="px-4 py-6 text-center text-text-muted">
-                  {products.length === 0 ? labels.empty : "No products match your search."}
+                  {localProducts.length === 0 ? labels.empty : "No products match your search."}
                 </td>
               </tr>
             )}

@@ -31,6 +31,7 @@ export default async function ProductsPage({
         category:categories!category_id ( id, name, slug )
       `,
       )
+      .eq("is_archived", false)
       .order("name", { ascending: true }),
     supabase
       .from("categories")
