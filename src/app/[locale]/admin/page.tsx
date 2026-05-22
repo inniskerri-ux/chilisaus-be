@@ -3,12 +3,10 @@ import { requireShopOwner } from "./lib/auth";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   Package,
-  TrendingUp,
   ShoppingBag,
   AlertTriangle,
   Clock,
   ArrowRight,
-  Users,
   Star,
   Mail,
   BarChart3,
@@ -32,19 +30,15 @@ export default async function AdminDashboard({
     { count: productCount },
     { count: brandCount },
     { count: categoryCount },
-    { data: salesData },
     { data: recentOrders },
     { data: lowStockProducts },
-    { data: legacyStats },  // RPC — no row limit
     { data: topSellers },
     { count: reviewCount },
-    { count: legacyCustomerCount },
     { data: yearsData },
   ] = await Promise.all([
     supabase.from("products").select("id", { count: "exact", head: true }),
     supabase.from("brands").select("id", { count: "exact", head: true }),
     supabase.from("categories").select("id", { count: "exact", head: true }),
-    supabase.from("orders").select("total_cents").eq("status", "paid"),
     supabase
       .from("orders")
       .select("id, order_number, customer_email, total_cents, status, created_at")
@@ -56,96 +50,19 @@ export default async function AdminDashboard({
       .lte("stock", 2)
       .order("stock", { ascending: true })
       .limit(200),
-    supabase.rpc("get_legacy_order_stats", { p_year: null }),
-
     supabase
       .from("product_sales_summary")
       .select("id, name, slug, image_url, legacy_units_sold, legacy_revenue_cents, avg_rating, review_count, wc_total_sales")
       .order("legacy_units_sold", { ascending: false })
       .limit(5),
     supabase.from("reviews").select("id", { count: "exact", head: true }),
-    supabase.from("legacy_customers").select("id", { count: "exact", head: true }),
     supabase.rpc("get_legacy_order_years"),
   ]);
 
-  const stripeRevenue = salesData?.reduce((acc, o) => acc + o.total_cents, 0) ?? 0;
-  const stripeOrders = salesData?.length ?? 0;
-
-  const legacyRow = Array.isArray(legacyStats) ? legacyStats[0] : null;
-  const legacyRevenue = Number(legacyRow?.total_revenue ?? 0);
-  const legacyOrders = Number(legacyRow?.completed_orders ?? 0);
   const legacyYears = ((yearsData as any[]) ?? []).map((r: any) => Number(r.year));
-
-  const totalRevenue = stripeRevenue + legacyRevenue;
-  const totalOrders = stripeOrders + legacyOrders;
 
   return (
     <div className="space-y-6 md:space-y-8">
-
-      {/* Top stats */}
-      <section className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
-        {[
-          {
-            label: "Total Revenue",
-            value: formatPrice(totalRevenue),
-            sub: `${formatPrice(stripeRevenue)} new · ${formatPrice(legacyRevenue)} legacy`,
-            icon: TrendingUp,
-            color: "text-green-600",
-            bg: "bg-green-50",
-          },
-          {
-            label: "Total Orders",
-            value: totalOrders.toLocaleString(),
-            sub: `${stripeOrders} new · ${legacyOrders} legacy`,
-            icon: ShoppingBag,
-            color: "text-red-600",
-            bg: "bg-red-50",
-          },
-          {
-            label: "Customers",
-            value: (legacyCustomerCount ?? 0).toLocaleString(),
-            sub: "legacy + new accounts",
-            icon: Users,
-            color: "text-blue-600",
-            bg: "bg-blue-50",
-          },
-          {
-            label: "Reviews",
-            value: (reviewCount ?? 0).toLocaleString(),
-            sub: `${productCount ?? 0} products catalogued`,
-            icon: Star,
-            color: "text-orange-500",
-            bg: "bg-orange-50",
-          },
-        ].map((card) => (
-          <Card key={card.label} className="border-none shadow-sm">
-            <CardContent className="p-4">
-              {/* Mobile: icon + text side by side */}
-              <div className="flex items-center gap-4 sm:hidden">
-                <div className={`${card.bg} p-3 rounded-xl shrink-0`}>
-                  <card.icon className={`h-6 w-6 ${card.color}`} />
-                </div>
-                <div className="min-w-0 flex-1">
-                  <p className="text-xs font-bold uppercase tracking-wider text-muted-foreground leading-tight">{card.label}</p>
-                  <div className="text-2xl font-bold mt-0.5">{card.value}</div>
-                  <p className="text-xs text-zinc-400 mt-0.5 leading-tight truncate">{card.sub}</p>
-                </div>
-              </div>
-              {/* sm+: standard vertical layout */}
-              <div className="hidden sm:block">
-                <div className="flex items-center justify-between mb-2">
-                  <p className="text-xs font-bold uppercase tracking-wider text-muted-foreground">{card.label}</p>
-                  <div className={`${card.bg} p-2 rounded-lg`}>
-                    <card.icon className={`h-4 w-4 ${card.color}`} />
-                  </div>
-                </div>
-                <div className="text-2xl font-bold">{card.value}</div>
-                <p className="text-xs text-zinc-400 mt-1">{card.sub}</p>
-              </div>
-            </CardContent>
-          </Card>
-        ))}
-      </section>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">
 

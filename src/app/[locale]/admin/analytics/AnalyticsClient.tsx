@@ -16,7 +16,7 @@ import {
   Legend,
   ResponsiveContainer,
 } from "recharts";
-import { TrendingUp, ShoppingBag, Users, ArrowUpDown, Loader2 } from "lucide-react";
+import { TrendingUp, ShoppingBag, Users, Star, ArrowUpDown, Loader2 } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
@@ -35,6 +35,15 @@ interface PeriodData {
 interface Props {
   years: number[];
   allProducts: { id: string; name: string }[];
+  totalRevenue: number;
+  stripeRevenue: number;
+  legacyRevenue: number;
+  totalOrders: number;
+  stripeOrders: number;
+  legacyOrders: number;
+  reviewCount: number;
+  customerCount: number;
+  productCount: number;
 }
 
 // ─── Preset helpers ────────────────────────────────────────────────────────────
@@ -127,7 +136,19 @@ function KpiCard({
 const COLOR_A = "#dc2626"; // brand red
 const COLOR_B = "#94a3b8"; // slate
 
-export default function AnalyticsClient({ years, allProducts }: Props) {
+export default function AnalyticsClient({
+  years,
+  allProducts,
+  totalRevenue,
+  stripeRevenue,
+  legacyRevenue,
+  totalOrders,
+  stripeOrders,
+  legacyOrders,
+  reviewCount,
+  customerCount,
+  productCount,
+}: Props) {
   const presets = buildPresets(years);
 
   const [presetA, setPresetA] = useState<string>(presets[2]?.label ?? "This year");
@@ -230,6 +251,69 @@ export default function AnalyticsClient({ years, allProducts }: Props) {
           All figures from historical WooCommerce data. Compare periods side by side.
         </p>
       </div>
+
+      {/* Financial overview */}
+      <section className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
+        {[
+          {
+            label: "Total Revenue",
+            value: formatPrice(totalRevenue),
+            sub: `${formatPrice(stripeRevenue)} new · ${formatPrice(legacyRevenue)} legacy`,
+            icon: TrendingUp,
+            color: "text-green-600",
+            bg: "bg-green-50",
+          },
+          {
+            label: "Total Orders",
+            value: totalOrders.toLocaleString(),
+            sub: `${stripeOrders} new · ${legacyOrders} legacy`,
+            icon: ShoppingBag,
+            color: "text-red-600",
+            bg: "bg-red-50",
+          },
+          {
+            label: "Customers",
+            value: customerCount.toLocaleString(),
+            sub: "legacy + new accounts",
+            icon: Users,
+            color: "text-blue-600",
+            bg: "bg-blue-50",
+          },
+          {
+            label: "Reviews",
+            value: reviewCount.toLocaleString(),
+            sub: `${productCount} products catalogued`,
+            icon: Star,
+            color: "text-orange-500",
+            bg: "bg-orange-50",
+          },
+        ].map((card) => (
+          <Card key={card.label} className="border-none shadow-sm">
+            <CardContent className="p-4">
+              <div className="flex items-center gap-4 sm:hidden">
+                <div className={`${card.bg} p-3 rounded-xl shrink-0`}>
+                  <card.icon className={`h-6 w-6 ${card.color}`} />
+                </div>
+                <div className="min-w-0 flex-1">
+                  <p className="text-xs font-bold uppercase tracking-wider text-muted-foreground leading-tight">{card.label}</p>
+                  <div className="text-2xl font-bold mt-0.5">{card.value}</div>
+                  <p className="text-xs text-zinc-400 mt-0.5 leading-tight truncate">{card.sub}</p>
+                </div>
+              </div>
+              <div className="hidden sm:block">
+                <div className="flex items-center justify-between mb-2">
+                  <p className="text-xs font-bold uppercase tracking-wider text-muted-foreground">{card.label}</p>
+                  <div className={`${card.bg} p-2 rounded-lg`}>
+                    <card.icon className={`h-4 w-4 ${card.color}`} />
+                  </div>
+                </div>
+                <div className="text-2xl font-bold">{card.value}</div>
+                <p className="text-xs text-zinc-400 mt-1">{card.sub}</p>
+              </div>
+            </CardContent>
+          </Card>
+        ))}
+      </section>
 
       {/* Period selectors */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
