@@ -51,6 +51,9 @@ export function getPackingSlipHtml(order: OrderDetails): string {
 
   return `
     <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; color: #333;">
+      <div style="margin-bottom: 24px;">
+        <img src="https://hkflfhbzfsentkkwzqnd.supabase.co/storage/v1/object/public/assets/email/logo.jpg" alt="Chilisaus.be" style="height: 60px; width: auto;" />
+      </div>
       <h1 style="color: #d32f2f;">New Order: Packing Slip</h1>
       <p>Order: <strong>#${order.orderNumber ?? order.id.slice(0, 8).toUpperCase()}</strong></p>
       ${order.orderedAt ? `<p>Order Date: <strong>${order.orderedAt}</strong></p>` : ""}
@@ -113,8 +116,8 @@ export function getOrderConfirmationHtml(order: OrderDetails): string {
 
   return `
     <div style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; max-width: 600px; margin: 0 auto; color: #333; line-height: 1.6; padding: 20px;">
-      <div style="margin-bottom: 40px; font-size: 1.2em; font-weight: bold; color: #000;">
-        Chilisaus.be / eu
+      <div style="margin-bottom: 40px;">
+        <img src="https://hkflfhbzfsentkkwzqnd.supabase.co/storage/v1/object/public/assets/email/logo.jpg" alt="Chilisaus.be" style="height: 60px; width: auto;" />
       </div>
 
       <h1 style="font-size: 2.5em; font-weight: 800; color: #000; margin-bottom: 20px; letter-spacing: -1px;">
