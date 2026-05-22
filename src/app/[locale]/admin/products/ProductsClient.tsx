@@ -1,8 +1,7 @@
 "use client";
 
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import Link from "next/link";
-import { useRouter, useSearchParams, usePathname } from "next/navigation";
 import type { StoreProduct } from "@/components/store/types";
 
 interface Category {
@@ -37,20 +36,8 @@ export default function ProductsClient({
   locale,
   labels,
 }: ProductsClientProps) {
-  const router = useRouter();
-  const pathname = usePathname();
-  const searchParams = useSearchParams();
-  const search = searchParams.get("q") ?? "";
-  const selectedCategory = searchParams.get("cat") ?? "";
-
-  function updateParams(updates: { q?: string; cat?: string }) {
-    const params = new URLSearchParams(searchParams.toString());
-    Object.entries(updates).forEach(([key, val]) => {
-      if (val) params.set(key, val);
-      else params.delete(key);
-    });
-    router.replace(`${pathname}?${params.toString()}`, { scroll: false });
-  }
+  const [search, setSearch] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("");
 
   const filtered = useMemo(() => {
     const q = search.toLowerCase();
@@ -90,12 +77,12 @@ export default function ProductsClient({
           type="search"
           placeholder="Search by name or brand…"
           value={search}
-          onChange={(e) => updateParams({ q: e.target.value, cat: selectedCategory })}
+          onChange={(e) => setSearch(e.target.value)}
           className="flex-1 rounded-lg border border-border bg-white px-3 py-2 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-brand-red"
         />
         <select
           value={selectedCategory}
-          onChange={(e) => updateParams({ q: search, cat: e.target.value })}
+          onChange={(e) => setSelectedCategory(e.target.value)}
           className="rounded-lg border border-border bg-white px-3 py-2 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-brand-red sm:w-56"
         >
           <option value="">All Categories</option>
@@ -107,7 +94,7 @@ export default function ProductsClient({
         </select>
         {(search || selectedCategory) && (
           <button
-            onClick={() => updateParams({ q: "", cat: "" })}
+            onClick={() => { setSearch(""); setSelectedCategory(""); }}
             className="text-xs font-semibold text-brand-red hover:underline whitespace-nowrap"
           >
             Clear

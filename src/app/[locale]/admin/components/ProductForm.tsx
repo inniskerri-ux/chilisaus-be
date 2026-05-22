@@ -87,6 +87,7 @@ export default function ProductForm({
   const router = useRouter();
   const locale = useLocale();
   const [loading, setLoading] = useState(false);
+  const [saved, setSaved] = useState(false);
   const submitting = useRef(false);
   const [selectedCategoryIds, setSelectedCategoryIds] = useState<string[]>(
     product?.categoryIds ??
@@ -183,9 +184,16 @@ export default function ProductForm({
 
     try {
       const result = await onSubmit(formData);
-      if (result?.success && successRedirectPath) {
-        router.push(successRedirectPath);
-        router.refresh();
+      if (result?.success) {
+        if (result.productId) {
+          // New product — go to its edit page
+          router.push(`/${locale}/admin/products/${result.productId}`);
+        } else {
+          // Edit — stay on page, refresh server data, show confirmation
+          router.refresh();
+          setSaved(true);
+          setTimeout(() => setSaved(false), 3000);
+        }
       }
     } finally {
       submitting.current = false;
@@ -207,7 +215,12 @@ export default function ProductForm({
         <h1 className="text-2xl font-bold tracking-tight">
           {product ? "Edit Product" : "New Product"}
         </h1>
-        <div className="flex gap-2">
+        <div className="flex items-center gap-2">
+          {saved && (
+            <span className="text-sm font-semibold text-green-600">
+              ✓ Saved
+            </span>
+          )}
           {product?.slug && (
             <Button
               type="button"
@@ -228,7 +241,6 @@ export default function ProductForm({
                 const result = await onDelete(fd);
                 if (result?.success && successRedirectPath) {
                   router.push(successRedirectPath);
-                  router.refresh();
                 }
               }}
               disabled={loading}
