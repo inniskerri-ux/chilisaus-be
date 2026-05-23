@@ -60,7 +60,7 @@ export default function ProductVariantSelector({
                 key={variant.id}
                 type="button"
                 onClick={() => setSelectedVariantId(variant.id)}
-                className={`px-4 py-2 rounded-lg border text-sm font-medium transition-all ${
+                className={`px-4 py-2.5 rounded-lg border text-sm font-medium transition-all ${
                   selectedVariantId === variant.id
                     ? "border-brand-red bg-brand-red text-white"
                     : variant.stock === 0

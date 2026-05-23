@@ -310,7 +310,7 @@ function ProductArchiveContent({
                 placeholder={t("search.placeholder")}
                 value={searchTerm}
                 onChange={(e) => { clearActiveFilters(); setSearchTerm(e.target.value); }}
-                className="mt-1 w-full rounded-lg border border-border bg-card px-3 py-2 text-foreground focus:outline-none focus:ring-2 focus:ring-brand-red"
+                className="mt-1 w-full rounded-lg border border-border bg-card px-3 py-2.5 text-base text-foreground focus:outline-none focus:ring-2 focus:ring-brand-red"
               />
             </label>
 
@@ -320,7 +320,7 @@ function ProductArchiveContent({
                 <select
                   value={sortBy}
                   onChange={(e) => setSortBy(e.target.value as SortOption)}
-                  className="mt-1 w-full rounded-lg border border-border bg-card px-3 py-2 text-foreground focus:outline-none focus:ring-2 focus:ring-brand-red"
+                  className="mt-1 w-full rounded-lg border border-border bg-card px-3 py-2.5 text-base text-foreground focus:outline-none focus:ring-2 focus:ring-brand-red"
                 >
                   <option value="popular">{t("search.filters.sortPopular")}</option>
                   <option value="newest">{t("search.filters.sortNewest")}</option>
@@ -334,7 +334,7 @@ function ProductArchiveContent({
                 onClick={() => setFiltersOpen((v) => !v)}
                 aria-expanded={filtersOpen}
                 aria-controls="mobile-filters-panel"
-                className={`flex-shrink-0 flex items-center gap-1.5 px-3 py-[9px] rounded-lg border text-sm font-semibold transition-colors ${
+                className={`flex-shrink-0 flex items-center gap-1.5 px-3 py-2.5 rounded-lg border text-sm font-semibold transition-colors ${
                   filtersOpen || secondaryFilterCount > 0
                     ? "border-brand-red bg-brand-red/5 text-brand-red"
                     : "border-border text-foreground hover:border-brand-red"
@@ -349,7 +349,7 @@ function ProductArchiveContent({
               <div id="mobile-filters-panel" className="flex flex-col gap-3 border-t border-border pt-3">
                 <label className="block text-sm font-medium text-foreground">
                   {t("search.filters.heatLevel")}
-                  <select value={selectedHeatLevel} onChange={(e) => { clearActiveFilters(); setSelectedHeatLevel(e.target.value); }} className="mt-1 w-full rounded-lg border border-border bg-card px-3 py-2 text-foreground focus:outline-none focus:ring-2 focus:ring-brand-red">
+                  <select value={selectedHeatLevel} onChange={(e) => { clearActiveFilters(); setSelectedHeatLevel(e.target.value); }} className="mt-1 w-full rounded-lg border border-border bg-card px-3 py-2.5 text-base text-foreground focus:outline-none focus:ring-2 focus:ring-brand-red">
                     <option value="">All Heat Levels</option>
                     {["mild", "medium", "hot", "veryHot", "superHot"].map((level) => (
                       <option key={level} value={level}>{t(`search.filters.heatLevels.${level}`)}</option>
@@ -358,28 +358,28 @@ function ProductArchiveContent({
                 </label>
                 <label className="block text-sm font-medium text-foreground">
                   Producer
-                  <select value={selectedBrand} onChange={(e) => { clearActiveFilters(); setSelectedBrand(e.target.value); }} className="mt-1 w-full rounded-lg border border-border bg-card px-3 py-2 text-foreground focus:outline-none focus:ring-2 focus:ring-brand-red">
+                  <select value={selectedBrand} onChange={(e) => { clearActiveFilters(); setSelectedBrand(e.target.value); }} className="mt-1 w-full rounded-lg border border-border bg-card px-3 py-2.5 text-base text-foreground focus:outline-none focus:ring-2 focus:ring-brand-red">
                     <option value="">All Producers</option>
                     {brands.map((brand) => <option key={brand.id} value={brand.id}>{brand.name}</option>)}
                   </select>
                 </label>
                 <label className="block text-sm font-medium text-foreground">
                   {t("search.filters.country")}
-                  <select value={selectedCountry} onChange={(e) => { clearActiveFilters(); setSelectedCountry(e.target.value); }} className="mt-1 w-full rounded-lg border border-border bg-card px-3 py-2 text-foreground focus:outline-none focus:ring-2 focus:ring-brand-red">
+                  <select value={selectedCountry} onChange={(e) => { clearActiveFilters(); setSelectedCountry(e.target.value); }} className="mt-1 w-full rounded-lg border border-border bg-card px-3 py-2.5 text-base text-foreground focus:outline-none focus:ring-2 focus:ring-brand-red">
                     <option value="">{t("search.filters.allCountries")}</option>
                     {countries.map((country) => <option key={country} value={country}>{country}</option>)}
                   </select>
                 </label>
                 <label className="block text-sm font-medium text-foreground">
                   {t("search.filters.sauceType")}
-                  <select value={selectedCategory} onChange={(e) => { clearActiveFilters(); setSelectedCategory(e.target.value); }} className="mt-1 w-full rounded-lg border border-border bg-card px-3 py-2 text-foreground focus:outline-none focus:ring-2 focus:ring-brand-red">
+                  <select value={selectedCategory} onChange={(e) => { clearActiveFilters(); setSelectedCategory(e.target.value); }} className="mt-1 w-full rounded-lg border border-border bg-card px-3 py-2.5 text-base text-foreground focus:outline-none focus:ring-2 focus:ring-brand-red">
                     <option value="">{t("search.filters.allCategories")}</option>
                     {typeCategories.map((category) => <option key={category.slug} value={category.slug}>{category.name}</option>)}
                   </select>
                 </label>
                 <label className="block text-sm font-medium text-foreground">
                   {t("search.filters.pepper")}
-                  <select value={selectedChilliType} onChange={(e) => { clearActiveFilters(); setSelectedChilliType(e.target.value); }} className="mt-1 w-full rounded-lg border border-border bg-card px-3 py-2 text-foreground focus:outline-none focus:ring-2 focus:ring-brand-red">
+                  <select value={selectedChilliType} onChange={(e) => { clearActiveFilters(); setSelectedChilliType(e.target.value); }} className="mt-1 w-full rounded-lg border border-border bg-card px-3 py-2.5 text-base text-foreground focus:outline-none focus:ring-2 focus:ring-brand-red">
                     <option value="">{t("search.filters.allChilliTypes")}</option>
                     {chilliTypes.map((chilliType) => <option key={chilliType.id} value={chilliType.id}>{chilliType.name}</option>)}
                   </select>
@@ -397,12 +397,12 @@ function ProductArchiveContent({
                 placeholder={t("search.placeholder")}
                 value={searchTerm}
                 onChange={(e) => { clearActiveFilters(); setSearchTerm(e.target.value); }}
-                className="mt-1 w-full rounded-lg border border-border bg-card px-3 py-2 text-foreground focus:outline-none focus:ring-2 focus:ring-brand-red"
+                className="mt-1 w-full rounded-lg border border-border bg-card px-3 py-2.5 text-base text-foreground focus:outline-none focus:ring-2 focus:ring-brand-red"
               />
             </label>
             <label className="block text-sm font-medium text-foreground">
               {t("search.filters.heatLevel")}
-              <select value={selectedHeatLevel} onChange={(e) => { clearActiveFilters(); setSelectedHeatLevel(e.target.value); }} className="mt-1 w-full rounded-lg border border-border bg-card px-3 py-2 text-foreground focus:outline-none focus:ring-2 focus:ring-brand-red">
+              <select value={selectedHeatLevel} onChange={(e) => { clearActiveFilters(); setSelectedHeatLevel(e.target.value); }} className="mt-1 w-full rounded-lg border border-border bg-card px-3 py-2.5 text-base text-foreground focus:outline-none focus:ring-2 focus:ring-brand-red">
                 <option value="">All Heat Levels</option>
                 {["mild", "medium", "hot", "veryHot", "superHot"].map((level) => (
                   <option key={level} value={level}>{t(`search.filters.heatLevels.${level}`)}</option>
@@ -411,28 +411,28 @@ function ProductArchiveContent({
             </label>
             <label className="block text-sm font-medium text-foreground">
               Producer
-              <select value={selectedBrand} onChange={(e) => { clearActiveFilters(); setSelectedBrand(e.target.value); }} className="mt-1 w-full rounded-lg border border-border bg-card px-3 py-2 text-foreground focus:outline-none focus:ring-2 focus:ring-brand-red">
+              <select value={selectedBrand} onChange={(e) => { clearActiveFilters(); setSelectedBrand(e.target.value); }} className="mt-1 w-full rounded-lg border border-border bg-card px-3 py-2.5 text-base text-foreground focus:outline-none focus:ring-2 focus:ring-brand-red">
                 <option value="">All Producers</option>
                 {brands.map((brand) => <option key={brand.id} value={brand.id}>{brand.name}</option>)}
               </select>
             </label>
             <label className="block text-sm font-medium text-foreground">
               {t("search.filters.country")}
-              <select value={selectedCountry} onChange={(e) => { clearActiveFilters(); setSelectedCountry(e.target.value); }} className="mt-1 w-full rounded-lg border border-border bg-card px-3 py-2 text-foreground focus:outline-none focus:ring-2 focus:ring-brand-red">
+              <select value={selectedCountry} onChange={(e) => { clearActiveFilters(); setSelectedCountry(e.target.value); }} className="mt-1 w-full rounded-lg border border-border bg-card px-3 py-2.5 text-base text-foreground focus:outline-none focus:ring-2 focus:ring-brand-red">
                 <option value="">{t("search.filters.allCountries")}</option>
                 {countries.map((country) => <option key={country} value={country}>{country}</option>)}
               </select>
             </label>
             <label className="block text-sm font-medium text-foreground">
               {t("search.filters.sauceType")}
-              <select value={selectedCategory} onChange={(e) => { clearActiveFilters(); setSelectedCategory(e.target.value); }} className="mt-1 w-full rounded-lg border border-border bg-card px-3 py-2 text-foreground focus:outline-none focus:ring-2 focus:ring-brand-red">
+              <select value={selectedCategory} onChange={(e) => { clearActiveFilters(); setSelectedCategory(e.target.value); }} className="mt-1 w-full rounded-lg border border-border bg-card px-3 py-2.5 text-base text-foreground focus:outline-none focus:ring-2 focus:ring-brand-red">
                 <option value="">{t("search.filters.allCategories")}</option>
                 {typeCategories.map((category) => <option key={category.slug} value={category.slug}>{category.name}</option>)}
               </select>
             </label>
             <label className="block text-sm font-medium text-foreground">
               {t("search.filters.sort")}
-              <select value={sortBy} onChange={(e) => setSortBy(e.target.value as SortOption)} className="mt-1 w-full rounded-lg border border-border bg-card px-3 py-2 text-foreground focus:outline-none focus:ring-2 focus:ring-brand-red">
+              <select value={sortBy} onChange={(e) => setSortBy(e.target.value as SortOption)} className="mt-1 w-full rounded-lg border border-border bg-card px-3 py-2.5 text-base text-foreground focus:outline-none focus:ring-2 focus:ring-brand-red">
                 <option value="popular">{t("search.filters.sortPopular")}</option>
                 <option value="newest">{t("search.filters.sortNewest")}</option>
                 <option value="mild-first">{t("search.filters.sortMildToHot")}</option>
@@ -443,7 +443,7 @@ function ProductArchiveContent({
             </label>
             <label className="block text-sm font-medium text-foreground">
               {t("search.filters.pepper")}
-              <select value={selectedChilliType} onChange={(e) => { clearActiveFilters(); setSelectedChilliType(e.target.value); }} className="mt-1 w-full rounded-lg border border-border bg-card px-3 py-2 text-foreground focus:outline-none focus:ring-2 focus:ring-brand-red">
+              <select value={selectedChilliType} onChange={(e) => { clearActiveFilters(); setSelectedChilliType(e.target.value); }} className="mt-1 w-full rounded-lg border border-border bg-card px-3 py-2.5 text-base text-foreground focus:outline-none focus:ring-2 focus:ring-brand-red">
                 <option value="">{t("search.filters.allChilliTypes")}</option>
                 {chilliTypes.map((chilliType) => <option key={chilliType.id} value={chilliType.id}>{chilliType.name}</option>)}
               </select>

@@ -162,7 +162,7 @@ export default async function ProductPage({
   return (
     <main className="max-w-5xl mx-auto px-4 py-8 sm:px-6 lg:px-8">
       {/* Breadcrumb */}
-      <nav className="mb-6 text-sm text-text-muted flex items-center gap-2">
+      <nav className="mb-6 text-sm text-text-muted flex flex-wrap items-center gap-2">
         <Link
           href={`/${locale}/shop`}
           className="hover:text-foreground transition-colors"
@@ -179,7 +179,7 @@ export default async function ProductPage({
         <span className="text-foreground">{product.name}</span>
       </nav>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10">
         {/* Image */}
         <ProductImageCarousel images={carouselImages} alt={product.name} />
 

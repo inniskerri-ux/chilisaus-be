@@ -11,14 +11,23 @@ interface ProductImageCarouselProps {
 
 export function ProductImageCarousel({ images, alt }: ProductImageCarouselProps) {
   const [active, setActive] = useState(0);
+  const [touchStartX, setTouchStartX] = useState<number | null>(null);
   const hasMultiple = images.length > 1;
 
   const prev = () => setActive((i) => (i - 1 + images.length) % images.length);
   const next = () => setActive((i) => (i + 1) % images.length);
 
+  const handleTouchStart = (e: React.TouchEvent) => setTouchStartX(e.touches[0].clientX);
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (touchStartX === null) return;
+    const delta = touchStartX - e.changedTouches[0].clientX;
+    if (Math.abs(delta) > 50) delta > 0 ? next() : prev();
+    setTouchStartX(null);
+  };
+
   if (images.length === 0) {
     return (
-      <div className="relative aspect-square w-full overflow-hidden rounded-2xl bg-zinc-50 border border-zinc-100 p-8">
+      <div className="relative aspect-square w-full overflow-hidden rounded-2xl bg-zinc-50 border border-zinc-100 p-4 sm:p-8">
         <div className="flex h-full items-center justify-center text-6xl">🌶️</div>
       </div>
     );
@@ -26,7 +35,11 @@ export function ProductImageCarousel({ images, alt }: ProductImageCarouselProps)
 
   return (
     <div className="space-y-3">
-      <div className="relative aspect-square w-full overflow-hidden rounded-2xl bg-zinc-50 border border-zinc-100 p-8">
+      <div
+        className="relative aspect-square w-full overflow-hidden rounded-2xl bg-zinc-50 border border-zinc-100 p-4 sm:p-8"
+        onTouchStart={hasMultiple ? handleTouchStart : undefined}
+        onTouchEnd={hasMultiple ? handleTouchEnd : undefined}
+      >
         <Image
           src={images[active]}
           alt={alt}
@@ -42,7 +55,7 @@ export function ProductImageCarousel({ images, alt }: ProductImageCarouselProps)
               type="button"
               onClick={prev}
               aria-label="Previous image"
-              className="absolute left-2 top-1/2 -translate-y-1/2 flex h-9 w-9 items-center justify-center rounded-full bg-white/80 shadow-md backdrop-blur-sm transition-colors hover:bg-white"
+              className="absolute left-2 top-1/2 -translate-y-1/2 flex h-11 w-11 items-center justify-center rounded-full bg-white/80 shadow-md backdrop-blur-sm transition-colors hover:bg-white"
             >
               <ChevronLeft className="h-5 w-5 text-zinc-700" />
             </button>
@@ -50,7 +63,7 @@ export function ProductImageCarousel({ images, alt }: ProductImageCarouselProps)
               type="button"
               onClick={next}
               aria-label="Next image"
-              className="absolute right-2 top-1/2 -translate-y-1/2 flex h-9 w-9 items-center justify-center rounded-full bg-white/80 shadow-md backdrop-blur-sm transition-colors hover:bg-white"
+              className="absolute right-2 top-1/2 -translate-y-1/2 flex h-11 w-11 items-center justify-center rounded-full bg-white/80 shadow-md backdrop-blur-sm transition-colors hover:bg-white"
             >
               <ChevronRight className="h-5 w-5 text-zinc-700" />
             </button>
