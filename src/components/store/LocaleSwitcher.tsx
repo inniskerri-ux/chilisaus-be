@@ -23,7 +23,7 @@ const LANGUAGES = [
   { code: "bg", label: "BGR", flag: "🇧🇬" },
 ];
 
-export default function LocaleSwitcher() {
+export default function LocaleSwitcher({ dropup = false, align = "right" }: { dropup?: boolean; align?: "left" | "right" }) {
   const locale = useLocale();
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
@@ -61,7 +61,7 @@ export default function LocaleSwitcher() {
       </button>
 
       {isOpen && (
-        <div className="absolute right-0 mt-2 w-48 max-h-96 overflow-y-auto rounded-2xl border border-zinc-100 bg-white p-2 shadow-2xl animate-in fade-in zoom-in-95 duration-200 z-[60]">
+        <div className={`absolute w-48 max-h-96 overflow-y-auto rounded-2xl border border-zinc-100 bg-white p-2 shadow-2xl animate-in fade-in zoom-in-95 duration-200 z-[60] ${align === "left" ? "left-0" : "right-0"} ${dropup ? "bottom-full mb-2" : "mt-2"}`}>
           <div className="grid grid-cols-1 gap-1">
             {LANGUAGES.map((lang) => (
               <Link

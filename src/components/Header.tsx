@@ -4,6 +4,7 @@ import { Instagram, MessageCircle, Search } from "lucide-react";
 import { getTranslations } from "next-intl/server";
 import { createClient } from "@/lib/supabase/server";
 import HeaderActions from "./HeaderActions";
+import LocaleSwitcher from "./store/LocaleSwitcher";
 
 export default async function Header({ locale }: { locale: string }) {
   const tAuth = await getTranslations("Auth");
@@ -84,6 +85,8 @@ export default async function Header({ locale }: { locale: string }) {
               <MessageCircle size={20} className="hover:opacity-80 transition-opacity" />
             </a>
           </div>
+
+          <LocaleSwitcher />
 
           <HeaderActions
             locale={locale}

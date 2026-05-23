@@ -188,7 +188,7 @@ export default function MobileMenu({
               className="px-6 py-5 border-t border-zinc-100 flex items-center justify-between"
               style={{ paddingBottom: "max(1.25rem, env(safe-area-inset-bottom))" }}
             >
-              <LocaleSwitcher />
+              <LocaleSwitcher dropup align="left" />
               <div className="flex items-center gap-1">
                 <a
                   href="https://www.instagram.com/chilisaus.be"

@@ -133,7 +133,7 @@ export default function ProductCard({
         )}
 
         <div className="mt-4 flex items-center justify-between gap-2">
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 shrink-0">
             {hasDiscount && (
               <span className="text-sm text-zinc-500 line-through">
                 {formatPrice(product.price_cents, product.currency, locale)}
@@ -150,7 +150,7 @@ export default function ProductCard({
           {product.category && (
             <Badge
               variant="outline"
-              className={`font-normal border shrink-0 ${getCategoryColor(product.category.slug)}`}
+              className={`font-normal border min-w-0 truncate ${getCategoryColor(product.category.slug)}`}
             >
               {product.category.name}
             </Badge>

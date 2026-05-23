@@ -92,6 +92,7 @@ export default function HeaderActions({
           locale={locale}
           label={labels.cart}
           cartCount={cartCount}
+          iconOnly
         />
       </nav>
 
