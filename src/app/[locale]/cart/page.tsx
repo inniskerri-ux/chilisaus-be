@@ -111,7 +111,7 @@ export default async function CartPage({
                   ) : null}
                 </div>
 
-                <div className="flex justify-between items-end mt-2">
+                <div className="mt-2 flex flex-col gap-1.5 sm:flex-row sm:justify-between sm:items-end">
                   <div className="flex items-center border rounded-lg overflow-hidden h-9">
                     <form
                       action={async () => {
@@ -143,7 +143,7 @@ export default async function CartPage({
                       </button>
                     </form>
                   </div>
-                  <p className="font-bold text-lg">
+                  <p className="font-bold text-lg self-end sm:self-auto">
                     {formatPrice(
                       ((item.variant as any)?.price_cents ?? item.product.price_cents) * item.quantity,
                       item.product.currency,
