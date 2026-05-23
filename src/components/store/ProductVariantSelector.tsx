@@ -82,6 +82,7 @@ export default function ProductVariantSelector({
         outOfStock={variantOutOfStock}
         label={t("addToCart")}
         outOfStockLabel={t("outOfStock")}
+        size="lg"
         className="w-full sm:w-auto bg-brand-red hover:bg-brand-red/90 text-white"
       />
     </div>

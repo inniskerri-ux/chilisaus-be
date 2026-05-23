@@ -48,7 +48,7 @@ export default function CheckoutForm({
   const total = subtotal + shippingCost;
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
       {/* Form Side */}
       <form
         action={async (formData) => {
@@ -111,7 +111,7 @@ export default function CheckoutForm({
               <select
                 id="country"
                 name="country"
-                className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                 value={selectedCountry}
                 onChange={(e) => setSelectedCountry(e.target.value)}
                 required
@@ -240,7 +240,7 @@ export default function CheckoutForm({
       </form>
 
       {/* Summary Side */}
-      <div className="bg-zinc-50 p-8 rounded-2xl border h-fit sticky top-24">
+      <div className="bg-zinc-50 p-4 sm:p-8 rounded-2xl border h-fit lg:sticky lg:top-24">
         <h2 className="text-xl font-bold mb-6">{t("summary")}</h2>
 
         <div className="space-y-4 mb-8">
@@ -249,7 +249,7 @@ export default function CheckoutForm({
               key={item.id}
               className="flex justify-between items-center text-sm"
             >
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-3 min-w-0">
                 <div className="relative w-12 h-12 bg-white rounded border flex-shrink-0">
                   {item.product.image_url ? (
                     <Image
@@ -267,7 +267,7 @@ export default function CheckoutForm({
                     {item.quantity}
                   </span>
                 </div>
-                <span className="font-medium">{item.product.name}</span>
+                <span className="font-medium truncate">{item.product.name}</span>
               </div>
               <span className="font-semibold">
                 {formatPrice(item.product.price_cents * item.quantity)}
