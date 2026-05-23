@@ -23,7 +23,7 @@ export default async function Header({ locale }: { locale: string }) {
   const initialSession = { isLoggedIn: !!user, isShopOwner };
 
   return (
-    <header className="sticky top-0 z-50 border-b border-zinc-100 bg-white/80 backdrop-blur-md">
+    <header className="sticky top-0 z-50 border-b border-zinc-100 bg-white/80 backdrop-blur-md pt-[env(safe-area-inset-top)]">
       <div className="mx-auto max-w-7xl flex items-center justify-between px-6 py-4">
         {/* Logo */}
         <Link href={`/${locale}`} className="flex items-center">

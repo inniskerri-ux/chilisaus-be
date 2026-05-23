@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, X, Instagram, MessageCircle } from "lucide-react";
@@ -31,22 +31,10 @@ export default function MobileMenu({
   labels,
 }: MobileMenuProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const [isAnimatedIn, setIsAnimatedIn] = useState(false);
+  const [isClosing, setIsClosing] = useState(false);
+  const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const pathname = usePathname();
-
-  // Close menu on route change
-  useEffect(() => {
-    setIsOpen(false);
-  }, [pathname]);
-
-  // Prevent body scroll when open
-  useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
-    return () => { document.body.style.overflow = ""; };
-  }, [isOpen]);
 
   const navLinks = [
     { href: `/${locale}/shop`, label: labels.shop },
@@ -55,123 +43,180 @@ export default function MobileMenu({
     { href: `/${locale}/scoville-scale`, label: labels.scoville },
   ];
 
+  // Trigger slide-in on the frame after the drawer mounts
+  useEffect(() => {
+    if (!isOpen) return;
+    const id = requestAnimationFrame(() => setIsAnimatedIn(true));
+    return () => cancelAnimationFrame(id);
+  }, [isOpen]);
+
+  // Close immediately on navigation (page transition is the visual feedback)
+  useEffect(() => {
+    setIsOpen(false);
+    setIsAnimatedIn(false);
+    setIsClosing(false);
+    if (closeTimer.current) clearTimeout(closeTimer.current);
+  }, [pathname]);
+
+  // Scroll lock
+  useEffect(() => {
+    document.body.style.overflow = isOpen ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
+  }, [isOpen]);
+
+  // Cleanup timer on unmount
+  useEffect(() => () => { if (closeTimer.current) clearTimeout(closeTimer.current); }, []);
+
+  const openMenu = () => {
+    if (closeTimer.current) clearTimeout(closeTimer.current);
+    setIsClosing(false);
+    setIsAnimatedIn(false);
+    setIsOpen(true);
+  };
+
+  const closeMenu = () => {
+    if (closeTimer.current) clearTimeout(closeTimer.current);
+    setIsClosing(true);
+    setIsAnimatedIn(false);
+    closeTimer.current = setTimeout(() => {
+      setIsOpen(false);
+      setIsClosing(false);
+      closeTimer.current = null;
+    }, 300);
+  };
+
+  const translated = isOpen && isAnimatedIn && !isClosing;
+
   return (
     <>
-      {/* Hamburger button */}
+      {/* Trigger — icon + label for a clear, easy tap target */}
       <button
-        onClick={() => setIsOpen(true)}
-        className="p-2 text-zinc-800 hover:text-brand-red transition-colors"
+        onClick={openMenu}
+        className="flex items-center gap-1.5 px-3 py-2.5 text-zinc-800 hover:text-brand-red transition-colors"
         aria-label="Open menu"
+        aria-expanded={isOpen}
+        aria-controls="mobile-drawer"
       >
-        <Menu size={24} />
+        <Menu size={22} />
+        <span className="text-xs font-bold uppercase tracking-widest">Menu</span>
       </button>
 
-      {/* Overlay */}
       {isOpen && (
-        <div
-          className="fixed inset-0 bg-black/40 z-40"
-          onClick={() => setIsOpen(false)}
-        />
-      )}
+        <>
+          {/* Backdrop */}
+          <div
+            className={`fixed inset-0 z-40 bg-black/50 transition-opacity duration-300 ${translated ? "opacity-100" : "opacity-0"}`}
+            onClick={closeMenu}
+            aria-hidden="true"
+          />
 
-      {/* Drawer — slides in from the right */}
-      <div
-        className={`fixed top-0 right-0 h-screen w-4/5 max-w-sm bg-white z-50 shadow-2xl flex flex-col transition-transform duration-300 ease-in-out ${
-          isOpen ? "translate-x-0" : "translate-x-full"
-        }`}
-      >
-        {/* Drawer header */}
-        <div className="flex items-center justify-between px-6 py-5 border-b border-zinc-100">
-          <span className="text-sm font-bold uppercase tracking-widest text-zinc-400">
-            Menu
-          </span>
-          <button
-            onClick={() => setIsOpen(false)}
-            className="p-2 text-zinc-500 hover:text-brand-red transition-colors"
-            aria-label="Close menu"
+          {/* Full-screen drawer */}
+          <div
+            id="mobile-drawer"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Navigation menu"
+            className={`fixed inset-0 z-50 flex flex-col bg-white transition-transform duration-300 ease-in-out pt-[env(safe-area-inset-top)] ${translated ? "translate-x-0" : "translate-x-full"}`}
+            style={{ height: "100dvh" }}
           >
-            <X size={22} />
-          </button>
-        </div>
+            {/* Drawer header */}
+            <div className="flex items-center justify-between px-6 py-5 border-b border-zinc-100">
+              <span className="text-sm font-bold uppercase tracking-widest text-zinc-400">
+                Menu
+              </span>
+              <button
+                onClick={closeMenu}
+                className="flex items-center gap-2 px-4 py-2.5 rounded-full bg-zinc-100 text-zinc-800 hover:bg-brand-red hover:text-white transition-all font-bold text-sm"
+                aria-label="Close menu"
+              >
+                <X size={16} />
+                Close
+              </button>
+            </div>
 
-        {/* Nav links */}
-        <nav className="flex-1 overflow-y-auto px-6 py-6 flex flex-col gap-1">
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              onClick={() => setIsOpen(false)}
-              className={`py-3 text-lg font-bold uppercase tracking-widest border-b border-zinc-50 transition-colors ${
-                pathname.startsWith(link.href)
-                  ? "text-brand-red"
-                  : "text-zinc-800 hover:text-brand-red"
-              }`}
-            >
-              {link.label}
-            </Link>
-          ))}
-
-          {/* Auth links */}
-          <div className="mt-4 pt-4 border-t border-zinc-100 flex flex-col gap-1">
-            {isLoggedIn ? (
-              <>
+            {/* Nav links */}
+            <nav className="flex-1 overflow-y-auto px-6 py-4 flex flex-col">
+              {navLinks.map((link) => (
                 <Link
-                  href={isShopOwner ? `/${locale}/admin` : `/${locale}/account`}
-                  onClick={() => setIsOpen(false)}
-                  className="py-3 text-base font-semibold text-zinc-700 hover:text-brand-red transition-colors"
+                  key={link.href}
+                  href={link.href}
+                  onClick={closeMenu}
+                  className={`py-4 text-xl font-bold uppercase tracking-widest border-b border-zinc-100 transition-colors ${
+                    pathname.startsWith(link.href)
+                      ? "text-brand-red"
+                      : "text-zinc-800 hover:text-brand-red"
+                  }`}
                 >
-                  {isShopOwner ? labels.dashboard : labels.account}
+                  {link.label}
                 </Link>
-                <form action="/api/auth/sign-out" method="POST">
-                  <button
-                    type="submit"
-                    className="py-3 text-base font-semibold text-zinc-400 hover:text-brand-red transition-colors"
-                  >
-                    {labels.signOut}
-                  </button>
-                </form>
-              </>
-            ) : (
-              <Link
-                href={`/${locale}/auth/sign-in`}
-                onClick={() => setIsOpen(false)}
-                className="py-3 text-base font-semibold text-zinc-700 hover:text-brand-red transition-colors"
-              >
-                {labels.signIn}
-              </Link>
-            )}
-          </div>
-        </nav>
+              ))}
 
-        {/* Drawer footer: locale switcher + socials */}
-        <div className="px-6 py-5 border-t border-zinc-100 flex items-center justify-between">
-          <LocaleSwitcher />
-          <div className="flex items-center gap-2">
-            <a
-              href="https://www.instagram.com/chilisaus.be"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-2 transition-colors"
-              style={{ color: "#E1306C" }}
-              aria-label="Instagram"
+              {/* Auth links */}
+              <div className="mt-6 pt-2 flex flex-col">
+                {isLoggedIn ? (
+                  <>
+                    <Link
+                      href={isShopOwner ? `/${locale}/admin` : `/${locale}/account`}
+                      onClick={closeMenu}
+                      className="py-4 text-base font-semibold text-zinc-700 hover:text-brand-red transition-colors border-b border-zinc-100"
+                    >
+                      {isShopOwner ? labels.dashboard : labels.account}
+                    </Link>
+                    <form action="/api/auth/sign-out" method="POST">
+                      <button
+                        type="submit"
+                        className="py-4 w-full text-left text-base font-semibold text-zinc-400 hover:text-brand-red transition-colors"
+                      >
+                        {labels.signOut}
+                      </button>
+                    </form>
+                  </>
+                ) : (
+                  <Link
+                    href={`/${locale}/auth/sign-in`}
+                    onClick={closeMenu}
+                    className="py-4 text-base font-semibold text-zinc-700 hover:text-brand-red transition-colors"
+                  >
+                    {labels.signIn}
+                  </Link>
+                )}
+              </div>
+            </nav>
+
+            {/* Footer: locale switcher + socials */}
+            <div
+              className="px-6 py-5 border-t border-zinc-100 flex items-center justify-between"
+              style={{ paddingBottom: "max(1.25rem, env(safe-area-inset-bottom))" }}
             >
-              <Instagram size={20} className="hover:opacity-80 transition-opacity" />
-            </a>
-            {whatsappNumber && (
-              <a
-                href={`https://wa.me/${whatsappNumber}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-2 transition-colors"
-                style={{ color: "#25D366" }}
-                aria-label="WhatsApp"
-              >
-                <MessageCircle size={20} className="hover:opacity-80 transition-opacity" />
-              </a>
-            )}
+              <LocaleSwitcher />
+              <div className="flex items-center gap-1">
+                <a
+                  href="https://www.instagram.com/chilisaus.be"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-2.5 transition-colors"
+                  style={{ color: "#E1306C" }}
+                  aria-label="Instagram"
+                >
+                  <Instagram size={22} />
+                </a>
+                {whatsappNumber && (
+                  <a
+                    href={`https://wa.me/${whatsappNumber}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-2.5 transition-colors"
+                    style={{ color: "#25D366" }}
+                    aria-label="WhatsApp"
+                  >
+                    <MessageCircle size={22} />
+                  </a>
+                )}
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
+        </>
+      )}
     </>
   );
 }

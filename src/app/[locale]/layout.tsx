@@ -14,6 +14,7 @@ import WhatsAppButton from "@/components/WhatsAppButton";
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
+  viewportFit: "cover",
 };
 
 const fontSans = Montserrat({

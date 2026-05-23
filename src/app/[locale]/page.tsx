@@ -55,7 +55,7 @@ export default async function HomePage({
             <span className="mb-4 block text-lg font-bold uppercase tracking-[0.2em] text-brand-red">
               {t("hero.welcome")}
             </span>
-            <h1 className="text-4xl font-extrabold tracking-tight text-brand-black sm:text-7xl uppercase">
+            <h1 className="text-[clamp(2.25rem,8vw,4.5rem)] font-extrabold tracking-tight text-brand-black uppercase">
               {t("hero.title")}
             </h1>
             <p className="mt-8 text-xl leading-8 text-zinc-600">
