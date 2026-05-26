@@ -135,11 +135,11 @@
       "filters": {
         "heatLevel": "Niveau de chaleur",
         "heatLevels": {
-          "mild": "Doux 1-4",
-          "medium": "Moyen 5-7",
-          "hot": "Fort 8-9",
+          "mild": "Doux 1 - 4",
+          "medium": "Moyen 5 - 7",
+          "hot": "Fort 8 - 9",
           "veryHot": "Très Fort 10",
-          "superHot": "Extrême 11-20"
+          "superHot": "Extrême 11 - 20"
         },
         "pepper": "Piment",
         "allChilliTypes": "Tous les piments",

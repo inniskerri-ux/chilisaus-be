@@ -135,11 +135,11 @@
       "filters": {
         "heatLevel": "Úroveň pálivosti",
         "heatLevels": {
-          "mild": "Jemný 1-4",
-          "medium": "Střední 5-7",
-          "hot": "Pálivý 8-9",
+          "mild": "Jemný 1 - 4",
+          "medium": "Střední 5 - 7",
+          "hot": "Pálivý 8 - 9",
           "veryHot": "Velmi Pálivý 10",
-          "superHot": "Extrémně Pálivý 11-20"
+          "superHot": "Extrémně Pálivý 11 - 20"
         },
         "pepper": "Paprička",
         "allChilliTypes": "Všechny papričky",

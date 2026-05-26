@@ -31,6 +31,9 @@ const HEAT_BAND_SLUGS = new Set([
   "superhot",
 ]);
 
+const HEAT_ORDER = ["mild", "medium", "hot", "veryHot", "superHot"] as const;
+type HeatBand = (typeof HEAT_ORDER)[number];
+
 const resolveHeatRank = (value?: string | number | null): number | null => {
   if (value === null || value === undefined || value === "") return null;
   if (typeof value === "number") return value;
@@ -208,6 +211,35 @@ function ProductArchiveContent({
     sortBy,
     hideOutOfStock,
   ]);
+
+  // Group by heat band when in default "popular" sort and no heat filter active.
+  // Falls back to null (flat view) if no products have a heat level.
+  const productGroups = useMemo(() => {
+    if (sortBy !== "popular" || selectedHeatLevel) return null;
+
+    const bandMap = new Map<HeatBand, StoreProduct[]>();
+    const noBand: StoreProduct[] = [];
+
+    for (const product of filteredAndSortedProducts) {
+      const band = resolveHeatCategory(resolveHeatRank(product.heatLevel)) as HeatBand | null;
+      if (band) {
+        if (!bandMap.has(band)) bandMap.set(band, []);
+        bandMap.get(band)!.push(product);
+      } else {
+        noBand.push(product);
+      }
+    }
+
+    const groups: Array<{ band: HeatBand | null; products: StoreProduct[] }> = [];
+    for (const band of HEAT_ORDER) {
+      const prods = bandMap.get(band);
+      if (prods?.length) groups.push({ band, products: prods });
+    }
+    if (noBand.length) groups.push({ band: null, products: noBand });
+
+    // Only use grouped view if at least one heat-banded group exists
+    return groups.some((g) => g.band !== null) ? groups : null;
+  }, [filteredAndSortedProducts, sortBy, selectedHeatLevel]);
 
   const activeFilters = useMemo(() => {
     const filters: Array<{ label: string; value: string; clear: () => void }> =
@@ -485,8 +517,9 @@ function ProductArchiveContent({
           {/* Results count + reset */}
           <div className="mt-3 flex items-center justify-between">
             <p className="text-sm text-text-muted">
-              {t("results.showing")} {displayedProducts.length} {t("results.of")}{" "}
-              {filteredAndSortedProducts.length} {t("results.sauces")}
+              {productGroups
+                ? `${filteredAndSortedProducts.length} ${t("results.sauces")}`
+                : `${t("results.showing")} ${displayedProducts.length} ${t("results.of")} ${filteredAndSortedProducts.length} ${t("results.sauces")}`}
             </p>
             {hasActiveFilters && (
               <button
@@ -522,25 +555,46 @@ function ProductArchiveContent({
           </div>
         )}
 
-        {displayedProducts.length > 0 && (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {displayedProducts.map((product) => (
-              <ProductCard key={product.id} product={product} />
+        {productGroups ? (
+          <div className="space-y-10">
+            {productGroups.map(({ band, products }) => (
+              <section key={band ?? "other"}>
+                <div className="mb-5 flex items-center gap-3">
+                  <h2 className="text-base font-bold tracking-widest uppercase text-brand-black whitespace-nowrap">
+                    {band ? t(`search.filters.heatLevels.${band}`) : "Other Products"}
+                  </h2>
+                  <div className="flex-1 border-t border-zinc-200" />
+                  <span className="text-xs font-medium text-zinc-400 whitespace-nowrap">{products.length}</span>
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {products.map((product) => (
+                    <ProductCard key={product.id} product={product} />
+                  ))}
+                </div>
+              </section>
             ))}
           </div>
-        )}
-
-        {/* Load More */}
-        {hasMore && (
-          <div className="mt-8 flex justify-center">
-            <button
-              onClick={() => setDisplayCount((prev) => prev + 12)}
-              className="px-4 py-2 rounded-lg border border-border bg-card text-foreground
-                       transition-colors font-medium hover:border-brand-red hover:bg-brand-red/10"
-            >
-              {t("results.loadMore")}
-            </button>
-          </div>
+        ) : (
+          <>
+            {displayedProducts.length > 0 && (
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                {displayedProducts.map((product) => (
+                  <ProductCard key={product.id} product={product} />
+                ))}
+              </div>
+            )}
+            {hasMore && (
+              <div className="mt-8 flex justify-center">
+                <button
+                  onClick={() => setDisplayCount((prev) => prev + 12)}
+                  className="px-4 py-2 rounded-lg border border-border bg-card text-foreground
+                           transition-colors font-medium hover:border-brand-red hover:bg-brand-red/10"
+                >
+                  {t("results.loadMore")}
+                </button>
+              </div>
+            )}
+          </>
         )}
       </div>
     </div>

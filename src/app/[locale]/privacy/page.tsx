@@ -17,9 +17,9 @@ export default async function PrivacyPolicyPage() {
               This Privacy Policy explains how <strong>ChiliSaus.be</strong> collects, uses, and protects your personal data when you visit or make a purchase from our Website, in accordance with the EU General Data Protection Regulation (GDPR) and Belgian data protection law.
             </p>
             <div className="pl-4 border-l-2 border-zinc-200 space-y-1">
-              <p className="font-bold text-zinc-900">ChiliSaus.be — Data Controller</p>
-              <p>[Owner Name]</p>
-              <p>[Business Address], [Postal Code] [City], Belgium</p>
+              <p className="font-bold text-zinc-900">Chilisaus.be — Data Controller</p>
+              <p>Kerri Innes</p>
+              <p>Dorpsstraat 22, 5051 CK Goirle, Netherlands</p>
               <p>Email: <a href="mailto:sales@chilisaus.be" className="text-brand-red">sales@chilisaus.be</a></p>
             </div>
           </div>
@@ -292,7 +292,7 @@ export default async function PrivacyPolicyPage() {
             <p>For any questions about this Privacy Policy or to exercise your rights, contact us:</p>
             <div className="pl-4 border-l-2 border-zinc-200 space-y-1">
               <p>Email: <a href="mailto:sales@chilisaus.be" className="text-brand-red">sales@chilisaus.be</a></p>
-              <p>Post: [Owner Name], [Address], [Postal Code] [City], Belgium</p>
+              <p>Post: Kerri Innes, Dorpsstraat 22, 5051 CK Goirle, Netherlands</p>
             </div>
           </div>
         </section>

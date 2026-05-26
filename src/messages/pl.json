@@ -135,11 +135,11 @@
       "filters": {
         "heatLevel": "Poziom ostrości",
         "heatLevels": {
-          "mild": "Łagodny 1-4",
-          "medium": "Średni 5-7",
-          "hot": "Ostry 8-9",
+          "mild": "Łagodny 1 - 4",
+          "medium": "Średni 5 - 7",
+          "hot": "Ostry 8 - 9",
           "veryHot": "Bardzo Ostry 10",
-          "superHot": "Super Ostry 11-20"
+          "superHot": "Super Ostry 11 - 20"
         },
         "pepper": "Papryka",
         "allChilliTypes": "Wszystkie papryki",

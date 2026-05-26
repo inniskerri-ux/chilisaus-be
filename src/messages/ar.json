@@ -135,11 +135,11 @@
       "filters": {
         "heatLevel": "مستوى الحرارة",
         "heatLevels": {
-          "mild": "خفيف 1-4",
-          "medium": "متوسط 5-7",
-          "hot": "حار 8-9",
+          "mild": "خفيف 1 - 4",
+          "medium": "متوسط 5 - 7",
+          "hot": "حار 8 - 9",
           "veryHot": "حار جداً 10",
-          "superHot": "حارق 11-20"
+          "superHot": "حارق 11 - 20"
         },
         "pepper": "فلفل",
         "allChilliTypes": "جميع أنواع الفلفل",

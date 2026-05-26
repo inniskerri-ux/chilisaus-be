@@ -135,11 +135,11 @@
       "filters": {
         "heatLevel": "Grado di Piccantezza",
         "heatLevels": {
-          "mild": "Delicato 1-4",
-          "medium": "Medio 5-7",
-          "hot": "Piccante 8-9",
+          "mild": "Delicato 1 - 4",
+          "medium": "Medio 5 - 7",
+          "hot": "Piccante 8 - 9",
           "veryHot": "Molto Piccante 10",
-          "superHot": "Super Piccante 11-20"
+          "superHot": "Super Piccante 11 - 20"
         },
         "pepper": "Peperoncino",
         "allChilliTypes": "Tutti i peperoncini",

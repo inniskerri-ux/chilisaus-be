@@ -78,6 +78,7 @@
       "events": "Events",
       "video_reviews": "Video Reviews",
       "analytics": "Sales Analytics",
+      "orders": "Orders",
       "newProduct": "New product"
     },
     "stats": {
@@ -136,11 +137,11 @@
       "filters": {
         "heatLevel": "Heat Levels 1-20",
         "heatLevels": {
-          "mild": "Mild 1-4",
-          "medium": "Medium 5-7",
-          "hot": "Hot 8-9",
+          "mild": "Mild 1 - 4",
+          "medium": "Medium 5 - 7",
+          "hot": "Hot 8 - 9",
           "veryHot": "Very Hot 10",
-          "superHot": "Super Hot 11-20"
+          "superHot": "Super Hot 11 - 20"
         },
         "pepper": "Pepper",
         "allChilliTypes": "All peppers",
@@ -174,12 +175,12 @@
     "hero": {
       "welcome": "Welcome to Chilisaus.be/eu",
       "title": "You Can Never Have Too Much Hot Sauce",
-      "subtitle": "Discover a hand-picked collection of the world's finest chili sauces. From mild everyday flavors to extreme heat.",
+      "subtitle": "Discover our Hand Picked collection of the World's finest Chili Products.\nNatural Ingredients\nNo Additives or Preservatives\n\nHeat Levels Mild to SuperHot",
       "cta": "Shop All Sauces"
     },
     "maker": {
-      "title": "Meet the Maker",
-      "content": "A lot of you have met me at events across the country. I'm passionate about bringing the best sauces directly to you, keeping it personal and simple. I want to keep it a personal connection, not a faceless corporation. It's all about the sauce and the people who love it.",
+      "title": "Meet the Creator",
+      "content": "Kerri the Scottish Chili Girl\nBelgium and Netherlands based since 2017\n\nSmall Business, Huge Passion.\nTravelling the globe finding the best chili products - keeping a personal connection to the people.\n\nMessage her directly on WhatsApp with any questions or for personalised sauce suggestions\nCheck out her own range of sauces inspired by the flavours of her travels..",
       "exploreCta": "Explore the sauces →"
     },
     "categories": {

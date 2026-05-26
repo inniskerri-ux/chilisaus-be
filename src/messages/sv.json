@@ -135,11 +135,11 @@
       "filters": {
         "heatLevel": "Styrka",
         "heatLevels": {
-          "mild": "Mild 1-4",
-          "medium": "Medium 5-7",
-          "hot": "Stark 8-9",
+          "mild": "Mild 1 - 4",
+          "medium": "Medium 5 - 7",
+          "hot": "Stark 8 - 9",
           "veryHot": "Mycket Stark 10",
-          "superHot": "Superstark 11-20"
+          "superHot": "Superstark 11 - 20"
         },
         "pepper": "Peppar",
         "allChilliTypes": "Alla chilifrukter",

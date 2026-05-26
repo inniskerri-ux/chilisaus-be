@@ -20,11 +20,11 @@ export default async function LegalNoticePage({
             Company Information
           </h2>
           <div className="text-zinc-600 space-y-1">
-            <p className="font-bold text-zinc-900">ChiliSaus.be</p>
-            <p>Represented by: [Owner Name]</p>
-            <p>[Business Address Street]</p>
-            <p>[Postal Code] [City]</p>
-            <p>Belgium</p>
+            <p className="font-bold text-zinc-900">Chilisaus.be</p>
+            <p>Represented by: Kerri Innes</p>
+            <p>Dorpsstraat 22</p>
+            <p>5051 CK Goirle</p>
+            <p>Netherlands</p>
           </div>
         </section>
 
@@ -33,7 +33,7 @@ export default async function LegalNoticePage({
             Contact
           </h2>
           <div className="text-zinc-600 space-y-1">
-            <p>Email: [Legal Email Address]</p>
+            <p>Email: <a href="mailto:sales@chilisaus.be" className="text-brand-red">sales@chilisaus.be</a></p>
             <p>WhatsApp: {process.env.NEXT_PUBLIC_WHATSAPP_NUMBER}</p>
           </div>
         </section>
@@ -43,8 +43,8 @@ export default async function LegalNoticePage({
             Business Registration
           </h2>
           <div className="text-zinc-600 space-y-1">
-            <p>Company Registration Number (CBE/KBO): [Registration Number]</p>
-            <p>VAT Identification Number: [VAT Number]</p>
+            <p>Registration Number: NL003596133B90</p>
+            <p>VAT: Not applicable</p>
           </div>
         </section>
 

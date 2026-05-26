@@ -135,11 +135,11 @@
       "filters": {
         "heatLevel": "Nível de Picante",
         "heatLevels": {
-          "mild": "Suave 1-4",
-          "medium": "Médio 5-7",
-          "hot": "Picante 8-9",
+          "mild": "Suave 1 - 4",
+          "medium": "Médio 5 - 7",
+          "hot": "Picante 8 - 9",
           "veryHot": "Muito Picante 10",
-          "superHot": "Super Picante 11-20"
+          "superHot": "Super Picante 11 - 20"
         },
         "pepper": "Pimenta",
         "allChilliTypes": "Todas as pimentas",

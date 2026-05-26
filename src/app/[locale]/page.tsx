@@ -58,7 +58,7 @@ export default async function HomePage({
             <h1 className="text-[clamp(2.25rem,8vw,4.5rem)] font-extrabold tracking-tight text-brand-black uppercase">
               {t("hero.title")}
             </h1>
-            <p className="mt-8 text-xl leading-8 text-zinc-600">
+            <p className="mt-8 text-xl leading-8 text-zinc-600 whitespace-pre-line">
               {t("hero.subtitle")}
             </p>
             <div className="mt-12 flex items-center justify-center gap-x-6">
@@ -104,7 +104,9 @@ export default async function HomePage({
                 {t("maker.title")}
               </h2>
               <div className="mt-6 space-y-6 text-lg leading-8 text-zinc-600">
-                <p>{t("maker.content")}</p>
+                {t("maker.content").split("\n\n").map((para, i) => (
+                  <p key={i} className="whitespace-pre-line">{para}</p>
+                ))}
               </div>
               <div className="mt-10">
                 <Link

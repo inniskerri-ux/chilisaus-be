@@ -38,6 +38,7 @@ export default async function ShopPage({
         .from("products")
         .select(productSelect)
         .eq("is_active", true)
+        .eq("is_archived", false)
         .order("created_at", { ascending: false }),
 
       supabase

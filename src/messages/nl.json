@@ -135,11 +135,11 @@
       "filters": {
         "heatLevel": "Heetheid",
         "heatLevels": {
-          "mild": "Mild 1-4",
-          "medium": "Medium 5-7",
-          "hot": "Heet 8-9",
+          "mild": "Mild 1 - 4",
+          "medium": "Medium 5 - 7",
+          "hot": "Heet 8 - 9",
           "veryHot": "Zeer Heet 10",
-          "superHot": "Super Heet 11-20"
+          "superHot": "Super Heet 11 - 20"
         },
         "pepper": "Peper",
         "allChilliTypes": "Alle pepers",

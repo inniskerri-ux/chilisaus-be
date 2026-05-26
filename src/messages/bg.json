@@ -135,11 +135,11 @@
       "filters": {
         "heatLevel": "Степен на лютивост",
         "heatLevels": {
-          "mild": "Мек 1-4",
-          "medium": "Среден 5-7",
-          "hot": "Лют 8-9",
+          "mild": "Мек 1 - 4",
+          "medium": "Среден 5 - 7",
+          "hot": "Лют 8 - 9",
           "veryHot": "Много Лют 10",
-          "superHot": "Супер Лют 11-20"
+          "superHot": "Супер Лют 11 - 20"
         },
         "pepper": "Чушка",
         "allChilliTypes": "Всички чушки",

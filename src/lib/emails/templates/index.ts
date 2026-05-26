@@ -243,6 +243,163 @@ export function getLowStockEmailHtml(
 }
 
 /**
+ * Shipping Confirmation for Purchaser
+ */
+export function getShippingConfirmationHtml(params: {
+  firstName: string;
+  orderNumber: number | null;
+  orderId: string;
+  items: OrderItem[];
+  totalCents: number;
+  currency: string;
+  shippingName: string;
+  shippingStreet: string;
+  shippingPostalCode: string;
+  shippingCity: string;
+  shippingCountry: string;
+  trackingNumber: string | null;
+  trackingCarrier: string | null;
+  trackingUrl: string | null;
+}): string {
+  const {
+    firstName,
+    orderNumber,
+    orderId,
+    items,
+    totalCents,
+    currency,
+    shippingName,
+    shippingStreet,
+    shippingPostalCode,
+    shippingCity,
+    shippingCountry,
+    trackingNumber,
+    trackingCarrier,
+    trackingUrl,
+  } = params;
+
+  const orderRef = orderNumber
+    ? String(orderNumber).padStart(4, "0")
+    : orderId.slice(0, 8).toUpperCase();
+
+  const carrierLabel =
+    trackingCarrier === "postnl" ? "PostNL"
+    : trackingCarrier === "bpost" ? "bpost"
+    : trackingCarrier === "dhl" ? "DHL"
+    : trackingCarrier === "dpd" ? "DPD"
+    : trackingCarrier ?? "your carrier";
+
+  const itemsList = items
+    .map(
+      (item) => `
+    <tr>
+      <td style="padding: 10px 0; border-bottom: 1px solid #f0f0f0; color: #000; font-weight: bold;">
+        ${item.name}
+      </td>
+      <td style="padding: 10px 0; border-bottom: 1px solid #f0f0f0; text-align: center; color: #666;">
+        &times;${item.quantity}
+      </td>
+      <td style="padding: 10px 0; border-bottom: 1px solid #f0f0f0; text-align: right; font-weight: bold;">
+        ${formatPrice(item.priceCents, currency)}
+      </td>
+    </tr>
+  `
+    )
+    .join("");
+
+  const trackingSection = trackingNumber
+    ? `
+    <div style="background: #f0fdf4; border: 2px solid #86efac; border-radius: 12px; padding: 24px; margin: 32px 0; text-align: center;">
+      <p style="font-size: 0.8em; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; color: #166534; margin: 0 0 6px 0;">
+        Tracking Information
+      </p>
+      <p style="font-size: 1em; color: #555; margin: 0 0 4px 0;">Carrier: <strong>${carrierLabel}</strong></p>
+      <p style="font-family: monospace; font-size: 1.3em; font-weight: bold; color: #000; margin: 8px 0;">
+        ${trackingNumber}
+      </p>
+      ${
+        trackingUrl
+          ? `<div style="margin-top: 16px;">
+              <a href="${trackingUrl}" style="background: #000; color: #fff; padding: 12px 28px; text-decoration: none; border-radius: 6px; font-weight: bold; font-size: 0.95em; display: inline-block;">
+                Track My Order &rarr;
+              </a>
+            </div>`
+          : ""
+      }
+    </div>`
+    : `
+    <div style="background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 12px; padding: 20px; margin: 32px 0; text-align: center;">
+      <p style="color: #6b7280; margin: 0;">
+        Tracking information will be sent separately by your carrier — please check your spam folder if you don't see it.
+      </p>
+    </div>`;
+
+  return `
+    <div style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; max-width: 600px; margin: 0 auto; color: #333; line-height: 1.6; padding: 20px;">
+      <div style="margin-bottom: 40px;">
+        <img src="https://hkflfhbzfsentkkwzqnd.supabase.co/storage/v1/object/public/assets/email/logo.jpg" alt="Chilisaus.be" style="height: 60px; width: auto;" />
+      </div>
+
+      <h1 style="font-size: 2.5em; font-weight: 800; color: #000; margin-bottom: 20px; letter-spacing: -1px;">
+        Your order is on its way! 🌶️
+      </h1>
+
+      <p style="font-size: 1.1em; color: #555; margin-bottom: 8px;">
+        Hi ${firstName},
+      </p>
+      <p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">
+        Great news &mdash; your order <strong>#${orderRef}</strong> has been dispatched and is heading your way!
+      </p>
+
+      ${trackingSection}
+
+      <div style="margin-bottom: 40px;">
+        <h2 style="font-size: 1.2em; font-weight: bold; color: #000; border-bottom: 2px solid #000; padding-bottom: 8px; margin-bottom: 16px;">
+          What's in your box
+        </h2>
+        <table style="width: 100%; border-collapse: collapse; margin-bottom: 16px;">
+          <thead>
+            <tr style="text-align: left; color: #999; font-size: 0.8em; text-transform: uppercase; letter-spacing: 1px;">
+              <th style="padding-bottom: 8px;">Product</th>
+              <th style="padding-bottom: 8px; text-align: center;">Qty</th>
+              <th style="padding-bottom: 8px; text-align: right;">Price</th>
+            </tr>
+          </thead>
+          <tbody>${itemsList}</tbody>
+        </table>
+        <div style="text-align: right; font-size: 1.1em; font-weight: bold; padding-top: 8px; border-top: 2px solid #000;">
+          Total: ${formatPrice(totalCents, currency)}
+        </div>
+      </div>
+
+      <div style="margin-bottom: 40px;">
+        <h3 style="font-size: 0.85em; text-transform: uppercase; letter-spacing: 1px; color: #999; margin-bottom: 10px;">Shipping to</h3>
+        <p style="color: #555; font-size: 0.95em; margin: 0; line-height: 1.8;">
+          ${shippingName}<br>
+          ${shippingStreet}<br>
+          ${shippingPostalCode} ${shippingCity}<br>
+          <strong>${shippingCountry}</strong>
+        </p>
+      </div>
+
+      <div style="background: #fff8f0; border-radius: 8px; padding: 20px; margin-bottom: 40px; font-size: 0.9em; color: #555;">
+        <strong>Any questions?</strong> Message Kerri directly on WhatsApp or reply to this email &mdash; she's always happy to help!
+      </div>
+
+      <div style="text-align: center; border-top: 1px solid #eee; padding-top: 40px;">
+        <p style="font-weight: bold; margin-bottom: 5px;">Thank you for choosing Chilisaus.be!</p>
+        <p style="font-size: 0.9em; color: #666; margin-bottom: 20px;">
+          Don't forget to follow us on Instagram<br>
+          <a href="https://www.instagram.com/chilisaus.be" style="color: #000; font-weight: bold; text-decoration: none;">#chilisaus.be</a><br>
+          <span style="font-size: 0.8em;">#youcanneverhavetoomuchhotsauce</span>
+        </p>
+        <a href="https://www.chilisaus.be" style="color: #666; font-size: 0.8em; text-decoration: none;">www.chilisaus.be</a>
+      </div>
+    </div>
+  `;
+}
+
+/**
  * Newsletter Double Opt-In Verification
  */
 export function getNewsletterVerificationHtml(confirmUrl: string): string {

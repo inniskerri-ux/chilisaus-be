@@ -15,11 +15,11 @@ export default async function TermsPage() {
           <div className="text-zinc-600 space-y-1">
             <p>These Terms of Service govern the relationship between:</p>
             <div className="mt-3 pl-4 border-l-2 border-zinc-200 space-y-1">
-              <p className="font-bold text-zinc-900">ChiliSaus.be</p>
-              <p>Represented by: [Owner Name]</p>
-              <p>[Business Address], [Postal Code] [City], Belgium</p>
-              <p>CBE/KBO Number: [Registration Number]</p>
-              <p>VAT: [VAT Number]</p>
+              <p className="font-bold text-zinc-900">Chilisaus.be</p>
+              <p>Represented by: Kerri Innes</p>
+              <p>Dorpsstraat 22, 5051 CK Goirle, Netherlands</p>
+              <p>Registration Number: NL003596133B90</p>
+              <p>VAT: Not applicable</p>
               <p>Email: <a href="mailto:sales@chilisaus.be" className="text-brand-red">sales@chilisaus.be</a></p>
             </div>
             <p className="mt-3">

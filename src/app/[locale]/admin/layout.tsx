@@ -12,6 +12,7 @@ interface AdminLayoutProps {
 
 const NAV_ITEMS = [
   { key: "dashboard", path: "" },
+  { key: "orders", path: "/orders" },
   { key: "products", path: "/products" },
   { key: "brands", path: "/brands" },
   { key: "events", path: "/events" },

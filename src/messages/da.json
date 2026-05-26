@@ -135,11 +135,11 @@
       "filters": {
         "heatLevel": "Styrke",
         "heatLevels": {
-          "mild": "Mild 1-4",
-          "medium": "Medium 5-7",
-          "hot": "Stærk 8-9",
+          "mild": "Mild 1 - 4",
+          "medium": "Medium 5 - 7",
+          "hot": "Stærk 8 - 9",
           "veryHot": "Meget Stærk 10",
-          "superHot": "Super Stærk 11-20"
+          "superHot": "Super Stærk 11 - 20"
         },
         "pepper": "Peber",
         "allChilliTypes": "Alle chilier",

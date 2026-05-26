@@ -135,11 +135,11 @@
       "filters": {
         "heatLevel": "Schärfegrad",
         "heatLevels": {
-          "mild": "Mild 1-4",
-          "medium": "Mittelscharf 5-7",
-          "hot": "Scharf 8-9",
+          "mild": "Mild 1 - 4",
+          "medium": "Mittelscharf 5 - 7",
+          "hot": "Scharf 8 - 9",
           "veryHot": "Sehr Scharf 10",
-          "superHot": "Extrem Scharf 11-20"
+          "superHot": "Extrem Scharf 11 - 20"
         },
         "pepper": "Pfeffer",
         "allChilliTypes": "Alle Paprika",
