@@ -28,6 +28,7 @@ const STATUS_STYLES: Record<string, string> = {
 };
 
 const ALL_STATUSES = ["all", "paid", "shipped", "pending", "cancelled", "refunded"];
+const STATUS_LABELS: Record<string, string> = { shipped: "Completed" };
 const DEFAULT_VISIBLE = 20;
 
 export default function OrdersClient({ orders, locale }: { orders: Order[]; locale: string }) {
@@ -101,7 +102,7 @@ export default function OrdersClient({ orders, locale }: { orders: Order[]; loca
                   : "bg-white text-zinc-600 border-zinc-200 hover:border-brand-red hover:text-brand-red"
               }`}
             >
-              {s === "all" ? "All" : s} {counts[s] ? `(${counts[s]})` : ""}
+              {s === "all" ? "All" : (STATUS_LABELS[s] ?? s)} {counts[s] ? `(${counts[s]})` : ""}
             </button>
           ))}
         </div>
@@ -217,7 +218,7 @@ export default function OrdersClient({ orders, locale }: { orders: Order[]; loca
                     </p>
 
                     <span className={`inline-block text-[10px] font-bold uppercase px-2 py-0.5 rounded border w-fit ${STATUS_STYLES[order.status] ?? STATUS_STYLES.pending}`}>
-                      {order.status}
+                      {STATUS_LABELS[order.status] ?? order.status}
                     </span>
 
                     <ChevronRight size={16} className="hidden sm:block text-zinc-300 group-hover:text-brand-red transition-colors justify-self-end" />

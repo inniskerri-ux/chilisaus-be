@@ -16,6 +16,7 @@ const STATUS_STYLES: Record<string, string> = {
 };
 
 const ALL_STATUSES = ["pending", "paid", "shipped", "cancelled", "refunded"] as const;
+const STATUS_LABELS: Record<string, string> = { shipped: "Completed" };
 
 const CARRIER_LABELS: Record<string, string> = {
   postnl: "PostNL",
@@ -102,7 +103,7 @@ export default async function AdminOrderDetailPage({
             </div>
           </div>
           <span className={`text-xs font-bold uppercase px-3 py-1 rounded-full border ${STATUS_STYLES[order.status] ?? STATUS_STYLES.pending}`}>
-            {order.status}
+            {STATUS_LABELS[order.status] ?? order.status}
           </span>
         </div>
       </div>
@@ -160,7 +161,7 @@ export default async function AdminOrderDetailPage({
           >
             {ALL_STATUSES.map((s) => (
               <option key={s} value={s} className="capitalize">
-                {s.charAt(0).toUpperCase() + s.slice(1)}
+                {STATUS_LABELS[s] ?? (s.charAt(0).toUpperCase() + s.slice(1))}
               </option>
             ))}
           </select>
