@@ -2,6 +2,7 @@
 
 import { revalidatePath } from "next/cache";
 import { ensureShopOwner } from "../lib/auth";
+import { createAdminClient } from "@/lib/supabase/admin";
 import { sendEmail } from "@/lib/emails/client";
 import { getShippingConfirmationHtml } from "@/lib/emails/templates";
 
@@ -37,10 +38,11 @@ function getTrackingUrl(
 }
 
 export async function updateOrderStatus(orderId: string, status: OrderStatus) {
-  const { error: authError, supabase } = await ensureShopOwner();
-  if (authError || !supabase) return { error: authError ?? "Forbidden" };
+  const { error: authError } = await ensureShopOwner();
+  if (authError) return { error: authError ?? "Forbidden" };
 
-  const { error } = await supabase
+  const admin = createAdminClient();
+  const { error } = await admin
     .from("orders")
     .update({ status, updated_at: new Date().toISOString() })
     .eq("id", orderId);
@@ -60,7 +62,7 @@ export async function markOrderShipped(
   const { error: authError, supabase } = await ensureShopOwner();
   if (authError || !supabase) return { error: authError ?? "Forbidden" };
 
-  // Fetch full order + items for the email
+  // Fetch full order + items for the email (session client is fine for reads)
   const { data: order, error: fetchError } = await supabase
     .from("orders")
     .select("*, order_items(*)")
@@ -73,8 +75,9 @@ export async function markOrderShipped(
     ? getTrackingUrl(carrier, trackingNumber, order.shipping_country, order.shipping_postal_code)
     : null;
 
-  // Update status + tracking info
-  const { error: updateError } = await supabase
+  // Use admin client to bypass RLS for the write
+  const admin = createAdminClient();
+  const { error: updateError } = await admin
     .from("orders")
     .update({
       status: "shipped",
