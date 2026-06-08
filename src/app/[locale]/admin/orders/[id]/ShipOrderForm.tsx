@@ -1,7 +1,7 @@
 "use client";
 
 import { useTransition, useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import { Truck, CheckCircle2, AlertCircle, Loader2 } from "lucide-react";
 import { markOrderShipped, type Carrier } from "../actions";
 
@@ -27,6 +27,7 @@ export default function ShipOrderForm({
   isAlreadyShipped,
 }: Props) {
   const router = useRouter();
+  const pathname = usePathname();
   const [carrier, setCarrier] = useState<Carrier>(
     (currentCarrier as Carrier) || "postnl"
   );
@@ -47,7 +48,7 @@ export default function ShipOrderForm({
         setResult({ ok: false, error: res.error });
       } else {
         setResult({ ok: true, emailSent: res.emailSent });
-        router.refresh();
+        setTimeout(() => router.push(pathname), 1500);
       }
     });
   };

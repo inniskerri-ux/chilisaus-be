@@ -48,7 +48,7 @@ export async function updateOrderStatus(orderId: string, status: OrderStatus) {
   if (error) return { error: error.message };
 
   revalidatePath("/[locale]/admin/orders", "page");
-  revalidatePath(`/[locale]/admin/orders/${orderId}`, "page");
+  revalidatePath("/[locale]/admin/orders/[id]", "page");
   return { error: null };
 }
 
@@ -118,7 +118,7 @@ export async function markOrderShipped(
   });
 
   revalidatePath("/[locale]/admin/orders", "page");
-  revalidatePath(`/[locale]/admin/orders/${orderId}`, "page");
+  revalidatePath("/[locale]/admin/orders/[id]", "page");
 
   return {
     error: null,
