@@ -1,4 +1,4 @@
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import { requireShopOwner } from "../../lib/auth";
@@ -25,10 +25,22 @@ const CARRIER_LABELS: Record<string, string> = {
   dpd: "DPD",
 };
 
-function getTrackingUrl(carrier: string, trackingNumber: string): string | null {
+function getTrackingUrl(
+  carrier: string,
+  trackingNumber: string,
+  shippingCountry?: string | null,
+  shippingPostalCode?: string | null,
+): string | null {
   switch (carrier) {
-    case "postnl":
-      return `https://jouw.postnl.nl/track-and-trace/${encodeURIComponent(trackingNumber)}`;
+    case "postnl": {
+      const barcode = encodeURIComponent(trackingNumber);
+      if (shippingCountry && shippingPostalCode) {
+        const country = shippingCountry.toUpperCase();
+        const zip = shippingPostalCode.replace(/\s/g, "").toUpperCase();
+        return `https://tracking.postnl.nl/track-and-trace/${barcode}-${country}-${zip}`;
+      }
+      return `https://tracking.postnl.nl/track-and-trace/${barcode}`;
+    }
     case "bpost":
       return `https://track.bpost.cloud/btr/web/#/search?itemCode=${encodeURIComponent(trackingNumber)}&lang=en`;
     case "dhl":
@@ -65,7 +77,12 @@ export default async function AdminOrderDetailPage({
   const isFinalised = order.status === "cancelled" || order.status === "refunded";
   const trackingUrl =
     (order as any).tracking_number && (order as any).tracking_carrier
-      ? getTrackingUrl((order as any).tracking_carrier, (order as any).tracking_number)
+      ? getTrackingUrl(
+          (order as any).tracking_carrier,
+          (order as any).tracking_number,
+          order.shipping_country,
+          order.shipping_postal_code,
+        )
       : null;
 
   return (
@@ -151,6 +168,7 @@ export default async function AdminOrderDetailPage({
             "use server";
             const status = formData.get("status") as any;
             await updateOrderStatus(id, status);
+            redirect(`/${locale}/admin/orders/${id}`);
           }}
           className="flex items-center gap-3 flex-wrap"
         >

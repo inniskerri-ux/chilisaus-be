@@ -9,10 +9,22 @@ type OrderStatus = "pending" | "paid" | "shipped" | "cancelled" | "refunded";
 
 export type Carrier = "postnl" | "bpost" | "dhl" | "dpd" | "other";
 
-function getTrackingUrl(carrier: Carrier, trackingNumber: string): string | null {
+function getTrackingUrl(
+  carrier: Carrier,
+  trackingNumber: string,
+  shippingCountry?: string | null,
+  shippingPostalCode?: string | null,
+): string | null {
   switch (carrier) {
-    case "postnl":
-      return `https://jouw.postnl.nl/track-and-trace/${encodeURIComponent(trackingNumber)}`;
+    case "postnl": {
+      const barcode = encodeURIComponent(trackingNumber);
+      if (shippingCountry && shippingPostalCode) {
+        const country = shippingCountry.toUpperCase();
+        const zip = shippingPostalCode.replace(/\s/g, "").toUpperCase();
+        return `https://tracking.postnl.nl/track-and-trace/${barcode}-${country}-${zip}`;
+      }
+      return `https://tracking.postnl.nl/track-and-trace/${barcode}`;
+    }
     case "bpost":
       return `https://track.bpost.cloud/btr/web/#/search?itemCode=${encodeURIComponent(trackingNumber)}&lang=en`;
     case "dhl":
@@ -57,7 +69,9 @@ export async function markOrderShipped(
 
   if (fetchError || !order) return { error: fetchError?.message ?? "Order not found" };
 
-  const trackingUrl = trackingNumber ? getTrackingUrl(carrier, trackingNumber) : null;
+  const trackingUrl = trackingNumber
+    ? getTrackingUrl(carrier, trackingNumber, order.shipping_country, order.shipping_postal_code)
+    : null;
 
   // Update status + tracking info
   const { error: updateError } = await supabase
