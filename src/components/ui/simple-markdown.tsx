@@ -22,7 +22,10 @@ export function SimpleMarkdown({ children, className }: { children: string; clas
   }
 
   // Legacy markdown fallback
-  const lines = children.split("\n");
+  // Normalize CRLF/CR line endings first — splitting on "\n" alone leaves a
+  // stray "\r"-only line for every "\r\n\r\n" paragraph break, which then
+  // renders as its own extra line break under the parent's white-space: pre-line.
+  const lines = children.replace(/\r\n?/g, "\n").replace(/\n{3,}/g, "\n\n").split("\n");
 
   function parseLine(line: string, lineKey: number): React.ReactNode {
     const nodes: React.ReactNode[] = [];
