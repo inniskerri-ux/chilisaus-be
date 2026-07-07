@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import Image from "next/image";
 import Link from "next/link";
-import { Star } from "lucide-react";
+import { Star, Vegan } from "lucide-react";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { formatPrice } from "@/lib/format";
@@ -97,6 +97,12 @@ export default function ProductCard({
                   {t("outOfStock")}
                 </span>
               </div>
+            )}
+            {product.is_vegan && (
+              <span className="absolute top-2 left-2 flex items-center gap-1 bg-green-600 text-white text-xs font-semibold px-2 py-1 rounded-full shadow-sm">
+                <Vegan size={12} />
+                {t("vegan")}
+              </span>
             )}
           </div>
         </Link>

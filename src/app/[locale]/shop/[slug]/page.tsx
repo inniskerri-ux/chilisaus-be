@@ -3,7 +3,7 @@ import Link from "next/link";
 import { getTranslations } from "next-intl/server";
 import { createClient } from "@/lib/supabase/server";
 import { formatPrice } from "@/lib/format";
-import { Star } from "lucide-react";
+import { Star, Vegan } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import AddToCartButton from "@/components/store/AddToCartButton";
 import ProductVariantSelector from "@/components/store/ProductVariantSelector";
@@ -53,7 +53,7 @@ export default async function ProductPage({
     price_cents, currency, heat_level,
     image_url, capacity_ml, ingredients, ${isEn ? "" : `ingredients_${locale},`}
     pairing, ${isEn ? "" : `pairing_${locale},`}
-    stock, is_active,
+    stock, is_active, is_vegan,
     brand:brands ( id, name, slug ),
     category:categories!category_id ( id, name, slug ${isEn ? "" : `, name_${locale}`} ),
     allCategories:product_categories (
@@ -195,6 +195,12 @@ export default async function ProductPage({
                 className="text-orange-600 border-orange-300"
               >
                 {t("heatLevel")} {product.heat_level}
+              </Badge>
+            )}
+            {product.is_vegan && (
+              <Badge className="gap-1 bg-green-600 hover:bg-green-600 text-white">
+                <Vegan size={13} />
+                {t("vegan")}
               </Badge>
             )}
           </div>

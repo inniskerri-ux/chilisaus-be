@@ -192,6 +192,7 @@
     "heatLevel": "Styrke",
     "inStock": "På lager",
     "outOfStock": "Udsolgt",
+    "vegan": "Vegansk",
     "addToCart": "Læg i kurv",
     "buyNow": "Køb nu",
     "description": "Beskrivelse",

@@ -49,6 +49,7 @@ export async function createProduct(
     : null;
   const stock = formData.get("stock") ? Number(formData.get("stock")) : 0;
   const isActive = formData.get("is_active") === "true";
+  const isVegan = formData.get("is_vegan") === "on";
   const nutritionInfoRaw = formData.get("nutrition_info")?.toString();
   const nutritionInfo = nutritionInfoRaw ? JSON.parse(nutritionInfoRaw) : null;
 
@@ -111,6 +112,7 @@ export async function createProduct(
       weight_grams: weightGrams,
       stock,
       is_active: isActive,
+      is_vegan: isVegan,
       nutrition_info: nutritionInfo,
       size_options: sizeOptions.length > 0 ? sizeOptions : null,
       color_options: colorOptions.length > 0 ? colorOptions : null,

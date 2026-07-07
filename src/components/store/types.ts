@@ -47,6 +47,7 @@ export interface StoreProduct {
   brand?: StoreBrand | null;
   stock?: number;
   is_active?: boolean;
+  is_vegan?: boolean;
   created_at?: string;
   avgRating?: number | null;
   reviewCount?: number;

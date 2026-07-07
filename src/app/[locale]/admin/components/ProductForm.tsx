@@ -47,6 +47,7 @@ interface Product {
   ingredients?: string | null;
   nutrition_info?: Record<string, number> | null;
   is_active?: boolean;
+  is_vegan?: boolean;
   size_options?: string[] | null;
   color_options?: string[] | null;
   stock?: number | null;
@@ -441,6 +442,22 @@ export default function ProductForm({
                     defaultValue={product?.stock ?? 0}
                     required
                   />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="is_vegan">Dietary</Label>
+                  <label
+                    htmlFor="is_vegan"
+                    className="flex items-center gap-2 h-9 px-3 border rounded-md cursor-pointer text-sm"
+                  >
+                    <input
+                      id="is_vegan"
+                      name="is_vegan"
+                      type="checkbox"
+                      defaultChecked={product?.is_vegan ?? false}
+                      className="h-4 w-4"
+                    />
+                    Vegan
+                  </label>
                 </div>
               </div>
               <div className="space-y-2">
