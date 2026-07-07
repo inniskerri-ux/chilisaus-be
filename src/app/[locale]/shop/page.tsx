@@ -111,6 +111,7 @@ export default async function ShopPage({
       image_url: r.image_url,
       stock: r.stock,
       is_active: r.is_active,
+      is_vegan: r.is_vegan,
       created_at: r.created_at,
       avgRating: rating ? Number(rating.avg_rating) : null,
       reviewCount: rating ? Number(rating.review_count) : 0,
