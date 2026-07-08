@@ -48,6 +48,7 @@ interface Product {
   nutrition_info?: Record<string, number> | null;
   is_active?: boolean;
   is_vegan?: boolean;
+  is_sugar_free?: boolean;
   size_options?: string[] | null;
   color_options?: string[] | null;
   stock?: number | null;
@@ -445,19 +446,34 @@ export default function ProductForm({
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="is_vegan">Dietary</Label>
-                  <label
-                    htmlFor="is_vegan"
-                    className="flex items-center gap-2 h-9 px-3 border rounded-md cursor-pointer text-sm"
-                  >
-                    <input
-                      id="is_vegan"
-                      name="is_vegan"
-                      type="checkbox"
-                      defaultChecked={product?.is_vegan ?? false}
-                      className="h-4 w-4"
-                    />
-                    Vegan
-                  </label>
+                  <div className="flex flex-col gap-1.5">
+                    <label
+                      htmlFor="is_vegan"
+                      className="flex items-center gap-2 h-9 px-3 border rounded-md cursor-pointer text-sm"
+                    >
+                      <input
+                        id="is_vegan"
+                        name="is_vegan"
+                        type="checkbox"
+                        defaultChecked={product?.is_vegan ?? false}
+                        className="h-4 w-4"
+                      />
+                      Vegan
+                    </label>
+                    <label
+                      htmlFor="is_sugar_free"
+                      className="flex items-center gap-2 h-9 px-3 border rounded-md cursor-pointer text-sm"
+                    >
+                      <input
+                        id="is_sugar_free"
+                        name="is_sugar_free"
+                        type="checkbox"
+                        defaultChecked={product?.is_sugar_free ?? false}
+                        className="h-4 w-4"
+                      />
+                      Sugar Free
+                    </label>
+                  </div>
                 </div>
               </div>
               <div className="space-y-2">

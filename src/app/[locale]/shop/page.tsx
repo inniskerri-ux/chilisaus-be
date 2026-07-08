@@ -23,7 +23,7 @@ export default async function ShopPage({
   const isEn = locale === "en";
   const productSelect = `
     id, name, slug, description, ${isEn ? "" : `description_${locale},`} price_cents, currency,
-    heat_level, image_url, stock, is_active, is_vegan, created_at, wc_total_sales,
+    heat_level, image_url, stock, is_active, is_vegan, is_sugar_free, created_at, wc_total_sales,
     brand:brands ( id, name, slug, country, description ${isEn ? "" : `, description_${locale}`} ),
     category:categories!category_id ( id, name, slug ${isEn ? "" : `, name_${locale}`} ),
     chilliTypes:products_chilli_types (
@@ -112,6 +112,7 @@ export default async function ShopPage({
       stock: r.stock,
       is_active: r.is_active,
       is_vegan: r.is_vegan,
+      is_sugar_free: r.is_sugar_free,
       created_at: r.created_at,
       avgRating: rating ? Number(rating.avg_rating) : null,
       reviewCount: rating ? Number(rating.review_count) : 0,

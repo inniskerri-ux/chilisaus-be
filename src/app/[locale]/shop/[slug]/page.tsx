@@ -3,7 +3,7 @@ import Link from "next/link";
 import { getTranslations } from "next-intl/server";
 import { createClient } from "@/lib/supabase/server";
 import { formatPrice } from "@/lib/format";
-import { Star, Vegan } from "lucide-react";
+import { Star, Vegan, CandyOff } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import AddToCartButton from "@/components/store/AddToCartButton";
 import ProductVariantSelector from "@/components/store/ProductVariantSelector";
@@ -53,7 +53,7 @@ export default async function ProductPage({
     price_cents, currency, heat_level,
     image_url, capacity_ml, ingredients, ${isEn ? "" : `ingredients_${locale},`}
     pairing, ${isEn ? "" : `pairing_${locale},`}
-    stock, is_active, is_vegan,
+    stock, is_active, is_vegan, is_sugar_free,
     brand:brands ( id, name, slug ),
     category:categories!category_id ( id, name, slug ${isEn ? "" : `, name_${locale}`} ),
     allCategories:product_categories (
@@ -201,6 +201,12 @@ export default async function ProductPage({
               <Badge className="gap-1 bg-green-600 hover:bg-green-600 text-white">
                 <Vegan size={13} />
                 {t("vegan")}
+              </Badge>
+            )}
+            {product.is_sugar_free && (
+              <Badge className="gap-1 bg-blue-600 hover:bg-blue-600 text-white">
+                <CandyOff size={13} />
+                {t("sugarFree")}
               </Badge>
             )}
           </div>

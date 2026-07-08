@@ -55,6 +55,7 @@ export async function updateProduct(
   const stock = formData.get("stock") ? Number(formData.get("stock")) : 0;
   const isActive = formData.get("is_active") === "true";
   const isVegan = formData.get("is_vegan") === "on";
+  const isSugarFree = formData.get("is_sugar_free") === "on";
   const nutritionInfoRaw = formData.get("nutrition_info")?.toString();
   const nutritionInfo = nutritionInfoRaw ? JSON.parse(nutritionInfoRaw) : null;
 
@@ -124,6 +125,7 @@ export async function updateProduct(
       stock,
       is_active: isActive,
       is_vegan: isVegan,
+      is_sugar_free: isSugarFree,
       nutrition_info: nutritionInfo,
       size_options: sizeOptions.length > 0 ? sizeOptions : null,
       color_options: colorOptions.length > 0 ? colorOptions : null,

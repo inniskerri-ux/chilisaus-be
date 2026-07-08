@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import Image from "next/image";
 import Link from "next/link";
-import { Star, Vegan } from "lucide-react";
+import { Star, Vegan, CandyOff } from "lucide-react";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { formatPrice } from "@/lib/format";
@@ -98,11 +98,21 @@ export default function ProductCard({
                 </span>
               </div>
             )}
-            {product.is_vegan && (
-              <span className="absolute top-2 left-2 flex items-center gap-1 bg-green-600 text-white text-xs font-semibold px-2 py-1 rounded-full shadow-sm">
-                <Vegan size={12} />
-                {t("vegan")}
-              </span>
+            {(product.is_vegan || product.is_sugar_free) && (
+              <div className="absolute top-2 left-2 flex flex-col items-start gap-1">
+                {product.is_vegan && (
+                  <span className="flex items-center gap-1 bg-green-600 text-white text-xs font-semibold px-2 py-1 rounded-full shadow-sm">
+                    <Vegan size={12} />
+                    {t("vegan")}
+                  </span>
+                )}
+                {product.is_sugar_free && (
+                  <span className="flex items-center gap-1 bg-blue-600 text-white text-xs font-semibold px-2 py-1 rounded-full shadow-sm">
+                    <CandyOff size={12} />
+                    {t("sugarFree")}
+                  </span>
+                )}
+              </div>
             )}
           </div>
         </Link>
