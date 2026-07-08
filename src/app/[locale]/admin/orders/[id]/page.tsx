@@ -3,7 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { requireShopOwner } from "../../lib/auth";
 import { formatPrice } from "@/lib/format";
-import { ArrowLeft, ExternalLink, Mail, MapPin, Package, ShoppingBag, Tag, Truck } from "lucide-react";
+import { ArrowLeft, Download, ExternalLink, Mail, MapPin, Package, ShoppingBag, Tag, Truck } from "lucide-react";
 import { updateOrderStatus } from "../actions";
 import ShipOrderForm from "./ShipOrderForm";
 
@@ -119,9 +119,17 @@ export default async function AdminOrderDetailPage({
               </p>
             </div>
           </div>
-          <span className={`text-xs font-bold uppercase px-3 py-1 rounded-full border ${STATUS_STYLES[order.status] ?? STATUS_STYLES.pending}`}>
-            {STATUS_LABELS[order.status] ?? order.status}
-          </span>
+          <div className="flex items-center gap-2 shrink-0">
+            <a
+              href={`/api/admin/orders/${id}/packing-slip`}
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-zinc-200 bg-white text-xs font-bold text-zinc-700 hover:bg-zinc-50 transition-colors"
+            >
+              <Download size={13} /> Packing Slip PDF
+            </a>
+            <span className={`text-xs font-bold uppercase px-3 py-1 rounded-full border ${STATUS_STYLES[order.status] ?? STATUS_STYLES.pending}`}>
+              {STATUS_LABELS[order.status] ?? order.status}
+            </span>
+          </div>
         </div>
       </div>
 

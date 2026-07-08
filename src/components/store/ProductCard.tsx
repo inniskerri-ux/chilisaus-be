@@ -107,7 +107,7 @@ export default function ProductCard({
                   </span>
                 )}
                 {product.is_sugar_free && (
-                  <span className="flex items-center gap-1 bg-blue-600 text-white text-xs font-semibold px-2 py-1 rounded-full shadow-sm">
+                  <span className="flex items-center gap-1 bg-orange-600 text-white text-xs font-semibold px-2 py-1 rounded-full shadow-sm">
                     <CandyOff size={12} />
                     {t("sugarFree")}
                   </span>

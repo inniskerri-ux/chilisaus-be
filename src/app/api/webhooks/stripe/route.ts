@@ -20,6 +20,8 @@ const supabaseAdmin = createClient(
   process.env.SUPABASE_SERVICE_ROLE_KEY!,
 );
 
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://chilisaus.be";
+
 export async function POST(req: NextRequest) {
   console.log("[Webhook] POST received");
 
@@ -290,6 +292,7 @@ async function handleOrderCompleted(session: any) {
       taxCents: item.tax_cents,
       imageUrl: item.image_url,
     })),
+    packingSlipUrl: `${SITE_URL}/api/admin/orders/${order.id}/packing-slip`,
   };
 
   const orderRef = order.order_number ?? order.id.slice(0, 8).toUpperCase();

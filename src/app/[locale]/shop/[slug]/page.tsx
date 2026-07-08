@@ -204,7 +204,7 @@ export default async function ProductPage({
               </Badge>
             )}
             {product.is_sugar_free && (
-              <Badge className="gap-1 bg-blue-600 hover:bg-blue-600 text-white">
+              <Badge className="gap-1 bg-orange-600 hover:bg-orange-600 text-white">
                 <CandyOff size={13} />
                 {t("sugarFree")}
               </Badge>

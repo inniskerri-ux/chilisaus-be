@@ -26,6 +26,7 @@ interface OrderDetails {
   items: OrderItem[];
   paymentMethod?: string;
   orderedAt?: string;
+  packingSlipUrl?: string;
 }
 
 /**
@@ -59,6 +60,16 @@ export function getPackingSlipHtml(order: OrderDetails): string {
       ${order.orderedAt ? `<p>Order Date: <strong>${order.orderedAt}</strong></p>` : ""}
       <p>Customer: ${order.shippingName} (${order.customerEmail})</p>
       ${order.paymentMethod ? `<p>Payment: <strong>${order.paymentMethod}</strong></p>` : ""}
+
+      ${
+        order.packingSlipUrl
+          ? `<div style="margin: 24px 0;">
+        <a href="${order.packingSlipUrl}" style="background: #000; color: #fff; padding: 12px 24px; text-decoration: none; border-radius: 4px; font-weight: bold; display: inline-block;">
+          Download Packing Slip PDF
+        </a>
+      </div>`
+          : ""
+      }
 
       <h3>Shipping Address:</h3>
       <p>
