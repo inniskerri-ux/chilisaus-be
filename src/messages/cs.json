@@ -155,7 +155,8 @@
         "sortPriceLowHigh": "Cena: Od nejlevnějšího",
         "sortPriceHighLow": "Cena: Od nejdražšího",
         "showOutOfStock": "Zobrazit vyprodané",
-        "hideOutOfStock": "Skrýt vyprodané"
+        "hideOutOfStock": "Skrýt vyprodané",
+        "onSale": "On Sale"
       }
     },
     "results": {
@@ -209,7 +210,8 @@
     "signInToReview": "Pro recenzi se přihlaste",
     "showMore": "Zobrazit vše",
     "showLess": "Zobrazit méně",
-    "purchaseRequired": "Pro napsání recenze musíte tento produkt zakoupit"
+    "purchaseRequired": "Pro napsání recenze musíte tento produkt zakoupit",
+    "sale": "Sale"
   },
   "Events": {
     "title": "Upcoming Events",

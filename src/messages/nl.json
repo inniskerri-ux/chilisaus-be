@@ -155,7 +155,8 @@
         "sortPriceLowHigh": "Prijs: Laag naar Hoog",
         "sortPriceHighLow": "Prijs: Hoog naar Laag",
         "showOutOfStock": "Uitverkocht tonen",
-        "hideOutOfStock": "Uitverkocht verbergen"
+        "hideOutOfStock": "Uitverkocht verbergen",
+        "onSale": "On Sale"
       }
     },
     "results": {
@@ -209,7 +210,8 @@
     "signInToReview": "Log in om een beoordeling te schrijven",
     "showMore": "Toon alles",
     "showLess": "Toon minder",
-    "purchaseRequired": "Koop dit product om een beoordeling achter te laten"
+    "purchaseRequired": "Koop dit product om een beoordeling achter te laten",
+    "sale": "Sale"
   },
   "Events": {
     "title": "Aankomende Evenementen",

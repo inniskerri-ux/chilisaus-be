@@ -56,6 +56,10 @@ export async function updateProduct(
   const isActive = formData.get("is_active") === "true";
   const isVegan = formData.get("is_vegan") === "on";
   const isSugarFree = formData.get("is_sugar_free") === "on";
+  const onSale = formData.get("on_sale") === "on";
+  const salePriceRaw = formData.get("sale_price_cents")?.toString().trim();
+  const salePriceCents = salePriceRaw ? Number(salePriceRaw) : null;
+  const displayUnit = formData.get("display_unit")?.toString() || "ml";
   const nutritionInfoRaw = formData.get("nutrition_info")?.toString();
   const nutritionInfo = nutritionInfoRaw ? JSON.parse(nutritionInfoRaw) : null;
 
@@ -122,10 +126,13 @@ export async function updateProduct(
       ingredients,
       capacity_ml: capacityMl,
       weight_grams: weightGrams,
+      display_unit: displayUnit,
       stock,
       is_active: isActive,
       is_vegan: isVegan,
       is_sugar_free: isSugarFree,
+      on_sale: onSale,
+      sale_price_cents: salePriceCents,
       nutrition_info: nutritionInfo,
       size_options: sizeOptions.length > 0 ? sizeOptions : null,
       color_options: colorOptions.length > 0 ? colorOptions : null,
@@ -187,6 +194,7 @@ export async function updateProduct(
       id?: string;
       label: string;
       price_cents: number;
+      sale_price_cents: number | null;
       weight_grams: number | null;
       stock: number;
       sort_order: number;
@@ -219,6 +227,7 @@ export async function updateProduct(
             product_id: productId,
             label: v.label,
             price_cents: v.price_cents,
+            sale_price_cents: v.sale_price_cents,
             weight_grams: v.weight_grams,
             stock: v.stock,
             sort_order: i,

@@ -155,7 +155,8 @@
         "sortPriceLowHigh": "Ціна: від низької",
         "sortPriceHighLow": "Ціна: від високої",
         "showOutOfStock": "Показати відсутні",
-        "hideOutOfStock": "Сховати відсутні"
+        "hideOutOfStock": "Сховати відсутні",
+        "onSale": "On Sale"
       }
     },
     "results": {
@@ -209,7 +210,8 @@
     "signInToReview": "Увійдіть, щоб залишити відгук",
     "showMore": "Показати все",
     "showLess": "Показати менше",
-    "purchaseRequired": "Придбайте цей товар, щоб залишити відгук"
+    "purchaseRequired": "Придбайте цей товар, щоб залишити відгук",
+    "sale": "Sale"
   },
   "Events": {
     "title": "Upcoming Events",

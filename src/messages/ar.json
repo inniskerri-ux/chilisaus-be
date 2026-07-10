@@ -155,7 +155,8 @@
         "sortPriceLowHigh": "السعر: من الأقل إلى الأعلى",
         "sortPriceHighLow": "السعر: من الأعلى إلى الأقل",
         "showOutOfStock": "عرض غير المتوفر",
-        "hideOutOfStock": "إخفاء غير المتوفر"
+        "hideOutOfStock": "إخفاء غير المتوفر",
+        "onSale": "On Sale"
       }
     },
     "results": {
@@ -209,7 +210,8 @@
     "signInToReview": "سجل الدخول للمراجعة",
     "showMore": "عرض الكل",
     "showLess": "عرض أقل",
-    "purchaseRequired": "اشترِ هذا المنتج لترك مراجعة"
+    "purchaseRequired": "اشترِ هذا المنتج لترك مراجعة",
+    "sale": "Sale"
   },
   "Events": {
     "title": "Upcoming Events",

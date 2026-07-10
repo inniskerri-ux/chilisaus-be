@@ -7,6 +7,7 @@ export interface PackingSlipItem {
   priceCents: number;
   selectedSize?: string | null;
   selectedColor?: string | null;
+  imageUrl?: string | null;
 }
 
 export interface PackingSlipOrder {
@@ -54,7 +55,14 @@ const styles = StyleSheet.create({
     paddingHorizontal: 6,
     borderBottom: "1px solid #eee",
   },
-  colProduct: { flex: 3 },
+  colProduct: { flex: 3, flexDirection: "row", alignItems: "center" },
+  itemImage: {
+    width: 28,
+    height: 28,
+    marginRight: 8,
+    objectFit: "contain",
+    borderRadius: 3,
+  },
   colQty: { flex: 1, textAlign: "center" },
   colPrice: { flex: 1, textAlign: "right" },
   headerText: { fontSize: 9, fontWeight: 700, textTransform: "uppercase", color: "#666" },
@@ -118,12 +126,15 @@ export function PackingSlipDocument({ order }: { order: PackingSlipOrder }) {
             {order.items.map((item, i) => (
               <View style={styles.tableRow} key={i}>
                 <View style={styles.colProduct}>
-                  <Text>{item.name}</Text>
-                  {(item.selectedSize || item.selectedColor) && (
-                    <Text style={{ fontSize: 8, color: "#888", marginTop: 2 }}>
-                      {[item.selectedSize, item.selectedColor].filter(Boolean).join(" · ")}
-                    </Text>
-                  )}
+                  {item.imageUrl && <Image src={item.imageUrl} style={styles.itemImage} />}
+                  <View>
+                    <Text>{item.name}</Text>
+                    {(item.selectedSize || item.selectedColor) && (
+                      <Text style={{ fontSize: 8, color: "#888", marginTop: 2 }}>
+                        {[item.selectedSize, item.selectedColor].filter(Boolean).join(" · ")}
+                      </Text>
+                    )}
+                  </View>
                 </View>
                 <Text style={styles.colQty}>{item.quantity}</Text>
                 <Text style={styles.colPrice}>

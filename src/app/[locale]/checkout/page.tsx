@@ -24,7 +24,7 @@ export default async function CheckoutPage({
   // Fetch cart items
   const { data: cartItems } = await supabase
     .from("cart_items")
-    .select("*, product:products(*)")
+    .select("*, product:products(*), variant:product_variants(id, label, price_cents, sale_price_cents, weight_grams)")
     .eq("cart_session_id", cartSessionId);
 
   if (!cartItems || cartItems.length === 0) redirect(`/${locale}/cart`);
@@ -35,7 +35,7 @@ export default async function CheckoutPage({
     quantity: item.quantity,
     capacityMl: item.product.capacity_ml,
     selectedSize: item.selected_size,
-    weightGrams: item.product.weight_grams,
+    weightGrams: (item.variant as any)?.weight_grams ?? item.product.weight_grams,
   }));
   const weightKg = calculatePackageWeight(weightItems);
 

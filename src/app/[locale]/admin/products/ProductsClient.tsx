@@ -166,10 +166,32 @@ export default function ProductsClient({
                 </td>
                 <td className="px-4 py-3">{product.heatLevel || "—"}</td>
                 <td className="px-4 py-3 font-semibold">
-                  {(product.price_cents / 100).toLocaleString(locale, {
-                    style: "currency",
-                    currency: product.currency,
-                  })}
+                  <div className="flex items-center gap-2">
+                    {product.on_sale && product.sale_price_cents != null ? (
+                      <>
+                        <span className="text-xs text-zinc-400 line-through">
+                          {(product.price_cents / 100).toLocaleString(locale, {
+                            style: "currency",
+                            currency: product.currency,
+                          })}
+                        </span>
+                        <span className="text-orange-600">
+                          {(product.sale_price_cents / 100).toLocaleString(locale, {
+                            style: "currency",
+                            currency: product.currency,
+                          })}
+                        </span>
+                        <span className="rounded-full bg-orange-600 px-1.5 py-0.5 text-[10px] font-bold uppercase text-white">
+                          Sale
+                        </span>
+                      </>
+                    ) : (
+                      (product.price_cents / 100).toLocaleString(locale, {
+                        style: "currency",
+                        currency: product.currency,
+                      })
+                    )}
+                  </div>
                 </td>
                 <td className="px-4 py-3 text-right">
                   <div className="flex items-center justify-end gap-3">

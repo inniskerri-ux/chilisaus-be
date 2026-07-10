@@ -22,6 +22,26 @@ export function formatPrice(
 }
 
 /**
+ * Format a product's volume using its preferred display unit (ml or g).
+ * Falls back to whichever field is populated if display_unit is unset.
+ */
+export function formatVolume(product: {
+  capacity_ml?: number | null;
+  weight_grams?: number | null;
+  display_unit?: string | null;
+}): string | null {
+  const unit = product.display_unit === "g" ? "g" : "ml";
+  if (unit === "g") {
+    if (product.weight_grams) return `${product.weight_grams} g`;
+    if (product.capacity_ml) return `${product.capacity_ml} ml`;
+    return null;
+  }
+  if (product.capacity_ml) return `${product.capacity_ml} ml`;
+  if (product.weight_grams) return `${product.weight_grams} g`;
+  return null;
+}
+
+/**
  * Capitalize first letter of a string
  */
 export function capitalize(str: string): string {

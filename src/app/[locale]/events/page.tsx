@@ -41,7 +41,7 @@ export default async function EventsPage({
           <h1 className="text-4xl font-extrabold text-foreground sm:text-5xl tracking-tight mb-6">
             {t("title")}
           </h1>
-          <p className="text-xl text-text-muted leading-relaxed mb-8">
+          <p className="text-xl text-text-muted leading-relaxed mb-8 whitespace-pre-line">
             {t("intro")}
           </p>
           <div className="flex flex-wrap gap-4">

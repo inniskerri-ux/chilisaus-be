@@ -4,6 +4,7 @@ export interface ProductVariant {
   id: string;
   label: string;
   price_cents: number;
+  sale_price_cents?: number | null;
   weight_grams?: number | null;
   stock: number;
   sort_order: number;
@@ -49,6 +50,11 @@ export interface StoreProduct {
   is_active?: boolean;
   is_vegan?: boolean;
   is_sugar_free?: boolean;
+  on_sale?: boolean;
+  sale_price_cents?: number | null;
+  capacity_ml?: number | null;
+  weight_grams?: number | null;
+  display_unit?: string | null;
   created_at?: string;
   avgRating?: number | null;
   reviewCount?: number;

@@ -157,7 +157,8 @@
         "sortPriceLowHigh": "Price: Low to High",
         "sortPriceHighLow": "Price: High to Low",
         "showOutOfStock": "Show out of stock",
-        "hideOutOfStock": "Hide out of stock"
+        "hideOutOfStock": "Hide out of stock",
+        "onSale": "On Sale"
       }
     },
     "results": {
@@ -173,9 +174,9 @@
   },
   "Landing": {
     "hero": {
-      "welcome": "Welcome to Chilisaus.be/eu",
+      "welcome": "Welcome to our Webshop",
       "title": "You Can Never Have Too Much Hot Sauce",
-      "subtitle": "Discover our Hand Picked collection of the World's finest Chili Products.\nNatural Ingredients\nNo Additives or Preservatives\n\nHeat Levels Mild to SuperHot",
+      "subtitle": "Explore the best Chili Products from all over the World.\nFresh, Natural, Quality ingredients - No Nonsense\n\nOur personally selected range of Hot Sauces, Chili Oils, Seasonings, Snacks, Gifts and more ..\n\nHeat levels 1 - 20 (Tabasco would be around level 4)\nDiscover your Level.",
       "cta": "Shop All Sauces"
     },
     "maker": {
@@ -213,12 +214,13 @@
     "signInToReview": "Sign in to Review",
     "showMore": "Show all",
     "showLess": "Show less",
-    "purchaseRequired": "Purchase this product to leave a review"
+    "purchaseRequired": "Purchase this product to leave a review",
+    "sale": "Sale"
   },
   "Events": {
     "title": "Upcoming Events",
     "subtitle": "Meet us in person at these chili festivals and markets across Europe.",
-    "intro": "A lot of you have met me at events across the country. I'm passionate about bringing the best sauces directly to you, keeping it personal and simple. Check out where we'll be next!",
+    "intro": "We are passionate about bringing products directly to the people.\nCheck out our Hot Sauce Tasting Bar at the events below.\n\nFollow us on Instagram - #chilisausbe or\nWhatsApp Kerri for upto date info.",
     "locations": {
       "brussels": "Brussels Winterpret (Brussels, BE)",
       "gent": "Gentse Winterfeesten (Gent, BE)",

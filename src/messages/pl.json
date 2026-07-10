@@ -155,7 +155,8 @@
         "sortPriceLowHigh": "Cena: od najniższej",
         "sortPriceHighLow": "Cena: od najwyższej",
         "showOutOfStock": "Pokaż niedostępne",
-        "hideOutOfStock": "Ukryj niedostępne"
+        "hideOutOfStock": "Ukryj niedostępne",
+        "onSale": "On Sale"
       }
     },
     "results": {
@@ -209,7 +210,8 @@
     "signInToReview": "Zaloguj się, aby dodać opinię",
     "showMore": "Pokaż wszystko",
     "showLess": "Pokaż mniej",
-    "purchaseRequired": "Kup ten produkt, aby wystawić opinię"
+    "purchaseRequired": "Kup ten produkt, aby wystawić opinię",
+    "sale": "Sale"
   },
   "Events": {
     "title": "Nadchodzące Wydarzenia",

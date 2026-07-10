@@ -155,7 +155,8 @@
         "sortPriceLowHigh": "Цена: Ниска към висока",
         "sortPriceHighLow": "Цена: Висока към ниска",
         "showOutOfStock": "Покажи изчерпани",
-        "hideOutOfStock": "Скрий изчерпани"
+        "hideOutOfStock": "Скрий изчерпани",
+        "onSale": "On Sale"
       }
     },
     "results": {
@@ -209,7 +210,8 @@
     "signInToReview": "Влезте, за да оставите отзив",
     "showMore": "Покажи всички",
     "showLess": "Покажи по-малко",
-    "purchaseRequired": "Купете този продукт, за да оставите отзив"
+    "purchaseRequired": "Купете този продукт, за да оставите отзив",
+    "sale": "Sale"
   },
   "Events": {
     "title": "Upcoming Events",

@@ -31,10 +31,13 @@ export default async function EditProductPage({ params }: ProductPageProps) {
       heat_level,
       capacity_ml,
       weight_grams,
+      display_unit,
       stock,
       is_active,
       is_vegan,
       is_sugar_free,
+      on_sale,
+      sale_price_cents,
       ingredients,
       nutrition_info,
       category_id,
@@ -70,7 +73,7 @@ export default async function EditProductPage({ params }: ProductPageProps) {
     supabase.from("brands").select("id, name, slug").order("name"),
     supabase
       .from("product_variants")
-      .select("id, label, price_cents, weight_grams, stock, sort_order")
+      .select("id, label, price_cents, sale_price_cents, weight_grams, stock, sort_order")
       .eq("product_id", id)
       .eq("is_active", true)
       .order("sort_order")
@@ -121,10 +124,13 @@ export default async function EditProductPage({ params }: ProductPageProps) {
     heatLevel: row.heat_level,
     capacity_ml: row.capacity_ml,
     weight_grams: row.weight_grams,
+    display_unit: row.display_unit,
     stock: row.stock,
     is_active: row.is_active,
     is_vegan: row.is_vegan,
     is_sugar_free: row.is_sugar_free,
+    on_sale: row.on_sale,
+    sale_price_cents: row.sale_price_cents,
     ingredients: row.ingredients,
     nutrition_info: row.nutrition_info,
     category_id: row.category_id,

@@ -23,13 +23,14 @@ export default async function ShopPage({
   const isEn = locale === "en";
   const productSelect = `
     id, name, slug, description, ${isEn ? "" : `description_${locale},`} price_cents, currency,
-    heat_level, image_url, stock, is_active, is_vegan, is_sugar_free, created_at, wc_total_sales,
+    heat_level, image_url, stock, is_active, is_vegan, is_sugar_free, on_sale, sale_price_cents,
+    capacity_ml, weight_grams, display_unit, created_at, wc_total_sales,
     brand:brands ( id, name, slug, country, description ${isEn ? "" : `, description_${locale}`} ),
     category:categories!category_id ( id, name, slug ${isEn ? "" : `, name_${locale}`} ),
     chilliTypes:products_chilli_types (
       chilli_type:chilli_types ( id, name, slug, heat_level ${isEn ? "" : `, name_${locale}`} )
     ),
-    variants:product_variants ( id, label, price_cents, weight_grams, stock, sort_order )
+    variants:product_variants ( id, label, price_cents, sale_price_cents, weight_grams, stock, sort_order )
   `;
 
   const [productsRes, categoriesRes, chilliTypesRes, brandsRes, ratingsRes, productCategoriesRes] =
@@ -113,6 +114,11 @@ export default async function ShopPage({
       is_active: r.is_active,
       is_vegan: r.is_vegan,
       is_sugar_free: r.is_sugar_free,
+      on_sale: r.on_sale,
+      sale_price_cents: r.sale_price_cents,
+      capacity_ml: r.capacity_ml,
+      weight_grams: r.weight_grams,
+      display_unit: r.display_unit,
       created_at: r.created_at,
       avgRating: rating ? Number(rating.avg_rating) : null,
       reviewCount: rating ? Number(rating.review_count) : 0,
@@ -152,6 +158,7 @@ export default async function ShopPage({
           id: v.id,
           label: v.label,
           price_cents: v.price_cents,
+          sale_price_cents: v.sale_price_cents,
           weight_grams: v.weight_grams,
           stock: v.stock,
           sort_order: v.sort_order,

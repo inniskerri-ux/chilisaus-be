@@ -23,6 +23,7 @@ interface ProductVariantDraft {
   id?: string;
   label: string;
   price_euros: string;
+  sale_euros: string;
   weight_grams: string;
   stock: string;
 }
@@ -41,6 +42,7 @@ interface Product {
   brand_id?: string | null;
   capacity_ml?: number | null;
   weight_grams?: number | null;
+  display_unit?: string | null;
   heat_level?: string | null;
   image_url?: string | null;
   imageUrls?: string[];
@@ -49,11 +51,13 @@ interface Product {
   is_active?: boolean;
   is_vegan?: boolean;
   is_sugar_free?: boolean;
+  on_sale?: boolean;
+  sale_price_cents?: number | null;
   size_options?: string[] | null;
   color_options?: string[] | null;
   stock?: number | null;
   chilliTypes?: ChilliType[];
-  variants?: Array<{ id: string; label: string; price_cents: number; weight_grams?: number | null; stock: number; sort_order: number }>;
+  variants?: Array<{ id: string; label: string; price_cents: number; sale_price_cents?: number | null; weight_grams?: number | null; stock: number; sort_order: number }>;
 }
 
 interface Category {
@@ -108,6 +112,7 @@ export default function ProductForm({
       id: v.id,
       label: v.label,
       price_euros: (v.price_cents / 100).toFixed(2),
+      sale_euros: v.sale_price_cents != null ? (v.sale_price_cents / 100).toFixed(2) : "",
       weight_grams: v.weight_grams != null ? String(v.weight_grams) : "",
       stock: String(v.stock),
     })),
@@ -178,6 +183,7 @@ export default function ProductForm({
         id: v.id,
         label: v.label.trim(),
         price_cents: Math.round(parseFloat(v.price_euros || "0") * 100),
+        sale_price_cents: v.sale_euros ? Math.round(parseFloat(v.sale_euros) * 100) : null,
         weight_grams: v.weight_grams ? parseInt(v.weight_grams) : null,
         stock: parseInt(v.stock || "0"),
         sort_order: i,
@@ -346,6 +352,34 @@ export default function ProductForm({
                     </SelectContent>
                   </Select>
                 </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="on_sale">Sale</Label>
+                  <label
+                    htmlFor="on_sale"
+                    className="flex items-center gap-2 h-9 px-3 border rounded-md cursor-pointer text-sm"
+                  >
+                    <input
+                      id="on_sale"
+                      name="on_sale"
+                      type="checkbox"
+                      defaultChecked={product?.on_sale ?? false}
+                      className="h-4 w-4"
+                    />
+                    On Sale
+                  </label>
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="sale_price_cents">Sale Price (cents)</Label>
+                  <Input
+                    id="sale_price_cents"
+                    name="sale_price_cents"
+                    type="number"
+                    defaultValue={product?.sale_price_cents ?? ""}
+                    placeholder="e.g. 899"
+                  />
+                </div>
               </div>
 
               <div className="grid gap-4 sm:grid-cols-2">
@@ -432,6 +466,21 @@ export default function ProductForm({
                     defaultValue={product?.weight_grams ?? ""}
                     placeholder="e.g. 280"
                   />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="display_unit">Display Unit</Label>
+                  <Select
+                    name="display_unit"
+                    defaultValue={product?.display_unit || "ml"}
+                  >
+                    <SelectTrigger>
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="ml">ml</SelectItem>
+                      <SelectItem value="g">g</SelectItem>
+                    </SelectContent>
+                  </Select>
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="stock">Stock *</Label>
@@ -549,19 +598,21 @@ export default function ProductForm({
             <CardContent className="space-y-4">
               <p className="text-xs text-muted-foreground">
                 Add variants if this product comes in different sizes/weights with different prices. Leave empty for single-option products.
+                Sale (€) only takes effect while the product&apos;s &quot;On Sale&quot; switch above is checked — leave a variant&apos;s Sale (€) blank to keep it at full price during a sale.
               </p>
 
               {variants.length > 0 && (
                 <div className="space-y-2">
-                  <div className="grid grid-cols-[1fr_1fr_80px_80px_36px] gap-2 text-xs font-medium text-muted-foreground px-1">
+                  <div className="grid grid-cols-[1fr_1fr_1fr_80px_80px_36px] gap-2 text-xs font-medium text-muted-foreground px-1">
                     <span>Label (e.g. 10g)</span>
                     <span>Price (€)</span>
+                    <span>Sale (€)</span>
                     <span>Weight (g)</span>
                     <span>Stock</span>
                     <span />
                   </div>
                   {variants.map((v, i) => (
-                    <div key={i} className="grid grid-cols-[1fr_1fr_80px_80px_36px] gap-2 items-center">
+                    <div key={i} className="grid grid-cols-[1fr_1fr_1fr_80px_80px_36px] gap-2 items-center">
                       <Input
                         value={v.label}
                         onChange={(e) => setVariants((prev) => prev.map((row, idx) => idx === i ? { ...row, label: e.target.value } : row))}
@@ -575,6 +626,15 @@ export default function ProductForm({
                         step="0.01"
                         min="0"
                         placeholder="2.99"
+                        className="h-8 text-sm"
+                      />
+                      <Input
+                        value={v.sale_euros}
+                        onChange={(e) => setVariants((prev) => prev.map((row, idx) => idx === i ? { ...row, sale_euros: e.target.value } : row))}
+                        type="number"
+                        step="0.01"
+                        min="0"
+                        placeholder="2.49"
                         className="h-8 text-sm"
                       />
                       <Input
@@ -611,7 +671,7 @@ export default function ProductForm({
                 type="button"
                 variant="outline"
                 size="sm"
-                onClick={() => setVariants((prev) => [...prev, { label: "", price_euros: "", weight_grams: "", stock: "0" }])}
+                onClick={() => setVariants((prev) => [...prev, { label: "", price_euros: "", sale_euros: "", weight_grams: "", stock: "0" }])}
               >
                 + Add Variant
               </Button>

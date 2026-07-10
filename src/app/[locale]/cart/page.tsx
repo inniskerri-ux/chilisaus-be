@@ -3,7 +3,8 @@ import { cookies } from "next/headers";
 import { getTranslations } from "next-intl/server";
 import Image from "next/image";
 import Link from "next/link";
-import { formatPrice } from "@/lib/format";
+import { formatPrice, formatVolume } from "@/lib/format";
+import { getEffectivePriceCents } from "@/lib/pricing";
 import { Button } from "@/components/ui/button";
 import { Trash2, Minus, Plus, ShoppingBag, ArrowRight } from "lucide-react";
 import { removeFromCart, updateCartQuantity } from "./actions";
@@ -23,14 +24,14 @@ export default async function CartPage({
   if (cartSessionId) {
     const { data } = await supabase
       .from("cart_items")
-      .select("*, product:products(*), variant:product_variants(id, label, price_cents, weight_grams)")
+      .select("*, product:products(*), variant:product_variants(id, label, price_cents, sale_price_cents, weight_grams)")
       .eq("cart_session_id", cartSessionId)
       .order("created_at", { ascending: true });
     cartItems = data || [];
   }
 
   const subtotal = cartItems.reduce(
-    (acc, item) => acc + ((item.variant as any)?.price_cents ?? item.product.price_cents) * item.quantity,
+    (acc, item) => acc + getEffectivePriceCents(item.product, item.variant as any) * item.quantity,
     0,
   );
   const itemCount = cartItems.reduce((acc, item) => acc + item.quantity, 0);
@@ -104,9 +105,9 @@ export default async function CartPage({
                     <p className="text-xs text-zinc-500 font-medium">
                       {(item.variant as any).label}
                     </p>
-                  ) : item.product.capacity_ml ? (
+                  ) : formatVolume(item.product) ? (
                     <p className="text-xs text-zinc-500">
-                      {item.product.capacity_ml} ml
+                      {formatVolume(item.product)}
                     </p>
                   ) : null}
                 </div>
@@ -145,7 +146,7 @@ export default async function CartPage({
                   </div>
                   <p className="font-bold text-lg self-end sm:self-auto">
                     {formatPrice(
-                      ((item.variant as any)?.price_cents ?? item.product.price_cents) * item.quantity,
+                      getEffectivePriceCents(item.product, item.variant as any) * item.quantity,
                       item.product.currency,
                       locale,
                     )}

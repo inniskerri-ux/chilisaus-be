@@ -155,7 +155,8 @@
         "sortPriceLowHigh": "Pris: Lav til høy",
         "sortPriceHighLow": "Pris: Høy til lav",
         "showOutOfStock": "Vis utsolgte",
-        "hideOutOfStock": "Skjul utsolgte"
+        "hideOutOfStock": "Skjul utsolgte",
+        "onSale": "On Sale"
       }
     },
     "results": {
@@ -209,7 +210,8 @@
     "signInToReview": "Logg inn for å anmelde",
     "showMore": "Vis alle",
     "showLess": "Vis færre",
-    "purchaseRequired": "Kjøp dette produktet for å legge igjen en anmeldelse"
+    "purchaseRequired": "Kjøp dette produktet for å legge igjen en anmeldelse",
+    "sale": "Sale"
   },
   "Events": {
     "title": "Upcoming Events",

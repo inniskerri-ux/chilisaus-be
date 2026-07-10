@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { formatPrice } from "@/lib/format";
+import { getEffectivePriceCents } from "@/lib/pricing";
 import {
   calculateShippingCost,
   SHIPPING_RATE_LABEL,
@@ -34,7 +35,7 @@ export default function CheckoutForm({
   const subtotal = useMemo(
     () =>
       cartItems.reduce(
-        (acc, item) => acc + item.product.price_cents * item.quantity,
+        (acc, item) => acc + getEffectivePriceCents(item.product, item.variant) * item.quantity,
         0,
       ),
     [cartItems],
@@ -270,7 +271,7 @@ export default function CheckoutForm({
                 <span className="font-medium truncate">{item.product.name}</span>
               </div>
               <span className="font-semibold">
-                {formatPrice(item.product.price_cents * item.quantity)}
+                {formatPrice(getEffectivePriceCents(item.product, item.variant) * item.quantity)}
               </span>
             </div>
           ))}

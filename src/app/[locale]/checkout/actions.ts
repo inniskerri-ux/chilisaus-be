@@ -3,6 +3,7 @@
 import { getStripeServerClient } from "@/lib/stripe/server";
 import { createClient } from "@/lib/supabase/server";
 import { calculateShippingCost } from "@/lib/checkout/pricing";
+import { getEffectivePriceCents } from "@/lib/pricing";
 import { calculatePackageWeight } from "@/lib/shipping/config";
 import { headers, cookies } from "next/headers";
 import { redirect } from "next/navigation";
@@ -45,7 +46,7 @@ export async function createCheckoutSession(formData: FormData) {
   // 3. Fetch cart items
   const { data: cartItems, error } = await supabase
     .from("cart_items")
-    .select("*, product:products(*), variant:product_variants(id, label, price_cents, weight_grams)")
+    .select("*, product:products(*), variant:product_variants(id, label, price_cents, sale_price_cents, weight_grams)")
     .eq("cart_session_id", cartSessionId);
 
   if (error || !cartItems?.length) {
@@ -65,7 +66,7 @@ export async function createCheckoutSession(formData: FormData) {
 
   const weightKg = calculatePackageWeight(itemsForWeight);
   const subtotalCents = cartItems.reduce(
-    (acc, item) => acc + ((item.variant as any)?.price_cents ?? item.product.price_cents) * item.quantity,
+    (acc, item) => acc + getEffectivePriceCents(item.product, item.variant as any) * item.quantity,
     0,
   );
   const shippingCents = calculateShippingCost(countryCode, weightKg, subtotalCents);
@@ -85,7 +86,7 @@ export async function createCheckoutSession(formData: FormData) {
           ...(item.product.description ? { description: item.product.description } : {}),
           images: item.product.image_url ? [item.product.image_url] : [],
         },
-        unit_amount: (item.variant as any)?.price_cents ?? item.product.price_cents,
+        unit_amount: getEffectivePriceCents(item.product, item.variant as any),
       },
       quantity: item.quantity,
     };

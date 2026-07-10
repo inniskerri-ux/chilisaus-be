@@ -8,13 +8,13 @@ import { Star, Vegan, CandyOff } from "lucide-react";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { formatPrice } from "@/lib/format";
+import { getEffectivePriceCents, getRegularPriceCents, isOnSale } from "@/lib/pricing";
 import AddToCartButton from "./AddToCartButton";
 import type { StoreProduct } from "./types";
 
 
 interface ProductCardProps {
   product: StoreProduct;
-  specialPrice?: number | null;
 }
 
 const getCategoryColor = (slug?: string) => {
@@ -47,7 +47,6 @@ const getCategoryColor = (slug?: string) => {
 
 export default function ProductCard({
   product,
-  specialPrice,
 }: ProductCardProps) {
   const locale = useLocale();
   const t = useTranslations("ProductPage");
@@ -62,12 +61,13 @@ export default function ProductCard({
     ? activeVariants.find((v) => v.id === selectedVariantId)
     : null;
 
-  const basePrice = specialPrice ?? product.price_cents;
-  const displayPrice = selectedVariant?.price_cents ?? basePrice;
+  const displayPrice = getEffectivePriceCents(product, selectedVariant);
+  const regularPrice = getRegularPriceCents(product, selectedVariant);
   const lowestVariantPrice = hasVariants
-    ? Math.min(...activeVariants.map((v) => v.price_cents))
+    ? Math.min(...activeVariants.map((v) => getEffectivePriceCents(product, v)))
     : null;
-  const hasDiscount = !hasVariants && specialPrice && specialPrice < product.price_cents;
+  const hasDiscount =
+    (!hasVariants || !!selectedVariant) && isOnSale(product, selectedVariant);
   const productUrl = `/${locale}/shop/${product.slug}`;
   const outOfStock = hasVariants
     ? (selectedVariant?.stock ?? 0) === 0
@@ -95,6 +95,13 @@ export default function ProductCard({
               <div className="absolute inset-0 flex items-center justify-center">
                 <span className="bg-zinc-800/70 text-white text-xs font-semibold px-3 py-1 rounded-full">
                   {t("outOfStock")}
+                </span>
+              </div>
+            )}
+            {hasDiscount && (
+              <div className="absolute top-2 right-2">
+                <span className="bg-brand-red text-white text-xs font-bold uppercase px-2 py-1 rounded-full shadow-sm">
+                  {t("sale")}
                 </span>
               </div>
             )}
@@ -152,11 +159,11 @@ export default function ProductCard({
           <div className="flex items-center gap-2 shrink-0">
             {hasDiscount && (
               <span className="text-sm text-zinc-500 line-through">
-                {formatPrice(product.price_cents, product.currency, locale)}
+                {formatPrice(regularPrice, product.currency, locale)}
               </span>
             )}
             <span
-              className={`text-lg font-bold ${hasDiscount ? "text-orange-600" : ""}`}
+              className={`text-lg font-bold ${hasDiscount ? "text-brand-red" : ""}`}
             >
               {hasVariants && !selectedVariant
                 ? `${t("from")} ${formatPrice(lowestVariantPrice!, product.currency, locale)}`

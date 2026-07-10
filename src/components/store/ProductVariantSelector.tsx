@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { formatPrice } from "@/lib/format";
+import { getEffectivePriceCents, getRegularPriceCents, isOnSale } from "@/lib/pricing";
 import AddToCartButton from "./AddToCartButton";
 import type { ProductVariant } from "./types";
 
@@ -10,6 +11,8 @@ interface ProductVariantSelectorProps {
   productId: string;
   variants: ProductVariant[];
   basePriceCents: number;
+  onSale?: boolean;
+  saleBasePriceCents?: number | null;
   currency: string;
   outOfStock?: boolean;
 }
@@ -18,6 +21,8 @@ export default function ProductVariantSelector({
   productId,
   variants,
   basePriceCents,
+  onSale = false,
+  saleBasePriceCents = null,
   currency,
   outOfStock = false,
 }: ProductVariantSelectorProps) {
@@ -30,7 +35,10 @@ export default function ProductVariantSelector({
   );
 
   const selectedVariant = activeVariants.find((v) => v.id === selectedVariantId);
-  const displayPrice = selectedVariant?.price_cents ?? basePriceCents;
+  const product = { price_cents: basePriceCents, on_sale: onSale, sale_price_cents: saleBasePriceCents };
+  const displayPrice = getEffectivePriceCents(product, selectedVariant);
+  const regularPrice = getRegularPriceCents(product, selectedVariant);
+  const hasDiscount = isOnSale(product, selectedVariant);
   const variantOutOfStock = outOfStock || (selectedVariant ? selectedVariant.stock === 0 : false);
 
   if (activeVariants.length === 0) {
@@ -47,9 +55,21 @@ export default function ProductVariantSelector({
 
   return (
     <div className="space-y-4">
-      <p className="text-3xl font-bold text-foreground">
-        {formatPrice(displayPrice, currency, locale)}
-      </p>
+      <div className="flex items-center gap-3">
+        {hasDiscount && (
+          <span className="text-lg text-zinc-500 line-through">
+            {formatPrice(regularPrice, currency, locale)}
+          </span>
+        )}
+        <p className={`text-3xl font-bold ${hasDiscount ? "text-brand-red" : "text-foreground"}`}>
+          {formatPrice(displayPrice, currency, locale)}
+        </p>
+        {hasDiscount && (
+          <span className="bg-brand-red text-white text-xs font-bold uppercase px-2 py-1 rounded-full">
+            {t("sale")}
+          </span>
+        )}
+      </div>
 
       {activeVariants.length > 1 && (
         <div className="space-y-2">

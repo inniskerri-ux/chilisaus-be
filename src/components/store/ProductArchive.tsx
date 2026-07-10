@@ -4,6 +4,7 @@ import { useState, useMemo, useEffect, Suspense } from "react";
 import { useTranslations } from "next-intl";
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
 import type { StoreProduct, ChilliType, Category, StoreBrand } from "./types";
+import { getEffectivePriceCents, isOnSale } from "@/lib/pricing";
 import ProductCard from "./ProductCard";
 import Chip from "./Chip";
 
@@ -71,6 +72,7 @@ function ProductArchiveContent({
   const [sortBy, setSortBy] = useState<SortOption>((searchParams.get("sort") as SortOption) || "popular");
   const [displayCount, setDisplayCount] = useState(Number(searchParams.get("limit")) || 12);
   const [hideOutOfStock, setHideOutOfStock] = useState(searchParams.get("inStock") !== "0");
+  const [onlySale, setOnlySale] = useState(searchParams.get("sale") === "1");
   const [filtersOpen, setFiltersOpen] = useState(false);
 
   // Sync all filter state to URL so it persists when navigating back
@@ -85,9 +87,10 @@ function ProductArchiveContent({
     if (sortBy !== "popular") params.set("sort", sortBy);
     if (displayCount !== 12) params.set("limit", String(displayCount));
     if (!hideOutOfStock) params.set("inStock", "0");
+    if (onlySale) params.set("sale", "1");
     const qs = params.toString();
     router.replace(qs ? `${pathname}?${qs}` : pathname, { scroll: false });
-  }, [searchTerm, selectedHeatLevel, selectedChilliType, selectedCategory, selectedBrand, selectedCountry, sortBy, displayCount, hideOutOfStock, pathname, router]);
+  }, [searchTerm, selectedHeatLevel, selectedChilliType, selectedCategory, selectedBrand, selectedCountry, sortBy, displayCount, hideOutOfStock, onlySale, pathname, router]);
 
 
   // Build type categories: replace heat band entries with a single "Sauces" option
@@ -159,6 +162,11 @@ function ProductArchiveContent({
 
       const matchesStock = !hideOutOfStock || (product.stock ?? 1) > 0;
 
+      const matchesSale =
+        !onlySale ||
+        (!!product.on_sale &&
+          (isOnSale(product) || (product.variants ?? []).some((v) => isOnSale(product, v))));
+
       return (
         matchesSearch &&
         matchesHeatLevel &&
@@ -166,7 +174,8 @@ function ProductArchiveContent({
         matchesCategory &&
         matchesBrand &&
         matchesCountry &&
-        matchesStock
+        matchesStock &&
+        matchesSale
       );
     });
 
@@ -183,9 +192,13 @@ function ProductArchiveContent({
         return (bLevel ?? -1) - (aLevel ?? -1);
       });
     } else if (sortBy === "price-asc") {
-      filtered = [...filtered].sort((a, b) => a.price_cents - b.price_cents);
+      filtered = [...filtered].sort(
+        (a, b) => getEffectivePriceCents(a) - getEffectivePriceCents(b),
+      );
     } else if (sortBy === "price-desc") {
-      filtered = [...filtered].sort((a, b) => b.price_cents - a.price_cents);
+      filtered = [...filtered].sort(
+        (a, b) => getEffectivePriceCents(b) - getEffectivePriceCents(a),
+      );
     } else if (sortBy === "newest") {
       filtered = [...filtered].sort((a, b) => {
         const aDate = a.created_at ? new Date(a.created_at).getTime() : 0;
@@ -210,6 +223,7 @@ function ProductArchiveContent({
     selectedCountry,
     sortBy,
     hideOutOfStock,
+    onlySale,
   ]);
 
   // Group by heat band when in default "popular" sort and no heat filter active.
@@ -304,6 +318,7 @@ function ProductArchiveContent({
     !!selectedCategory ||
     !!selectedBrand ||
     !!selectedCountry ||
+    onlySale ||
     sortBy !== "popular";
 
   const secondaryFilterCount = activeFilters.length + (selectedChilliType ? 1 : 0);
@@ -322,6 +337,7 @@ function ProductArchiveContent({
     setSortBy("popular");
     setDisplayCount(12);
     setHideOutOfStock(true);
+    setOnlySale(false);
   };
 
   const displayedProducts = filteredAndSortedProducts.slice(0, displayCount);
@@ -482,8 +498,8 @@ function ProductArchiveContent({
             </label>
           </div>
 
-          {/* Out of stock toggle */}
-          <div className="mt-3">
+          {/* Out of stock / Sale toggles */}
+          <div className="mt-3 flex flex-wrap gap-2">
             <button
               onClick={() => setHideOutOfStock(!hideOutOfStock)}
               className={`inline-flex items-center gap-2 text-xs font-medium px-3 py-1.5 rounded-full border transition-colors ${
@@ -494,6 +510,17 @@ function ProductArchiveContent({
             >
               <span className={`w-2 h-2 rounded-full ${hideOutOfStock ? "bg-zinc-400" : "bg-brand-red"}`} />
               {hideOutOfStock ? t("search.filters.showOutOfStock") : t("search.filters.hideOutOfStock")}
+            </button>
+            <button
+              onClick={() => setOnlySale(!onlySale)}
+              className={`inline-flex items-center gap-2 text-xs font-medium px-3 py-1.5 rounded-full border transition-colors ${
+                onlySale
+                  ? "bg-brand-red/10 border-brand-red text-brand-red"
+                  : "bg-zinc-100 border-zinc-300 text-zinc-500 hover:border-brand-red hover:text-brand-red"
+              }`}
+            >
+              <span className={`w-2 h-2 rounded-full ${onlySale ? "bg-brand-red" : "bg-zinc-400"}`} />
+              {t("search.filters.onSale")}
             </button>
           </div>
 

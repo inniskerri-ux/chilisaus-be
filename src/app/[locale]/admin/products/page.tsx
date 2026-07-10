@@ -27,6 +27,8 @@ export default async function ProductsPage({
         currency,
         heat_level,
         image_url,
+        on_sale,
+        sale_price_cents,
         brand:brands ( id, name, slug ),
         category:categories!category_id ( id, name, slug )
       `,
@@ -48,6 +50,8 @@ export default async function ProductsPage({
       currency: row.currency,
       heatLevel: row.heat_level,
       image_url: row.image_url,
+      on_sale: row.on_sale,
+      sale_price_cents: row.sale_price_cents,
       brand: row.brand
         ? { id: row.brand.id, name: row.brand.name, slug: row.brand.slug || "" }
         : null,

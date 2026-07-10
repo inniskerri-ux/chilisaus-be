@@ -70,6 +70,7 @@ export async function GET(
       priceCents: item.price_cents,
       selectedSize: item.selected_size,
       selectedColor: item.selected_color,
+      imageUrl: item.image_url,
     })),
   };
 

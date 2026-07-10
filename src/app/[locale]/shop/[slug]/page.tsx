@@ -2,7 +2,8 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { getTranslations } from "next-intl/server";
 import { createClient } from "@/lib/supabase/server";
-import { formatPrice } from "@/lib/format";
+import { formatPrice, formatVolume } from "@/lib/format";
+import { getEffectivePriceCents, getRegularPriceCents, isOnSale } from "@/lib/pricing";
 import { Star, Vegan, CandyOff } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import AddToCartButton from "@/components/store/AddToCartButton";
@@ -51,9 +52,9 @@ export default async function ProductPage({
   const productSelect = `
     id, name, slug, description, ${isEn ? "" : `description_${locale},`} details, ${isEn ? "" : `details_${locale},`}
     price_cents, currency, heat_level,
-    image_url, capacity_ml, ingredients, ${isEn ? "" : `ingredients_${locale},`}
+    image_url, capacity_ml, weight_grams, display_unit, ingredients, ${isEn ? "" : `ingredients_${locale},`}
     pairing, ${isEn ? "" : `pairing_${locale},`}
-    stock, is_active, is_vegan, is_sugar_free,
+    stock, is_active, is_vegan, is_sugar_free, on_sale, sale_price_cents,
     brand:brands ( id, name, slug ),
     category:categories!category_id ( id, name, slug ${isEn ? "" : `, name_${locale}`} ),
     allCategories:product_categories (
@@ -80,7 +81,7 @@ export default async function ProductPage({
     await Promise.all([
       supabase
         .from("product_variants")
-        .select("id, label, price_cents, weight_grams, stock, sort_order")
+        .select("id, label, price_cents, sale_price_cents, weight_grams, stock, sort_order")
         .eq("product_id", productId)
         .eq("is_active", true)
         .order("sort_order")
@@ -186,6 +187,11 @@ export default async function ProductPage({
         {/* Details */}
         <div className="flex flex-col gap-4">
           <div className="flex flex-wrap items-center gap-2">
+            {product.on_sale && (
+              <Badge className="gap-1 bg-brand-red hover:bg-brand-red text-white">
+                {t("sale")}
+              </Badge>
+            )}
             {(allCategories.length > 0 ? allCategories : category ? [category] : []).map((cat) => (
               <Badge key={cat.id} variant="secondary">{cat.name}</Badge>
             ))}
@@ -242,8 +248,8 @@ export default async function ProductPage({
             </div>
           )}
 
-          {product.capacity_ml && (
-            <p className="text-sm text-text-muted">{product.capacity_ml} ml</p>
+          {formatVolume(product) && (
+            <p className="text-sm text-text-muted">{formatVolume(product)}</p>
           )}
 
           {variantsData && variantsData.length > 0 ? (
@@ -251,14 +257,23 @@ export default async function ProductPage({
               productId={product.id}
               variants={variantsData}
               basePriceCents={product.price_cents}
+              onSale={product.on_sale}
+              saleBasePriceCents={product.sale_price_cents}
               currency={product.currency}
               outOfStock={!inStock}
             />
           ) : (
             <>
-              <p className="text-3xl font-bold text-foreground">
-                {formatPrice(product.price_cents, product.currency, locale)}
-              </p>
+              <div className="flex items-center gap-3">
+                {isOnSale(product) && (
+                  <span className="text-lg text-zinc-500 line-through">
+                    {formatPrice(getRegularPriceCents(product), product.currency, locale)}
+                  </span>
+                )}
+                <p className={`text-3xl font-bold ${isOnSale(product) ? "text-brand-red" : "text-foreground"}`}>
+                  {formatPrice(getEffectivePriceCents(product), product.currency, locale)}
+                </p>
+              </div>
 
               {/* Stock */}
               <p
