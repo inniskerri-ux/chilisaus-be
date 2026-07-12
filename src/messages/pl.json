@@ -33,10 +33,10 @@
     "remove": "Usuń"
   },
   "Newsletter": {
-    "title": "Odbierz 10% Zniżki!",
-    "description": "Zapisz się do naszego ostrego newslettera i otrzymaj kupon rabatowy 10% na pierwsze zamówienie.",
+    "title": "Dołącz do naszej listy mailingowej i bądź na bieżąco z nowościami dotyczącymi ostrych sosów!",
+    "description": "To dobry sposób, by być w kontakcie z naszymi klientami — potwierdź swój e-mail, a wyślemy Ci kod rabatowy 10% na kolejne zamówienie.",
     "placeholder": "Twój adres e-mail",
-    "cta": "Odbierz Zniżkę",
+    "cta": "Odbierz Mój Kod 10%",
     "noSpam": "Zero spamu, sama ostrość. Możesz się wypisać w dowolnym momencie.",
     "successTitle": "Sprawdź Skrzynkę!",
     "successDescription": "Wysłaliśmy link weryfikacyjny na Twój e-mail.",

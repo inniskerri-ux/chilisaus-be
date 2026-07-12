@@ -33,10 +33,10 @@
     "remove": "Remover"
   },
   "Newsletter": {
-    "title": "Receba 10% de Desconto!",
-    "description": "Subscreva a nossa newsletter picante e receba um vale de 10% de desconto para a sua primeira encomenda.",
+    "title": "Junte-se à nossa lista de subscritores e receba as últimas novidades sobre molhos picantes!",
+    "description": "É uma boa forma de mantermos contacto com os nossos clientes — confirme o seu e-mail e enviaremos um código de desconto de 10% para a sua próxima encomenda.",
     "placeholder": "O seu endereço de e-mail",
-    "cta": "Pedir o meu Desconto",
+    "cta": "Obter o Meu Código de 10%",
     "noSpam": "Sem spam, apenas picante. Cancele a subscrição a qualquer momento.",
     "successTitle": "Verifique a sua Caixa de Entrada!",
     "successDescription": "Enviámos um link de verificação para o seu e-mail.",

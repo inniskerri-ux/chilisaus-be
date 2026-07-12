@@ -33,10 +33,10 @@
     "remove": "Fjern"
   },
   "Newsletter": {
-    "title": "Få 10% rabat!",
-    "description": "Tilmeld dig vores stærke nyhedsbrev og modtag en rabatkode på 10% til din første ordre.",
+    "title": "Tilmeld dig vores mailingliste og få de seneste nyheder om stærke saucer!",
+    "description": "Det er en god måde at holde kontakten med vores kunder på — bekræft din e-mail, så sender vi dig en 10% rabatkode til din næste ordre.",
     "placeholder": "Din e-mailadresse",
-    "cta": "Hent min rabat",
+    "cta": "Få Min 10% Kode",
     "noSpam": "Ingen spam, kun varme. Afmeld dig når som helst.",
     "successTitle": "Tjek din indbakke!",
     "successDescription": "Vi har sendt et bekræftelseslink til din e-mail.",

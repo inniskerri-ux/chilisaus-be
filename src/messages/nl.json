@@ -33,10 +33,10 @@
     "remove": "Verwijder"
   },
   "Newsletter": {
-    "title": "Ontvang 10% Korting!",
-    "description": "Meld je aan voor onze pittige nieuwsbrief en ontvang direct een kortingscode van 10% voor je eerste bestelling.",
+    "title": "Word lid van onze mailinglijst voor de laatste hete saus updates!",
+    "description": "Zo blijven we in contact met onze klanten — bevestig je e-mail en we sturen je een kortingscode van 10% voor je volgende bestelling.",
     "placeholder": "Je e-mailadres",
-    "cta": "Claim Mijn Korting",
+    "cta": "Ontvang Mijn 10% Code",
     "noSpam": "Geen spam, alleen vuur. Altijd opzegbaar.",
     "successTitle": "Check Je Inbox!",
     "successDescription": "We hebben een verificatielink naar je e-mail gestuurd.",

@@ -33,10 +33,10 @@
     "remove": "Supprimer"
   },
   "Newsletter": {
-    "title": "Obtenez 10% de réduction !",
-    "description": "Inscrivez-vous à notre newsletter pimentée et recevez un bon de réduction de 10% pour votre première commande.",
+    "title": "Rejoignez notre liste de diffusion pour les dernières nouveautés sur nos sauces piquantes !",
+    "description": "C'est une bonne façon de rester en contact avec nos clients — confirmez votre e-mail et nous vous enverrons un code de réduction de 10 % pour votre prochaine commande.",
     "placeholder": "Votre adresse e-mail",
-    "cta": "Réclamer ma réduction",
+    "cta": "Obtenir Mon Code de 10 %",
     "noSpam": "Pas de spam, juste du piquant. Désabonnez-vous à tout moment.",
     "successTitle": "Vérifiez votre boîte de réception !",
     "successDescription": "Nous avons envoyé un lien de vérification à votre adresse e-mail.",

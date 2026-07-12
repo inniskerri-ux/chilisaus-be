@@ -33,10 +33,10 @@
     "remove": "Fjern"
   },
   "Newsletter": {
-    "title": "Få 10% rabatt!",
-    "description": "Meld deg på vårt sterke nyhetsbrev og motta en rabattkode på 10% for din første bestilling.",
+    "title": "Meld deg på e-postlisten vår og få de siste nyhetene om sterk saus!",
+    "description": "Det er en fin måte å holde kontakten med kundene våre på — bekreft e-posten din, så sender vi deg en 10 % rabattkode til din neste bestilling.",
     "placeholder": "Din e-postadresse",
-    "cta": "Hent min rabat",
+    "cta": "Få Min 10 % Kode",
     "noSpam": "Ingen spam, bare varme. Meld deg av når som helst.",
     "successTitle": "Sjekk innboksen din!",
     "successDescription": "Vi har sendt en bekreftelseslenke til din e-post.",

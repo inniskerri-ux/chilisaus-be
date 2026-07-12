@@ -33,10 +33,10 @@
     "remove": "Odstranit"
   },
   "Newsletter": {
-    "title": "Získejte 10% Slevu!",
-    "description": "Zapište se do našeho pálivého newsletteru a získejte slevový kupón 10 % na svou první objednávku.",
+    "title": "Přihlaste se k odběru novinek a buďte v obraze o nejnovějších pálivých omáčkách!",
+    "description": "Je to skvělý způsob, jak zůstat v kontaktu s našimi zákazníky — potvrďte svůj e-mail a my vám zašleme 10% slevový kód na vaši další objednávku.",
     "placeholder": "Vaše e-mailová adresa",
-    "cta": "Získat slevu",
+    "cta": "Získat Můj 10% Kód",
     "noSpam": "Žádný spam, jen pálivost. Odhlásit se můžete kdykoli.",
     "successTitle": "Zkontrolujte si schránku!",
     "successDescription": "Poslali jsme vám potvrzovací odkaz na e-mail.",

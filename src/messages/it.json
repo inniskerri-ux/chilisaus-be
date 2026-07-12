@@ -33,10 +33,10 @@
     "remove": "Rimuovi"
   },
   "Newsletter": {
-    "title": "Ottieni il 10% di Sconto!",
-    "description": "Iscriviti alla nostra newsletter piccante e ricevi un buono sconto del 10% per il tuo primo ordine.",
+    "title": "Iscriviti alla nostra mailing list per ricevere le ultime novità sulle salse piccanti!",
+    "description": "È un buon modo per restare in contatto con i nostri clienti — conferma la tua email e ti invieremo un codice sconto del 10% per il tuo prossimo ordine.",
     "placeholder": "Il tuo indirizzo email",
-    "cta": "Richiedi il mio Sconto",
+    "cta": "Ottieni Il Mio Codice del 10%",
     "noSpam": "Niente spam, solo piccantezza. Disiscriviti quando vuoi.",
     "successTitle": "Controlla la tua casella di posta!",
     "successDescription": "Abbiamo inviato un link di verifica alla tua email.",

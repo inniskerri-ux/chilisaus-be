@@ -33,10 +33,10 @@
     "remove": "Entfernen"
   },
   "Newsletter": {
-    "title": "Sichere dir 10% Rabatt!",
-    "description": "Melde dich für unseren scharfen Newsletter an und erhalte einen 10% Rabattgutschein für deine erste Bestellung.",
+    "title": "Tritt unserem Newsletter bei und verpasse keine Neuigkeiten rund um scharfe Saucen!",
+    "description": "So bleiben wir mit unseren Kunden in Kontakt — bestätige deine E-Mail und wir schicken dir einen 10%-Rabattcode für deine nächste Bestellung.",
     "placeholder": "Deine E-Mail-Adresse",
-    "cta": "Rabatt sichern",
+    "cta": "Meinen 10%-Code Erhalten",
     "noSpam": "Kein Spam, nur Schärfe. Jederzeit abbestellbar.",
     "successTitle": "Prüfe deinen Posteingang!",
     "successDescription": "Wir haben einen Bestätigungslink an deine E-Mail-Adresse gesendet.",

@@ -33,10 +33,10 @@
     "remove": "Ta bort"
   },
   "Newsletter": {
-    "title": "Få 10% rabatt!",
-    "description": "Anmäl dig till vårt heta nyhetsbrev och få en rabattkod på 10% för din första beställning.",
+    "title": "Gå med i vårt utskick och få de senaste nyheterna om het sås!",
+    "description": "Det är ett bra sätt att hålla kontakten med våra kunder — bekräfta din e-post så skickar vi en 10 % rabattkod till din nästa beställning.",
     "placeholder": "Din e-postadress",
-    "cta": "Hämta min rabatt",
+    "cta": "Få Min 10 % Kod",
     "noSpam": "Ingen spam, bara hetta. Avregistrera dig när som helst.",
     "successTitle": "Kolla din inkorg!",
     "successDescription": "Vi har skickat en bekräftelselänk till din e-post.",

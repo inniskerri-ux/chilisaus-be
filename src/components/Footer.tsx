@@ -5,14 +5,9 @@ import { createClient } from "@/lib/supabase/server";
 import { isEmailSubscribed } from "@/lib/marketing/mailing-list";
 import FooterNewsletterForm from "@/components/FooterNewsletterForm";
 
-async function getInitialSubscribed(): Promise<boolean> {
-  const supabase = await createClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-
-  if (user?.email) {
-    return isEmailSubscribed(user.email);
+async function getInitialSubscribed(email: string | null): Promise<boolean> {
+  if (email) {
+    return isEmailSubscribed(email);
   }
 
   const cookieStore = await cookies();
@@ -22,7 +17,14 @@ async function getInitialSubscribed(): Promise<boolean> {
 export default async function Footer({ locale }: { locale: string }) {
   const t = await getTranslations({ locale, namespace: "Nav" });
   const currentYear = new Date().getFullYear();
-  const initialSubscribed = await getInitialSubscribed();
+
+  const supabase = await createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  const initialSubscribed = await getInitialSubscribed(user?.email ?? null);
+  const accountHref = user ? `/${locale}/account` : `/${locale}/auth/sign-in`;
 
   return (
     <footer className="border-t border-zinc-100 bg-zinc-50 py-12">
@@ -160,7 +162,7 @@ export default async function Footer({ locale }: { locale: string }) {
               </li>
               <li>
                 <Link
-                  href={`/${locale}/auth/sign-in`}
+                  href={accountHref}
                   className="hover:text-brand-red transition-colors"
                 >
                   My Account
