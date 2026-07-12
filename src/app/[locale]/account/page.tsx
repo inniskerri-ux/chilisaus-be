@@ -5,7 +5,7 @@ import { formatPrice } from "@/lib/format";
 import Link from "next/link";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import ProfileForm from "@/components/account/ProfileForm";
+import ProfileSection from "@/components/account/ProfileSection";
 
 export default async function AccountPage({
   params,
@@ -60,42 +60,21 @@ export default async function AccountPage({
 
       {/* Profile Info */}
       <div className="mb-8">
-        <Card>
-          <CardHeader>
-            <CardTitle>{t("profile.title")}</CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-6">
-            <div className="flex flex-wrap gap-8">
-              <div>
-                <p className="text-xs font-bold uppercase tracking-wider text-zinc-400">
-                  {t("profile.email")}
-                </p>
-                <p className="text-zinc-900 font-medium">{user.email}</p>
-              </div>
-              <div>
-                <p className="text-xs font-bold uppercase tracking-wider text-zinc-400">
-                  {t("profile.role")}
-                </p>
-                <Badge variant="secondary" className="mt-1 capitalize">
-                  {profile?.role || "customer"}
-                </Badge>
-              </div>
-            </div>
-            <ProfileForm
-              locale={locale}
-              initialValues={{
-                firstName: profile?.first_name || "",
-                lastName: profile?.last_name || "",
-                phone: profile?.phone || "",
-                dateOfBirth: profile?.date_of_birth || "",
-                street: address?.street || "",
-                city: address?.city || "",
-                postalCode: address?.postal_code || "",
-                country: address?.country || profile?.country || "",
-              }}
-            />
-          </CardContent>
-        </Card>
+        <ProfileSection
+          locale={locale}
+          email={user.email || ""}
+          role={profile?.role || "customer"}
+          initialValues={{
+            firstName: profile?.first_name || "",
+            lastName: profile?.last_name || "",
+            phone: profile?.phone || "",
+            dateOfBirth: profile?.date_of_birth || "",
+            street: address?.street || "",
+            city: address?.city || "",
+            postalCode: address?.postal_code || "",
+            country: address?.country || profile?.country || "",
+          }}
+        />
       </div>
 
       <div>
