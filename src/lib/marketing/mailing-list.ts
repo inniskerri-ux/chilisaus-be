@@ -36,6 +36,17 @@ export async function subscribeToMailingList({
   return { success: true };
 }
 
+export async function isEmailSubscribed(email: string): Promise<boolean> {
+  const { data } = await supabaseAdmin
+    .from("mailing_list")
+    .select("status")
+    .eq("email", email.toLowerCase())
+    .eq("status", "subscribed")
+    .maybeSingle();
+
+  return !!data;
+}
+
 export async function unsubscribeFromMailingList(email: string) {
   const { error } = await supabaseAdmin
     .from("mailing_list")
