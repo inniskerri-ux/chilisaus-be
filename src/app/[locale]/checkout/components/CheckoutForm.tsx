@@ -296,6 +296,10 @@ export default function CheckoutForm({
             <span>Total</span>
             <span className="text-red-600">{formatPrice(total)}</span>
           </div>
+          <p className="pt-2 text-xs text-zinc-500">
+            Have a discount code? You&apos;ll be able to enter it on the next
+            (payment) step.
+          </p>
         </div>
       </div>
     </div>
