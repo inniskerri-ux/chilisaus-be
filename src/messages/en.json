@@ -34,9 +34,9 @@
   },
   "Newsletter": {
     "title": "Join our Mailing List to get the latest Hot Sauce updates!",
-    "description": "It's a good way to keep in touch with our customers",
+    "description": "It's a good way to keep in touch with our customers — confirm your email and we'll send you a 10% discount code for your next order.",
     "placeholder": "Your email address",
-    "cta": "Claim My Discount",
+    "cta": "Get My 10% Code",
     "noSpam": "No spam, just heat. Unsubscribe anytime.",
     "successTitle": "Check Your Inbox!",
     "successDescription": "We've sent a verification link to your email.",
