@@ -40,7 +40,8 @@
     "noSpam": "No spam, just heat. Unsubscribe anytime.",
     "successTitle": "Check Your Inbox!",
     "successDescription": "We've sent a verification link to your email.",
-    "successAction": "Confirm your email to get the code."
+    "successAction": "Confirm your email to get the code.",
+    "alreadySubscribed": "You're already on our mailing list!"
   },
   "CookieConsent": {
     "title": "We value your privacy",
@@ -215,7 +216,22 @@
     "showMore": "Show all",
     "showLess": "Show less",
     "purchaseRequired": "Purchase this product to leave a review",
-    "sale": "Sale"
+    "sale": "Sale",
+    "cancelReview": "Cancel",
+    "reviewSubmitted": "Thank you! Your review has been submitted.",
+    "reviewSubmittedRewarded": "Thank you! Your review has been submitted — check your email for a 10% discount code.",
+    "yourRating": "Your Rating",
+    "yourName": "Your Name",
+    "namePlaceholder": "Your name",
+    "yourReview": "Your Review",
+    "reviewPlaceholder": "Tell us what you think...",
+    "submitting": "Submitting...",
+    "submitReview": "Submit Review",
+    "cancel": "Cancel",
+    "errorRatingRequired": "Please select a star rating.",
+    "errorContentRequired": "Please write your review.",
+    "errorNotLoggedIn": "You must be logged in to submit a review.",
+    "errorSubmit": "Something went wrong. Please try again."
   },
   "Events": {
     "title": "Upcoming Events",
