@@ -63,7 +63,10 @@ export async function createVoucher(
 
     // 2. Create Promotion Code in Stripe
     const promoParams: any = {
-      coupon: stripeCoupon.id,
+      promotion: {
+        type: "coupon",
+        coupon: stripeCoupon.id,
+      },
       code: code,
       active: true,
       restrictions: {

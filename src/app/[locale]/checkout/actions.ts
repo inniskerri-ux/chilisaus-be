@@ -24,15 +24,15 @@ export async function createCheckoutSession(formData: FormData) {
 
   // 1. Get current cart session
   const {
-    data: { session },
-  } = await supabase.auth.getSession();
+    data: { user },
+  } = await supabase.auth.getUser();
   const cartSessionId = (await cookies()).get("cart_session_id")?.value;
 
   if (!cartSessionId) {
     console.error("[Checkout] No cart_session_id cookie found");
     throw new Error("No cart found");
   }
-  console.log(`[Checkout] cart_session_id: ${cartSessionId}, user: ${session?.user?.id || "guest"}`);
+  console.log(`[Checkout] cart_session_id: ${cartSessionId}, user: ${user?.id || "guest"}`);
 
   // 2. Collect address from form
   const countryCode = (formData.get("country") as string) || "BEL";
@@ -41,7 +41,7 @@ export async function createCheckoutSession(formData: FormData) {
   const shippingStreet = (formData.get("street") as string) || "";
   const shippingCity = (formData.get("city") as string) || "";
   const shippingPostalCode = (formData.get("zip") as string) || "";
-  const customerEmail = (formData.get("email") as string) || session?.user?.email || "";
+  const customerEmail = (formData.get("email") as string) || user?.email || "";
 
   // 3. Fetch cart items
   const { data: cartItems, error } = await supabase
@@ -85,6 +85,7 @@ export async function createCheckoutSession(formData: FormData) {
           name: variantLabel ? `${item.product.name} (${variantLabel})` : item.product.name,
           ...(item.product.description ? { description: item.product.description } : {}),
           images: item.product.image_url ? [item.product.image_url] : [],
+          metadata: { product_id: item.product.id },
         },
         unit_amount: getEffectivePriceCents(item.product, item.variant as any),
       },
@@ -96,7 +97,7 @@ export async function createCheckoutSession(formData: FormData) {
     lineItems.push({
       price_data: {
         currency: "eur",
-        product_data: { name: "Shipping", images: [] },
+        product_data: { name: "Shipping", images: [], metadata: { product_id: "" } },
         unit_amount: shippingCents,
       },
       quantity: 1,
@@ -114,7 +115,7 @@ export async function createCheckoutSession(formData: FormData) {
     customer_email: customerEmail || undefined,
     metadata: {
       cart_session_id: cartSessionId,
-      user_id: session?.user?.id || "",
+      user_id: user?.id || "",
       locale,
       shipping_name: shippingName,
       shipping_street: shippingStreet,

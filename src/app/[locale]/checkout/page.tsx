@@ -12,11 +12,11 @@ export default async function CheckoutPage({
   const { locale } = await params;
   const supabase = await createClient();
   const {
-    data: { session },
-  } = await supabase.auth.getSession();
+    data: { user },
+  } = await supabase.auth.getUser();
 
   // Checkout is allowed for guests, but we prefer them to be logged in
-  // If we wanted to force login: if (!session) redirect(`/${locale}/auth/sign-in`);
+  // If we wanted to force login: if (!user) redirect(`/${locale}/auth/sign-in`);
 
   const cartSessionId = (await cookies()).get("cart_session_id")?.value;
   if (!cartSessionId) redirect(`/${locale}/cart`);
@@ -45,7 +45,7 @@ export default async function CheckoutPage({
         cartItems={cartItems}
         weightKg={weightKg}
         locale={locale}
-        initialEmail={session?.user?.email}
+        initialEmail={user?.email}
       />
     </div>
   );
