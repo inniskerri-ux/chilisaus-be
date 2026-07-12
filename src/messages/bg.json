@@ -40,7 +40,8 @@
     "noSpam": "Без спам, само люти новини. Отпишете се по всяко време.",
     "successTitle": "Проверете пощата си!",
     "successDescription": "Изпратихме линк за потвърждение на вашия имейл.",
-    "successAction": "Потвърдете имейла си, за да получите кода."
+    "successAction": "Потвърдете имейла си, за да получите кода.",
+    "alreadySubscribed": "Вече сте в нашия пощенски списък!"
   },
   "CookieConsent": {
     "title": "Ние ценим вашата поверителност",
@@ -211,7 +212,24 @@
     "showMore": "Покажи всички",
     "showLess": "Покажи по-малко",
     "purchaseRequired": "Купете този продукт, за да оставите отзив",
-    "sale": "Sale"
+    "sale": "Sale",
+    "cancel": "Отказ",
+    "cancelReview": "Отказ",
+    "errorContentRequired": "Моля, напишете своя отзив.",
+    "errorNotLoggedIn": "Трябва да сте влезли в профила си, за да изпратите отзив.",
+    "errorRatingRequired": "Моля, изберете оценка със звезди.",
+    "errorSubmit": "Нещо се обърка. Моля, опитайте отново.",
+    "from": "От",
+    "namePlaceholder": "Вашето име",
+    "reviewPlaceholder": "Кажете ни какво мислите...",
+    "reviewSubmitted": "Благодарим ви! Вашият отзив беше изпратен.",
+    "reviewSubmittedRewarded": "Благодарим ви! Вашият отзив беше изпратен — проверете имейла си за код за отстъпка от 10%.",
+    "selectSize": "Изберете размер",
+    "submitReview": "Изпрати отзив",
+    "submitting": "Изпращане...",
+    "yourName": "Вашето име",
+    "yourRating": "Вашата оценка",
+    "yourReview": "Вашият отзив"
   },
   "Events": {
     "title": "Upcoming Events",
@@ -267,7 +285,18 @@
     "profile": {
       "title": "Информация за профила",
       "email": "Имейл",
-      "role": "Роля"
+      "role": "Роля",
+      "addressTitle": "Адрес",
+      "city": "Град",
+      "country": "Държава",
+      "dateOfBirth": "Дата на раждане",
+      "firstName": "Собствено име",
+      "lastName": "Фамилия",
+      "phone": "Телефон",
+      "postalCode": "Пощенски код",
+      "save": "Запази промените",
+      "saved": "Запазено!",
+      "street": "Улица"
     }
   },
   "Checkout": {

@@ -40,7 +40,8 @@
     "noSpam": "Zero spamu, sama ostrość. Możesz się wypisać w dowolnym momencie.",
     "successTitle": "Sprawdź Skrzynkę!",
     "successDescription": "Wysłaliśmy link weryfikacyjny na Twój e-mail.",
-    "successAction": "Potwierdź e-mail, aby otrzymać kod."
+    "successAction": "Potwierdź e-mail, aby otrzymać kod.",
+    "alreadySubscribed": "Jesteś już zapisany na naszą listę mailingową!"
   },
   "CookieConsent": {
     "title": "Cenimy Twoją prywatność",
@@ -211,7 +212,24 @@
     "showMore": "Pokaż wszystko",
     "showLess": "Pokaż mniej",
     "purchaseRequired": "Kup ten produkt, aby wystawić opinię",
-    "sale": "Sale"
+    "sale": "Sale",
+    "cancel": "Anuluj",
+    "cancelReview": "Anuluj",
+    "errorContentRequired": "Proszę napisać swoją recenzję.",
+    "errorNotLoggedIn": "Musisz być zalogowany, aby dodać recenzję.",
+    "errorRatingRequired": "Proszę wybrać ocenę w gwiazdkach.",
+    "errorSubmit": "Coś poszło nie tak. Spróbuj ponownie.",
+    "from": "Od",
+    "namePlaceholder": "Twoje imię",
+    "reviewPlaceholder": "Powiedz nam, co myślisz...",
+    "reviewSubmitted": "Dziękujemy! Twoja recenzja została przesłana.",
+    "reviewSubmittedRewarded": "Dziękujemy! Twoja recenzja została przesłana — sprawdź e-mail, czeka na Ciebie kod rabatowy 10%.",
+    "selectSize": "Wybierz rozmiar",
+    "submitReview": "Wyślij recenzję",
+    "submitting": "Wysyłanie...",
+    "yourName": "Twoje imię",
+    "yourRating": "Twoja ocena",
+    "yourReview": "Twoja recenzja"
   },
   "Events": {
     "title": "Nadchodzące Wydarzenia",
@@ -267,7 +285,18 @@
     "profile": {
       "title": "Informacje o profilu",
       "email": "E-mail",
-      "role": "Rola"
+      "role": "Rola",
+      "addressTitle": "Adres",
+      "city": "Miasto",
+      "country": "Kraj",
+      "dateOfBirth": "Data urodzenia",
+      "firstName": "Imię",
+      "lastName": "Nazwisko",
+      "phone": "Telefon",
+      "postalCode": "Kod pocztowy",
+      "save": "Zapisz zmiany",
+      "saved": "Zapisano!",
+      "street": "Ulica"
     }
   },
   "Checkout": {

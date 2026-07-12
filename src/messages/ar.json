@@ -40,7 +40,8 @@
     "noSpam": "لا رسائل مزعجة، فقط حرارة. يمكنك إلغاء الاشتراك في أي وقت.",
     "successTitle": "تحقق من بريدك الوارد!",
     "successDescription": "لقد أرسلنا رابط تفعيل إلى بريدك الإلكتروني.",
-    "successAction": "قم بتأكيد بريدك الإلكتروني للحصول على الكود."
+    "successAction": "قم بتأكيد بريدك الإلكتروني للحصول على الكود.",
+    "alreadySubscribed": "أنت مشترك بالفعل في قائمتنا البريدية!"
   },
   "CookieConsent": {
     "title": "نحن نقدر خصوصيتك",
@@ -211,7 +212,24 @@
     "showMore": "عرض الكل",
     "showLess": "عرض أقل",
     "purchaseRequired": "اشترِ هذا المنتج لترك مراجعة",
-    "sale": "Sale"
+    "sale": "Sale",
+    "cancel": "إلغاء",
+    "cancelReview": "إلغاء",
+    "errorContentRequired": "يرجى كتابة مراجعتك.",
+    "errorNotLoggedIn": "يجب تسجيل الدخول لإرسال مراجعة.",
+    "errorRatingRequired": "يرجى اختيار تقييم بالنجوم.",
+    "errorSubmit": "حدث خطأ ما. يرجى المحاولة مرة أخرى.",
+    "from": "ابتداءً من",
+    "namePlaceholder": "اسمك",
+    "reviewPlaceholder": "أخبرنا برأيك...",
+    "reviewSubmitted": "شكرًا لك! تم إرسال مراجعتك.",
+    "reviewSubmittedRewarded": "شكرًا لك! تم إرسال مراجعتك — تحقق من بريدك الإلكتروني للحصول على كود خصم بنسبة 10٪.",
+    "selectSize": "اختر الحجم",
+    "submitReview": "إرسال المراجعة",
+    "submitting": "جارٍ الإرسال...",
+    "yourName": "اسمك",
+    "yourRating": "تقييمك",
+    "yourReview": "مراجعتك"
   },
   "Events": {
     "title": "Upcoming Events",
@@ -267,7 +285,18 @@
     "profile": {
       "title": "معلومات الملف الشخصي",
       "email": "البريد الإلكتروني",
-      "role": "الدور"
+      "role": "الدور",
+      "addressTitle": "العنوان",
+      "city": "المدينة",
+      "country": "الدولة",
+      "dateOfBirth": "تاريخ الميلاد",
+      "firstName": "الاسم الأول",
+      "lastName": "اسم العائلة",
+      "phone": "الهاتف",
+      "postalCode": "الرمز البريدي",
+      "save": "حفظ التغييرات",
+      "saved": "تم الحفظ!",
+      "street": "عنوان الشارع"
     }
   },
   "Checkout": {

@@ -40,7 +40,8 @@
     "noSpam": "Ingen spam, bare varme. Meld deg av når som helst.",
     "successTitle": "Sjekk innboksen din!",
     "successDescription": "Vi har sendt en bekreftelseslenke til din e-post.",
-    "successAction": "Bekreft e-posten din for å få koden."
+    "successAction": "Bekreft e-posten din for å få koden.",
+    "alreadySubscribed": "Du står allerede på e-postlisten vår!"
   },
   "CookieConsent": {
     "title": "Vi verdsetter ditt personvern",
@@ -211,7 +212,24 @@
     "showMore": "Vis alle",
     "showLess": "Vis færre",
     "purchaseRequired": "Kjøp dette produktet for å legge igjen en anmeldelse",
-    "sale": "Sale"
+    "sale": "Sale",
+    "cancel": "Avbryt",
+    "cancelReview": "Avbryt",
+    "errorContentRequired": "Vennligst skriv din anmeldelse.",
+    "errorNotLoggedIn": "Du må være logget inn for å sende inn en anmeldelse.",
+    "errorRatingRequired": "Vennligst velg en stjernevurdering.",
+    "errorSubmit": "Noe gikk galt. Vennligst prøv igjen.",
+    "from": "Fra",
+    "namePlaceholder": "Ditt navn",
+    "reviewPlaceholder": "Fortell oss hva du synes...",
+    "reviewSubmitted": "Takk! Anmeldelsen din er sendt inn.",
+    "reviewSubmittedRewarded": "Takk! Anmeldelsen din er sendt inn — sjekk e-posten din for en 10 % rabattkode.",
+    "selectSize": "Velg størrelse",
+    "submitReview": "Send inn anmeldelse",
+    "submitting": "Sender inn...",
+    "yourName": "Ditt navn",
+    "yourRating": "Din vurdering",
+    "yourReview": "Din anmeldelse"
   },
   "Events": {
     "title": "Upcoming Events",
@@ -267,7 +285,18 @@
     "profile": {
       "title": "Profilinformasjon",
       "email": "E-post",
-      "role": "Rolle"
+      "role": "Rolle",
+      "addressTitle": "Adresse",
+      "city": "By",
+      "country": "Land",
+      "dateOfBirth": "Fødselsdato",
+      "firstName": "Fornavn",
+      "lastName": "Etternavn",
+      "phone": "Telefon",
+      "postalCode": "Postnummer",
+      "save": "Lagre endringer",
+      "saved": "Lagret!",
+      "street": "Gateadresse"
     }
   },
   "Checkout": {

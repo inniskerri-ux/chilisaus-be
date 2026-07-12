@@ -40,7 +40,8 @@
     "noSpam": "Niente spam, solo piccantezza. Disiscriviti quando vuoi.",
     "successTitle": "Controlla la tua casella di posta!",
     "successDescription": "Abbiamo inviato un link di verifica alla tua email.",
-    "successAction": "Conferma la tua email per ricevere il codice."
+    "successAction": "Conferma la tua email per ricevere il codice.",
+    "alreadySubscribed": "Sei già iscritto alla nostra mailing list!"
   },
   "CookieConsent": {
     "title": "Apprezziamo la tua privacy",
@@ -211,7 +212,24 @@
     "showMore": "Mostra tutto",
     "showLess": "Mostra meno",
     "purchaseRequired": "Acquista questo prodotto per lasciare una recensione",
-    "sale": "Sale"
+    "sale": "Sale",
+    "cancel": "Annulla",
+    "cancelReview": "Annulla",
+    "errorContentRequired": "Scrivi la tua recensione.",
+    "errorNotLoggedIn": "Devi effettuare l'accesso per inviare una recensione.",
+    "errorRatingRequired": "Seleziona una valutazione a stelle.",
+    "errorSubmit": "Qualcosa è andato storto. Riprova.",
+    "from": "Da",
+    "namePlaceholder": "Il tuo nome",
+    "reviewPlaceholder": "Dicci cosa ne pensi...",
+    "reviewSubmitted": "Grazie! La tua recensione è stata inviata.",
+    "reviewSubmittedRewarded": "Grazie! La tua recensione è stata inviata — controlla la tua email per un codice sconto del 10%.",
+    "selectSize": "Seleziona formato",
+    "submitReview": "Invia recensione",
+    "submitting": "Invio in corso...",
+    "yourName": "Il tuo nome",
+    "yourRating": "La tua valutazione",
+    "yourReview": "La tua recensione"
   },
   "Events": {
     "title": "Eventi In Arrivo",
@@ -267,7 +285,18 @@
     "profile": {
       "title": "Informazioni sul Profilo",
       "email": "Email",
-      "role": "Ruolo"
+      "role": "Ruolo",
+      "addressTitle": "Indirizzo",
+      "city": "Città",
+      "country": "Paese",
+      "dateOfBirth": "Data di nascita",
+      "firstName": "Nome",
+      "lastName": "Cognome",
+      "phone": "Telefono",
+      "postalCode": "CAP",
+      "save": "Salva modifiche",
+      "saved": "Salvato!",
+      "street": "Indirizzo (via)"
     }
   },
   "Checkout": {

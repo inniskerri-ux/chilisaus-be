@@ -40,7 +40,8 @@
     "noSpam": "Geen spam, alleen vuur. Altijd opzegbaar.",
     "successTitle": "Check Je Inbox!",
     "successDescription": "We hebben een verificatielink naar je e-mail gestuurd.",
-    "successAction": "Bevestig je e-mail om de code te ontvangen."
+    "successAction": "Bevestig je e-mail om de code te ontvangen.",
+    "alreadySubscribed": "Je staat al op onze mailinglijst!"
   },
   "CookieConsent": {
     "title": "Wij waarderen je privacy",
@@ -211,7 +212,24 @@
     "showMore": "Toon alles",
     "showLess": "Toon minder",
     "purchaseRequired": "Koop dit product om een beoordeling achter te laten",
-    "sale": "Sale"
+    "sale": "Sale",
+    "cancel": "Annuleren",
+    "cancelReview": "Annuleren",
+    "errorContentRequired": "Schrijf alsjeblieft je recensie.",
+    "errorNotLoggedIn": "Je moet ingelogd zijn om een recensie te plaatsen.",
+    "errorRatingRequired": "Selecteer alsjeblieft een sterrenbeoordeling.",
+    "errorSubmit": "Er is iets misgegaan. Probeer het opnieuw.",
+    "from": "Vanaf",
+    "namePlaceholder": "Je naam",
+    "reviewPlaceholder": "Vertel ons wat je ervan vindt...",
+    "reviewSubmitted": "Bedankt! Je recensie is verzonden.",
+    "reviewSubmittedRewarded": "Bedankt! Je recensie is verzonden — check je e-mail voor een kortingscode van 10%.",
+    "selectSize": "Selecteer maat",
+    "submitReview": "Recensie verzenden",
+    "submitting": "Bezig met verzenden...",
+    "yourName": "Je naam",
+    "yourRating": "Jouw beoordeling",
+    "yourReview": "Jouw recensie"
   },
   "Events": {
     "title": "Aankomende Evenementen",
@@ -267,7 +285,18 @@
     "profile": {
       "title": "Profielinformatie",
       "email": "E-mail",
-      "role": "Rol"
+      "role": "Rol",
+      "addressTitle": "Adres",
+      "city": "Stad",
+      "country": "Land",
+      "dateOfBirth": "Geboortedatum",
+      "firstName": "Voornaam",
+      "lastName": "Achternaam",
+      "phone": "Telefoon",
+      "postalCode": "Postcode",
+      "save": "Wijzigingen opslaan",
+      "saved": "Opgeslagen!",
+      "street": "Straatnaam"
     }
   },
   "Checkout": {
@@ -314,15 +343,15 @@
         "title": "Heet (10.000 - 50.000 SHU)",
         "description": "Nu begint het echte werk. De Serrano- en Cayennepepers wonen hier. Deze pepers geven een scherpe, heldere hitte die lang op de tong blijft hangen."
       },
-      "extraHeet": {
-        "title": "Extra Heet (50.000 - 100.000 SHU)",
-        "description": "Met voorzichtigheid benaderen. De Thaise Bird's Eye-peper en de Malagueta bieden een flinke kick waar de meeste mensen van gaan zweten."
-      },
       "volcanic": {
         "title": "Vulkanisch (100.000 - 350.000 SHU)",
         "description": "Serieuze hitte voor de dapperen. De legendarische Habanero en Scotch Bonnet pepers zijn hier te vinden, vaak met fruitige of bloemige tonen onder het vuur."
       },
-      "superheet": {
+      "extraHot": {
+        "title": "Extra Heet (50.000 - 100.000 SHU)",
+        "description": "Met voorzichtigheid benaderen. De Thaise Bird's Eye-peper en de Malagueta bieden een flinke kick waar de meeste mensen van gaan zweten."
+      },
+      "superhot": {
         "title": "Superheet (350.000 - 2.200.000+ SHU)",
         "description": "De gevarenzone. Van de Ghost Pepper (Bhut Jolokia) tot de wereldrecordhouder Carolina Reaper; deze pepers bevatten enorme hoeveelheden capsaïcine."
       }

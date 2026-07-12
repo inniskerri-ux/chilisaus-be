@@ -40,7 +40,8 @@
     "noSpam": "Sin spam, solo picante. Cancela la suscripción en cualquier momento.",
     "successTitle": "¡Revisa Tu Bandeja de Entrada!",
     "successDescription": "Hemos enviado un enlace de verificación a tu correo electrónico.",
-    "successAction": "Confirma tu correo para recibir el código."
+    "successAction": "Confirma tu correo para recibir el código.",
+    "alreadySubscribed": "¡Ya estás en nuestra lista de correo!"
   },
   "CookieConsent": {
     "title": "Valoramos tu privacidad",
@@ -211,7 +212,24 @@
     "showMore": "Mostrar todo",
     "showLess": "Mostrar menos",
     "purchaseRequired": "Compre este producto para dejar una reseña",
-    "sale": "Sale"
+    "sale": "Sale",
+    "cancel": "Cancelar",
+    "cancelReview": "Cancelar",
+    "errorContentRequired": "Por favor, escribe tu reseña.",
+    "errorNotLoggedIn": "Debes iniciar sesión para enviar una reseña.",
+    "errorRatingRequired": "Por favor, selecciona una valoración con estrellas.",
+    "errorSubmit": "Algo salió mal. Inténtalo de nuevo.",
+    "from": "Desde",
+    "namePlaceholder": "Tu nombre",
+    "reviewPlaceholder": "Cuéntanos qué te parece...",
+    "reviewSubmitted": "¡Gracias! Tu reseña ha sido enviada.",
+    "reviewSubmittedRewarded": "¡Gracias! Tu reseña ha sido enviada — revisa tu correo para obtener un código de descuento del 10%.",
+    "selectSize": "Selecciona el tamaño",
+    "submitReview": "Enviar reseña",
+    "submitting": "Enviando...",
+    "yourName": "Tu nombre",
+    "yourRating": "Tu valoración",
+    "yourReview": "Tu reseña"
   },
   "Events": {
     "title": "Próximos Eventos",
@@ -267,7 +285,18 @@
     "profile": {
       "title": "Información del Perfil",
       "email": "Correo electrónico",
-      "role": "Rol"
+      "role": "Rol",
+      "addressTitle": "Dirección",
+      "city": "Ciudad",
+      "country": "País",
+      "dateOfBirth": "Fecha de nacimiento",
+      "firstName": "Nombre",
+      "lastName": "Apellido",
+      "phone": "Teléfono",
+      "postalCode": "Código postal",
+      "save": "Guardar cambios",
+      "saved": "¡Guardado!",
+      "street": "Dirección (calle)"
     }
   },
   "Checkout": {

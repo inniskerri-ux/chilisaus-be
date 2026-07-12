@@ -40,7 +40,8 @@
     "noSpam": "Žádný spam, jen pálivost. Odhlásit se můžete kdykoli.",
     "successTitle": "Zkontrolujte si schránku!",
     "successDescription": "Poslali jsme vám potvrzovací odkaz na e-mail.",
-    "successAction": "Potvrďte svůj e-mail a získejte kód."
+    "successAction": "Potvrďte svůj e-mail a získejte kód.",
+    "alreadySubscribed": "Už jste na našem seznamu odběratelů!"
   },
   "CookieConsent": {
     "title": "Vážíme si vašeho soukromí",
@@ -211,7 +212,24 @@
     "showMore": "Zobrazit vše",
     "showLess": "Zobrazit méně",
     "purchaseRequired": "Pro napsání recenze musíte tento produkt zakoupit",
-    "sale": "Sale"
+    "sale": "Sale",
+    "cancel": "Zrušit",
+    "cancelReview": "Zrušit",
+    "errorContentRequired": "Napište prosím svou recenzi.",
+    "errorNotLoggedIn": "Pro odeslání recenze musíte být přihlášeni.",
+    "errorRatingRequired": "Vyberte prosím hodnocení hvězdičkami.",
+    "errorSubmit": "Něco se pokazilo. Zkuste to prosím znovu.",
+    "from": "Od",
+    "namePlaceholder": "Vaše jméno",
+    "reviewPlaceholder": "Řekněte nám, co si myslíte...",
+    "reviewSubmitted": "Děkujeme! Vaše recenze byla odeslána.",
+    "reviewSubmittedRewarded": "Děkujeme! Vaše recenze byla odeslána — zkontrolujte si e-mail, čeká na vás 10% slevový kód.",
+    "selectSize": "Vyberte velikost",
+    "submitReview": "Odeslat recenzi",
+    "submitting": "Odesílání...",
+    "yourName": "Vaše jméno",
+    "yourRating": "Vaše hodnocení",
+    "yourReview": "Vaše recenze"
   },
   "Events": {
     "title": "Upcoming Events",
@@ -267,7 +285,18 @@
     "profile": {
       "title": "Informace o profilu",
       "email": "E-mail",
-      "role": "Role"
+      "role": "Role",
+      "addressTitle": "Adresa",
+      "city": "Město",
+      "country": "Země",
+      "dateOfBirth": "Datum narození",
+      "firstName": "Křestní jméno",
+      "lastName": "Příjmení",
+      "phone": "Telefon",
+      "postalCode": "PSČ",
+      "save": "Uložit změny",
+      "saved": "Uloženo!",
+      "street": "Ulice"
     }
   },
   "Checkout": {

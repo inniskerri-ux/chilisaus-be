@@ -40,7 +40,8 @@
     "noSpam": "Ingen spam, bara hetta. Avregistrera dig när som helst.",
     "successTitle": "Kolla din inkorg!",
     "successDescription": "Vi har skickat en bekräftelselänk till din e-post.",
-    "successAction": "Bekräfta din e-post för att få koden."
+    "successAction": "Bekräfta din e-post för att få koden.",
+    "alreadySubscribed": "Du är redan med på vårt utskick!"
   },
   "CookieConsent": {
     "title": "Vi värdesätter din integritet",
@@ -211,7 +212,24 @@
     "showMore": "Visa alla",
     "showLess": "Visa färre",
     "purchaseRequired": "Köp denna produkt för att lämna en recension",
-    "sale": "Sale"
+    "sale": "Sale",
+    "cancel": "Avbryt",
+    "cancelReview": "Avbryt",
+    "errorContentRequired": "Skriv gärna din recension.",
+    "errorNotLoggedIn": "Du måste vara inloggad för att skicka in en recension.",
+    "errorRatingRequired": "Välj gärna ett stjärnbetyg.",
+    "errorSubmit": "Något gick fel. Försök igen.",
+    "from": "Från",
+    "namePlaceholder": "Ditt namn",
+    "reviewPlaceholder": "Berätta vad du tycker...",
+    "reviewSubmitted": "Tack! Din recension har skickats in.",
+    "reviewSubmittedRewarded": "Tack! Din recension har skickats in — kolla din e-post för en 10 % rabattkod.",
+    "selectSize": "Välj storlek",
+    "submitReview": "Skicka recension",
+    "submitting": "Skickar...",
+    "yourName": "Ditt namn",
+    "yourRating": "Ditt betyg",
+    "yourReview": "Din recension"
   },
   "Events": {
     "title": "Upcoming Events",
@@ -267,7 +285,18 @@
     "profile": {
       "title": "Profilinformation",
       "email": "E-post",
-      "role": "Roll"
+      "role": "Roll",
+      "addressTitle": "Adress",
+      "city": "Stad",
+      "country": "Land",
+      "dateOfBirth": "Födelsedatum",
+      "firstName": "Förnamn",
+      "lastName": "Efternamn",
+      "phone": "Telefon",
+      "postalCode": "Postnummer",
+      "save": "Spara ändringar",
+      "saved": "Sparat!",
+      "street": "Gatuadress"
     }
   },
   "Checkout": {

@@ -40,7 +40,8 @@
     "noSpam": "Kein Spam, nur Schärfe. Jederzeit abbestellbar.",
     "successTitle": "Prüfe deinen Posteingang!",
     "successDescription": "Wir haben einen Bestätigungslink an deine E-Mail-Adresse gesendet.",
-    "successAction": "Bestätige deine E-Mail, um den Code zu erhalten."
+    "successAction": "Bestätige deine E-Mail, um den Code zu erhalten.",
+    "alreadySubscribed": "Du bist bereits in unserem Newsletter-Verteiler!"
   },
   "CookieConsent": {
     "title": "Wir schätzen deine Privatsphäre",
@@ -211,7 +212,24 @@
     "showMore": "Alle anzeigen",
     "showLess": "Weniger anzeigen",
     "purchaseRequired": "Kaufen Sie dieses Produkt, um eine Bewertung abzugeben",
-    "sale": "Sale"
+    "sale": "Sale",
+    "cancel": "Abbrechen",
+    "cancelReview": "Abbrechen",
+    "errorContentRequired": "Bitte schreibe deine Bewertung.",
+    "errorNotLoggedIn": "Du musst angemeldet sein, um eine Bewertung abzugeben.",
+    "errorRatingRequired": "Bitte wähle eine Sternebewertung aus.",
+    "errorSubmit": "Etwas ist schiefgelaufen. Bitte versuche es erneut.",
+    "from": "Ab",
+    "namePlaceholder": "Dein Name",
+    "reviewPlaceholder": "Erzähl uns, was du denkst...",
+    "reviewSubmitted": "Danke! Deine Bewertung wurde eingereicht.",
+    "reviewSubmittedRewarded": "Danke! Deine Bewertung wurde eingereicht — schau in dein E-Mail-Postfach für einen 10%-Rabattcode.",
+    "selectSize": "Größe auswählen",
+    "submitReview": "Bewertung abschicken",
+    "submitting": "Wird gesendet...",
+    "yourName": "Dein Name",
+    "yourRating": "Deine Bewertung",
+    "yourReview": "Deine Bewertung"
   },
   "Events": {
     "title": "Zukünftige Veranstaltungen",
@@ -267,7 +285,18 @@
     "profile": {
       "title": "Profil-Informationen",
       "email": "E-Mail",
-      "role": "Rolle"
+      "role": "Rolle",
+      "addressTitle": "Adresse",
+      "city": "Stadt",
+      "country": "Land",
+      "dateOfBirth": "Geburtsdatum",
+      "firstName": "Vorname",
+      "lastName": "Nachname",
+      "phone": "Telefon",
+      "postalCode": "Postleitzahl",
+      "save": "Änderungen speichern",
+      "saved": "Gespeichert!",
+      "street": "Straße"
     }
   },
   "Checkout": {

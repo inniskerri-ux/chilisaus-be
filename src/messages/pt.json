@@ -40,7 +40,8 @@
     "noSpam": "Sem spam, apenas picante. Cancele a subscrição a qualquer momento.",
     "successTitle": "Verifique a sua Caixa de Entrada!",
     "successDescription": "Enviámos um link de verificação para o seu e-mail.",
-    "successAction": "Confirme o seu e-mail para receber o código."
+    "successAction": "Confirme o seu e-mail para receber o código.",
+    "alreadySubscribed": "Já está na nossa lista de subscritores!"
   },
   "CookieConsent": {
     "title": "Valorizamos a sua privacidade",
@@ -211,7 +212,24 @@
     "showMore": "Mostrar tudo",
     "showLess": "Mostrar menos",
     "purchaseRequired": "Compre este produto para deixar uma avaliação",
-    "sale": "Sale"
+    "sale": "Sale",
+    "cancel": "Cancelar",
+    "cancelReview": "Cancelar",
+    "errorContentRequired": "Por favor, escreva a sua avaliação.",
+    "errorNotLoggedIn": "Tem de iniciar sessão para enviar uma avaliação.",
+    "errorRatingRequired": "Por favor, selecione uma classificação por estrelas.",
+    "errorSubmit": "Algo correu mal. Por favor, tente novamente.",
+    "from": "A partir de",
+    "namePlaceholder": "O seu nome",
+    "reviewPlaceholder": "Diga-nos o que pensa...",
+    "reviewSubmitted": "Obrigado! A sua avaliação foi enviada.",
+    "reviewSubmittedRewarded": "Obrigado! A sua avaliação foi enviada — verifique o seu e-mail para obter um código de desconto de 10%.",
+    "selectSize": "Selecione o tamanho",
+    "submitReview": "Enviar avaliação",
+    "submitting": "A enviar...",
+    "yourName": "O seu nome",
+    "yourRating": "A sua classificação",
+    "yourReview": "A sua avaliação"
   },
   "Events": {
     "title": "Upcoming Events",
@@ -267,7 +285,18 @@
     "profile": {
       "title": "Informações de Perfil",
       "email": "E-mail",
-      "role": "Função"
+      "role": "Função",
+      "addressTitle": "Morada",
+      "city": "Cidade",
+      "country": "País",
+      "dateOfBirth": "Data de nascimento",
+      "firstName": "Nome próprio",
+      "lastName": "Apelido",
+      "phone": "Telefone",
+      "postalCode": "Código postal",
+      "save": "Guardar alterações",
+      "saved": "Guardado!",
+      "street": "Morada (rua)"
     }
   },
   "Checkout": {

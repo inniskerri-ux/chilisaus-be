@@ -40,7 +40,8 @@
     "noSpam": "Pas de spam, juste du piquant. Désabonnez-vous à tout moment.",
     "successTitle": "Vérifiez votre boîte de réception !",
     "successDescription": "Nous avons envoyé un lien de vérification à votre adresse e-mail.",
-    "successAction": "Confirmez votre e-mail pour obtenir le code."
+    "successAction": "Confirmez votre e-mail pour obtenir le code.",
+    "alreadySubscribed": "Vous êtes déjà inscrit à notre liste de diffusion !"
   },
   "CookieConsent": {
     "title": "Nous respectons votre vie privée",
@@ -211,7 +212,24 @@
     "showMore": "Tout afficher",
     "showLess": "Afficher moins",
     "purchaseRequired": "Achetez ce produit pour laisser un avis",
-    "sale": "Sale"
+    "sale": "Sale",
+    "cancel": "Annuler",
+    "cancelReview": "Annuler",
+    "errorContentRequired": "Veuillez rédiger votre avis.",
+    "errorNotLoggedIn": "Vous devez être connecté pour soumettre un avis.",
+    "errorRatingRequired": "Veuillez sélectionner une note en étoiles.",
+    "errorSubmit": "Une erreur s'est produite. Veuillez réessayer.",
+    "from": "À partir de",
+    "namePlaceholder": "Votre nom",
+    "reviewPlaceholder": "Dites-nous ce que vous en pensez...",
+    "reviewSubmitted": "Merci ! Votre avis a été soumis.",
+    "reviewSubmittedRewarded": "Merci ! Votre avis a été soumis — consultez votre e-mail pour un code de réduction de 10 %.",
+    "selectSize": "Choisir la taille",
+    "submitReview": "Soumettre l'avis",
+    "submitting": "Envoi en cours...",
+    "yourName": "Votre nom",
+    "yourRating": "Votre note",
+    "yourReview": "Votre avis"
   },
   "Events": {
     "title": "Événements à venir",
@@ -267,7 +285,18 @@
     "profile": {
       "title": "Informations du profil",
       "email": "Email",
-      "role": "Rôle"
+      "role": "Rôle",
+      "addressTitle": "Adresse",
+      "city": "Ville",
+      "country": "Pays",
+      "dateOfBirth": "Date de naissance",
+      "firstName": "Prénom",
+      "lastName": "Nom de famille",
+      "phone": "Téléphone",
+      "postalCode": "Code postal",
+      "save": "Enregistrer les modifications",
+      "saved": "Enregistré !",
+      "street": "Adresse (rue)"
     }
   },
   "Checkout": {

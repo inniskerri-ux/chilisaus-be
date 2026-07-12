@@ -40,7 +40,8 @@
     "noSpam": "Ingen spam, kun varme. Afmeld dig når som helst.",
     "successTitle": "Tjek din indbakke!",
     "successDescription": "Vi har sendt et bekræftelseslink til din e-mail.",
-    "successAction": "Bekræft din e-mail for at få koden."
+    "successAction": "Bekræft din e-mail for at få koden.",
+    "alreadySubscribed": "Du er allerede på vores mailingliste!"
   },
   "CookieConsent": {
     "title": "Vi værdsætter dit privatliv",
@@ -211,7 +212,24 @@
     "showMore": "Vis alle",
     "showLess": "Vis færre",
     "purchaseRequired": "Køb dette produkt for at skrive en anmeldelse",
-    "sale": "Sale"
+    "sale": "Sale",
+    "cancel": "Annuller",
+    "cancelReview": "Annuller",
+    "errorContentRequired": "Skriv venligst din anmeldelse.",
+    "errorNotLoggedIn": "Du skal være logget ind for at indsende en anmeldelse.",
+    "errorRatingRequired": "Vælg venligst en stjernebedømmelse.",
+    "errorSubmit": "Noget gik galt. Prøv venligst igen.",
+    "from": "Fra",
+    "namePlaceholder": "Dit navn",
+    "reviewPlaceholder": "Fortæl os, hvad du synes...",
+    "reviewSubmitted": "Tak! Din anmeldelse er blevet indsendt.",
+    "reviewSubmittedRewarded": "Tak! Din anmeldelse er blevet indsendt — tjek din e-mail for en 10% rabatkode.",
+    "selectSize": "Vælg størrelse",
+    "submitReview": "Indsend anmeldelse",
+    "submitting": "Indsender...",
+    "yourName": "Dit navn",
+    "yourRating": "Din bedømmelse",
+    "yourReview": "Din anmeldelse"
   },
   "Events": {
     "title": "Upcoming Events",
@@ -267,7 +285,18 @@
     "profile": {
       "title": "Profilinformation",
       "email": "E-mail",
-      "role": "Rolle"
+      "role": "Rolle",
+      "addressTitle": "Adresse",
+      "city": "By",
+      "country": "Land",
+      "dateOfBirth": "Fødselsdato",
+      "firstName": "Fornavn",
+      "lastName": "Efternavn",
+      "phone": "Telefon",
+      "postalCode": "Postnummer",
+      "save": "Gem ændringer",
+      "saved": "Gemt!",
+      "street": "Gadenavn"
     }
   },
   "Checkout": {

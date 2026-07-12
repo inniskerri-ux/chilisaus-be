@@ -40,7 +40,8 @@
     "noSpam": "Без спаму, тільки гострота. Відписатися можна будь-коли.",
     "successTitle": "Перевірте пошту!",
     "successDescription": "Ми надіслали посилання для підтвердження на вашу електронну адресу.",
-    "successAction": "Підтвердьте пошту, щоб отримати код."
+    "successAction": "Підтвердьте пошту, щоб отримати код.",
+    "alreadySubscribed": "Ви вже в нашому списку розсилки!"
   },
   "CookieConsent": {
     "title": "Ми цінуємо вашу приватність",
@@ -211,7 +212,24 @@
     "showMore": "Показати все",
     "showLess": "Показати менше",
     "purchaseRequired": "Придбайте цей товар, щоб залишити відгук",
-    "sale": "Sale"
+    "sale": "Sale",
+    "cancel": "Скасувати",
+    "cancelReview": "Скасувати",
+    "errorContentRequired": "Будь ласка, напишіть свій відгук.",
+    "errorNotLoggedIn": "Щоб залишити відгук, потрібно увійти в обліковий запис.",
+    "errorRatingRequired": "Будь ласка, оберіть оцінку у зірках.",
+    "errorSubmit": "Щось пішло не так. Спробуйте ще раз.",
+    "from": "Від",
+    "namePlaceholder": "Ваше ім'я",
+    "reviewPlaceholder": "Розкажіть нам, що ви думаєте...",
+    "reviewSubmitted": "Дякуємо! Ваш відгук надіслано.",
+    "reviewSubmittedRewarded": "Дякуємо! Ваш відгук надіслано — перевірте пошту, там код на знижку 10%.",
+    "selectSize": "Виберіть розмір",
+    "submitReview": "Надіслати відгук",
+    "submitting": "Надсилання...",
+    "yourName": "Ваше ім'я",
+    "yourRating": "Ваша оцінка",
+    "yourReview": "Ваш відгук"
   },
   "Events": {
     "title": "Upcoming Events",
@@ -267,7 +285,18 @@
     "profile": {
       "title": "Інформація про профіль",
       "email": "Електронна пошта",
-      "role": "Роль"
+      "role": "Роль",
+      "addressTitle": "Адреса",
+      "city": "Місто",
+      "country": "Країна",
+      "dateOfBirth": "Дата народження",
+      "firstName": "Ім'я",
+      "lastName": "Прізвище",
+      "phone": "Телефон",
+      "postalCode": "Поштовий індекс",
+      "save": "Зберегти зміни",
+      "saved": "Збережено!",
+      "street": "Вулиця"
     }
   },
   "Checkout": {
