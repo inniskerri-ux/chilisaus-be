@@ -4,6 +4,7 @@ import { getTranslations } from "next-intl/server";
 import { requireShopOwner } from "./lib/auth";
 import { createClient } from "@/lib/supabase/server";
 import NotificationsBell from "./components/NotificationsBell";
+import { ShieldCheck } from "lucide-react";
 
 interface AdminLayoutProps {
   children: ReactNode;
@@ -59,6 +60,13 @@ export default async function AdminLayout({
                 </Link>
               ))}
             </nav>
+            <Link
+              href={`/${locale}/auth/mfa-setup`}
+              title="Manage two-factor authentication"
+              className="text-roh-military-olive hover:text-brand-red transition-colors"
+            >
+              <ShieldCheck className="h-5 w-5" />
+            </Link>
             {user && <NotificationsBell userId={user.id} />}
           </div>
         </div>

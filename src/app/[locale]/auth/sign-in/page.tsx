@@ -10,6 +10,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Loader2 } from "lucide-react";
+import { getMfaStatus } from "@/lib/supabase/mfa";
 
 export default function SignInPage() {
   const { locale } = useParams() as { locale: string };
@@ -39,8 +40,19 @@ export default function SignInPage() {
           .select("role")
           .eq("id", data.user.id)
           .single();
-        const dest = profile?.role === "shop_owner" ? `/${locale}/admin` : `/${locale}/account`;
-        router.push(dest);
+
+        if (profile?.role === "shop_owner") {
+          const mfa = await getMfaStatus(supabase);
+          const dest =
+            mfa.state === "needs_enrollment"
+              ? `/${locale}/auth/mfa-setup`
+              : mfa.state === "needs_verification"
+                ? `/${locale}/auth/mfa-verify`
+                : `/${locale}/admin`;
+          router.push(dest);
+        } else {
+          router.push(`/${locale}/account`);
+        }
         router.refresh();
       }
     } catch (error) {

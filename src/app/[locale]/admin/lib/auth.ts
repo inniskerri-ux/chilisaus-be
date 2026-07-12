@@ -1,5 +1,6 @@
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
+import { getMfaStatus } from "@/lib/supabase/mfa";
 
 export async function requireShopOwner(locale: string) {
   const supabase = await createClient();
@@ -19,6 +20,14 @@ export async function requireShopOwner(locale: string) {
 
   if (error || profile?.role !== "shop_owner") {
     redirect(`/${locale}`);
+  }
+
+  const mfa = await getMfaStatus(supabase);
+  if (mfa.state === "needs_enrollment") {
+    redirect(`/${locale}/auth/mfa-setup`);
+  }
+  if (mfa.state === "needs_verification") {
+    redirect(`/${locale}/auth/mfa-verify`);
   }
 
   return { supabase, user };
@@ -42,6 +51,11 @@ export async function ensureShopOwner() {
 
   if (profile?.role !== "shop_owner") {
     return { error: "FORBIDDEN" as const, supabase: null, user: null };
+  }
+
+  const mfa = await getMfaStatus(supabase);
+  if (mfa.state !== "satisfied") {
+    return { error: "MFA_REQUIRED" as const, supabase: null, user: null };
   }
 
   return { error: null, supabase, user };

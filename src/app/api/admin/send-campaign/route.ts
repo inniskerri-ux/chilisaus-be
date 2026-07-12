@@ -1,8 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
-import { createServerClient } from "@supabase/ssr";
-import { cookies } from "next/headers";
 import { Resend } from "resend";
+import { ensureShopOwner } from "@/app/[locale]/admin/lib/auth";
 import {
   generateNewsletterHtml,
   generateUnsubscribeToken,
@@ -19,25 +18,14 @@ const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://chilisaus.be";
 const BATCH_SIZE = 50;
 
 export async function POST(req: NextRequest) {
-  // Auth check
-  const cookieStore = await cookies();
-  const supabase = createServerClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-    { cookies: { getAll: () => cookieStore.getAll() } },
-  );
-
-  const { data: { user } } = await supabase.auth.getUser();
-  if (!user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-
-  const { data: profile } = await supabaseAdmin
-    .from("profiles")
-    .select("role")
-    .eq("id", user.id)
-    .single();
-
-  if (profile?.role !== "shop_owner") {
-    return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+  const { error: authError, user } = await ensureShopOwner();
+  if (authError || !user) {
+    const status = authError === "UNAUTHENTICATED" ? 401 : 403;
+    const message =
+      authError === "MFA_REQUIRED"
+        ? "Two-factor authentication required — please complete MFA verification and try again."
+        : "Not authorized";
+    return NextResponse.json({ error: message }, { status });
   }
 
   const { subject, previewText, blocks } = (await req.json()) as {
