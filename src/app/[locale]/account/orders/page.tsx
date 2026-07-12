@@ -27,7 +27,7 @@ export default async function OrdersPage({
   // Fetch all orders with items
   const { data: orders } = await supabase
     .from("orders")
-    .select("*, order_items(*)")
+    .select("*, order_items(*, product:products(slug))")
     .eq("user_id", user.id)
     .order("created_at", { ascending: false });
 
@@ -121,6 +121,14 @@ export default async function OrdersPage({
                             {item.product_name}
                           </p>
                           <p className="text-zinc-500">Qty: {item.quantity}</p>
+                          {item.product?.slug && (
+                            <Link
+                              href={`/${locale}/shop/${item.product.slug}#reviews`}
+                              className="text-xs font-bold text-brand-red hover:underline"
+                            >
+                              Leave a Review
+                            </Link>
+                          )}
                         </div>
                       </div>
                       <p className="font-medium text-zinc-900">

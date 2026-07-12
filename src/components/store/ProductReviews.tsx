@@ -172,7 +172,7 @@ export default function ProductReviews({
   const visibleReviews = showAll ? reviews : reviews.slice(0, PAGE_SIZE);
 
   return (
-    <section className="mt-16 border-t border-zinc-100 pt-12">
+    <section id="reviews" className="mt-16 border-t border-zinc-100 pt-12">
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-10">
         <div>
           <h2 className="text-2xl font-bold text-foreground mb-2">
