@@ -271,7 +271,18 @@
     "profile": {
       "title": "Profile Information",
       "email": "Email",
-      "role": "Role"
+      "role": "Role",
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "phone": "Phone",
+      "dateOfBirth": "Date of Birth",
+      "addressTitle": "Address",
+      "street": "Street Address",
+      "city": "City",
+      "postalCode": "Postal Code",
+      "country": "Country",
+      "save": "Save Changes",
+      "saved": "Saved!"
     }
   },
   "Checkout": {

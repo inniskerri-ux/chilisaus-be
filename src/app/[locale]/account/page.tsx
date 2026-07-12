@@ -5,6 +5,7 @@ import { formatPrice } from "@/lib/format";
 import Link from "next/link";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import ProfileForm from "@/components/account/ProfileForm";
 
 export default async function AccountPage({
   params,
@@ -30,6 +31,14 @@ export default async function AccountPage({
     .eq("id", user.id)
     .single();
 
+  // Fetch default address
+  const { data: address } = await supabase
+    .from("addresses")
+    .select("*")
+    .eq("user_id", user.id)
+    .eq("label", "Default")
+    .maybeSingle();
+
   // Fetch latest orders
   const { data: orders } = await supabase
     .from("orders")
@@ -43,18 +52,20 @@ export default async function AccountPage({
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-zinc-900">{t("title")}</h1>
         <p className="mt-2 text-zinc-600">
-          {t("welcome", { name: user.email?.split("@")[0] || "Friend" })}
+          {t("welcome", {
+            name: profile?.first_name || user.email?.split("@")[0] || "Friend",
+          })}
         </p>
       </div>
 
-      <div className="grid gap-8 lg:grid-cols-3">
-        {/* Profile Info */}
-        <div className="lg:col-span-1">
-          <Card>
-            <CardHeader>
-              <CardTitle>{t("profile.title")}</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-4">
+      {/* Profile Info */}
+      <div className="mb-8">
+        <Card>
+          <CardHeader>
+            <CardTitle>{t("profile.title")}</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-6">
+            <div className="flex flex-wrap gap-8">
               <div>
                 <p className="text-xs font-bold uppercase tracking-wider text-zinc-400">
                   {t("profile.email")}
@@ -69,12 +80,27 @@ export default async function AccountPage({
                   {profile?.role || "customer"}
                 </Badge>
               </div>
-            </CardContent>
-          </Card>
-        </div>
+            </div>
+            <ProfileForm
+              locale={locale}
+              initialValues={{
+                firstName: profile?.first_name || "",
+                lastName: profile?.last_name || "",
+                phone: profile?.phone || "",
+                dateOfBirth: profile?.date_of_birth || "",
+                street: address?.street || "",
+                city: address?.city || "",
+                postalCode: address?.postal_code || "",
+                country: address?.country || profile?.country || "",
+              }}
+            />
+          </CardContent>
+        </Card>
+      </div>
 
+      <div>
         {/* Recent Orders */}
-        <div className="lg:col-span-2">
+        <div>
           <Card>
             <CardHeader className="flex flex-row items-center justify-between">
               <CardTitle>{t("orders.title")}</CardTitle>
