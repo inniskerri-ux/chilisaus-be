@@ -466,3 +466,100 @@ export function getNewsletterWelcomeHtml(voucherCode: string | null): string {
     </div>
   `;
 }
+
+/**
+ * Post-Purchase Review Reminder — nudges the customer to review what they
+ * bought; the discount code itself is sent separately once they actually
+ * submit a review (see getReviewRewardHtml).
+ */
+export function getReviewReminderHtml(params: {
+  customerName: string;
+  products: { name: string; imageUrl: string | null }[];
+  reviewUrl: string;
+}): string {
+  const { customerName, products, reviewUrl } = params;
+
+  const productsList = products
+    .map(
+      (product) => `
+    <tr>
+      <td style="padding: 10px; border-bottom: 1px solid #eee;">
+        <div style="display: flex; align-items: center; gap: 10px;">
+          ${product.imageUrl ? `<img src="${product.imageUrl}" width="50" height="50" style="object-fit: contain; border: 1px solid #eee; border-radius: 4px; flex-shrink: 0;" />` : `<div style="width: 50px; height: 50px; background: #f5f5f5; border: 1px solid #eee; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 20px;">🌶️</div>`}
+          <span>${product.name}</span>
+        </div>
+      </td>
+    </tr>
+  `,
+    )
+    .join("");
+
+  return `
+    <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; color: #333; text-align: center;">
+      <div style="margin-bottom: 24px;">
+        <img src="https://hkflfhbzfsentkkwzqnd.supabase.co/storage/v1/object/public/assets/email/logo.jpg" alt="Chilisaus.be" style="height: 60px; width: auto;" />
+      </div>
+
+      <h1 style="color: #000;">How was the heat, ${customerName}? 🌶️</h1>
+      <p>You picked up these a little while ago — we'd love to hear what you thought:</p>
+
+      <table style="width: 100%; border-collapse: collapse; text-align: left; margin: 20px 0;">
+        <tbody>
+          ${productsList}
+        </tbody>
+      </table>
+
+      <div style="margin: 30px 0;">
+        <a href="${reviewUrl}" style="background: #000; color: #fff; padding: 14px 28px; text-decoration: none; border-radius: 6px; font-weight: bold; display: inline-block;">
+          Leave a Review
+        </a>
+      </div>
+
+      <div style="background: #fff8f0; border-radius: 8px; padding: 20px; margin: 30px 0; font-size: 0.95em; color: #555;">
+        <strong>Leave a review and we'll send you a 10% discount code</strong> for your next order — as a thank you for sharing your feedback.
+      </div>
+
+      <p style="margin-top: 60px; font-size: 0.8em; color: #999;">
+        Chilisaus.be - You Can Never Have Too Much Hot Sauce
+      </p>
+    </div>
+  `;
+}
+
+/**
+ * Post-Review Reward — sent right after a customer submits a review on a
+ * product they bought, containing their single-use 10% discount code.
+ */
+export function getReviewRewardHtml(params: {
+  customerName: string;
+  voucherCode: string;
+}): string {
+  const { customerName, voucherCode } = params;
+
+  return `
+    <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; color: #333; text-align: center;">
+      <div style="margin-bottom: 24px;">
+        <img src="https://hkflfhbzfsentkkwzqnd.supabase.co/storage/v1/object/public/assets/email/logo.jpg" alt="Chilisaus.be" style="height: 60px; width: auto;" />
+      </div>
+
+      <h1 style="color: #000;">Thanks for the review, ${customerName}! 🌶️</h1>
+      <p>We really appreciate you taking the time to share your thoughts. As promised, here is your discount code:</p>
+
+      <div style="background: #f9f9f9; border: 2px dashed #d32f2f; padding: 30px; margin: 30px 0; border-radius: 12px;">
+        <p style="text-transform: uppercase; font-size: 0.9em; letter-spacing: 1px; margin-bottom: 10px; color: #666;">Use this code at checkout:</p>
+        <span style="font-family: monospace; font-size: 2.5em; font-weight: bold; color: #d32f2f; letter-spacing: 2px;">${voucherCode}</span>
+        <p style="margin-top: 15px; font-size: 1.1em; font-weight: bold;">10% OFF YOUR NEXT ORDER</p>
+      </div>
+
+      <div style="margin-top: 40px;">
+        <a href="https://chilisaus.be/shop" style="background: #000; color: #fff; padding: 12px 24px; text-decoration: none; border-radius: 4px; font-weight: bold;">
+          Start Shopping
+        </a>
+      </div>
+
+      <p style="margin-top: 60px; font-size: 0.8em; color: #999;">
+        Chilisaus.be - You Can Never Have Too Much Hot Sauce
+      </p>
+    </div>
+  `;
+}

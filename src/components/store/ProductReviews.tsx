@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { Star, CheckCircle2, User } from "lucide-react";
 import { supabase } from "@/lib/supabase/client";
 import { useTranslations } from "next-intl";
+import { grantReviewDiscountIfEligible } from "@/app/[locale]/actions/reviewReward";
 
 interface Review {
   id: string;
@@ -54,6 +55,7 @@ export default function ProductReviews({
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
   const [submitError, setSubmitError] = useState("");
+  const [rewarded, setRewarded] = useState(false);
 
   useEffect(() => {
     async function init() {
@@ -149,6 +151,16 @@ export default function ProductReviews({
     setShowForm(false);
     setFormRating(0);
     setFormContent("");
+    setIsSubmitting(false);
+
+    // Best-effort: grant a discount code if this review earns one. Never
+    // let a failure here affect the already-successful review submission.
+    try {
+      const { rewarded } = await grantReviewDiscountIfEligible({ productId });
+      setRewarded(rewarded);
+    } catch {
+      // ignore — review was already saved successfully
+    }
   }
 
   if (isLoading) {
@@ -220,7 +232,10 @@ export default function ProductReviews({
         <div className="mb-8 flex items-center gap-3 rounded-xl border border-green-200 bg-green-50 px-5 py-4 text-green-700">
           <CheckCircle2 size={18} />
           <span className="text-sm font-medium">
-            {t("reviewSubmitted") || "Thank you! Your review has been submitted."}
+            {rewarded
+              ? t("reviewSubmittedRewarded") ||
+                "Thank you! Your review has been submitted — check your email for a 10% discount code."
+              : t("reviewSubmitted") || "Thank you! Your review has been submitted."}
           </span>
         </div>
       )}

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { getTranslations } from "next-intl/server";
+import FooterNewsletterForm from "@/components/FooterNewsletterForm";
 
 export default async function Footer({ locale }: { locale: string }) {
   const t = await getTranslations({ locale, namespace: "Nav" });
@@ -21,6 +22,7 @@ export default async function Footer({ locale }: { locale: string }) {
               Hand-picked hot sauces from around the world. Personal service,
               shipping across Europe.
             </p>
+            <FooterNewsletterForm locale={locale} />
           </div>
 
           <div>

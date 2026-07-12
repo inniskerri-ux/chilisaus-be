@@ -3,6 +3,7 @@ import { createClient } from "@supabase/supabase-js";
 import { sendEmail } from "@/lib/emails/client";
 import { getNewsletterWelcomeHtml } from "@/lib/emails/templates";
 import { subscribeToMailingList } from "@/lib/marketing/mailing-list";
+import { createOneTimeDiscountCode } from "@/lib/vouchers/createOneTimeDiscountCode";
 
 const supabaseAdmin = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -52,14 +53,17 @@ export async function GET(req: NextRequest) {
       source: "newsletter_signup",
     });
 
-    // 4. Send Welcome Email — only include WELCOME10 voucher if they haven't
+    // 4. Send Welcome Email — only include a discount code if they haven't
     // already used a discount in the legacy WooCommerce store.
     if (!signup.legacy_discount_used) {
-      const voucherCode = "WELCOME10";
+      const codeResult = await createOneTimeDiscountCode({
+        email: signup.email,
+        source: "newsletter_welcome",
+      });
       await sendEmail({
         to: signup.email,
         subject: "Welcome! Here is your 10% discount code 🎁",
-        html: getNewsletterWelcomeHtml(voucherCode),
+        html: getNewsletterWelcomeHtml("error" in codeResult ? null : codeResult.code),
       });
     } else {
       await sendEmail({

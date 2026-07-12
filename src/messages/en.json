@@ -33,8 +33,8 @@
     "remove": "Remove"
   },
   "Newsletter": {
-    "title": "Get 10% Off!",
-    "description": "Sign up for our spicy newsletter and receive a 10% discount voucher for your first order.",
+    "title": "Join our Mailing List to get the latest Hot Sauce updates!",
+    "description": "It's a good way to keep in touch with our customers",
     "placeholder": "Your email address",
     "cta": "Claim My Discount",
     "noSpam": "No spam, just heat. Unsubscribe anytime.",

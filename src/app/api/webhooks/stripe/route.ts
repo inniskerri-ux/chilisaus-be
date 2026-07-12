@@ -142,6 +142,13 @@ async function handleOrderCompleted(session: any) {
       p_promo_code_id: promoCodeId,
     });
     if (rpcError) console.error("[Webhook] Failed to increment voucher redemption:", rpcError);
+
+    const { error: oneTimeCodeError } = await supabaseAdmin
+      .from("one_time_discount_codes")
+      .update({ redeemed_at: new Date().toISOString() })
+      .eq("stripe_promo_code_id", promoCodeId)
+      .is("redeemed_at", null);
+    if (oneTimeCodeError) console.error("[Webhook] Failed to mark one-time code redeemed:", oneTimeCodeError);
   }
 
   // Fetch full session with line items
@@ -207,6 +214,7 @@ async function handleOrderCompleted(session: any) {
     .filter((item: any) => item.price?.product?.name !== "Shipping")
     .map((item: any) => ({
       order_id: order.id,
+      product_id: item.price?.product?.metadata?.product_id || null,
       product_name: item.price?.product?.name ?? item.description,
       quantity: item.quantity,
       price_cents: item.amount_total,

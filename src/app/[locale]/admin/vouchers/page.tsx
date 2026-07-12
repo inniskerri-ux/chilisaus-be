@@ -10,6 +10,7 @@ import {
   XCircle,
 } from "lucide-react";
 import { formatPrice } from "@/lib/format";
+import { toggleVoucherActive } from "../actions/toggleVoucherActive";
 
 export default async function VouchersPage({
   params,
@@ -113,16 +114,39 @@ export default async function VouchersPage({
                     )}
                   </td>
                   <td className="px-6 py-4 text-right">
-                    <Button variant="ghost" size="sm" asChild>
-                      <a
-                        href={`https://dashboard.stripe.com/coupons/${voucher.stripe_coupon_id}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-xs flex items-center gap-1"
+                    <div className="flex items-center justify-end gap-2">
+                      <form
+                        action={async (formData: FormData) => {
+                          "use server";
+                          await toggleVoucherActive({ locale }, formData);
+                        }}
                       >
-                        View in Stripe <ExternalLink size={12} />
-                      </a>
-                    </Button>
+                        <input type="hidden" name="voucher_id" value={voucher.id} />
+                        <input
+                          type="hidden"
+                          name="next_active"
+                          value={(!voucher.is_active).toString()}
+                        />
+                        <Button
+                          type="submit"
+                          variant="ghost"
+                          size="sm"
+                          className="text-xs"
+                        >
+                          {voucher.is_active ? "Deactivate" : "Activate"}
+                        </Button>
+                      </form>
+                      <Button variant="ghost" size="sm" asChild>
+                        <a
+                          href={`https://dashboard.stripe.com/coupons/${voucher.stripe_coupon_id}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-xs flex items-center gap-1"
+                        >
+                          View in Stripe <ExternalLink size={12} />
+                        </a>
+                      </Button>
+                    </div>
                   </td>
                 </tr>
               ))

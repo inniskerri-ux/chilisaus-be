@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { supabase } from "@/lib/supabase/client";
 import { useTranslations } from "next-intl";
-import { useRouter } from "next/navigation";
+import { useRouter, useParams } from "next/navigation";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -11,7 +11,8 @@ import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Loader2, CheckCircle2, PackageSearch } from "lucide-react";
 
-export default function SignUpPage({ params }: { params: { locale: string } }) {
+export default function SignUpPage() {
+  const { locale } = useParams() as { locale: string };
   const t = useTranslations("Auth");
   const router = useRouter();
   const [email, setEmail] = useState("");
@@ -37,7 +38,7 @@ export default function SignUpPage({ params }: { params: { locale: string } }) {
         email,
         password,
         options: {
-          emailRedirectTo: `${window.location.origin}/auth/callback?next=/${params.locale}/account`,
+          emailRedirectTo: `${window.location.origin}/auth/callback?next=/${locale}/account`,
         },
       });
 
@@ -72,7 +73,7 @@ export default function SignUpPage({ params }: { params: { locale: string } }) {
               asChild
               className="w-full bg-brand-red hover:bg-brand-red/90 text-white font-bold h-12 rounded-xl"
             >
-              <Link href={`/${params.locale}/auth/sign-in`}>
+              <Link href={`/${locale}/auth/sign-in`}>
                 Back to Sign In
               </Link>
             </Button>
@@ -165,7 +166,7 @@ export default function SignUpPage({ params }: { params: { locale: string } }) {
               <p className="text-sm text-zinc-500">
                 Already have an account?{" "}
                 <Link
-                  href={`/${params.locale}/auth/sign-in`}
+                  href={`/${locale}/auth/sign-in`}
                   className="font-bold text-brand-red hover:underline"
                 >
                   {t("SignIn")}
