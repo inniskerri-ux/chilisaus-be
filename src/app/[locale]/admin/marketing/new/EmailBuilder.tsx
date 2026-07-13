@@ -603,7 +603,8 @@ export default function EmailBuilder({
           <div className="rounded-xl overflow-hidden border shadow-sm bg-zinc-100">
             {/* Header */}
             <div className="bg-red-600 px-6 py-4 text-center">
-              <span className="text-white font-extrabold text-lg">🌶️ Chilisaus.be</span>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/images/logo.png" alt="Chilisaus.be" className="inline-block w-[150px] h-auto rounded-md" />
             </div>
             {/* Body */}
             <div className="bg-white px-6 py-6 space-y-4 min-h-[200px]">

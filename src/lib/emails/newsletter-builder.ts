@@ -147,7 +147,7 @@ export function generateNewsletterHtml({
           <tr>
             <td style="background:#c00;padding:24px 32px;border-radius:8px 8px 0 0;text-align:center;">
               <a href="${siteUrl}" style="text-decoration:none;">
-                <span style="font-size:24px;font-weight:800;color:#fff;letter-spacing:-0.5px;">🌶️ Chilisaus.be</span>
+                <img src="${siteUrl}/images/logo.png" alt="Chilisaus.be" width="150" style="display:inline-block;width:150px;max-width:150px;height:auto;border:0;border-radius:6px;" />
               </a>
             </td>
           </tr>
