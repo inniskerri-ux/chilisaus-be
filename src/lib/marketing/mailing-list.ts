@@ -1,4 +1,5 @@
 import { createClient } from "@supabase/supabase-js";
+import { upsertResendContact } from "./resend-contacts";
 
 const supabaseAdmin = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -33,6 +34,8 @@ export async function subscribeToMailingList({
     return { success: false, error };
   }
 
+  await upsertResendContact({ email, firstName, lastName, unsubscribed: false });
+
   return { success: true };
 }
 
@@ -60,6 +63,8 @@ export async function unsubscribeFromMailingList(email: string) {
     console.error("[MailingList] Unsubscribe failed:", error);
     return { success: false, error };
   }
+
+  await upsertResendContact({ email, unsubscribed: true });
 
   return { success: true };
 }

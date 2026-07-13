@@ -21,6 +21,7 @@ import {
   Send,
   X,
   Upload,
+  FlaskConical,
 } from "lucide-react";
 import type { Block, TextBlock, ImageBlock, ProductsBlock, ButtonBlock } from "@/lib/emails/newsletter-builder";
 
@@ -309,6 +310,12 @@ const BLOCK_TYPES = [
   { type: "button", label: "Button", icon: MousePointerClick },
 ] as const;
 
+const TEST_RECIPIENTS = [
+  { email: "inniskerri@gmail.com", label: "Kerri" },
+  { email: "nath.austin@gmail.com", label: "Nathan" },
+  { email: "sales@chilisaus.be", label: "Sales inbox" },
+];
+
 function createBlock(type: Block["type"]): Block {
   const id = genId();
   switch (type) {
@@ -335,6 +342,20 @@ export default function EmailBuilder({
   const [blocks, setBlocks] = useState<Block[]>([]);
   const [sending, setSending] = useState(false);
   const [activeBlockId, setActiveBlockId] = useState<string | null>(null);
+  const [testPanelOpen, setTestPanelOpen] = useState(false);
+  const [testEmails, setTestEmails] = useState<Set<string>>(
+    new Set(TEST_RECIPIENTS.map((r) => r.email)),
+  );
+  const [sendingTest, setSendingTest] = useState(false);
+
+  const toggleTestEmail = (email: string) => {
+    setTestEmails((prev) => {
+      const next = new Set(prev);
+      if (next.has(email)) next.delete(email);
+      else next.add(email);
+      return next;
+    });
+  };
 
   const updateBlock = (id: string, updated: Block) =>
     setBlocks((prev) => prev.map((b) => (b.id === id ? updated : b)));
@@ -383,19 +404,86 @@ export default function EmailBuilder({
     }
   };
 
+  const handleSendTest = async () => {
+    if (!subject.trim()) { alert("Please enter a subject line."); return; }
+    if (blocks.length === 0) { alert("Please add at least one block."); return; }
+    const recipients = Array.from(testEmails);
+    if (recipients.length === 0) { alert("Select at least one test recipient."); return; }
+
+    setSendingTest(true);
+    try {
+      const res = await fetch("/api/admin/send-test-email", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ subject, blocks, recipients }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error);
+      alert(`Test email sent to ${recipients.join(", ")}`);
+      setTestPanelOpen(false);
+    } catch (err: any) {
+      alert(err.message || "Test send failed");
+    } finally {
+      setSendingTest(false);
+    }
+  };
+
   return (
     <div className="space-y-4">
       {/* Top bar */}
-      <div className="flex items-center justify-between gap-4">
+      <div className="flex items-center justify-between gap-4 relative">
         <h1 className="text-2xl font-bold tracking-tight">New Newsletter</h1>
-        <Button
-          onClick={handleSend}
-          disabled={sending}
-          className="bg-red-600 hover:bg-red-700 text-white"
-        >
-          {sending ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <Send className="mr-2 h-4 w-4" />}
-          {sending ? "Sending..." : `Send to ${subscriberCount} subscribers`}
-        </Button>
+        <div className="flex items-center gap-2">
+          <Button
+            type="button"
+            variant="outline"
+            onClick={() => setTestPanelOpen((v) => !v)}
+          >
+            <FlaskConical className="mr-2 h-4 w-4" />
+            Send Test
+          </Button>
+          <Button
+            onClick={handleSend}
+            disabled={sending}
+            className="bg-red-600 hover:bg-red-700 text-white"
+          >
+            {sending ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <Send className="mr-2 h-4 w-4" />}
+            {sending ? "Sending..." : `Send to ${subscriberCount} subscribers`}
+          </Button>
+        </div>
+
+        {testPanelOpen && (
+          <Card className="absolute right-0 top-12 z-10 w-72 shadow-lg">
+            <CardContent className="p-4 space-y-3">
+              <p className="text-xs font-semibold uppercase tracking-wider text-zinc-400">
+                Send test to
+              </p>
+              <div className="space-y-2">
+                {TEST_RECIPIENTS.map((r) => (
+                  <label key={r.email} className="flex items-center gap-2 text-sm cursor-pointer">
+                    <input
+                      type="checkbox"
+                      checked={testEmails.has(r.email)}
+                      onChange={() => toggleTestEmail(r.email)}
+                      className="rounded border-zinc-300"
+                    />
+                    <span className="font-medium">{r.label}</span>
+                    <span className="text-zinc-400 text-xs">{r.email}</span>
+                  </label>
+                ))}
+              </div>
+              <Button
+                type="button"
+                onClick={handleSendTest}
+                disabled={sendingTest}
+                className="w-full bg-black text-white hover:bg-zinc-800"
+              >
+                {sendingTest ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <FlaskConical className="mr-2 h-4 w-4" />}
+                {sendingTest ? "Sending..." : "Send Test Email"}
+              </Button>
+            </CardContent>
+          </Card>
+        )}
       </div>
 
       {/* Subject */}
