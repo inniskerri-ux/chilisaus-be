@@ -329,7 +329,13 @@
   },
   "Scoville": {
     "title": "La Escala Scoville",
-    "intro": "La escala Scoville es una medida del picor de los chiles, registrada en Unidades de Calor Scoville (SHU). Nombrada en honor a su creador, Wilbur Scoville, esta escala te ayuda a navegar por el mundo del picante sin quemarte, ¡a menos que quieras!",
+    "introParagraphs": [
+      "Una escala desarrollada por Wilbur Scoville en 1912. La Escala Scoville mide el picor (o «picante») de los chiles, registrado en Unidades de Calor Scoville (SHU). Se basa en la concentración de capsaicinoides, siendo la capsaicina el componente predominante.",
+      "Mucha gente nos pregunta cuál es la puntuación Scoville de nuestras salsas. No indicamos la puntuación Scoville de todas nuestras salsas porque, simplemente, no disponemos de esa información por parte de nuestros proveedores.",
+      "Un fabricante de salsa picante tiene que someter su salsa a pruebas oficiales de SHU (Unidades de Calor Scoville) para conocer su puntuación Scoville, y la mayoría de las marcas no lo hace.",
+      "Puede ser un proceso costoso, pero también se debe a que el picor de una salsa puede variar de un lote a otro. Los chiles son un producto natural y, por muchas razones distintas, una cosecha puede ser más picante que otra.",
+      "Por eso clasificamos nuestros productos por Niveles de Picante. Esperamos que te ayude a elegir más fácilmente. El Tabasco estaría probablemente alrededor del número 4 en nuestra escala."
+    ],
     "levels": {
       "mild": {
         "title": "Suave (0 - 2.500 SHU)",

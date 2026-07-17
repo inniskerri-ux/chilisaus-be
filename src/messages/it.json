@@ -329,7 +329,13 @@
   },
   "Scoville": {
     "title": "La Scala Scoville",
-    "intro": "La scala Scoville è una misura della piccantezza dei peperoncini, registrata in Unità di Calore Scoville (SHU). Prende il nome dal suo creatore, Wilbur Scoville, e aiuta a navigare nel mondo del piccante senza scottarsi, a meno che non sia quello che vuoi!",
+    "introParagraphs": [
+      "Una scala sviluppata da Wilbur Scoville nel 1912. La Scala Scoville misura la piccantezza (o «calore») dei peperoncini, registrata in Unità di Calore Scoville (SHU). Si basa sulla concentrazione di capsaicinoidi, di cui la capsaicina è la componente predominante.",
+      "Molte persone ci chiedono qual è il punteggio Scoville delle nostre salse. Non indichiamo il punteggio Scoville per ogni salsa piccante perché semplicemente non disponiamo di questa informazione da parte dei nostri fornitori.",
+      "Un produttore di salsa piccante deve far testare ufficialmente la propria salsa per conoscerne le SHU (Unità di Calore Scoville), e la maggior parte dei marchi non lo fa.",
+      "Può essere un processo costoso, ma dipende anche dal fatto che il livello di piccantezza di una salsa può variare da un lotto all'altro. Il peperoncino è un prodotto naturale e, per molte ragioni diverse, un raccolto può risultare più piccante di un altro.",
+      "Per questo motivo classifichiamo i nostri prodotti per Gradi di Piccantezza. Speriamo che questo renda la scelta più semplice. Il Tabasco si collocherebbe probabilmente intorno al grado 4 della nostra scala."
+    ],
     "levels": {
       "mild": {
         "title": "Lieve (0 - 2.500 SHU)",

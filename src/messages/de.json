@@ -329,7 +329,13 @@
   },
   "Scoville": {
     "title": "Die Scoville-Skala",
-    "intro": "Die Scoville-Skala ist ein Maß für die Schärfe von Chilischoten, angegeben in Scoville Heat Units (SHU). Benannt nach ihrem Schöpfer Wilbur Scoville, hilft sie dir, dich in der Welt der Schärfe zurechtzufinden, ohne dich zu verbrennen – es sei denn, du willst es!",
+    "introParagraphs": [
+      "Eine Skala, die 1912 von Wilbur Scoville entwickelt wurde. Die Scoville-Skala misst die Schärfe von Chilischoten und wird in Scoville Heat Units (SHU) angegeben. Sie basiert auf der Konzentration der Capsaicinoide, wobei Capsaicin die vorherrschende Komponente ist.",
+      "Viele Menschen fragen uns nach dem Scoville-Wert unserer Saucen. Wir geben nicht bei jeder Sauce einen Scoville-Wert an, weil uns diese Information von unseren Lieferanten schlicht nicht vorliegt.",
+      "Ein Hersteller von Chilisaucen muss seine Sauce offiziell auf SHU (Scoville Heat Units) testen lassen, um den Scoville-Wert zu kennen – und die meisten Marken tun das nicht.",
+      "Das kann ein teurer Prozess sein, liegt aber auch daran, dass die Schärfe einer Sauce von Charge zu Charge variieren kann. Chilis sind ein Naturprodukt, und aus vielen verschiedenen Gründen kann eine Ernte schärfer ausfallen als eine andere.",
+      "Deshalb listen wir unsere Produkte nach Schärfegraden. Wir hoffen, dass dir das die Wahl erleichtert. Tabasco würde auf unserer Skala wahrscheinlich bei Stufe 4 liegen."
+    ],
     "levels": {
       "mild": {
         "title": "Mild (0 - 2.500 SHU)",

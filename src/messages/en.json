@@ -331,7 +331,13 @@
   },
   "Scoville": {
     "title": "The Scoville Scale",
-    "intro": "The Scoville scale is a measurement of the pungency (spiciness or heat) of chili peppers, as recorded in Scoville Heat Units (SHU). Named after its creator, Wilbur Scoville, this scale helps you navigate the world of heat without getting burned—unless you want to!",
+    "introParagraphs": [
+      "A scale developed by Wilbur Scoville in 1912. The Scoville Scale is a measurement of the pungency (spiciness or “heat”) of chili peppers, as recorded in Scoville Heat Units (SHU). It is based on the concentration of capsaicinoids, capsaicin being the predominant component.",
+      "A lot of people ask what the Scoville ratings for our sauces are. We don’t list the Scoville score for every hot sauce because we simply don’t have the information from our suppliers.",
+      "A hot sauce producer has to get their sauce officially tested for SHU (Scoville Heat Units) to know what the Scoville score is, and most brands don’t do that.",
+      "It can be a costly process, but it’s also because the heat of a sauce can vary per batch. Peppers are a natural product and for lots of different reasons, one harvest can be hotter than another.",
+      "We have our products listed in Heat Levels. Hopefully that helps to make your choosing easier. Tabasco would likely be around number 4 on our scale."
+    ],
     "levels": {
       "mild": {
         "title": "Mild (0 - 2,500 SHU)",

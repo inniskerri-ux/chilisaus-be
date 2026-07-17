@@ -329,7 +329,13 @@
   },
   "Scoville": {
     "title": "L'échelle de Scoville",
-    "intro": "L'échelle de Scoville est une mesure de la force (piquant) des piments, enregistrée en unités de chaleur Scoville (SHU). Nommée d'après son créateur Wilbur Scoville, cette échelle vous aide à naviguer dans le monde de la chaleur sans vous brûler — à moins que vous ne le vouliez !",
+    "introParagraphs": [
+      "Une échelle mise au point par Wilbur Scoville en 1912. L'échelle de Scoville mesure la force (le piquant, ou « chaleur ») des piments, exprimée en unités de chaleur Scoville (SHU). Elle repose sur la concentration en capsaïcinoïdes, la capsaïcine étant le composant prédominant.",
+      "Beaucoup de personnes nous demandent quelle est la note Scoville de nos sauces. Nous n'indiquons pas la note Scoville de chaque sauce piquante, car nous ne disposons tout simplement pas de cette information de la part de nos fournisseurs.",
+      "Un fabricant de sauce piquante doit faire tester officiellement sa sauce pour en connaître le taux de SHU (unités de chaleur Scoville), et la plupart des marques ne le font pas.",
+      "Cela peut être un processus coûteux, mais c'est aussi parce que le piquant d'une sauce peut varier d'un lot à l'autre. Les piments sont un produit naturel, et pour de nombreuses raisons, une récolte peut être plus forte qu'une autre.",
+      "C'est pourquoi nous classons nos produits par Niveaux de Chaleur. Nous espérons que cela vous aidera à choisir plus facilement. Le Tabasco se situerait probablement autour du niveau 4 sur notre échelle."
+    ],
     "levels": {
       "mild": {
         "title": "Doux (0 - 2 500 SHU)",

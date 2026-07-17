@@ -329,7 +329,13 @@
   },
   "Scoville": {
     "title": "De Scovilleschaal",
-    "intro": "De Scovilleschaal meet de heetheid (scherpte) van chilipepers in Scoville Heat Units (SHU). Vernoemd naar Wilbur Scoville, helpt deze schaal je de wereld van pepers te ontdekken zonder je mond te verbranden—behalve als je dat natuurlijk zelf wilt!",
+    "introParagraphs": [
+      "Een schaal ontwikkeld door Wilbur Scoville in 1912. De Scovilleschaal meet de heetheid (scherpte) van chilipepers, geregistreerd in Scoville Heat Units (SHU). Ze is gebaseerd op de concentratie capsaïcinoïden, waarbij capsaïcine de belangrijkste component is.",
+      "Veel mensen vragen ons wat de Scoville-score van onze sauzen is. We vermelden niet bij elke hot sauce een Scoville-score, omdat we die informatie eenvoudigweg niet van onze leveranciers krijgen.",
+      "Een producent van hot sauce moet zijn saus officieel laten testen op SHU (Scoville Heat Units) om de Scoville-score te kennen, en de meeste merken doen dat niet.",
+      "Het kan een kostbaar proces zijn, maar het komt ook doordat de heetheid van een saus per batch kan verschillen. Pepers zijn een natuurproduct en om allerlei redenen kan de ene oogst heter zijn dan de andere.",
+      "Daarom hebben we onze producten ingedeeld in Heetheidsniveaus. Hopelijk maakt dat kiezen voor jou makkelijker. Tabasco zou op onze schaal waarschijnlijk rond nummer 4 uitkomen."
+    ],
     "levels": {
       "mild": {
         "title": "Mild (0 - 2.500 SHU)",

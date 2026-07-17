@@ -26,11 +26,15 @@ export default async function ScovilleScalePage({
 
   return (
     <div className="mx-auto max-w-5xl px-6 py-12 md:py-20">
-      <div className="mb-12 text-center">
-        <h1 className="mb-4 text-4xl font-black uppercase tracking-tight md:text-6xl">
+      <div className="mb-12">
+        <h1 className="mb-6 text-center text-4xl font-black uppercase tracking-tight md:text-6xl">
           {t("title")}
         </h1>
-        <p className="mx-auto max-w-2xl text-lg text-zinc-600">{t("intro")}</p>
+        <div className="mx-auto max-w-3xl space-y-4 text-lg text-zinc-600">
+          {(t.raw("introParagraphs") as string[]).map((paragraph, i) => (
+            <p key={i}>{paragraph}</p>
+          ))}
+        </div>
       </div>
 
       {/* Main Scoville Image */}

@@ -329,7 +329,13 @@
   },
   "Scoville": {
     "title": "Scoville-skalaen",
-    "intro": "Scoville-skalaen er et mål på styrken (skarpheten) til chilipepper, registrert i Scoville Heat Units (SHU). Skalaen er oppkalt etter skaperen Wilbur Scoville og hjelper deg med å navigere i varmens verden uten å brenne deg – med mindre du vil det!",
+    "introParagraphs": [
+      "En skala utviklet av Wilbur Scoville i 1912. Scoville-skalaen er et mål på styrken (skarpheten) til chilipepper, registrert i Scoville Heat Units (SHU). Den er basert på konsentrasjonen av kapsaicinoider, der kapsaicin er den dominerende komponenten.",
+      "Mange spør hva Scoville-poengsummen er for våre sauser. Vi oppgir ikke Scoville-poengsummen for hver eneste hot sauce, fordi vi rett og slett ikke har den informasjonen fra våre leverandører.",
+      "En hot sauce-produsent må få sausen sin offisielt testet for SHU (Scoville Heat Units) for å vite Scoville-poengsummen, og de fleste merker gjør ikke det.",
+      "Det kan være en kostbar prosess, men det skyldes også at styrken i en saus kan variere fra parti til parti. Chili er et naturprodukt, og av mange ulike grunner kan én innhøsting være sterkere enn en annen.",
+      "Derfor har vi produktene våre listet etter Styrkenivåer. Forhåpentligvis gjør det valget enklere for deg. Tabasco ville sannsynligvis ligget rundt nivå 4 på vår skala."
+    ],
     "levels": {
       "mild": {
         "title": "Mild (0 - 2 500 SHU)",

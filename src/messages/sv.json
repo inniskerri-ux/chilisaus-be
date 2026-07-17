@@ -329,7 +329,13 @@
   },
   "Scoville": {
     "title": "Scovilleskalan",
-    "intro": "Scovilleskalan är ett mått på styrkan (hettan) hos chilipeppar, registrerad i Scoville Heat Units (SHU). Skalan är uppkallad efter sin skapare Wilbur Scoville och hjälper dig att navigera i hettans värld utan att bränna dig – om du inte vill det!",
+    "introParagraphs": [
+      "En skala utvecklad av Wilbur Scoville 1912. Scovilleskalan är ett mått på styrkan (hettan) hos chilipeppar, registrerad i Scoville Heat Units (SHU). Den baseras på koncentrationen av capsaicinoider, där capsaicin är den dominerande komponenten.",
+      "Många frågar vad Scoville-poängen är för våra såser. Vi listar inte Scoville-poängen för varje hot sauce eftersom vi helt enkelt inte har den informationen från våra leverantörer.",
+      "En producent av hot sauce måste låta testa sin sås officiellt för SHU (Scoville Heat Units) för att veta Scoville-poängen, och de flesta märken gör inte det.",
+      "Det kan vara en kostsam process, men det beror också på att hettan i en sås kan variera mellan olika satser. Chili är en naturprodukt, och av många olika anledningar kan en skörd vara hetare än en annan.",
+      "Därför listar vi våra produkter efter Styrkanivåer. Förhoppningsvis gör det det lättare för dig att välja. Tabasco skulle troligen ligga runt nivå 4 på vår skala."
+    ],
     "levels": {
       "mild": {
         "title": "Mild (0 - 2 500 SHU)",

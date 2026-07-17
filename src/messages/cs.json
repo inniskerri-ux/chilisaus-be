@@ -329,7 +329,13 @@
   },
   "Scoville": {
     "title": "Scovilleho stupnice",
-    "intro": "Scovilleho stupnice je měřítkem pálivosti (ostrosti) chilli papriček, uváděným v jednotkách SHU. Pojmenovaná po svém tvůrci Wilburu Scovilleovi vám pomůže orientovat se ve světě pálivosti, aniž byste se spálili — pokud ovšem nechcete!",
+    "introParagraphs": [
+      "Stupnice vyvinutá Wilburem Scovillem v roce 1912. Scovilleho stupnice měří pálivost (ostrost, neboli „teplo“) chilli papriček a udává se v jednotkách SHU. Vychází z koncentrace kapsaicinoidů, přičemž kapsaicin je jejich hlavní složkou.",
+      "Hodně lidí se ptá, jaké je Scovilleho hodnocení našich omáček. U každé pálivé omáčky Scovilleho hodnocení neuvádíme, protože tuto informaci od svých dodavatelů jednoduše nemáme.",
+      "Výrobce pálivé omáčky musí nechat svůj produkt oficiálně otestovat na SHU (jednotky Scovilleho stupnice), aby znal jeho hodnocení, a většina značek to nedělá.",
+      "Může to být nákladný proces, ale je to i tím, že pálivost omáčky se může lišit dávku od dávky. Chilli papričky jsou přírodní produkt a z mnoha různých důvodů může být jedna sklizeň pálivější než jiná.",
+      "Proto naše produkty řadíme podle Úrovní Pálivosti. Doufáme, že vám to usnadní výběr. Tabasco by se na naší stupnici pravděpodobně pohyboval kolem úrovně 4."
+    ],
     "levels": {
       "mild": {
         "title": "Jemná (0 - 2 500 SHU)",

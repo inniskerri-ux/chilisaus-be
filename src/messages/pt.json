@@ -329,7 +329,13 @@
   },
   "Scoville": {
     "title": "A Escala de Scoville",
-    "intro": "A escala de Scoville é uma medida da pungência (picante ou calor) das pimentas, registada em Unidades de Calor Scoville (SHU). Nomeada em homenagem ao seu criador, Wilbur Scoville, esta escala ajuda-o a navegar no mundo do picante sem se queimar — a menos que queira!",
+    "introParagraphs": [
+      "Uma escala desenvolvida por Wilbur Scoville em 1912. A Escala de Scoville é uma medida da pungência (picante ou calor) das pimentas, registada em Unidades de Calor Scoville (SHU). Baseia-se na concentração de capsaicinoides, sendo a capsaicina o componente predominante.",
+      "Muitas pessoas perguntam-nos qual é a pontuação Scoville dos nossos molhos. Não indicamos a pontuação Scoville de todos os molhos porque, simplesmente, não temos essa informação por parte dos nossos fornecedores.",
+      "Um produtor de molho picante tem de submeter o seu molho a testes oficiais de SHU (Unidades de Calor Scoville) para conhecer a pontuação Scoville, e a maioria das marcas não o faz.",
+      "Pode ser um processo dispendioso, mas também se deve ao facto de o picante de um molho poder variar de lote para lote. As pimentas são um produto natural e, por várias razões, uma colheita pode ser mais picante do que outra.",
+      "Por isso, listamos os nossos produtos por Níveis de Picante. Esperamos que isso ajude a facilitar a sua escolha. O Tabasco estaria provavelmente à volta do número 4 na nossa escala."
+    ],
     "levels": {
       "mild": {
         "title": "Suave (0 - 2.500 SHU)",

@@ -329,7 +329,13 @@
   },
   "Scoville": {
     "title": "Skala Scoville'a",
-    "intro": "Skala Scoville'a to miara ostrości (pikantności) papryk chili, rejestrowana w jednostkach Scoville (SHU). Nazwana na cześć jej twórcy Wilbura Scoville'a, pomaga poruszać się po świecie ostrości bez poparzenia się — chyba że tego chcesz!",
+    "introParagraphs": [
+      "Skala opracowana przez Wilbura Scoville’a w 1912 roku. Skala Scoville’a to miara ostrości (pikantności) papryk chili, wyrażana w jednostkach Scoville’a (SHU). Opiera się na stężeniu kapsaicynoidów, z których kapsaicyna jest głównym składnikiem.",
+      "Wiele osób pyta, jaka jest ocena Scoville’a naszych sosów. Nie podajemy oceny Scoville’a dla każdego sosu, ponieważ po prostu nie otrzymujemy tej informacji od naszych dostawców.",
+      "Producent sosu musi poddać go oficjalnym testom SHU (jednostek Scoville’a), aby poznać jego ocenę Scoville’a, a większość marek tego nie robi.",
+      "Może to być kosztowny proces, ale wynika też z tego, że ostrość sosu może różnić się w zależności od partii. Papryka to naturalny produkt i z wielu różnych powodów jeden zbiór może być ostrzejszy od innego.",
+      "Dlatego nasze produkty klasyfikujemy według Poziomów Ostrości. Mamy nadzieję, że ułatwi Ci to wybór. Tabasco na naszej skali plasowałby się prawdopodobnie w okolicach poziomu 4."
+    ],
     "levels": {
       "mild": {
         "title": "Łagodny (0 - 2 500 SHU)",
