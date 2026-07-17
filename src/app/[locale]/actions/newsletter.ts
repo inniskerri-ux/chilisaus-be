@@ -12,8 +12,10 @@ const supabaseAdmin = createClient(
   process.env.SUPABASE_SERVICE_ROLE_KEY!,
 );
 
+const EMAIL_RE = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
 export async function subscribeToNewsletter(email: string, locale: string) {
-  if (!email || !email.includes("@")) {
+  if (!email || email.length > 254 || !EMAIL_RE.test(email)) {
     return { error: "Invalid email address" };
   }
 

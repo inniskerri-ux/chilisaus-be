@@ -2,6 +2,7 @@
 
 import { getStripeServerClient } from "@/lib/stripe/server";
 import { createClient } from "@/lib/supabase/server";
+import { createAdminClient } from "@/lib/supabase/admin";
 import { calculateShippingCost } from "@/lib/checkout/pricing";
 import { getEffectivePriceCents } from "@/lib/pricing";
 import { calculatePackageWeight } from "@/lib/shipping/config";
@@ -44,7 +45,8 @@ export async function createCheckoutSession(formData: FormData) {
   const customerEmail = (formData.get("email") as string) || user?.email || "";
 
   // 3. Fetch cart items
-  const { data: cartItems, error } = await supabase
+  const adminSupabase = createAdminClient();
+  const { data: cartItems, error } = await adminSupabase
     .from("cart_items")
     .select("*, product:products(*), variant:product_variants(id, label, price_cents, sale_price_cents, weight_grams)")
     .eq("cart_session_id", cartSessionId);

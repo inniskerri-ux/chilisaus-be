@@ -1,6 +1,6 @@
 "use server";
 
-import { createClient } from "@/lib/supabase/server";
+import { createAdminClient } from "@/lib/supabase/admin";
 import { cookies } from "next/headers";
 import { revalidatePath } from "next/cache";
 
@@ -11,7 +11,7 @@ export async function addToCart(
   color?: string,
   variantId?: string,
 ) {
-  const supabase = await createClient();
+  const supabase = createAdminClient();
   const cookieStore = await cookies();
 
   let cartSessionId = cookieStore.get("cart_session_id")?.value;
@@ -65,24 +65,34 @@ export async function addToCart(
 }
 
 export async function removeFromCart(itemId: string) {
-  const supabase = await createClient();
-  const { error } = await supabase.from("cart_items").delete().eq("id", itemId);
+  const supabase = createAdminClient();
+  const cartSessionId = (await cookies()).get("cart_session_id")?.value;
+  if (!cartSessionId) return;
+
+  const { error } = await supabase
+    .from("cart_items")
+    .delete()
+    .eq("id", itemId)
+    .eq("cart_session_id", cartSessionId);
 
   if (error) throw error;
   revalidatePath("/cart");
 }
 
 export async function updateCartQuantity(itemId: string, quantity: number) {
-  const supabase = await createClient();
-
   if (quantity <= 0) {
     return removeFromCart(itemId);
   }
 
+  const supabase = createAdminClient();
+  const cartSessionId = (await cookies()).get("cart_session_id")?.value;
+  if (!cartSessionId) return;
+
   const { error } = await supabase
     .from("cart_items")
     .update({ quantity })
-    .eq("id", itemId);
+    .eq("id", itemId)
+    .eq("cart_session_id", cartSessionId);
 
   if (error) throw error;
   revalidatePath("/cart");

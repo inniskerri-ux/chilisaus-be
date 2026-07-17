@@ -1,4 +1,5 @@
 import { createClient } from "@/lib/supabase/server";
+import { createAdminClient } from "@/lib/supabase/admin";
 import { cookies } from "next/headers";
 
 export const dynamic = "force-dynamic";
@@ -23,7 +24,8 @@ export async function GET() {
   const cartSessionId = (await cookies()).get("cart_session_id")?.value;
   let cartCount = 0;
   if (cartSessionId) {
-    const { data: cartItems } = await supabase
+    const adminSupabase = createAdminClient();
+    const { data: cartItems } = await adminSupabase
       .from("cart_items")
       .select("quantity")
       .eq("cart_session_id", cartSessionId);
