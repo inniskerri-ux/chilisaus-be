@@ -207,7 +207,12 @@ export default async function AdminOrderDetailPage({
             <Mail size={12} /> Customer
           </h2>
           <div className="space-y-1 text-sm">
-            <p className="font-bold text-zinc-900">{order.shipping_name || "—"}</p>
+            <Link
+              href={`/${locale}/admin/customers/${encodeURIComponent(order.customer_email)}`}
+              className="font-bold text-zinc-900 hover:text-brand-red hover:underline block w-fit"
+            >
+              {order.shipping_name || "—"}
+            </Link>
             <a
               href={`mailto:${order.customer_email}`}
               className="text-brand-red hover:underline block"
