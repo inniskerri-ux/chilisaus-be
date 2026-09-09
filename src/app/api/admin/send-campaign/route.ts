@@ -29,10 +29,11 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: message }, { status });
   }
 
-  const { subject, previewText, blocks } = (await req.json()) as {
+  const { subject, previewText, blocks, campaignId } = (await req.json()) as {
     subject: string;
     previewText?: string;
     blocks: Block[];
+    campaignId?: string | null;
   };
 
   if (!subject || !blocks?.length) {
@@ -60,29 +61,39 @@ export async function POST(req: NextRequest) {
     send: true,
   });
 
-  if (error || !data) {
-    console.error("[SendCampaign] Resend broadcast failed:", error);
-    await supabaseAdmin.from("campaigns").insert({
-      subject,
-      preview_text: previewText || null,
-      blocks,
-      status: "failed",
-      recipient_count: recipientCount || 0,
-      created_by: user.id,
-    });
-    return NextResponse.json({ error: "Failed to send broadcast" }, { status: 500 });
-  }
-
-  await supabaseAdmin.from("campaigns").insert({
+  // If this campaign started life as a saved draft, finish that same row
+  // (update in place) instead of leaving the draft orphaned and inserting a
+  // second, disconnected row.
+  const userId = user.id;
+  const campaignRow = {
     subject,
     preview_text: previewText || null,
     blocks,
-    status: "sent",
-    sent_at: new Date().toISOString(),
     recipient_count: recipientCount || 0,
-    created_by: user.id,
-    resend_broadcast_id: data.id,
-  });
+  };
+
+  async function saveCampaignResult(status: "sent" | "failed", extra: Record<string, unknown> = {}) {
+    if (campaignId) {
+      const { data: updated } = await supabaseAdmin
+        .from("campaigns")
+        .update({ ...campaignRow, status, ...extra })
+        .eq("id", campaignId)
+        .select("id")
+        .single();
+      if (updated) return;
+      // Draft row no longer exists (already sent, or deleted) -- fall back
+      // to inserting a fresh row so the send result is never lost.
+    }
+    await supabaseAdmin.from("campaigns").insert({ ...campaignRow, status, created_by: userId, ...extra });
+  }
+
+  if (error || !data) {
+    console.error("[SendCampaign] Resend broadcast failed:", error);
+    await saveCampaignResult("failed");
+    return NextResponse.json({ error: "Failed to send broadcast" }, { status: 500 });
+  }
+
+  await saveCampaignResult("sent", { sent_at: new Date().toISOString(), resend_broadcast_id: data.id });
 
   return NextResponse.json({ success: true, broadcastId: data.id, recipientCount });
 }

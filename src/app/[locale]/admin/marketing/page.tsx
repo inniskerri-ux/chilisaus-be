@@ -1,8 +1,9 @@
 import { createClient } from "@supabase/supabase-js";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { Mail, Plus, Send, FileEdit, CheckCircle2, Clock, Users } from "lucide-react";
+import { Mail, Plus, Send, FileEdit, CheckCircle2, Clock, Users, ArrowRight } from "lucide-react";
 import { format } from "date-fns";
+import DeleteDraftButton from "./DeleteDraftButton";
 
 const supabaseAdmin = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -52,7 +53,7 @@ export default async function MarketingPage({
       <div className="bg-white rounded-xl border shadow-sm overflow-hidden">
         <div className="p-4 border-b bg-zinc-50/50">
           <h2 className="font-bold text-sm uppercase tracking-wider text-zinc-500">
-            Sent Campaigns
+            Campaigns
           </h2>
         </div>
         <div className="divide-y">
@@ -62,12 +63,10 @@ export default async function MarketingPage({
               <p>No campaigns yet. Ready to send your first newsletter?</p>
             </div>
           ) : (
-            campaigns.map((campaign) => (
-              <div
-                key={campaign.id}
-                className="p-6 hover:bg-zinc-50/50 transition-colors flex items-center justify-between"
-              >
-                <div className="flex items-start gap-4">
+            campaigns.map((campaign) => {
+              const isDraft = campaign.status === "draft";
+              const details = (
+                <div className="flex items-start gap-4 flex-1 min-w-0">
                   <div
                     className={`p-2 rounded-lg ${
                       campaign.status === "sent"
@@ -81,12 +80,12 @@ export default async function MarketingPage({
                       <FileEdit size={20} />
                     )}
                   </div>
-                  <div>
-                    <h3 className="font-bold text-zinc-900">{campaign.subject}</h3>
+                  <div className="min-w-0">
+                    <h3 className="font-bold text-zinc-900 truncate">{campaign.subject || "(No subject)"}</h3>
                     {campaign.preview_text && (
                       <p className="text-xs text-zinc-500 mt-0.5">{campaign.preview_text}</p>
                     )}
-                    <div className="flex items-center gap-3 mt-2">
+                    <div className="flex items-center gap-3 mt-2 flex-wrap">
                       <span
                         className={`text-[10px] font-bold uppercase px-2 py-0.5 rounded-full border ${
                           campaign.status === "sent"
@@ -109,8 +108,34 @@ export default async function MarketingPage({
                     </div>
                   </div>
                 </div>
-              </div>
-            ))
+              );
+
+              return (
+                <div
+                  key={campaign.id}
+                  className="p-6 hover:bg-zinc-50/50 transition-colors flex items-center justify-between gap-4"
+                >
+                  {isDraft ? (
+                    <Link href={`/${locale}/admin/marketing/new?draft=${campaign.id}`} className="flex-1 min-w-0">
+                      {details}
+                    </Link>
+                  ) : (
+                    details
+                  )}
+                  {isDraft && (
+                    <div className="flex items-center gap-2 shrink-0">
+                      <Link
+                        href={`/${locale}/admin/marketing/new?draft=${campaign.id}`}
+                        className="text-xs text-zinc-400 hover:text-brand-red flex items-center gap-1"
+                      >
+                        Continue editing <ArrowRight size={12} />
+                      </Link>
+                      <DeleteDraftButton draftId={campaign.id} />
+                    </div>
+                  )}
+                </div>
+              );
+            })
           )}
         </div>
       </div>

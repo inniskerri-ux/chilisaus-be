@@ -26,8 +26,10 @@ import {
   Bold,
   Italic,
   Underline,
+  Save,
 } from "lucide-react";
 import type { Block, ColumnBlock, TextBlock, ImageBlock, ProductsBlock, ButtonBlock, RowBlock } from "@/lib/emails/newsletter-builder";
+import { saveCampaignDraft } from "../actions";
 
 type Product = {
   id: string;
@@ -693,14 +695,23 @@ export default function EmailBuilder({
   locale,
   products,
   subscriberCount,
+  initialDraftId = null,
+  initialSubject = "",
+  initialBlocks = [],
 }: {
   locale: string;
   products: Product[];
   subscriberCount: number;
+  initialDraftId?: string | null;
+  initialSubject?: string;
+  initialBlocks?: Block[];
 }) {
   const router = useRouter();
-  const [subject, setSubject] = useState("");
-  const [blocks, setBlocks] = useState<Block[]>([]);
+  const [subject, setSubject] = useState(initialSubject);
+  const [blocks, setBlocks] = useState<Block[]>(initialBlocks);
+  const [draftId, setDraftId] = useState<string | null>(initialDraftId);
+  const [savingDraft, setSavingDraft] = useState(false);
+  const [draftSavedAt, setDraftSavedAt] = useState<Date | null>(null);
   const [sending, setSending] = useState(false);
   const [activeBlockId, setActiveBlockId] = useState<string | null>(null);
   const [testPanelOpen, setTestPanelOpen] = useState(false);
@@ -741,6 +752,25 @@ export default function EmailBuilder({
     setActiveBlockId(block.id);
   };
 
+  const handleSaveDraft = async () => {
+    setSavingDraft(true);
+    try {
+      const res = await saveCampaignDraft(draftId, { subject, blocks });
+      if (res.error) throw new Error(res.error);
+      if (res.draftId) {
+        setDraftId(res.draftId);
+        // Keep the draft id in the URL so a refresh (or sharing the link)
+        // resumes the same draft instead of starting a blank one.
+        router.replace(`/${locale}/admin/marketing/new?draft=${res.draftId}`);
+      }
+      setDraftSavedAt(new Date());
+    } catch (err) {
+      alert(err instanceof Error ? err.message : "Failed to save draft");
+    } finally {
+      setSavingDraft(false);
+    }
+  };
+
   const handleSend = async () => {
     if (!subject.trim()) { alert("Please enter a subject line."); return; }
     if (blocks.length === 0) { alert("Please add at least one block."); return; }
@@ -751,7 +781,7 @@ export default function EmailBuilder({
       const res = await fetch("/api/admin/send-campaign", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ subject, blocks }),
+        body: JSON.stringify({ subject, blocks, campaignId: draftId }),
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error);
@@ -793,8 +823,24 @@ export default function EmailBuilder({
     <div className="space-y-4">
       {/* Top bar */}
       <div className="flex items-center justify-between gap-4 relative">
-        <h1 className="text-2xl font-bold tracking-tight">New Newsletter</h1>
+        <div>
+          <h1 className="text-2xl font-bold tracking-tight">New Newsletter</h1>
+          {draftSavedAt && (
+            <p className="text-xs text-zinc-400 mt-0.5">
+              Draft saved {draftSavedAt.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}
+            </p>
+          )}
+        </div>
         <div className="flex items-center gap-2">
+          <Button
+            type="button"
+            variant="outline"
+            onClick={handleSaveDraft}
+            disabled={savingDraft}
+          >
+            {savingDraft ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <Save className="mr-2 h-4 w-4" />}
+            {savingDraft ? "Saving..." : "Save Draft"}
+          </Button>
           <Button
             type="button"
             variant="outline"
