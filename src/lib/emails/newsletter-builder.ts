@@ -27,7 +27,20 @@ export type ButtonBlock = {
   url: string;
 };
 
-export type Block = TextBlock | ImageBlock | ProductsBlock | ButtonBlock;
+// Blocks that can live inside a row's column. A row cannot contain another
+// row -- keeps layout/rendering non-recursive and email-client-safe.
+export type ColumnBlock = TextBlock | ImageBlock | ProductsBlock | ButtonBlock;
+
+export type RowBlock = {
+  id: string;
+  type: "row";
+  // Width of the left column, as a percentage (right column is 100 - this).
+  splitPercent: number;
+  left: ColumnBlock[];
+  right: ColumnBlock[];
+};
+
+export type Block = ColumnBlock | RowBlock;
 
 function formatPrice(cents: number) {
   return `€${(cents / 100).toFixed(2)}`;
@@ -111,6 +124,23 @@ function renderBlock(block: Block, siteUrl: string): string {
         <div style="margin:8px 0 24px;text-align:center;">
           <a href="${block.url}" style="display:inline-block;background:#c00;color:#fff;font-size:15px;font-weight:600;padding:14px 32px;border-radius:6px;text-decoration:none;">${block.label}</a>
         </div>`;
+    }
+
+    case "row": {
+      if (!block.left.length && !block.right.length) return "";
+      const left = Math.min(80, Math.max(20, block.splitPercent));
+      const right = 100 - left;
+      const leftHtml = block.left.map((b) => renderBlock(b, siteUrl)).join("\n");
+      const rightHtml = block.right.map((b) => renderBlock(b, siteUrl)).join("\n");
+      // Table-based layout: flexbox/grid support is unreliable across email
+      // clients (Outlook desktop in particular), tables are not.
+      return `
+        <table style="width:100%;border-collapse:collapse;margin:0 0 20px;" cellpadding="0" cellspacing="0">
+          <tr>
+            <td style="width:${left}%;vertical-align:top;padding-right:12px;box-sizing:border-box;">${leftHtml}</td>
+            <td style="width:${right}%;vertical-align:top;padding-left:12px;box-sizing:border-box;">${rightHtml}</td>
+          </tr>
+        </table>`;
     }
 
     default:

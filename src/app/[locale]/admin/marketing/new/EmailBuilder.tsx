@@ -22,8 +22,10 @@ import {
   X,
   Upload,
   FlaskConical,
+  Columns2,
+  GripVertical,
 } from "lucide-react";
-import type { Block, TextBlock, ImageBlock, ProductsBlock, ButtonBlock } from "@/lib/emails/newsletter-builder";
+import type { Block, ColumnBlock, TextBlock, ImageBlock, ProductsBlock, ButtonBlock, RowBlock } from "@/lib/emails/newsletter-builder";
 
 type Product = {
   id: string;
@@ -72,6 +74,33 @@ function TextEditor({ block, onChange }: { block: TextBlock; onChange: (b: TextB
   );
 }
 
+function convertToWebP(file: File): Promise<Blob> {
+  return new Promise((resolve, reject) => {
+    const img = document.createElement("img");
+    const canvas = document.createElement("canvas");
+    const ctx = canvas.getContext("2d");
+
+    img.onload = () => {
+      // Keep the original dimensions -- only re-encode as WebP to shrink
+      // file size, never crop or resize the actual image.
+      canvas.width = img.width;
+      canvas.height = img.height;
+      ctx?.drawImage(img, 0, 0);
+      canvas.toBlob(
+        (blob) => {
+          if (blob) resolve(blob);
+          else reject(new Error("Failed to convert image to WebP"));
+        },
+        "image/webp",
+        0.85,
+      );
+    };
+
+    img.onerror = () => reject(new Error("Failed to load image"));
+    img.src = URL.createObjectURL(file);
+  });
+}
+
 function ImageEditor({ block, onChange }: { block: ImageBlock; onChange: (b: ImageBlock) => void }) {
   const [uploading, setUploading] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -81,10 +110,11 @@ function ImageEditor({ block, onChange }: { block: ImageBlock; onChange: (b: Ima
     if (!file) return;
     setUploading(true);
     try {
+      const webpBlob = await convertToWebP(file);
       const filename = `email-${Date.now()}.webp`;
       const { data, error } = await supabase.storage
         .from("product-images")
-        .upload(filename, file, { upsert: true });
+        .upload(filename, webpBlob, { contentType: "image/webp", upsert: true });
       if (error) throw error;
       const { data: { publicUrl } } = supabase.storage.from("product-images").getPublicUrl(data.path);
       onChange({ ...block, url: publicUrl });
@@ -101,7 +131,7 @@ function ImageEditor({ block, onChange }: { block: ImageBlock; onChange: (b: Ima
       {block.url ? (
         <div className="relative">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={block.url} alt={block.alt} className="w-full max-h-48 object-cover rounded-lg border" />
+          <img src={block.url} alt={block.alt} className="w-full max-h-64 object-contain rounded-lg border bg-zinc-50" />
           <button
             type="button"
             onClick={() => onChange({ ...block, url: "" })}
@@ -131,6 +161,11 @@ function ImageEditor({ block, onChange }: { block: ImageBlock; onChange: (b: Ima
         onChange={(e) => onChange({ ...block, alt: e.target.value })}
         className="text-sm"
       />
+      {block.alt && (
+        <p className="text-xs text-zinc-400">
+          Alt text (for accessibility / if the image fails to load): <span className="italic">&ldquo;{block.alt}&rdquo;</span>
+        </p>
+      )}
       <input ref={inputRef} type="file" accept="image/*" onChange={handleFile} className="hidden" />
     </div>
   );
@@ -225,6 +260,164 @@ function ProductsEditor({
   );
 }
 
+// Row columns keep to a simple subset -- a 2-product grid doesn't read well
+// squeezed into a narrow half-width column, and nesting rows would make both
+// the editor and the email-client table markup recursive for no real gain.
+const COLUMN_BLOCK_TYPES = [
+  { type: "text", label: "Text", icon: Type },
+  { type: "image", label: "Image", icon: ImageIcon },
+  { type: "button", label: "Button", icon: MousePointerClick },
+] as const;
+
+type ColumnBlockType = (typeof COLUMN_BLOCK_TYPES)[number]["type"];
+
+function createColumnBlock(type: ColumnBlockType): ColumnBlock {
+  const id = genId();
+  switch (type) {
+    case "text": return { id, type: "text", content: "", size: "body" };
+    case "image": return { id, type: "image", url: "", alt: "" };
+    case "button": return { id, type: "button", label: "Shop Now", url: "https://chilisaus.be/en/shop" };
+  }
+}
+
+function ColumnEditor({
+  blocks,
+  onChange,
+  activeId,
+  setActiveId,
+}: {
+  blocks: ColumnBlock[];
+  onChange: (blocks: ColumnBlock[]) => void;
+  activeId: string | null;
+  setActiveId: (id: string | null) => void;
+}) {
+  const update = (id: string, updated: ColumnBlock) =>
+    onChange(blocks.map((b) => (b.id === id ? updated : b)));
+  const remove = (id: string) => onChange(blocks.filter((b) => b.id !== id));
+  const add = (type: ColumnBlockType) => {
+    const block = createColumnBlock(type);
+    onChange([...blocks, block]);
+    setActiveId(block.id);
+  };
+
+  return (
+    <div className="space-y-2">
+      <div className="flex flex-wrap gap-1">
+        {COLUMN_BLOCK_TYPES.map(({ type, label, icon: Icon }) => (
+          <button
+            key={type}
+            type="button"
+            onClick={() => add(type)}
+            className="flex items-center gap-1 text-[11px] px-2 py-1 border rounded-md hover:bg-zinc-50 transition-colors"
+          >
+            <Icon size={12} />
+            <span>{label}</span>
+            <Plus size={10} className="text-zinc-400" />
+          </button>
+        ))}
+      </div>
+      {blocks.length === 0 ? (
+        <div className="border border-dashed border-zinc-200 rounded-lg p-4 text-center text-zinc-300 text-xs">
+          Empty column
+        </div>
+      ) : (
+        blocks.map((block) => {
+          const isActive = activeId === block.id;
+          return (
+            <div
+              key={block.id}
+              className={`border rounded-lg p-2 cursor-pointer transition-all ${isActive ? "ring-1 ring-black" : "hover:border-zinc-300"}`}
+              onClick={() => setActiveId(isActive ? null : block.id)}
+            >
+              <div className="flex items-center justify-between">
+                <span className="text-[10px] uppercase tracking-wide text-zinc-400">{block.type}</span>
+                <button
+                  type="button"
+                  onClick={(e) => { e.stopPropagation(); remove(block.id); }}
+                  className="p-0.5 rounded hover:bg-red-50 text-red-400 hover:text-red-600"
+                >
+                  <Trash2 size={12} />
+                </button>
+              </div>
+              {isActive && (
+                <div className="mt-2" onClick={(e) => e.stopPropagation()}>
+                  {block.type === "text" && <TextEditor block={block} onChange={(b) => update(block.id, b)} />}
+                  {block.type === "image" && <ImageEditor block={block} onChange={(b) => update(block.id, b)} />}
+                  {block.type === "button" && <ButtonEditor block={block} onChange={(b) => update(block.id, b)} />}
+                </div>
+              )}
+            </div>
+          );
+        })
+      )}
+    </div>
+  );
+}
+
+function RowEditor({
+  block,
+  onChange,
+}: {
+  block: RowBlock;
+  onChange: (b: RowBlock) => void;
+}) {
+  // Nested column blocks get their own active-block tracking, independent of
+  // the top-level block list -- sharing one id would collapse this row's own
+  // card the moment a block inside it was opened (they can't both be "the
+  // active id" at once).
+  const [activeColId, setActiveColId] = useState<string | null>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const draggingRef = useRef(false);
+
+  const onDragStart = (e: React.PointerEvent) => {
+    e.preventDefault();
+    draggingRef.current = true;
+    const move = (ev: PointerEvent) => {
+      if (!draggingRef.current || !containerRef.current) return;
+      const rect = containerRef.current.getBoundingClientRect();
+      const percent = ((ev.clientX - rect.left) / rect.width) * 100;
+      onChange({ ...block, splitPercent: Math.min(80, Math.max(20, Math.round(percent))) });
+    };
+    const up = () => {
+      draggingRef.current = false;
+      window.removeEventListener("pointermove", move);
+      window.removeEventListener("pointerup", up);
+    };
+    window.addEventListener("pointermove", move);
+    window.addEventListener("pointerup", up);
+  };
+
+  return (
+    <div ref={containerRef} className="flex items-stretch">
+      <div style={{ width: `calc(${block.splitPercent}% - 8px)` }}>
+        <ColumnEditor
+          blocks={block.left}
+          onChange={(left) => onChange({ ...block, left })}
+          activeId={activeColId}
+          setActiveId={setActiveColId}
+        />
+      </div>
+      <div
+        onPointerDown={onDragStart}
+        className="w-4 flex-shrink-0 flex items-center justify-center cursor-col-resize group"
+        title="Drag to resize columns"
+      >
+        <div className="w-1.5 self-stretch bg-zinc-200 group-hover:bg-zinc-400 rounded-full flex items-center justify-center transition-colors">
+          <GripVertical size={12} className="text-zinc-500 bg-white rounded" />
+        </div>
+      </div>
+      <div style={{ width: `calc(${100 - block.splitPercent}% - 8px)` }}>
+        <ColumnEditor
+          blocks={block.right}
+          onChange={(right) => onChange({ ...block, right })}
+          activeId={activeColId}
+          setActiveId={setActiveColId}
+        />
+      </div>
+    </div>
+  );
+}
+
 function ButtonEditor({ block, onChange }: { block: ButtonBlock; onChange: (b: ButtonBlock) => void }) {
   return (
     <div className="space-y-3">
@@ -264,7 +457,7 @@ function BlockPreview({ block }: { block: Block }) {
     case "image":
       return block.url ? (
         // eslint-disable-next-line @next/next/no-img-element
-        <img src={block.url} alt={block.alt} className="w-full max-h-48 object-cover rounded-lg" />
+        <img src={block.url} alt={block.alt} className="w-full h-auto rounded-lg" />
       ) : (
         <div className="w-full h-24 bg-zinc-100 rounded-lg flex items-center justify-center text-zinc-400 text-xs">
           No image
@@ -300,6 +493,25 @@ function BlockPreview({ block }: { block: Block }) {
           </span>
         </div>
       );
+    case "row":
+      return (
+        <div className="flex gap-3">
+          <div style={{ width: `${block.splitPercent}%` }} className="space-y-3 min-w-0">
+            {block.left.length === 0 ? (
+              <p className="text-zinc-300 italic text-xs">Empty column</p>
+            ) : (
+              block.left.map((b) => <BlockPreview key={b.id} block={b} />)
+            )}
+          </div>
+          <div style={{ width: `${100 - block.splitPercent}%` }} className="space-y-3 min-w-0">
+            {block.right.length === 0 ? (
+              <p className="text-zinc-300 italic text-xs">Empty column</p>
+            ) : (
+              block.right.map((b) => <BlockPreview key={b.id} block={b} />)
+            )}
+          </div>
+        </div>
+      );
   }
 }
 
@@ -308,6 +520,7 @@ const BLOCK_TYPES = [
   { type: "image", label: "Image", icon: ImageIcon },
   { type: "products", label: "Products", icon: ShoppingBag },
   { type: "button", label: "Button", icon: MousePointerClick },
+  { type: "row", label: "Row", icon: Columns2 },
 ] as const;
 
 const TEST_RECIPIENTS = [
@@ -319,6 +532,7 @@ const TEST_RECIPIENTS = [
 function createBlock(type: Block["type"]): Block {
   const id = genId();
   switch (type) {
+    case "row": return { id, type: "row", splitPercent: 50, left: [], right: [] };
     case "text": return { id, type: "text", content: "", size: "body" };
     case "image": return { id, type: "image", url: "", alt: "" };
     case "products": return { id, type: "products", products: [] };
@@ -586,6 +800,12 @@ export default function EmailBuilder({
                           )}
                           {block.type === "button" && (
                             <ButtonEditor block={block} onChange={(b) => updateBlock(block.id, b)} />
+                          )}
+                          {block.type === "row" && (
+                            <RowEditor
+                              block={block}
+                              onChange={(b) => updateBlock(block.id, b)}
+                            />
                           )}
                         </div>
                       )}
