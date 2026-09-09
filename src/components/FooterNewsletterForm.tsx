@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { Loader2 } from "lucide-react";
 import { subscribeToNewsletter } from "@/app/[locale]/actions/newsletter";
+import { useFormGuard } from "@/components/security/useFormGuard";
 
 export default function FooterNewsletterForm({
   locale,
@@ -18,6 +19,7 @@ export default function FooterNewsletterForm({
   const [isSuccess, setIsSuccess] = useState(initialSubscribed);
   const [justSubscribed, setJustSubscribed] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const { honeypotValue, renderedAt, honeypotFieldProps } = useFormGuard();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -25,7 +27,12 @@ export default function FooterNewsletterForm({
     setError(null);
 
     try {
-      const result = await subscribeToNewsletter(email, locale);
+      const result = await subscribeToNewsletter({
+        email,
+        locale,
+        honeypot: honeypotValue,
+        renderedAt,
+      });
       if (result.success) {
         setIsSuccess(true);
         setJustSubscribed(true);
@@ -53,6 +60,7 @@ export default function FooterNewsletterForm({
 
   return (
     <form onSubmit={handleSubmit} className="w-full sm:w-auto">
+      <input {...honeypotFieldProps} />
       <div className="flex w-full flex-col gap-3 sm:w-96 sm:flex-row">
         <input
           type="email"

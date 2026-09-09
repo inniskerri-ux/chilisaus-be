@@ -4,20 +4,39 @@ import { sendEmail } from "@/lib/emails/client";
 import { getNewsletterWelcomeHtml } from "@/lib/emails/templates";
 import { subscribeToMailingList } from "@/lib/marketing/mailing-list";
 import { createOneTimeDiscountCode } from "@/lib/vouchers/createOneTimeDiscountCode";
+import { getClientIp } from "@/lib/security/ip";
+import { checkRateLimit } from "@/lib/security/rateLimit";
+import { logRejection } from "@/lib/security/log";
 
 const supabaseAdmin = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
   process.env.SUPABASE_SERVICE_ROLE_KEY!,
 );
 
+const ROUTE = "newsletter.confirm";
+
 export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url);
   const token = searchParams.get("token");
   const locale = searchParams.get("locale") || "en";
+  const ip = await getClientIp();
 
   if (!token) {
+    logRejection({ route: ROUTE, ip, reason: "missing_token" });
     return NextResponse.redirect(
       new URL(`/${locale}?error=invalid_token`, req.url),
+    );
+  }
+
+  const allowed = await checkRateLimit({
+    key: `${ROUTE}:ip:${ip}`,
+    windowSeconds: 3600,
+    maxHits: 20,
+  });
+  if (!allowed) {
+    logRejection({ route: ROUTE, ip, reason: "rate_limited" });
+    return NextResponse.redirect(
+      new URL(`/${locale}?error=rate_limited`, req.url),
     );
   }
 
@@ -30,6 +49,7 @@ export async function GET(req: NextRequest) {
       .maybeSingle();
 
     if (fetchError || !signup) {
+      logRejection({ route: ROUTE, ip, reason: "token_not_found" });
       return NextResponse.redirect(
         new URL(`/${locale}?error=not_found`, req.url),
       );

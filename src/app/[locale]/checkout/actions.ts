@@ -1,5 +1,6 @@
 "use server";
 
+import { z } from "zod";
 import { getStripeServerClient } from "@/lib/stripe/server";
 import { createClient } from "@/lib/supabase/server";
 import { createAdminClient } from "@/lib/supabase/admin";
@@ -8,6 +9,22 @@ import { getEffectivePriceCents } from "@/lib/pricing";
 import { calculatePackageWeight } from "@/lib/shipping/config";
 import { headers, cookies } from "next/headers";
 import { redirect } from "next/navigation";
+import { getClientIp } from "@/lib/security/ip";
+import { checkRateLimit } from "@/lib/security/rateLimit";
+import { isSameOrigin } from "@/lib/security/origin";
+import { logRejection } from "@/lib/security/log";
+
+const ROUTE = "checkout.createSession";
+
+const CheckoutFieldsSchema = z.object({
+  country: z.string().trim().max(3).default("BEL"),
+  name: z.string().trim().max(200).default(""),
+  street: z.string().trim().max(200).default(""),
+  city: z.string().trim().max(120).default(""),
+  zip: z.string().trim().max(20).default(""),
+  email: z.string().trim().toLowerCase().email().max(254).optional().or(z.literal("")),
+  locale: z.string().trim().min(2).max(10).default("en"),
+});
 
 const COUNTRY_CODE_MAP: Record<string, string> = {
   BEL: "BE", NLD: "NL", DEU: "DE", FRA: "FR", LUX: "LU",
@@ -20,6 +37,39 @@ const COUNTRY_CODE_MAP: Record<string, string> = {
 
 export async function createCheckoutSession(formData: FormData) {
   console.log("[Checkout] createCheckoutSession called");
+
+  const ip = await getClientIp();
+
+  if (!(await isSameOrigin())) {
+    logRejection({ route: ROUTE, ip, reason: "bad_origin" });
+    throw new Error("Invalid request origin");
+  }
+
+  const allowed = await checkRateLimit({
+    key: `${ROUTE}:ip:${ip}`,
+    windowSeconds: 3600,
+    maxHits: 30,
+  });
+  if (!allowed) {
+    logRejection({ route: ROUTE, ip, reason: "rate_limited" });
+    throw new Error("Too many requests. Please try again later.");
+  }
+
+  const parsedFields = CheckoutFieldsSchema.safeParse({
+    country: formData.get("country")?.toString(),
+    name: formData.get("name")?.toString(),
+    street: formData.get("street")?.toString(),
+    city: formData.get("city")?.toString(),
+    zip: formData.get("zip")?.toString(),
+    email: formData.get("email")?.toString(),
+    locale: formData.get("locale")?.toString(),
+  });
+
+  if (!parsedFields.success) {
+    logRejection({ route: ROUTE, ip, reason: "invalid_schema" });
+    throw new Error("Invalid checkout details");
+  }
+
   const stripe = getStripeServerClient();
   const supabase = await createClient();
 
@@ -36,13 +86,13 @@ export async function createCheckoutSession(formData: FormData) {
   console.log(`[Checkout] cart_session_id: ${cartSessionId}, user: ${user?.id || "guest"}`);
 
   // 2. Collect address from form
-  const countryCode = (formData.get("country") as string) || "BEL";
+  const countryCode = parsedFields.data.country;
   const country2 = COUNTRY_CODE_MAP[countryCode] || countryCode;
-  const shippingName = (formData.get("name") as string) || "";
-  const shippingStreet = (formData.get("street") as string) || "";
-  const shippingCity = (formData.get("city") as string) || "";
-  const shippingPostalCode = (formData.get("zip") as string) || "";
-  const customerEmail = (formData.get("email") as string) || user?.email || "";
+  const shippingName = parsedFields.data.name;
+  const shippingStreet = parsedFields.data.street;
+  const shippingCity = parsedFields.data.city;
+  const shippingPostalCode = parsedFields.data.zip;
+  const customerEmail = parsedFields.data.email || user?.email || "";
 
   // 3. Fetch cart items
   const adminSupabase = createAdminClient();
@@ -76,7 +126,7 @@ export async function createCheckoutSession(formData: FormData) {
 
   // 5. Build line items
   const origin = (await headers()).get("origin");
-  const locale = (formData.get("locale") as string) || "en";
+  const locale = parsedFields.data.locale;
 
   const lineItems = cartItems.map((item) => {
     const variantLabel = (item.variant as any)?.label;

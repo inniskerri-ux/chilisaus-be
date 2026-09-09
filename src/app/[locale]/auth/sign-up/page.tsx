@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { supabase } from "@/lib/supabase/client";
 import { useTranslations } from "next-intl";
 import { useRouter, useParams } from "next/navigation";
 import Link from "next/link";
@@ -10,6 +9,9 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Loader2, CheckCircle2, PackageSearch } from "lucide-react";
+import { signUp } from "../../actions/auth";
+import { useFormGuard } from "@/components/security/useFormGuard";
+import TurnstileWidget from "@/components/security/TurnstileWidget";
 
 export default function SignUpPage() {
   const { locale } = useParams() as { locale: string };
@@ -21,6 +23,8 @@ export default function SignUpPage() {
   const [loading, setLoading] = useState(false);
   const [err, setErr] = useState<string | null>(null);
   const [done, setDone] = useState(false);
+  const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
+  const { honeypotValue, renderedAt, honeypotFieldProps } = useFormGuard();
 
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -34,16 +38,17 @@ export default function SignUpPage() {
     }
 
     try {
-      const { error } = await supabase.auth.signUp({
+      const result = await signUp({
         email,
         password,
-        options: {
-          emailRedirectTo: `${window.location.origin}/auth/callback?next=/${locale}/account`,
-        },
+        locale,
+        honeypot: honeypotValue,
+        renderedAt,
+        turnstileToken: turnstileToken || "",
       });
 
-      if (error) {
-        setErr(error.message);
+      if (result.error) {
+        setErr(result.error);
       } else {
         setDone(true);
       }
@@ -146,6 +151,9 @@ export default function SignUpPage() {
               />
             </div>
 
+            <input {...honeypotFieldProps} />
+            <TurnstileWidget onVerify={setTurnstileToken} />
+
             {err && (
               <div className="p-3 rounded-lg bg-red-50 text-red-600 text-sm font-medium border border-red-100">
                 {err}
@@ -154,7 +162,7 @@ export default function SignUpPage() {
 
             <Button
               className="w-full bg-brand-red hover:bg-brand-red/90 text-white font-bold h-12 rounded-xl text-lg shadow-lg shadow-red-100 transition-all hover:scale-[1.02] active:scale-[0.98]"
-              disabled={loading}
+              disabled={loading || !turnstileToken}
             >
               {loading ? (
                 <Loader2 className="mr-2 h-5 w-5 animate-spin" />

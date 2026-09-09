@@ -6,6 +6,7 @@ import { X, Mail, Sparkles, CheckCircle2, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { subscribeToNewsletter } from "@/app/[locale]/actions/newsletter";
+import { useFormGuard } from "@/components/security/useFormGuard";
 
 export default function NewsletterPopup({ locale }: { locale: string }) {
   const t = useTranslations("Newsletter");
@@ -14,6 +15,7 @@ export default function NewsletterPopup({ locale }: { locale: string }) {
   const [isPending, setIsPending] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const { honeypotValue, renderedAt, honeypotFieldProps } = useFormGuard();
 
   useEffect(() => {
     // Show after 30 seconds
@@ -51,7 +53,12 @@ export default function NewsletterPopup({ locale }: { locale: string }) {
     setError(null);
 
     try {
-      const result = await subscribeToNewsletter(email, locale);
+      const result = await subscribeToNewsletter({
+        email,
+        locale,
+        honeypot: honeypotValue,
+        renderedAt,
+      });
       if (result.success) {
         setIsSuccess(true);
         // Set cookie to remember signup for 1 year
@@ -100,6 +107,7 @@ export default function NewsletterPopup({ locale }: { locale: string }) {
               </p>
 
               <form onSubmit={handleSubmit} className="space-y-4">
+                <input {...honeypotFieldProps} />
                 <div className="relative">
                   <Mail
                     className="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-400"

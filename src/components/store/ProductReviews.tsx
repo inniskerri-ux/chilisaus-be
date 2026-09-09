@@ -5,6 +5,8 @@ import { Star, CheckCircle2, User } from "lucide-react";
 import { supabase } from "@/lib/supabase/client";
 import { useTranslations } from "next-intl";
 import { grantReviewDiscountIfEligible } from "@/app/[locale]/actions/reviewReward";
+import { submitReview } from "@/app/[locale]/actions/submitReview";
+import { useFormGuard } from "@/components/security/useFormGuard";
 
 interface Review {
   id: string;
@@ -56,6 +58,7 @@ export default function ProductReviews({
   const [submitSuccess, setSubmitSuccess] = useState(false);
   const [submitError, setSubmitError] = useState("");
   const [rewarded, setRewarded] = useState(false);
+  const { honeypotValue, renderedAt, honeypotFieldProps } = useFormGuard();
 
   useEffect(() => {
     async function init() {
@@ -119,34 +122,23 @@ export default function ProductReviews({
     setIsSubmitting(true);
     setSubmitError("");
 
-    const { data: { user } } = await supabase.auth.getUser();
-    if (!user) {
-      setSubmitError(t("errorNotLoggedIn") || "You must be logged in to submit a review.");
-      setIsSubmitting(false);
-      return;
-    }
+    const result = await submitReview({
+      productId,
+      rating: formRating,
+      content: formContent.trim(),
+      customerName: formName.trim(),
+      honeypot: honeypotValue,
+      renderedAt,
+    });
 
-    const { data: inserted, error } = await supabase
-      .from("reviews")
-      .insert({
-        product_id: productId,
-        user_id: user.id,
-        rating: formRating,
-        content: formContent.trim(),
-        customer_name: formName.trim() || user.email?.split("@")[0] || "Anonymous",
-        is_verified: false,
-      })
-      .select("id, rating, title, content, customer_name, is_verified, created_at")
-      .single();
-
-    if (error) {
-      setSubmitError(t("errorSubmit") || "Something went wrong. Please try again.");
+    if (!result.review) {
+      setSubmitError(result.error || t("errorSubmit") || "Something went wrong. Please try again.");
       setIsSubmitting(false);
       return;
     }
 
     // Prepend the new review to the list
-    setReviews((prev) => [inserted, ...prev]);
+    setReviews((prev) => [result.review!, ...prev]);
     setSubmitSuccess(true);
     setShowForm(false);
     setFormRating(0);
@@ -246,6 +238,7 @@ export default function ProductReviews({
           onSubmit={handleSubmit}
           className="mb-10 rounded-2xl border border-zinc-200 bg-zinc-50 p-6 space-y-5"
         >
+          <input {...honeypotFieldProps} />
           <h3 className="font-bold text-zinc-900">
             {t("writeReview") || "Write a Review"}
           </h3>
