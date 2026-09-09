@@ -1,11 +1,10 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent } from "@/components/ui/card";
 import { supabase } from "@/lib/supabase/client";
 import {
@@ -24,6 +23,9 @@ import {
   FlaskConical,
   Columns2,
   GripVertical,
+  Bold,
+  Italic,
+  Underline,
 } from "lucide-react";
 import type { Block, ColumnBlock, TextBlock, ImageBlock, ProductsBlock, ButtonBlock, RowBlock } from "@/lib/emails/newsletter-builder";
 
@@ -39,32 +41,149 @@ function genId() {
   return Math.random().toString(36).slice(2);
 }
 
+const TEXT_SIZE_DEFAULT_PX: Record<TextBlock["size"], number> = {
+  heading: 24,
+  body: 15,
+  small: 12,
+};
+
+// Strips a contentEditable's HTML down to just text plus <b>/<i>/<u>/<br> --
+// the only formatting the toolbar can produce. Anything else (pasted styles,
+// spans, divs from Enter-key paragraphs, etc.) is unwrapped to its text
+// content, never dropped outright, so pasting from elsewhere can't smuggle
+// in stray markup or inline styles.
+function sanitizeRichText(html: string): string {
+  const container = document.createElement("div");
+  container.innerHTML = html;
+
+  const clean = (node: ChildNode): string => {
+    if (node.nodeType === Node.TEXT_NODE) {
+      const escaped = document.createElement("div");
+      escaped.textContent = node.textContent || "";
+      return escaped.innerHTML;
+    }
+    if (node.nodeType !== Node.ELEMENT_NODE) return "";
+    const el = node as HTMLElement;
+    const inner = Array.from(el.childNodes).map(clean).join("");
+    switch (el.tagName) {
+      case "BR":
+        return "<br>";
+      case "B":
+      case "STRONG":
+        return `<b>${inner}</b>`;
+      case "I":
+      case "EM":
+        return `<i>${inner}</i>`;
+      case "U":
+        return `<u>${inner}</u>`;
+      case "DIV":
+      case "P":
+        // contentEditable sometimes wraps each line in its own block element
+        // instead of using <br> -- treat the boundary as a line break.
+        return `${inner}<br>`;
+      default:
+        return inner;
+    }
+  };
+
+  const result = Array.from(container.childNodes).map(clean).join("");
+  return result.replace(/(<br>)+$/, "");
+}
+
 // --- Block editors ---
 
 function TextEditor({ block, onChange }: { block: TextBlock; onChange: (b: TextBlock) => void }) {
+  const editableRef = useRef<HTMLDivElement>(null);
+
+  // Only push block.content into the DOM when switching to a different block
+  // -- never on every keystroke, or we'd fight the browser over cursor
+  // position while the owner is typing.
+  useEffect(() => {
+    if (editableRef.current) {
+      editableRef.current.innerHTML = block.content;
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [block.id]);
+
+  const commit = () => {
+    if (!editableRef.current) return;
+    onChange({ ...block, content: sanitizeRichText(editableRef.current.innerHTML) });
+  };
+
+  const applyFormat = (command: "bold" | "italic" | "underline") => {
+    editableRef.current?.focus();
+    document.execCommand(command);
+    commit();
+  };
+
+  const defaultPx = TEXT_SIZE_DEFAULT_PX[block.size];
+
   return (
     <div className="space-y-3">
-      <div className="flex gap-2">
-        {(["heading", "body", "small"] as const).map((s) => (
+      <div className="flex flex-wrap items-center justify-between gap-2">
+        <div className="flex gap-2">
+          {(["heading", "body", "small"] as const).map((s) => (
+            <button
+              key={s}
+              type="button"
+              onClick={() => onChange({ ...block, size: s })}
+              className={`px-3 py-1 text-xs rounded-full border transition-colors capitalize ${
+                block.size === s
+                  ? "bg-black text-white border-black"
+                  : "border-zinc-300 text-zinc-600 hover:border-zinc-500"
+              }`}
+            >
+              {s}
+            </button>
+          ))}
+        </div>
+        <div className="flex items-center gap-1.5">
+          <Label className="text-xs text-zinc-500">Size</Label>
+          <Input
+            type="number"
+            min={8}
+            max={72}
+            placeholder={String(defaultPx)}
+            value={block.fontSizePx ?? ""}
+            onChange={(e) =>
+              onChange({ ...block, fontSizePx: e.target.value ? Number(e.target.value) : undefined })
+            }
+            className="w-16 h-7 text-xs px-2"
+          />
+          <span className="text-xs text-zinc-400">px</span>
+        </div>
+      </div>
+
+      <div className="flex gap-1 border border-zinc-200 rounded-md p-1 w-fit">
+        {[
+          { command: "bold" as const, Icon: Bold, title: "Bold" },
+          { command: "italic" as const, Icon: Italic, title: "Italic" },
+          { command: "underline" as const, Icon: Underline, title: "Underline" },
+        ].map(({ command, Icon, title }) => (
           <button
-            key={s}
+            key={command}
             type="button"
-            onClick={() => onChange({ ...block, size: s })}
-            className={`px-3 py-1 text-xs rounded-full border transition-colors capitalize ${
-              block.size === s
-                ? "bg-black text-white border-black"
-                : "border-zinc-300 text-zinc-600 hover:border-zinc-500"
-            }`}
+            title={title}
+            // Prevent losing the text selection to the button's own focus
+            // before the click handler runs.
+            onMouseDown={(e) => e.preventDefault()}
+            onClick={() => applyFormat(command)}
+            className="p-1.5 rounded hover:bg-zinc-100 text-zinc-700"
           >
-            {s}
+            <Icon size={14} />
           </button>
         ))}
       </div>
-      <Textarea
-        value={block.content}
-        onChange={(e) => onChange({ ...block, content: e.target.value })}
-        placeholder="Write your text here..."
-        className={`w-full resize-none ${
+      <p className="text-xs text-zinc-400">Highlight text, then click Bold / Italic / Underline.</p>
+
+      <div
+        ref={editableRef}
+        contentEditable
+        onInput={commit}
+        onBlur={commit}
+        data-placeholder="Write your text here..."
+        style={block.fontSizePx ? { fontSize: `${block.fontSizePx}px` } : undefined}
+        className={`w-full resize-none rounded-md border border-zinc-200 px-3 py-2 outline-none focus:ring-1 focus:ring-black empty:before:content-[attr(data-placeholder)] empty:before:text-zinc-400 ${
           block.size === "heading" ? "text-xl font-bold min-h-[60px]" :
           block.size === "small" ? "text-xs text-zinc-500 min-h-[60px]" :
           "text-sm min-h-[100px]"
@@ -153,6 +272,23 @@ function ImageEditor({ block, onChange }: { block: ImageBlock; onChange: (b: Ima
               <span className="text-xs text-zinc-500">Click to upload image</span>
             </>
           )}
+        </div>
+      )}
+      {block.url && (
+        <div className="space-y-1">
+          <div className="flex items-center justify-between">
+            <Label className="text-xs text-zinc-500">Display size</Label>
+            <span className="text-xs text-zinc-400">{block.widthPercent ?? 100}%</span>
+          </div>
+          <input
+            type="range"
+            min={20}
+            max={100}
+            step={5}
+            value={block.widthPercent ?? 100}
+            onChange={(e) => onChange({ ...block, widthPercent: Number(e.target.value) })}
+            className="w-full accent-black"
+          />
         </div>
       )}
       <Input
@@ -275,7 +411,7 @@ function createColumnBlock(type: ColumnBlockType): ColumnBlock {
   const id = genId();
   switch (type) {
     case "text": return { id, type: "text", content: "", size: "body" };
-    case "image": return { id, type: "image", url: "", alt: "" };
+    case "image": return { id, type: "image", url: "", alt: "", widthPercent: 100 };
     case "button": return { id, type: "button", label: "Shop Now", url: "https://chilisaus.be/en/shop" };
   }
 }
@@ -452,12 +588,23 @@ function BlockPreview({ block }: { block: Block }) {
         body: "text-sm text-zinc-600 leading-relaxed",
         small: "text-xs text-zinc-400",
       };
-      return <p className={classes[block.size]} style={{ whiteSpace: "pre-wrap" }}>{block.content}</p>;
+      const style: React.CSSProperties = { whiteSpace: "pre-wrap" };
+      if (block.fontSizePx) style.fontSize = `${block.fontSizePx}px`;
+      return (
+        <p
+          className={classes[block.size]}
+          style={style}
+          // block.content is sanitized to <b>/<i>/<u>/<br> only by the editor
+          dangerouslySetInnerHTML={{ __html: block.content }}
+        />
+      );
     }
     case "image":
       return block.url ? (
-        // eslint-disable-next-line @next/next/no-img-element
-        <img src={block.url} alt={block.alt} className="w-full h-auto rounded-lg" />
+        <div style={{ width: `${block.widthPercent ?? 100}%` }} className="mx-auto">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={block.url} alt={block.alt} className="w-full h-auto rounded-lg" />
+        </div>
       ) : (
         <div className="w-full h-24 bg-zinc-100 rounded-lg flex items-center justify-center text-zinc-400 text-xs">
           No image
@@ -534,7 +681,7 @@ function createBlock(type: Block["type"]): Block {
   switch (type) {
     case "row": return { id, type: "row", splitPercent: 50, left: [], right: [] };
     case "text": return { id, type: "text", content: "", size: "body" };
-    case "image": return { id, type: "image", url: "", alt: "" };
+    case "image": return { id, type: "image", url: "", alt: "", widthPercent: 100 };
     case "products": return { id, type: "products", products: [] };
     case "button": return { id, type: "button", label: "Shop Now", url: "https://chilisaus.be/en/shop" };
   }
@@ -822,9 +969,12 @@ export default function EmailBuilder({
           <p className="text-xs font-semibold uppercase tracking-wider text-zinc-400 mb-3">Preview</p>
           <div className="rounded-xl overflow-hidden border shadow-sm bg-zinc-100">
             {/* Header */}
-            <div className="bg-red-600 px-6 py-4 text-center">
+            <div className="bg-red-600 px-6 py-5 flex items-center gap-3.5">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/images/logo.png" alt="Chilisaus.be" className="inline-block w-[150px] h-auto rounded-md" />
+              <img src="/images/logo.png" alt="Chilisaus.be" className="w-[70px] h-auto rounded-md flex-shrink-0" />
+              <span className="flex-1 text-center text-white text-base font-bold leading-tight capitalize tracking-wide">You can never have too much<br />hot sauce</span>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/images/logo.png" alt="Chilisaus.be" className="w-[70px] h-auto rounded-md flex-shrink-0" />
             </div>
             {/* Body */}
             <div className="bg-white px-6 py-6 space-y-4 min-h-[200px]">

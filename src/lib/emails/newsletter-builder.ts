@@ -1,10 +1,21 @@
 import crypto from "crypto";
 
+// Hosted on Supabase Storage (not `${siteUrl}/images/logo.png`) so the header
+// logo loads regardless of which domain is currently live for the site --
+// chilisaus.be still serves the old WooCommerce store while this app is
+// staged at staging.chilisaus.be, and that relative path 404'd there.
+const LOGO_URL =
+  "https://hkflfhbzfsentkkwzqnd.supabase.co/storage/v1/object/public/product-images/email-assets/logo.png";
+
 export type TextBlock = {
   id: string;
   type: "text";
+  // Sanitized HTML -- only <b>, <i>, <u>, <br> ever end up in here (enforced
+  // by the builder UI's sanitizer), never arbitrary markup.
   content: string;
   size: "heading" | "body" | "small";
+  // Optional override of the size category's default font-size, in px.
+  fontSizePx?: number;
 };
 
 export type ImageBlock = {
@@ -12,6 +23,9 @@ export type ImageBlock = {
   type: "image";
   url: string;
   alt: string;
+  // Display width as a percentage of the column, 20-100. Never resamples or
+  // crops the source image -- purely a display-size control.
+  widthPercent: number;
 };
 
 export type ProductsBlock = {
@@ -55,16 +69,18 @@ function renderBlock(block: Block, siteUrl: string): string {
         small: "font-size:12px;color:#888;margin:0 0 12px;line-height:1.6;",
       };
       const tag = block.size === "heading" ? "h2" : "p";
-      // Preserve line breaks
-      const content = block.content.replace(/\n/g, "<br>");
-      return `<${tag} style="${styles[block.size]}">${content}</${tag}>`;
+      const style = block.fontSizePx
+        ? styles[block.size].replace(/font-size:[^;]+;/, `font-size:${block.fontSizePx}px;`)
+        : styles[block.size];
+      return `<${tag} style="${style}">${block.content}</${tag}>`;
     }
 
     case "image": {
       if (!block.url) return "";
+      const width = Math.min(100, Math.max(20, block.widthPercent ?? 100));
       return `
-        <div style="margin:0 0 20px;">
-          <img src="${block.url}" alt="${block.alt || ""}" style="width:100%;max-width:560px;height:auto;display:block;border-radius:8px;" />
+        <div style="margin:0 0 20px;text-align:center;">
+          <img src="${block.url}" alt="${block.alt || ""}" style="width:${width}%;max-width:${width}%;height:auto;display:inline-block;border-radius:8px;" />
         </div>`;
     }
 
@@ -175,10 +191,24 @@ export function generateNewsletterHtml({
 
           <!-- Header -->
           <tr>
-            <td style="background:#c00;padding:24px 32px;border-radius:8px 8px 0 0;text-align:center;">
-              <a href="${siteUrl}" style="text-decoration:none;">
-                <img src="${siteUrl}/images/logo.png" alt="Chilisaus.be" width="150" style="display:inline-block;width:150px;max-width:150px;height:auto;border:0;border-radius:6px;" />
-              </a>
+            <td style="background:#c00;padding:20px 32px;border-radius:8px 8px 0 0;">
+              <table cellpadding="0" cellspacing="0" style="width:100%;border-collapse:collapse;">
+                <tr>
+                  <td style="width:70px;vertical-align:middle;">
+                    <a href="${siteUrl}" style="text-decoration:none;">
+                      <img src="${LOGO_URL}" alt="Chilisaus.be" width="70" style="display:block;width:70px;max-width:70px;height:auto;border:0;border-radius:6px;" />
+                    </a>
+                  </td>
+                  <td style="vertical-align:middle;text-align:center;padding:0 12px;">
+                    <span style="color:#fff;font-size:19px;font-weight:700;line-height:1.3;text-transform:capitalize;letter-spacing:0.02em;">You can never have too much<br>hot sauce</span>
+                  </td>
+                  <td style="width:70px;vertical-align:middle;text-align:right;">
+                    <a href="${siteUrl}" style="text-decoration:none;">
+                      <img src="${LOGO_URL}" alt="Chilisaus.be" width="70" style="display:inline-block;width:70px;max-width:70px;height:auto;border:0;border-radius:6px;" />
+                    </a>
+                  </td>
+                </tr>
+              </table>
             </td>
           </tr>
 
