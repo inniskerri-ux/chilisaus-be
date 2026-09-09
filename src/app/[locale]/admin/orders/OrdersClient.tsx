@@ -20,15 +20,16 @@ type Order = {
 };
 
 const STATUS_STYLES: Record<string, string> = {
-  paid:       "bg-green-50 text-green-700 border-green-200",
-  shipped:    "bg-blue-50 text-blue-700 border-blue-200",
-  cancelled:  "bg-red-50 text-red-600 border-red-200",
-  refunded:   "bg-orange-50 text-orange-700 border-orange-200",
-  pending:    "bg-zinc-50 text-zinc-500 border-zinc-200",
+  paid:               "bg-green-50 text-green-700 border-green-200",
+  shipped:            "bg-blue-50 text-blue-700 border-blue-200",
+  cancelled:          "bg-red-50 text-red-600 border-red-200",
+  refunded:           "bg-orange-50 text-orange-700 border-orange-200",
+  partially_refunded: "bg-orange-50 text-orange-700 border-orange-200",
+  pending:            "bg-zinc-50 text-zinc-500 border-zinc-200",
 };
 
-const ALL_STATUSES = ["all", "paid", "shipped", "pending", "cancelled", "refunded"];
-const STATUS_LABELS: Record<string, string> = { shipped: "Completed" };
+const ALL_STATUSES = ["all", "paid", "shipped", "pending", "cancelled", "refunded", "partially_refunded"];
+const STATUS_LABELS: Record<string, string> = { shipped: "Completed", partially_refunded: "Partially Refunded" };
 const DEFAULT_VISIBLE = 20;
 
 export default function OrdersClient({ orders, locale }: { orders: Order[]; locale: string }) {

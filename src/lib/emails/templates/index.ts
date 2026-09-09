@@ -411,6 +411,70 @@ export function getShippingConfirmationHtml(params: {
 }
 
 /**
+ * Refund Confirmation for Purchaser
+ */
+export function getRefundConfirmationHtml(params: {
+  firstName: string;
+  orderNumber: number | null;
+  orderId: string;
+  amountCents: number;
+  currency: string;
+  isFullRefund: boolean;
+  refundedItems?: { name: string; quantity: number }[];
+}): string {
+  const { firstName, orderNumber, orderId, amountCents, currency, isFullRefund, refundedItems } = params;
+
+  const orderRef = orderNumber
+    ? String(orderNumber).padStart(4, "0")
+    : orderId.slice(0, 8).toUpperCase();
+
+  const itemsList = refundedItems?.length
+    ? `
+    <div style="margin-bottom: 32px;">
+      <h3 style="font-size: 0.85em; text-transform: uppercase; letter-spacing: 1px; color: #999; margin-bottom: 10px;">Refunded items</h3>
+      <ul style="color: #555; font-size: 0.95em; margin: 0; padding-left: 18px; line-height: 1.8;">
+        ${refundedItems.map((item) => `<li>${item.name} &times;${item.quantity}</li>`).join("")}
+      </ul>
+    </div>`
+    : "";
+
+  return `
+    <div style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; max-width: 600px; margin: 0 auto; color: #333; line-height: 1.6; padding: 20px;">
+      <div style="margin-bottom: 40px;">
+        <img src="https://hkflfhbzfsentkkwzqnd.supabase.co/storage/v1/object/public/assets/email/logo.jpg" alt="Chilisaus.be" style="height: 60px; width: auto;" />
+      </div>
+
+      <h1 style="font-size: 2.2em; font-weight: 800; color: #000; margin-bottom: 20px; letter-spacing: -1px;">
+        Your refund has been processed
+      </h1>
+
+      <p style="font-size: 1.1em; color: #555; margin-bottom: 8px;">
+        Hi ${firstName},
+      </p>
+      <p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">
+        We've refunded <strong>${formatPrice(amountCents, currency)}</strong> for your order <strong>#${orderRef}</strong>${isFullRefund ? " in full" : ""}. It should appear back on your original payment method within 5-10 business days, depending on your bank.
+      </p>
+
+      ${itemsList}
+
+      <div style="background: #fff8f0; border-radius: 8px; padding: 20px; margin-bottom: 40px; font-size: 0.9em; color: #555;">
+        <strong>Any questions?</strong> Message Kerri directly on WhatsApp or reply to this email &mdash; she's always happy to help!
+      </div>
+
+      <div style="text-align: center; border-top: 1px solid #eee; padding-top: 40px;">
+        <p style="font-weight: bold; margin-bottom: 5px;">Thank you for choosing Chilisaus.be!</p>
+        <p style="font-size: 0.9em; color: #666; margin-bottom: 20px;">
+          Don't forget to follow us on Instagram<br>
+          <a href="https://www.instagram.com/chilisaus.be" style="color: #000; font-weight: bold; text-decoration: none;">#chilisaus.be</a><br>
+          <span style="font-size: 0.8em;">#youcanneverhavetoomuchhotsauce</span>
+        </p>
+        <a href="https://www.chilisaus.be" style="color: #666; font-size: 0.8em; text-decoration: none;">www.chilisaus.be</a>
+      </div>
+    </div>
+  `;
+}
+
+/**
  * Newsletter Double Opt-In Verification
  */
 export function getNewsletterVerificationHtml(confirmUrl: string): string {

@@ -179,7 +179,11 @@ function ProductArchiveContent({
       );
     });
 
-    if (sortBy === "mild-first") {
+    // When a heat-band filter is active, default to browsing that band in
+    // ascending heat order -- sorting by popularity within an
+    // already-heat-narrowed view doesn't match what picking "1-4" implies.
+    // An explicit sort choice (price, newest, hot-first) still wins.
+    if (sortBy === "mild-first" || (sortBy === "popular" && selectedHeatLevel)) {
       filtered = [...filtered].sort((a, b) => {
         const aLevel = resolveHeatRank(a.heatLevel);
         const bLevel = resolveHeatRank(b.heatLevel);

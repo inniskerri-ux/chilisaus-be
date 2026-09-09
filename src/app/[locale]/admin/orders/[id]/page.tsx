@@ -6,17 +6,22 @@ import { formatPrice } from "@/lib/format";
 import { ArrowLeft, Download, ExternalLink, Mail, MapPin, Package, ShoppingBag, Tag, Truck } from "lucide-react";
 import { updateOrderStatus } from "../actions";
 import ShipOrderForm from "./ShipOrderForm";
+import RefundOrderForm from "./RefundOrderForm";
 
 const STATUS_STYLES: Record<string, string> = {
-  paid:      "bg-green-50 text-green-700 border-green-200",
-  shipped:   "bg-blue-50 text-blue-700 border-blue-200",
-  cancelled: "bg-red-50 text-red-600 border-red-200",
-  refunded:  "bg-orange-50 text-orange-700 border-orange-200",
-  pending:   "bg-zinc-50 text-zinc-500 border-zinc-200",
+  paid:               "bg-green-50 text-green-700 border-green-200",
+  shipped:            "bg-blue-50 text-blue-700 border-blue-200",
+  cancelled:          "bg-red-50 text-red-600 border-red-200",
+  refunded:           "bg-orange-50 text-orange-700 border-orange-200",
+  partially_refunded: "bg-orange-50 text-orange-700 border-orange-200",
+  pending:            "bg-zinc-50 text-zinc-500 border-zinc-200",
 };
 
+// "partially_refunded"/"refunded" are set automatically by the refund flow
+// (derived from refunded_cents vs total_cents) -- deliberately not a manual
+// dropdown option here, to avoid it drifting out of sync with actual refunds.
 const ALL_STATUSES = ["pending", "paid", "shipped", "cancelled", "refunded"] as const;
-const STATUS_LABELS: Record<string, string> = { shipped: "Completed" };
+const STATUS_LABELS: Record<string, string> = { shipped: "Completed", partially_refunded: "Partially Refunded" };
 
 const CARRIER_LABELS: Record<string, string> = {
   postnl: "PostNL",
@@ -67,6 +72,19 @@ export default async function AdminOrderDetailPage({
     .single();
 
   if (!order) notFound();
+
+  const { data: refunds } = await supabase
+    .from("order_refunds")
+    .select("id, amount_cents, reason, items, created_at")
+    .eq("order_id", id)
+    .order("created_at", { ascending: false });
+
+  const alreadyRefundedQty = new Map<string, number>();
+  for (const refund of refunds ?? []) {
+    for (const item of (refund.items as { orderItemId: string; quantity: number }[] | null) ?? []) {
+      alreadyRefundedQty.set(item.orderItemId, (alreadyRefundedQty.get(item.orderItemId) ?? 0) + item.quantity);
+    }
+  }
 
   const orderRef = order.order_number
     ? String(order.order_number).padStart(4, "0")
@@ -166,6 +184,55 @@ export default async function AdminOrderDetailPage({
           currentTrackingNumber={(order as any).tracking_number}
           isAlreadyShipped={isShipped}
         />
+      )}
+
+      {/* Refund (via Stripe) */}
+      {order.stripe_payment_intent_id && (
+        <RefundOrderForm
+          orderId={id}
+          currency={order.currency ?? "EUR"}
+          totalCents={order.total_cents}
+          refundedCents={(order as any).refunded_cents ?? 0}
+          items={(order.order_items as any[]).map((item) => ({
+            id: item.id,
+            name: item.product_name,
+            quantity: item.quantity,
+            priceCents: item.price_cents,
+            remainingQty: item.quantity - (alreadyRefundedQty.get(item.id) ?? 0),
+          }))}
+        />
+      )}
+
+      {/* Refund history */}
+      {refunds && refunds.length > 0 && (
+        <div className="rounded-xl border border-border bg-white overflow-hidden">
+          <div className="px-5 py-4 border-b border-zinc-100">
+            <h2 className="font-bold text-sm text-zinc-900">Refund History ({refunds.length})</h2>
+          </div>
+          <div className="divide-y divide-zinc-100">
+            {refunds.map((refund) => {
+              const refundItems = (refund.items as { name: string; quantity: number }[] | null) ?? [];
+              return (
+                <div key={refund.id} className="px-5 py-3 flex items-start justify-between gap-4">
+                  <div className="min-w-0">
+                    <p className="text-sm text-zinc-900">
+                      {refundItems.length > 0
+                        ? refundItems.map((it) => `${it.name} ×${it.quantity}`).join(", ")
+                        : refund.reason || "Custom amount"}
+                    </p>
+                    <p className="text-xs text-zinc-400">
+                      {new Date(refund.created_at).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" })}
+                      {refundItems.length > 0 && refund.reason ? ` · ${refund.reason}` : ""}
+                    </p>
+                  </div>
+                  <p className="font-bold text-sm text-orange-700 shrink-0">
+                    -{formatPrice(refund.amount_cents, order.currency ?? "EUR")}
+                  </p>
+                </div>
+              );
+            })}
+          </div>
+        </div>
       )}
 
       {/* Update status (for cancellations / refunds / manual overrides) */}

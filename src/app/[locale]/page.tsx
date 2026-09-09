@@ -7,6 +7,11 @@ import { getLocalizedField } from "@/lib/utils";
 
 export const dynamic = "force-dynamic";
 
+// Ascending heat order -- alphabetical sorting puts "Hot" before "Medium"
+// and "Mild", which reads as random to a customer since it doesn't match
+// the actual heat progression.
+const HEAT_BAND_SLUG_ORDER = ["mild", "medium", "hot", "very-hot", "superhot"];
+
 export default async function HomePage({
   params,
 }: {
@@ -44,7 +49,16 @@ export default async function HomePage({
     }),
   );
 
-  const visibleCategories = categories.filter((c) => c.image_url !== null);
+  const visibleCategories = categories
+    .filter((c) => c.image_url !== null)
+    .sort((a, b) => {
+      const aHeat = HEAT_BAND_SLUG_ORDER.indexOf(a.slug);
+      const bHeat = HEAT_BAND_SLUG_ORDER.indexOf(b.slug);
+      if (aHeat !== -1 && bHeat !== -1) return aHeat - bHeat;
+      if (aHeat !== -1) return -1;
+      if (bHeat !== -1) return 1;
+      return 0; // both non-heat: keep the existing alphabetical-by-name order
+    });
 
   return (
     <div className="flex flex-col gap-24 pb-24">
