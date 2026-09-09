@@ -251,7 +251,16 @@ function ProductArchiveContent({
     const groups: Array<{ band: HeatBand | null; products: StoreProduct[] }> = [];
     for (const band of HEAT_ORDER) {
       const prods = bandMap.get(band);
-      if (prods?.length) groups.push({ band, products: prods });
+      if (prods?.length) {
+        // Bands (Very Hot, Super Hot, etc.) span several heat levels each --
+        // sort ascending within the band too, not just by popularity, so
+        // e.g. a filtered "Extracts" list still reads mild-to-hot inside
+        // "Super Hot" instead of jumping 20, 15, 12.
+        const sorted = [...prods].sort(
+          (a, b) => (resolveHeatRank(a.heatLevel) ?? 999) - (resolveHeatRank(b.heatLevel) ?? 999),
+        );
+        groups.push({ band, products: sorted });
+      }
     }
     if (noBand.length) groups.push({ band: null, products: noBand });
 
